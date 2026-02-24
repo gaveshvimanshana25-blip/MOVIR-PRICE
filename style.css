@@ -6,34 +6,91 @@ body{
     text-align:center;
 }
 
-.hero{
-    padding-top:150px;
+/* NAVBAR */
+.nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:black;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:100;
 }
 
-.hero h1{
-    font-size:50px;
+.logo{
+    color:red;
+    font-size:22px;
+    font-weight:bold;
+    margin-left:20px;
+}
+
+.links a{
+    color:white;
+    margin:0 15px;
+    text-decoration:none;
+}
+
+.links a:hover{
     color:red;
 }
 
+/* HERO */
+.hero{
+    height:400px;
+    background:url('banner.jpg') center/cover;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding-top:60px;
+}
+
+.hero h1{
+    font-size:48px;
+    color:red;
+}
+
+/* BUTTONS */
 .buttons a{
     display:inline-block;
-    margin:20px;
-    padding:15px 40px;
+    margin:10px;
+    padding:12px 35px;
     background:red;
     color:white;
     text-decoration:none;
-    border-radius:30px;
-    font-size:20px;
+    border-radius:25px;
+    transition:0.3s;
 }
 
 .buttons a:hover{
     background:darkred;
+    transform:scale(1.05);
 }
 
-.container{
-    padding:40px;
+/* SEARCH */
+.search{
+    margin:40px 0;
 }
 
+.search input{
+    padding:12px 20px;
+    width:260px;
+    border-radius:25px;
+    border:none;
+}
+
+.search button{
+    padding:12px 25px;
+    border-radius:25px;
+    border:none;
+    background:red;
+    color:white;
+    cursor:pointer;
+}
+
+/* CARDS */
 .card{
     background:#1e1e1e;
     display:inline-block;
@@ -41,6 +98,8 @@ body{
     margin:20px;
     border-radius:10px;
     overflow:hidden;
+    position:relative;
+    transition:0.3s;
 }
 
 .card img{
@@ -49,9 +108,45 @@ body{
     object-fit:cover;
 }
 
-.card h3{
-    color:red;
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 25px rgba(255,0,0,0.3);
 }
 
-.search{
-    margin-bottom:30
+/* PLAY BUTTON */
+.play{
+    position:absolute;
+    top:80px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,0,0,0.8);
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    opacity:0;
+    transition:0.3s;
+}
+
+.card:hover .play{
+    opacity:1;
+}
+
+.info{
+    padding:15px;
+}
+
+.rating{
+    background:red;
+    padding:4px 10px;
+    border-radius:15px;
+    font-size:13px;
+}
+
+.genre{
+    opacity:0.6;
+    font-size:13px;
+}
