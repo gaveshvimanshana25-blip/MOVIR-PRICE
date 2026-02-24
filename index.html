@@ -1,115 +1,199 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Hub</title>
 
 <style>
 body{
     margin:0;
-    background:#000;
+    background:black;
     font-family:Arial, sans-serif;
     color:white;
-    overflow-x:hidden;
 }
 
-/* TOP LOADER */
-#topLoader{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    width:0%;
-    background:#e50914;
-    z-index:9999;
-    transition:width 0.6s ease;
+/* ===== SLIDER ===== */
+.slider{
+    position:relative;
+    height:260px;
+    overflow:hidden;
 }
 
-/* HERO */
-.hero{
-    padding:20px;
-    text-align:center;
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:opacity 0.7s ease-in-out, transform 6s ease;
 }
 
-.hero h1{
-    font-size:26px;
+/* ACTIVE SLIDE */
+.slide.active{
+    opacity:1;
+    transform:scale(1.06);
+}
+
+/* DARK OVERLAY */
+.slide::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top, black 15%, transparent 60%);
+}
+
+/* TEXT OVERLAY */
+.content{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    z-index:2;
+    max-width:70%;
+}
+
+.content h2{
+    margin:0;
+    font-size:22px;
     color:#e50914;
-    letter-spacing:3px;
 }
 
-/* BANNER */
-.banner{
-    height:220px;
-    background:url('banner.jpg') center/cover;
-    margin:10px;
-    border-radius:10px;
+.content p{
+    margin:5px 0 0;
+    font-size:13px;
+    opacity:0.85;
 }
 
-/* SECTIONS */
-.section{
-    padding:20px;
-}
-
-.section h2{
-    font-size:18px;
-}
-
-/* CARD */
-.card{
-    background:#111;
-    border-radius:10px;
-    padding:18px;
-    margin-top:10px;
+/* DOTS */
+.dots{
+    position:absolute;
+    bottom:8px;
+    width:100%;
     text-align:center;
-    cursor:pointer;
+    z-index:3;
+}
+
+.dot{
+    display:inline-block;
+    width:18px;
+    height:3px;
+    background:gray;
+    margin:3px;
+    border-radius:10px;
     transition:0.3s;
 }
 
-.card:hover{
+.dot.active{
     background:#e50914;
-    transform:scale(1.05);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .slider{ height:200px; }
+    .content h2{ font-size:18px; }
 }
 </style>
 </head>
 
 <body>
 
-<div id="topLoader"></div>
+<div class="slider" id="slider">
 
-<div class="hero">
-    <h1>STREAM HUB</h1>
-</div>
-
-<div class="banner"></div>
-
-<div class="section">
-    <h2>📺 TV SHOWS</h2>
-
-    <div class="card" onclick="openPage('tv.html')">
-        Go to TV Shows
+    <div class="slide active" style="background-image:url('m1.jpg')">
+        <div class="content">
+            <h2>Hridayam</h2>
+            <p>Romantic • Drama</p>
+        </div>
     </div>
-</div>
 
-<div class="section">
-    <h2>🎥 MOVIES</h2>
-
-    <div class="card" onclick="openPage('movies.html')">
-        Go to Movies
+    <div class="slide" style="background-image:url('m2.jpg')">
+        <div class="content">
+            <h2>Interstellar</h2>
+            <p>Sci-Fi • Adventure</p>
+        </div>
     </div>
+
+    <div class="slide" style="background-image:url('m3.jpg')">
+        <div class="content">
+            <h2>Joker</h2>
+            <p>Crime • Thriller</p>
+        </div>
+    </div>
+
+    <div class="slide" style="background-image:url('m4.jpg')">
+        <div class="content">
+            <h2>Avatar</h2>
+            <p>Fantasy • Action</p>
+        </div>
+    </div>
+
+    <div class="slide" style="background-image:url('m5.jpg')">
+        <div class="content">
+            <h2>Batman</h2>
+            <p>Action • Dark</p>
+        </div>
+    </div>
+
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
 </div>
 
 <script>
-function openPage(url){
+let slides = document.querySelectorAll(".slide");
+let dots = document.querySelectorAll(".dot");
 
-    var loader = document.getElementById("topLoader");
+let index = 0;
+let startX = 0;
 
-    loader.style.width = "100%";
+/* AUTO SWIPE */
+function showSlide(i){
 
-    setTimeout(function(){
-        window.location.href = url;
-    }, 500);
+    slides.forEach(s => s.classList.remove("active"));
+    dots.forEach(d => d.classList.remove("active"));
+
+    slides[i].classList.add("active");
+    dots[i].classList.add("active");
 }
+
+function nextSlide(){
+    index++;
+    if(index >= slides.length) index = 0;
+    showSlide(index);
+}
+
+setInterval(nextSlide, 3500);
+
+/* TOUCH SWIPE SUPPORT */
+const slider = document.getElementById("slider");
+
+slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
+
+    if(Math.abs(diff) > 50){
+
+        if(diff > 0){
+            index++;
+            if(index >= slides.length) index = 0;
+        }else{
+            index--;
+            if(index < 0) index = slides.length - 1;
+        }
+
+        showSlide(index);
+    }
+});
 </script>
 
 </body>
