@@ -2,166 +2,223 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV & Movie Store</title>
+<title>TV Shows VIP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg,#0f0f0f,#1c1c1c,#000);
+    color:#fff;
+    padding:40px;
 }
 
-body {
-    background: radial-gradient(circle at top, #111 0%, #050505 70%);
-    color: white;
-    padding: 35px;
+/* Title */
+h1{
+    text-align:center;
+    font-size:42px;
+    background: linear-gradient(45deg,#ff0000,#ff9900);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:30px;
 }
 
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 35px;
+/* Search */
+.search-box{
+    text-align:center;
+    margin-bottom:50px;
+}
+.search-box input{
+    padding:12px 20px;
+    width:320px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    background:#1e1e1e;
+    color:white;
+    box-shadow:0 0 20px rgba(255,0,0,0.5);
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #ff3b3b;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
+/* Cards */
+.cards-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
 }
 
-.search-box {
-    padding: 9px 14px;
-    width: 220px;
-    border-radius: 25px;
-    border: 1px solid #222;
-    outline: none;
+.card{
+    width:320px;
+    border-radius:20px;
+    overflow:hidden;
     background: rgba(255,255,255,0.05);
-    color: white;
-    backdrop-filter: blur(6px);
-    transition: 0.3s;
-}
-
-.search-box:focus {
-    border-color: #ff3b3b;
-    background: rgba(255,255,255,0.08);
-}
-
-/* Banner */
-.banner {
-    height: 190px;
-    border-radius: 14px;
-    background:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-        url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    font-weight: bold;
-    color: #ff3b3b;
-    margin-bottom: 45px;
-
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    text-shadow: 0 0 18px rgba(255, 0, 0, 0.35);
-}
-
-/* Sections */
-.sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
-}
-
-/* Glass Cards */
-.clickable-section {
-    background: rgba(255,255,255,0.04);
-    border-radius: 16px;
-    padding: 45px 20px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    color: #ff3b3b;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
-
-    transition: 0.35s ease;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    box-shadow: 0 0 25px rgba(255,0,0,0.3);
+    transition:0.4s;
+    cursor:pointer;
 }
 
-.clickable-section:hover {
-    transform: translateY(-6px) scale(1.02);
-    background: rgba(255,255,255,0.07);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.6);
-    border-color: rgba(255, 59, 59, 0.4);
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 40px rgba(255,0,0,0.8);
 }
 
-/* WhatsApp Button */
-.whatsapp-button {
-    position: fixed;
-    right: 22px;
-    bottom: 22px;
+.card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
 }
 
-.whatsapp-button img {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    background: #111;
-    padding: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    transition: 0.3s;
+.card-content{
+    padding:20px;
 }
 
-.whatsapp-button img:hover {
-    transform: scale(1.12);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+.card-content h3{
+    margin:0 0 10px;
+    font-size:22px;
+    color:#ff3c3c;
 }
 
-/* Footer */
-footer {
-    margin-top: 65px;
-    text-align: center;
-    color: #666;
-    font-size: 13px;
+.card-content p{
+    margin:6px 0;
+    font-size:15px;
+}
+
+.genre{ color:#00ffd5; }
+.year{ color:#ff66cc; }
+.price{
+    font-size:18px;
+    font-weight:600;
+    color:#ff0000;
+}
+
+/* Modal */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    border-radius:20px;
+    padding:30px;
+    max-width:650px;
+    width:90%;
+    position:relative;
+    animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn{
+    from{transform:scale(0.7);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.modal-content img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.close{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    color:#ff0000;
+    cursor:pointer;
 }
 </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">TV & MOVIE STORE</div>
-    <input class="search-box" type="text" placeholder="Search...">
-</header>
+<h1>🔥 TV SHOWS VIP</h1>
 
-<div class="banner">🎬 Welcome to TV & Movie Store</div>
-
-<div class="sections">
-    <div class="clickable-section" onclick="window.location.href='tvshow.html'">
-        TV SHOWS
-    </div>
-
-    <div class="clickable-section" onclick="window.location.href='movie.html'">
-        MOVIES
-    </div>
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search by title, genre or year...">
 </div>
 
-<div class="whatsapp-button">
-    <a href="https://wa.me/94703490292" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
+<div class="cards-container" id="cardsContainer"></div>
+
+<!-- Modal -->
+<div id="tvModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage">
+    <p id="modalGenre"></p>
+    <p id="modalYear"></p>
+    <p id="modalPrice"></p>
+    <p id="modalDesc"></p>
+  </div>
 </div>
 
-<footer>
-    SYSTEM DEVELOPED BY GAVESH VIMANSHANA
-</footer>
+<script>
+
+const tvShows = [
+    {title:"Money Heist", img:"https://picsum.photos/400/300?1", genre:"Action", year:"2023", price:"Rs 500", desc:"High intensity crime drama series."},
+    {title:"Breaking Drama", img:"https://picsum.photos/400/300?2", genre:"Drama", year:"2022", price:"Rs 600", desc:"Emotional dramatic storytelling masterpiece."},
+    {title:"Laugh City", img:"https://picsum.photos/400/300?3", genre:"Comedy", year:"2021", price:"Rs 450", desc:"Ultimate comedy entertainment for everyone."},
+    {title:"Night Hunter", img:"https://picsum.photos/400/300?4", genre:"Thriller", year:"2023", price:"Rs 700", desc:"Edge of the seat thriller episodes."}
+];
+
+const container = document.getElementById("cardsContainer");
+const searchInput = document.getElementById("searchInput");
+const modal = document.getElementById("tvModal");
+
+function displayShows(shows){
+    container.innerHTML = "";
+    shows.forEach(show=>{
+        const card=document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML=`
+            <img src="${show.img}">
+            <div class="card-content">
+                <h3>${show.title}</h3>
+                <p class="genre">${show.genre}</p>
+                <p class="year">${show.year}</p>
+                <p class="price">${show.price}</p>
+            </div>
+        `;
+        card.onclick=()=>openModal(show);
+        container.appendChild(card);
+    });
+}
+
+displayShows(tvShows);
+
+searchInput.addEventListener("keyup", ()=>{
+    const value = searchInput.value.toLowerCase();
+    const filtered = tvShows.filter(show =>
+        show.title.toLowerCase().includes(value) ||
+        show.genre.toLowerCase().includes(value) ||
+        show.year.includes(value)
+    );
+    displayShows(filtered);
+});
+
+function openModal(show){
+    document.getElementById("modalTitle").innerText=show.title;
+    document.getElementById("modalImage").src=show.img;
+    document.getElementById("modalGenre").innerText="Genre: "+show.genre;
+    document.getElementById("modalYear").innerText="Year: "+show.year;
+    document.getElementById("modalPrice").innerText="Price: "+show.price;
+    document.getElementById("modalDesc").innerText=show.desc;
+    modal.style.display="flex";
+}
+
+document.querySelector(".close").onclick=()=>modal.style.display="none";
+window.onclick=e=>{if(e.target==modal) modal.style.display="none";}
+
+</script>
 
 </body>
 </html>
