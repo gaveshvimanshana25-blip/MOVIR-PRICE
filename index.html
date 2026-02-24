@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simple Movie Download</title>
+<title>Movie Hub</title>
 
 <style>
 body{
@@ -14,8 +14,8 @@ color:white;
 }
 
 .header{
-padding:15px;
 text-align:center;
+padding:15px;
 font-size:22px;
 color:#e50914;
 font-weight:bold;
@@ -33,7 +33,12 @@ background:#111;
 border-radius:8px;
 overflow:hidden;
 text-align:center;
-padding-bottom:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
 }
 
 .card img{
@@ -43,37 +48,26 @@ object-fit:cover;
 }
 
 .card h3{
-font-size:16px;
 padding:10px;
-}
-
-.download-btn{
-display:inline-block;
-background:#e50914;
-color:white;
-padding:8px 15px;
-border-radius:5px;
-text-decoration:none;
+font-size:16px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">🎬 Movie Download Site</div>
+<div class="header">🎬 Movie Hub</div>
 
 <div class="grid">
 
-<div class="card">
+<div class="card" onclick="window.location='money.html'">
 <img src="images/money.jpg">
 <h3>Money Heist</h3>
-<a href="money.html" class="download-btn">Download</a>
 </div>
 
-<div class="card">
+<div class="card" onclick="window.location='prison.html'">
 <img src="images/prisonbreak.jpg">
 <h3>Prison Break</h3>
-<a href="prison.html" class="download-btn">Download</a>
 </div>
 
 </div>
