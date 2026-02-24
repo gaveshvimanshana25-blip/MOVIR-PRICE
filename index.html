@@ -11,9 +11,10 @@ body{
     background:linear-gradient(135deg,#000000,#111111,#1a1a1a);
     font-family:Arial;
     color:white;
+    overflow-x:hidden;
 }
 
-/* 🔥 Preloader */
+/* 🔥 PRELOADER */
 #preloader{
     position:fixed;
     width:100%;
@@ -52,7 +53,7 @@ body{
     letter-spacing:2px;
 }
 
-/* Hero */
+/* HERO */
 .hero{
     height:220px;
     display:flex;
@@ -63,45 +64,135 @@ body{
 }
 
 .hero h1{
+    font-size:30px;
     color:red;
+    letter-spacing:3px;
 }
 
-/* Footer */
+.hero p{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* SECTION */
+.section{
+    padding:20px;
+}
+
+.section h2{
+    font-size:18px;
+    border-left:4px solid red;
+    padding-left:10px;
+    margin-bottom:15px;
+}
+
+/* CARD */
+.card{
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+.card:hover{
+    background:#1e1e1e;
+    transform:scale(1.03);
+}
+
+.card a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    display:block;
+}
+
+/* FOOTER */
 .footer{
     text-align:center;
     padding:20px;
     background:#0d0d0d;
     margin-top:40px;
+    letter-spacing:2px;
 }
 
 .footer span{
     color:red;
     font-weight:bold;
 }
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#25D366;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    transition:0.3s;
+    z-index:1000;
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.1);
+}
+
+.whatsapp-btn img{
+    width:30px;
+}
 </style>
 </head>
 <body>
 
-<!-- 🔥 Loader -->
+<!-- 🔥 LOADER -->
 <div id="preloader">
     <div class="loader"></div>
     <h2>LOADING STREAM HUB...</h2>
 </div>
 
+<!-- HERO -->
 <div class="hero">
     <h1>🎬 STREAM HUB</h1>
     <p>Unlimited Movies & TV Shows</p>
 </div>
 
+<!-- TV SHOW -->
+<div class="section">
+    <h2>📺 TV SHOW</h2>
+    <div class="card">
+        <a href="tv.html">Go to TV Shows</a>
+    </div>
+</div>
+
+<!-- MOVIE -->
+<div class="section">
+    <h2>🎥 MOVIE</h2>
+    <div class="card">
+        <a href="movies.html">Go to Movies</a>
+    </div>
+</div>
+
+<!-- FOOTER -->
 <footer class="footer">
     SYSTEM DEVELOPED BY <span>GAVESH VIMANSHANA</span>
 </footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/94770000000" target="_blank" class="whatsapp-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+</a>
 
 <script>
 window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("preloader").classList.add("hide");
-    }, 2500); // 🔥 2.5 seconds loader eka pennanawa
+    }, 2500);
 });
 </script>
 
