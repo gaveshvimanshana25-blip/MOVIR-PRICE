@@ -1,250 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Movies - Premium</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movies - Stream Hub</title>
 
 <style>
 body{
-    background:#121212;
-    color:#fff;
-    font-family:Arial;
-    margin:0;
-    padding:20px;
+margin:0;
+background:#000;
+font-family:Arial;
+color:white;
 }
 
-/* Preloader */
-#preloader{
-  position:fixed;
-  inset:0;
-  background:#121212;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  z-index:9999;
-  color:#ff0000;
-}
-.loader{
-  border:6px solid #1e1e1e;
-  border-top:6px solid #ff0000;
-  border-radius:50%;
-  width:50px;
-  height:50px;
-  animation:spin 1s linear infinite;
-  margin-bottom:15px;
-}
-@keyframes spin{
-  0%{transform:rotate(0)}
-  100%{transform:rotate(360deg)}
+.menu-icon{
+position:fixed;
+top:15px;
+left:15px;
+font-size:28px;
+cursor:pointer;
+z-index:1001;
 }
 
-h1{
-    text-align:center;
-    color:#ff0000;
+.side-menu{
+position:fixed;
+top:0;
+left:-250px;
+width:250px;
+height:100%;
+background:#111;
+padding-top:60px;
+transition:0.4s;
+z-index:1000;
 }
 
-/* Search */
+.side-menu a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+border-bottom:1px solid #222;
+}
+
+.side-menu a:hover{
+background:#e50914;
+}
+
+.side-menu.active{
+left:0;
+}
+
+.header{
+padding:15px;
+font-size:22px;
+font-weight:bold;
+color:#e50914;
+text-align:center;
+}
+
 .search-box{
-    text-align:center;
-    margin:20px 0;
-}
-.search-box input{
-    padding:10px;
-    width:280px;
-    border-radius:30px;
-    border:none;
-    outline:none;
-    font-size:14px;
+padding:15px;
 }
 
-/* Cards */
-.cards-container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:25px;
+.search-box input{
+width:100%;
+padding:10px;
+border:none;
+border-radius:5px;
+font-size:16px;
+}
+
+.genres{
+padding:10px;
+}
+
+.genres button{
+margin:5px;
+padding:8px 12px;
+border:none;
+border-radius:20px;
+background:#222;
+color:white;
+cursor:pointer;
+}
+
+.genres button:hover{
+background:#e50914;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:15px;
 }
 
 .card{
-    background:#1e1e1e;
-    border-radius:12px;
-    width:280px;
-    box-shadow:0 0 20px rgba(0,0,0,0.6);
-    cursor:pointer;
-    transition:0.3s;
+background:#111;
+border-radius:8px;
+overflow:hidden;
+cursor:pointer;
+transition:0.3s;
 }
+
 .card:hover{
-    transform:scale(1.05);
-    background:#2b2b2b;
+transform:scale(1.05);
 }
+
 .card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-top-left-radius:12px;
-    border-top-right-radius:12px;
+width:100%;
+height:200px;
+object-fit:cover;
 }
+
 .card-content{
-    padding:15px;
-}
-.card-content h3{
-    color:#ff0000;
-    margin:0 0 5px 0;
-}
-.genre{color:#00ffcc;}
-.year{color:#ff66cc;}
-.price{color:#ff0000;font-weight:bold;}
-
-/* Modal */
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  justify-content:center;
-  align-items:center;
-}
-.modal-content{
-  background:#1e1e1e;
-  padding:20px;
-  border-radius:12px;
-  max-width:500px;
-  width:90%;
-  max-height:90%;
-  overflow-y:auto;
-  position:relative;
-}
-.modal-content img{
-  width:100%;
-  border-radius:10px;
-  margin-bottom:15px;
-}
-.close{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:24px;
-  cursor:pointer;
-  color:#ff0000;
+padding:10px;
 }
 
-/* WhatsApp button in modal */
-.order-btn{
-    display:inline-block;
-    margin-top:15px;
-    padding:10px 20px;
-    background:#25D366;
-    color:#fff;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
+.rating{
+font-size:14px;
+color:gold;
 }
 
-@media(max-width:600px){
-    .card{width:100%;}
+.price{
+background:#e50914;
+padding:4px 8px;
+border-radius:20px;
+font-size:13px;
+display:inline-block;
+margin-top:5px;
 }
 </style>
 </head>
+
 <body>
 
-<div id="preloader">
-  <div class="loader"></div>
-  <p>Loading Movies...</p>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<div class="side-menu" id="sideMenu">
+<a href="index.html">🏠 Home</a>
+<a href="tv.html">📺 TV Shows</a>
+<a href="movies.html">🎥 Movies</a>
 </div>
 
-<h1>🎬 MOVIES</h1>
+<div class="header">MOVIES</div>
 
 <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search Movies...">
+<input type="text" id="search" placeholder="Search movies...">
 </div>
 
-<div class="cards-container" id="cardsContainer"></div>
+<div class="genres">
+<button onclick="filterGenre('all')">All</button>
+<button onclick="filterGenre('action')">Action</button>
+<button onclick="filterGenre('crime')">Crime</button>
+<button onclick="filterGenre('drama')">Drama</button>
+<button onclick="filterGenre('romance')">Romance</button>
+<button onclick="filterGenre('sci-fi')">Sci-Fi</button>
+</div>
 
-<!-- Modal -->
-<div id="movieModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modalTitle"></h2>
-    <img id="modalImage">
-    <p id="modalGenre"></p>
-    <p id="modalYear"></p>
-    <p id="modalPrice"></p>
-    <p id="modalDesc"></p>
-    <a id="orderBtn" class="order-btn" target="_blank">Order on WhatsApp</a>
-  </div>
+<div class="grid">
+
+<!-- Inception -->
+<div class="card" data-genre="sci-fi" data-title="Inception (2010)" onclick="goDetails('Inception (2010)','1600')">
+<img src="images/inception.jpg">
+<div class="card-content">
+<h3>Inception (2010)</h3>
+<div class="rating">⭐ 8.8</div>
+<div class="price">Rs. 1600</div>
+</div>
+</div>
+
+<!-- Interstellar -->
+<div class="card" data-genre="sci-fi" data-title="Interstellar (2014)" onclick="goDetails('Interstellar (2014)','1700')">
+<img src="images/interstellar.jpg">
+<div class="card-content">
+<h3>Interstellar (2014)</h3>
+<div class="rating">⭐ 8.6</div>
+<div class="price">Rs. 1700</div>
+</div>
+</div>
+
+<!-- Joker -->
+<div class="card" data-genre="crime" data-title="Joker (2019)" onclick="goDetails('Joker (2019)','1500')">
+<img src="images/joker.jpg">
+<div class="card-content">
+<h3>Joker (2019)</h3>
+<div class="rating">⭐ 8.4</div>
+<div class="price">Rs. 1500</div>
+</div>
+</div>
+
+<!-- Titanic -->
+<div class="card" data-genre="romance" data-title="Titanic (1997)" onclick="goDetails('Titanic (1997)','1400')">
+<img src="images/titanic.jpg">
+<div class="card-content">
+<h3>Titanic (1997)</h3>
+<div class="rating">⭐ 7.9</div>
+<div class="price">Rs. 1400</div>
+</div>
+</div>
+
+<!-- The Dark Knight -->
+<div class="card" data-genre="action" data-title="The Dark Knight (2008)" onclick="goDetails('The Dark Knight (2008)','1800')">
+<img src="images/darkknight.jpg">
+<div class="card-content">
+<h3>The Dark Knight (2008)</h3>
+<div class="rating">⭐ 9.0</div>
+<div class="price">Rs. 1800</div>
+</div>
+</div>
+
+<!-- Fight Club -->
+<div class="card" data-genre="drama" data-title="Fight Club (1999)" onclick="goDetails('Fight Club (1999)','1550')">
+<img src="images/fightclub.jpg">
+<div class="card-content">
+<h3>Fight Club (1999)</h3>
+<div class="rating">⭐ 8.8</div>
+<div class="price">Rs. 1550</div>
+</div>
+</div>
+
 </div>
 
 <script>
-
-/* Preloader */
-window.addEventListener("load",()=>{
-  const p=document.getElementById("preloader");
-  p.style.opacity="0";
-  setTimeout(()=>p.style.display="none",500);
-});
-
-/* MOVIE DATA - Add Unlimited Movies Here */
-const movies=[
- {title:"Movie 1",img:"images/movie1.jpg",genre:"Action",year:"2023",price:"Rs 500",desc:"High quality action movie."},
- {title:"Movie 2",img:"images/movie2.jpg",genre:"Drama",year:"2022",price:"Rs 600",desc:"Emotional drama movie."},
- {title:"Movie 3",img:"images/movie3.jpg",genre:"Comedy",year:"2021",price:"Rs 450",desc:"Fun comedy movie."},
- {title:"Movie 4",img:"images/movie4.jpg",genre:"Horror",year:"2023",price:"Rs 700",desc:"Scary horror movie."}
-];
-
-const container=document.getElementById("cardsContainer");
-
-/* Generate Cards */
-function displayMovies(list){
- container.innerHTML="";
- list.forEach((movie,index)=>{
-   const card=document.createElement("div");
-   card.className="card";
-   card.innerHTML=`
-     <img src="${movie.img}">
-     <div class="card-content">
-       <h3>${movie.title}</h3>
-       <p class="genre">${movie.genre}</p>
-       <p class="year">${movie.year}</p>
-       <p class="price">${movie.price}</p>
-     </div>`;
-   card.onclick=()=>openModal(index);
-   container.appendChild(card);
- });
-}
-displayMovies(movies);
-
-/* Search */
-document.getElementById("searchInput").addEventListener("keyup",function(){
- const value=this.value.toLowerCase();
- const filtered=movies.filter(movie=>movie.title.toLowerCase().includes(value));
- displayMovies(filtered);
-});
-
-/* Modal */
-const modal=document.getElementById("movieModal");
-const span=document.querySelector(".close");
-
-function openModal(index){
- const movie=movies[index];
- document.getElementById("modalTitle").textContent=movie.title;
- document.getElementById("modalImage").src=movie.img;
- document.getElementById("modalGenre").textContent="Genre: "+movie.genre;
- document.getElementById("modalYear").textContent="Year: "+movie.year;
- document.getElementById("modalPrice").textContent="Price: "+movie.price;
- document.getElementById("modalDesc").textContent=movie.desc;
-
- const message=`I want to order ${movie.title} - ${movie.price}`;
- document.getElementById("orderBtn").href=
-   "https://wa.me/94703490292?text="+encodeURIComponent(message);
-
- modal.style.display="flex";
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
 }
 
-span.onclick=()=>modal.style.display="none";
-window.onclick=e=>{if(e.target==modal)modal.style.display="none";}
+function goDetails(title,price){
+window.location.href="details.html?title="+encodeURIComponent(title)+"&price="+price;
+}
 
+document.getElementById("search").addEventListener("keyup", function(){
+let value=this.value.toLowerCase();
+let cards=document.querySelectorAll(".card");
+cards.forEach(card=>{
+let title=card.getAttribute("data-title").toLowerCase();
+card.style.display=title.includes(value)?"block":"none";
+});
+});
+
+function filterGenre(genre){
+let cards=document.querySelectorAll(".card");
+cards.forEach(card=>{
+if(genre==="all"){
+card.style.display="block";
+}else{
+card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
+}
+});
+}
 </script>
 
 </body>
