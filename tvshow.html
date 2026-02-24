@@ -2,34 +2,128 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV Show Prices</title>
+<title>TV SHOW Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{ background:#121212; color:#fff; font-family:Arial; padding:20px; text-align:center;}
-h1{ color:#00ffcc; margin-bottom:20px; }
-.card{ background:#1e1e1e; padding:15px; margin:20px auto; max-width:300px; border-radius:10px; }
-.card img{ width:100%; border-radius:10px; }
-a.back{ color:#ffdd00; display:block; margin-top:20px; text-decoration:none; }
-.whatsapp-button{ position: fixed; right: 20px; bottom:20px; z-index:1000; }
-.whatsapp-button img{ width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s; }
-.whatsapp-button img:hover{ transform: scale(1.1);}
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    color: #00ffcc;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+.card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: scale(1.05);
+}
+.card img {
+    width: 100%;
+    display: block;
+}
+.card-content {
+    padding: 10px;
+    text-align: left;
+}
+.card-content h3 {
+    color: #ffdd00;
+    margin: 5px 0;
+}
+.card-content p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 5px 0;
+}
+.card-content .genre, .card-content .year {
+    font-size: 12px;
+    color: #888;
+}
+a.back {
+    color: #ffdd00;
+    display: block;
+    margin: 30px auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* WhatsApp floating button */
+.whatsapp-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+}
+.whatsapp-button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.whatsapp-button img:hover {
+    transform: scale(1.1);
+}
 </style>
 </head>
 <body>
 
-<h1>🎬 TV SHOW Prices</h1>
+<h1>🎬 TV SHOW STORE</h1>
 
-<div class="card">
-<img src="images/tv1.jpg" alt="TV Show 1">
-<p>TV Show 1 — Rs 500</p>
-</div>
+<div class="grid-container">
+    <div class="card">
+        <img src="images/tv1.jpg" alt="TV Show 1">
+        <div class="card-content">
+            <h3>TV Show 1</h3>
+            <p>A thrilling action series that keeps you on edge!</p>
+            <p class="genre">Genre: Action</p>
+            <p class="year">Year: 2023</p>
+            <p>Price: Rs 500</p>
+        </div>
+    </div>
 
-<div class="card">
-<img src="images/tv2.jpg" alt="TV Show 2">
-<p>TV Show 2 — Rs 700</p>
+    <div class="card">
+        <img src="images/tv2.jpg" alt="TV Show 2">
+        <div class="card-content">
+            <h3>TV Show 2</h3>
+            <p>A heartwarming drama with unforgettable characters.</p>
+            <p class="genre">Genre: Drama</p>
+            <p class="year">Year: 2022</p>
+            <p>Price: Rs 700</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="images/tv3.jpg" alt="TV Show 3">
+        <div class="card-content">
+            <h3>TV Show 3</h3>
+            <p>A hilarious comedy series for family entertainment.</p>
+            <p class="genre">Genre: Comedy</p>
+            <p class="year">Year: 2023</p>
+            <p>Price: Rs 600</p>
+        </div>
+    </div>
 </div>
 
 <a href="index.html" class="back">⬅ Back</a>
 
+<!-- WhatsApp Floating Button -->
 <div class="whatsapp-button">
     <a href="https://wa.me/94703490292" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
