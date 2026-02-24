@@ -1,120 +1,313 @@
-<!-- 56 Days (2026) -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TV Shows - Stream Hub</title>
+
+<style>
+body{
+margin:0;
+background:#000;
+font-family:Arial;
+color:white;
+}
+
+.menu-icon{
+position:fixed;
+top:15px;
+left:15px;
+font-size:28px;
+cursor:pointer;
+z-index:1001;
+}
+
+.side-menu{
+position:fixed;
+top:0;
+left:-250px;
+width:250px;
+height:100%;
+background:#111;
+padding-top:60px;
+transition:0.4s;
+z-index:1000;
+}
+
+.side-menu a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+border-bottom:1px solid #222;
+}
+
+.side-menu a:hover{
+background:#e50914;
+}
+
+.side-menu.active{
+left:0;
+}
+
+.header{
+padding:15px;
+font-size:22px;
+font-weight:bold;
+color:#e50914;
+text-align:center;
+}
+
+.search-box{
+padding:15px;
+}
+
+.search-box input{
+width:100%;
+padding:10px;
+border:none;
+border-radius:5px;
+font-size:16px;
+}
+
+.genres{
+padding:10px;
+}
+
+.genres button{
+margin:5px;
+padding:8px 12px;
+border:none;
+border-radius:20px;
+background:#222;
+color:white;
+cursor:pointer;
+}
+
+.genres button:hover{
+background:#e50914;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:15px;
+}
+
+.card{
+background:#111;
+border-radius:8px;
+overflow:hidden;
+position:relative;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.card-content{
+padding:10px;
+}
+
+.rating{
+font-size:14px;
+color:gold;
+}
+
+.watch-btn{
+background:#e50914;
+border:none;
+padding:6px 10px;
+color:white;
+cursor:pointer;
+margin-top:5px;
+}
+
+.like{
+position:absolute;
+top:10px;
+right:10px;
+font-size:20px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<div class="side-menu" id="sideMenu">
+<a href="index.html">🏠 Home</a>
+<a href="tv.html">📺 TV Shows</a>
+<a href="movies.html">🎥 Movies</a>
+</div>
+
+<div class="header">TV SHOWS</div>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search shows...">
+</div>
+
+<div class="genres">
+<button onclick="filterGenre('all')">All</button>
+<button onclick="filterGenre('action')">Action</button>
+<button onclick="filterGenre('crime')">Crime</button>
+<button onclick="filterGenre('drama')">Drama</button>
+<button onclick="filterGenre('comedy')">Comedy</button>
+<button onclick="filterGenre('romance')">Romance</button>
+</div>
+
+<div class="grid">
+
+<!-- 56 Days -->
 <div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/56days.jpg">
 <div class="card-content">
 <h3>56 Days (2026)</h3>
 <div class="rating">⭐ 4.4</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Do You Wanna Partner (2025) -->
+<!-- Do You Wanna Partner -->
 <div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/partner.jpg">
 <div class="card-content">
 <h3>Do You Wanna Partner (2025)</h3>
 <div class="rating">⭐ 7.7</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Motorvalley (2026) -->
+<!-- Motorvalley -->
 <div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/motorvalley.jpg">
 <div class="card-content">
 <h3>Motorvalley (2026)</h3>
 <div class="rating">⭐ 6.8</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Kohrra (2023) -->
+<!-- Kohrra -->
 <div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/kohrra.jpg">
 <div class="card-content">
 <h3>Kohrra (2023)</h3>
 <div class="rating">⭐ 6.9</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- The Summer I Turned Pretty (2022) -->
+<!-- The Summer I Turned Pretty -->
 <div class="card" data-genre="drama" data-title="The Summer I Turned Pretty (2022)" onclick="goDetails('The Summer I Turned Pretty (2022)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/summer.jpg">
 <div class="card-content">
 <h3>The Summer I Turned Pretty (2022)</h3>
 <div class="rating">⭐ 8.1</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- American Primeval (2025) -->
+<!-- American Primeval -->
 <div class="card" data-genre="action" data-title="American Primeval (2025)" onclick="goDetails('American Primeval (2025)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/primeval.jpg">
 <div class="card-content">
 <h3>American Primeval (2025)</h3>
 <div class="rating">⭐ 7.6</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Yeh Kaali Kaali Ankhein (2022) -->
+<!-- Yeh Kaali Kaali Ankhein -->
 <div class="card" data-genre="crime" data-title="Yeh Kaali Kaali Ankhein (2022)" onclick="goDetails('Yeh Kaali Kaali Ankhein (2022)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/yehkaali.jpg">
 <div class="card-content">
 <h3>Yeh Kaali Kaali Ankhein (2022)</h3>
 <div class="rating">⭐ 9.1</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Prison Break (2005) -->
+<!-- Prison Break -->
 <div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/prisonbreak.jpg">
 <div class="card-content">
 <h3>Prison Break (2005)</h3>
 <div class="rating">⭐ 8.1</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Money Heist Korea (2022) -->
+<!-- Money Heist -->
+<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)')">
+<img src="images/money.jpg">
+<div class="card-content">
+<h3>Money Heist (2021)</h3>
+<div class="rating">⭐ 8.3</div>
+</div>
+</div>
+
+<!-- Money Heist Korea -->
 <div class="card" data-genre="crime" data-title="Money Heist Korea (2022)" onclick="goDetails('Money Heist Korea (2022)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/mhkorea.jpg">
 <div class="card-content">
 <h3>Money Heist Korea (2022)</h3>
 <div class="rating">⭐ 8.1</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- American Manhunt (2025) -->
+<!-- American Manhunt -->
 <div class="card" data-genre="crime" data-title="American Manhunt (2025)" onclick="goDetails('American Manhunt (2025)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/manhunt.jpg">
 <div class="card-content">
 <h3>American Manhunt (2025)</h3>
 <div class="rating">⭐ 7.6</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
-<!-- Marvel’s Daredevil (2015) -->
+<!-- Daredevil -->
 <div class="card" data-genre="action" data-title="Marvel’s Daredevil (2015)" onclick="goDetails('Marvel’s Daredevil (2015)')">
-<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
 <img src="images/daredevil.jpg">
 <div class="card-content">
 <h3>Marvel’s Daredevil (2015)</h3>
 <div class="rating">⭐ 8.2</div>
-<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
+
+</div>
+
+<script>
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
+
+function goDetails(title){
+window.location.href="details.html?title="+encodeURIComponent(title);
+}
+
+document.getElementById("search").addEventListener("keyup", function(){
+let value=this.value.toLowerCase();
+let cards=document.querySelectorAll(".card");
+cards.forEach(card=>{
+let title=card.getAttribute("data-title").toLowerCase();
+card.style.display=title.includes(value)?"block":"none";
+});
+});
+
+function filterGenre(genre){
+let cards=document.querySelectorAll(".card");
+cards.forEach(card=>{
+if(genre==="all"){
+card.style.display="block";
+}else{
+card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
+}
+});
+}
+</script>
+
+</body>
+</html>
