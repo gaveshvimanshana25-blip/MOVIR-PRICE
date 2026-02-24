@@ -76,11 +76,15 @@ body{
     background:#25D366;
 }
 
+.trailer-btn{
+    background:#e50914;
+}
+
 .back-btn{
     display:inline-block;
     margin-top:20px;
     padding:10px 20px;
-    background:#e50914;
+    background:#333;
     color:white;
     text-decoration:none;
     border-radius:8px;
@@ -100,7 +104,14 @@ body{
     <div class="rating" id="rating"></div>
     <div class="description" id="description"></div>
 
-    <a href="#" id="buyBtn" class="btn whatsapp-btn">Buy via WhatsApp</a>
+    <!-- BUTTONS -->
+    <a href="#" id="trailerBtn" target="_blank" class="btn trailer-btn">
+        ▶ Watch Trailer
+    </a>
+
+    <a href="#" id="buyBtn" class="btn whatsapp-btn">
+        Buy via WhatsApp
+    </a>
 
     <a href="tv.html" class="back-btn">⬅ Back</a>
 </div>
@@ -111,6 +122,22 @@ const params = new URLSearchParams(window.location.search);
 const title = params.get("title");
 
 const phoneNumber = "94703490292";
+
+/* TRAILER LINKS */
+const trailers = {
+"56 Days (2026)" : "https://www.youtube.com/",
+"Do You Wanna Partner (2025)" : "https://www.youtube.com/",
+"Motorvalley (2026)" : "https://www.youtube.com/",
+"Kohrra (2023)" : "https://www.youtube.com/",
+"The Summer I Turned Pretty (2022)" : "https://www.youtube.com/watch?v=6Tqg5V4iQ0E",
+"American Primeval (2025)" : "https://www.youtube.com/",
+"Yeh Kaali Kaali Ankhein (2022)" : "https://www.youtube.com/watch?v=XZOK1bZ8WmQ",
+"Prison Break (2005)" : "https://www.youtube.com/watch?v=AL9zLctDJaU",
+"Money Heist (2021)" : "https://www.youtube.com/watch?v=_InqQJRqGW4",
+"Money Heist Korea (2022)" : "https://www.youtube.com/watch?v=lKp3Nw9R8lA",
+"American Manhunt (2025)" : "https://www.youtube.com/",
+"Marvel’s Daredevil (2015)" : "https://www.youtube.com/watch?v=jAy6NJ_D5vU"
+};
 
 const shows = {
 
@@ -213,9 +240,17 @@ document.getElementById("genre").innerText = "Genre: " + data.genre;
 document.getElementById("rating").innerText = data.rating;
 document.getElementById("description").innerText = data.description;
 
+/* WhatsApp */
 const message = `Hello, I want to buy:\n\n${title}`;
 document.getElementById("buyBtn").href =
-`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+`https://wa.me/${9470 349 0292}?text=${encodeURIComponent(message)}`;
+
+/* Trailer */
+if(trailers[title]){
+document.getElementById("trailerBtn").href = trailers[title];
+}else{
+document.getElementById("trailerBtn").style.display = "none";
+}
 
 }else{
 
