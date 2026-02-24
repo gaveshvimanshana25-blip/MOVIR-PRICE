@@ -5,12 +5,16 @@ body {
     color: white;
 }
 
+/* HEADER */
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
     background: #111;
+    position: sticky;
+    top: 0;
 }
 
 .logo {
@@ -23,11 +27,14 @@ header {
 }
 
 header input {
-    padding: 8px;
+    padding: 10px;
     border-radius: 20px;
     border: none;
-    width: 200px;
+    width: 220px;
+    outline: none;
 }
+
+/* HERO */
 
 .hero {
     text-align: center;
@@ -38,27 +45,35 @@ header input {
 .badge {
     display: inline-block;
     background: red;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 12px;
     margin-bottom: 15px;
 }
 
 .hero h1 {
-    font-size: 40px;
+    font-size: 42px;
+    margin: 10px 0;
 }
 
 .hero span {
     color: red;
 }
 
+/* BUTTONS */
+
+.buttons {
+    margin-top: 20px;
+}
+
 .buttons button {
-    padding: 12px 25px;
+    padding: 12px 28px;
     margin: 10px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    transition: 0.3s;
 }
 
 .browse {
@@ -66,14 +81,81 @@ header input {
     color: white;
 }
 
+.browse:hover {
+    background: #ff3333;
+}
+
 .proofs {
     background: #333;
     color: white;
 }
 
+.proofs:hover {
+    background: #555;
+}
+
+/* CATEGORY */
+
 .category {
     padding: 30px;
+    border-top: 1px solid #222;
+}
+
+.category h2 {
+    margin: 0;
 }
 
 .category span {
     color: red;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: #111;
+    margin-top: 40px;
+}
+
+footer h3 {
+    margin-bottom: 10px;
+}
+
+/* ========================= */
+/* ✅ MOBILE RESPONSIVE FIX */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    header input {
+        width: 100%;
+    }
+
+    .hero {
+        padding: 55px 15px;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .buttons button {
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .category {
+        padding: 20px 15px;
+    }
+
+    footer {
+        padding: 25px 15px;
+    }
+}
