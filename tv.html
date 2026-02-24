@@ -41,6 +41,7 @@ body{
     background:rgba(0,0,0,0.6);
     padding:10px 15px;
     border-radius:8px;
+    font-weight:bold;
 }
 
 /* FILTER BUTTONS */
@@ -57,6 +58,7 @@ body{
     margin:5px;
     border-radius:20px;
     cursor:pointer;
+    transition:0.3s;
 }
 
 .filters button:hover{
@@ -87,7 +89,7 @@ body{
     transform:scale(1.1);
 }
 
-/* BADGE */
+/* BADGES */
 .badge{
     position:absolute;
     top:8px;
@@ -114,49 +116,57 @@ body{
 <!-- SLIDER -->
 <div class="slider">
     <div class="slide active" style="background-image:url('https://picsum.photos/800/400?1')">
-        <div class="slide-text">Featured Show 1</div>
+        <div class="slide-text">Romantic Special</div>
     </div>
     <div class="slide" style="background-image:url('https://picsum.photos/800/400?2')">
-        <div class="slide-text">Featured Show 2</div>
+        <div class="slide-text">Top Action Series</div>
     </div>
     <div class="slide" style="background-image:url('https://picsum.photos/800/400?3')">
-        <div class="slide-text">Featured Show 3</div>
+        <div class="slide-text">Best Fantasy Picks</div>
     </div>
 </div>
 
 <!-- FILTERS -->
 <div class="filters">
     <button onclick="filterSelection('all')">All</button>
+    <button onclick="filterSelection('romantic')">Romantic</button>
     <button onclick="filterSelection('action')">Action</button>
-    <button onclick="filterSelection('drama')">Drama</button>
-    <button onclick="filterSelection('anime')">Anime</button>
+    <button onclick="filterSelection('animations')">Animations</button>
+    <button onclick="filterSelection('fantasy')">Fantasy</button>
+    <button onclick="filterSelection('horror')">Horror</button>
 </div>
 
 <!-- GRID -->
 <div class="grid">
 
+    <div class="card romantic">
+        <span class="badge">HD</span>
+        <span class="rating">⭐ 8.7</span>
+        <img src="https://picsum.photos/300/400?11">
+    </div>
+
     <div class="card action">
         <span class="badge">HD</span>
         <span class="rating">⭐ 8.5</span>
-        <img src="https://picsum.photos/300/400?4">
+        <img src="https://picsum.photos/300/400?12">
     </div>
 
-    <div class="card drama">
+    <div class="card animations">
         <span class="badge">NEW</span>
-        <span class="rating">⭐ 9.0</span>
-        <img src="https://picsum.photos/300/400?5">
+        <span class="rating">⭐ 9.1</span>
+        <img src="https://picsum.photos/300/400?13">
     </div>
 
-    <div class="card anime">
+    <div class="card fantasy">
         <span class="badge">HD</span>
-        <span class="rating">⭐ 8.8</span>
-        <img src="https://picsum.photos/300/400?6">
+        <span class="rating">⭐ 8.9</span>
+        <img src="https://picsum.photos/300/400?14">
     </div>
 
-    <div class="card action">
+    <div class="card horror">
         <span class="badge">HD</span>
-        <span class="rating">⭐ 8.2</span>
-        <img src="https://picsum.photos/300/400?7">
+        <span class="rating">⭐ 7.9</span>
+        <img src="https://picsum.photos/300/400?15">
     </div>
 
 </div>
@@ -173,7 +183,7 @@ setInterval(()=>{
     slides[index].classList.add('active');
 },3000);
 
-/* FILTER */
+/* FILTER FUNCTION */
 function filterSelection(category){
     let cards=document.querySelectorAll('.card');
     if(category=="all"){
