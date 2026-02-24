@@ -17,6 +17,7 @@ color:white;
 padding:20px;
 max-width:600px;
 margin:auto;
+text-align:center;
 }
 
 .back-btn{
@@ -95,13 +96,13 @@ opacity:0.85;
 
 <a href="javascript:history.back()" class="back-btn">⬅ Back</a>
 
-<img id="poster" class="poster" src="images/default.jpg" alt="Poster">
+<img id="poster" class="poster" src="images/default.jpg">
 
 <div id="movieTitle" class="title"></div>
 <div id="moviePrice" class="price"></div>
 
 <div class="description">
-Premium content available in HD quality. Order now to unlock full access.
+Premium content available in HD quality.
 </div>
 
 <a href="#" id="whatsappBtn" class="button buy-btn">Order on WhatsApp</a>
@@ -126,10 +127,9 @@ price ? "Rs. " + price : "Price Not Available";
 const phoneNumber = "947XXXXXXXX"; // PUT YOUR NUMBER
 
 const message = `Hello, I want to order:\n\n${title}\nPrice: Rs. ${price}`;
-const whatsappURL =
-`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-document.getElementById("whatsappBtn").href = whatsappURL;
+document.getElementById("whatsappBtn").href =
+`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
 /* ---------------- TRAILERS ---------------- */
 
