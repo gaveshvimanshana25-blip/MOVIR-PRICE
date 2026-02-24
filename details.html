@@ -88,12 +88,10 @@ background:#b20710;
 <img id="poster" class="poster" src="" alt="Poster">
 
 <div id="movieTitle" class="title"></div>
-
 <div id="moviePrice" class="price"></div>
 
 <div class="description">
-This is a premium TV show available for streaming in HD quality.
-Purchase now to unlock full access and enjoy unlimited entertainment.
+Premium TV show available in HD quality. Buy now to unlock full access.
 </div>
 
 <a href="#" class="buy-btn" onclick="buyNow()">Buy Now</a>
@@ -102,21 +100,36 @@ Purchase now to unlock full access and enjoy unlimited entertainment.
 
 <script>
 const params = new URLSearchParams(window.location.search);
-
 const title = params.get("title");
 const price = params.get("price");
 
-document.getElementById("movieTitle").innerText = title ? title : "Unknown Show";
+document.getElementById("movieTitle").innerText = title || "Unknown Show";
 document.getElementById("moviePrice").innerText = price ? "Rs. " + price : "Price Not Available";
 
-/* Optional Poster Auto Change (edit if needed) */
-if(title){
-let imageName = title.toLowerCase().split(" ")[0];
-document.getElementById("poster").src = "images/" + imageName + ".jpg";
+/* Manual Image Mapping (ALL Shows Supported) */
+const images = {
+"56 Days (2026)" : "56days.jpg",
+"Do You Wanna Partner (2025)" : "partner.jpg",
+"Motorvalley (2026)" : "motorvalley.jpg",
+"Kohrra (2023)" : "kohrra.jpg",
+"The Summer I Turned Pretty (2022)" : "summer.jpg",
+"American Primeval (2025)" : "primeval.jpg",
+"Yeh Kaali Kaali Ankhein (2022)" : "yehkaali.jpg",
+"Prison Break (2005)" : "prisonbreak.jpg",
+"Money Heist (2021)" : "money.jpg",
+"Money Heist Korea (2022)" : "mhkorea.jpg",
+"American Manhunt (2025)" : "manhunt.jpg",
+"Marvel’s Daredevil (2015)" : "daredevil.jpg"
+};
+
+if(title && images[title]){
+document.getElementById("poster").src = "images/" + images[title];
+}else{
+document.getElementById("poster").src = "images/default.jpg";
 }
 
 function buyNow(){
-alert("You selected: " + title + "\nPrice: Rs. " + price);
+alert("Selected: " + title + "\nPrice: Rs. " + price);
 }
 </script>
 
