@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movie Store - Home</title>
+<title>GAVESH VIMANSHANA - Streaming Store</title>
 
 <style>
 body{
@@ -43,10 +43,10 @@ header h1{
 }
 
 /* Section */
-.latest-section{
+.section{
     padding:30px;
 }
-.latest-section h2{
+.section h2{
     margin-bottom:20px;
 }
 
@@ -56,27 +56,31 @@ header h1{
     display:flex;
     align-items:center;
 }
-.movie-slider{
+.slider{
     display:flex;
     overflow-x:auto;
     scroll-behavior:smooth;
     gap:20px;
 }
-.movie-slider::-webkit-scrollbar{
+.slider::-webkit-scrollbar{
     display:none;
 }
 
 /* Card */
-.slide-card{
+.card{
     min-width:200px;
     position:relative;
     cursor:pointer;
 }
-.slide-card img{
+.card img{
     width:200px;
     height:280px;
     object-fit:cover;
     border-radius:10px;
+    transition:0.3s;
+}
+.card:hover img{
+    transform:scale(1.05);
 }
 
 /* Watermark */
@@ -87,7 +91,7 @@ header h1{
     background:rgba(0,0,0,0.7);
     color:#fff;
     padding:4px 8px;
-    font-size:12px;
+    font-size:11px;
     border-radius:5px;
     pointer-events:none;
 }
@@ -108,61 +112,88 @@ header h1{
 <body>
 
 <header>
-    <h1>🎬 MOVIE STORE</h1>
+    <h1>🎬 GAVESH VIMANSHANA</h1>
     <button class="toggle-btn" onclick="toggleMode()">🌙 / ☀</button>
 </header>
 
-<!-- 🔥 Latest Releases -->
-<section class="latest-section">
-  <h2>🔥 Latest Releases</h2>
+<!-- 🔥 Movies Section -->
+<section class="section">
+  <h2>🔥 Latest Movies</h2>
 
   <div class="slider-wrapper">
-    <button class="slide-btn" onclick="slideLeft()">❮</button>
+    <button class="slide-btn" onclick="slideLeft('movieSlider')">❮</button>
 
-    <div class="movie-slider" id="movieSlider">
+    <div class="slider" id="movieSlider">
 
-      <div class="slide-card">
+      <div class="card">
         <img src="images/movie1.jpg">
-        <div class="watermark">MyMovieStore</div>
+        <div class="watermark">GAVESH VIMANSHANA</div>
       </div>
 
-      <div class="slide-card">
+      <div class="card">
         <img src="images/movie2.jpg">
-        <div class="watermark">MyMovieStore</div>
+        <div class="watermark">GAVESH VIMANSHANA</div>
       </div>
 
-      <div class="slide-card">
+      <div class="card">
         <img src="images/movie3.jpg">
-        <div class="watermark">MyMovieStore</div>
+        <div class="watermark">GAVESH VIMANSHANA</div>
       </div>
 
-      <div class="slide-card">
+      <div class="card">
         <img src="images/movie4.jpg">
-        <div class="watermark">MyMovieStore</div>
-      </div>
-
-      <div class="slide-card">
-        <img src="images/movie5.jpg">
-        <div class="watermark">MyMovieStore</div>
+        <div class="watermark">GAVESH VIMANSHANA</div>
       </div>
 
     </div>
 
-    <button class="slide-btn" onclick="slideRight()">❯</button>
+    <button class="slide-btn" onclick="slideRight('movieSlider')">❯</button>
+  </div>
+</section>
+
+<!-- 📺 TV Shows Section -->
+<section class="section">
+  <h2>📺 Latest TV Shows</h2>
+
+  <div class="slider-wrapper">
+    <button class="slide-btn" onclick="slideLeft('tvSlider')">❮</button>
+
+    <div class="slider" id="tvSlider">
+
+      <div class="card">
+        <img src="images/tv1.jpg">
+        <div class="watermark">GAVESH VIMANSHANA</div>
+      </div>
+
+      <div class="card">
+        <img src="images/tv2.jpg">
+        <div class="watermark">GAVESH VIMANSHANA</div>
+      </div>
+
+      <div class="card">
+        <img src="images/tv3.jpg">
+        <div class="watermark">GAVESH VIMANSHANA</div>
+      </div>
+
+      <div class="card">
+        <img src="images/tv4.jpg">
+        <div class="watermark">GAVESH VIMANSHANA</div>
+      </div>
+
+    </div>
+
+    <button class="slide-btn" onclick="slideRight('tvSlider')">❯</button>
   </div>
 </section>
 
 <script>
 
-/* Slider */
-const slider=document.getElementById("movieSlider");
-
-function slideLeft(){
-  slider.scrollLeft -= 300;
+/* Slider Functions */
+function slideLeft(id){
+  document.getElementById(id).scrollLeft -= 300;
 }
-
-function slideRight(){
-  slider.scrollLeft += 300;
+function slideRight(id){
+  document.getElementById(id).scrollLeft += 300;
 }
 
 /* Dark / Light Mode */
