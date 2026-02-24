@@ -13,7 +13,6 @@ font-family:Arial;
 color:white;
 }
 
-/* MENU ICON */
 .menu-icon{
 position:fixed;
 top:15px;
@@ -23,7 +22,6 @@ cursor:pointer;
 z-index:1001;
 }
 
-/* SIDE MENU */
 .side-menu{
 position:fixed;
 top:0;
@@ -52,7 +50,6 @@ background:#e50914;
 left:0;
 }
 
-/* HEADER */
 .header{
 padding:15px;
 font-size:22px;
@@ -61,7 +58,6 @@ color:#e50914;
 text-align:center;
 }
 
-/* SEARCH */
 .search-box{
 padding:15px;
 }
@@ -74,7 +70,6 @@ border-radius:5px;
 font-size:16px;
 }
 
-/* GENRES */
 .genres{
 padding:10px;
 }
@@ -93,7 +88,6 @@ cursor:pointer;
 background:#e50914;
 }
 
-/* GRID */
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -146,7 +140,6 @@ font-size:20px;
 cursor:pointer;
 }
 
-/* MODAL */
 .modal{
 display:none;
 position:fixed;
@@ -196,13 +189,15 @@ cursor:pointer;
 <button onclick="filterGenre('korean')">Korean</button>
 <button onclick="filterGenre('romantic')">Romantic</button>
 <button onclick="filterGenre('horror')">Horror</button>
+<button onclick="filterGenre('sci-fi')">Sci-Fi</button>
 </div>
 
 <div class="grid">
 
+<!-- Money Heist -->
 <div class="card" data-genre="action" data-title="Money Heist" onclick="goDetails('Money Heist')">
 <span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
-<img src="https://via.placeholder.com/300x200">
+<img src="images/money.jpg">
 <div class="card-content">
 <h3>Money Heist</h3>
 <div class="rating">⭐ 4.8</div>
@@ -210,12 +205,24 @@ cursor:pointer;
 </div>
 </div>
 
+<!-- Wednesday -->
 <div class="card" data-genre="teen" data-title="Wednesday" onclick="goDetails('Wednesday')">
 <span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
-<img src="https://via.placeholder.com/300x200">
+<img src="images/wednesday.jpg">
 <div class="card-content">
 <h3>Wednesday</h3>
 <div class="rating">⭐ 4.5</div>
+<button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
+</div>
+</div>
+
+<!-- The Power (2023) -->
+<div class="card" data-genre="sci-fi" data-title="The Power (2023)" onclick="goDetails('The Power (2023)')">
+<span class="like" onclick="event.stopPropagation(); addToList(this)">❤️</span>
+<img src="images/thepower.jpg">
+<div class="card-content">
+<h3>The Power (2023)</h3>
+<div class="rating">⭐ 6.0</div>
 <button class="watch-btn" onclick="event.stopPropagation(); openTrailer()">Watch Trailer</button>
 </div>
 </div>
