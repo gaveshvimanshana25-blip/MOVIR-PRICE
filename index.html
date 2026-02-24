@@ -3,101 +3,34 @@
 <head>
   <title>Movie & TV Show Price List</title>
   <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      color: #00ffcc;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      color: #ffdd00;
-      margin-top: 30px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ffffff33;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-
-    .movie-card {
-      background: #1e1e1e;
-      padding: 15px;
-      margin: 20px auto;
-      border-radius: 10px;
-      max-width: 300px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    .movie-card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .movie-card p {
-      margin-top: 10px;
-      font-size: 18px;
-    }
-
-    /* Floating WhatsApp button on right side */
+    body { background:#121212; color:#fff; font-family:Arial; text-align:center; padding:20px; }
+    h1 { color:#00ffcc; margin-bottom:30px; }
+    a { color:#ffdd00; text-decoration:none; font-size:24px; display:block; margin:20px 0; }
+    a:hover { transform: scale(1.05); }
+    /* Floating WhatsApp button */
     .whatsapp-button {
       position: fixed;
       right: 20px;
       bottom: 20px;
       z-index: 1000;
     }
-
-    .whatsapp-button img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .whatsapp-button img:hover {
-      transform: scale(1.1);
-    }
+    .whatsapp-button img { width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s; }
+    .whatsapp-button img:hover { transform: scale(1.1); }
   </style>
 </head>
 <body>
 
-  <h1>🎬 Movie & TV Show Price List</h1>
+<h1>🎬 Movie & TV Show Price List</h1>
 
-  <!-- TV SHOW Section -->
-  <h2>TV SHOW</h2>
-  <div class="movie-card">
-    <img src="images/tv1.jpg" alt="TV Show 1">
-    <p>TV Show 1 — Rs 500</p>
-  </div>
-  <div class="movie-card">
-    <img src="images/tv2.jpg" alt="TV Show 2">
-    <p>TV Show 2 — Rs 700</p>
-  </div>
+<a href="tvshow.html">TV SHOW</a>
+<a href="movie.html">MOVIE</a>
 
-  <!-- Movie Section -->
-  <h2>Movie</h2>
-  <div class="movie-card">
-    <img src="images/movie1.jpg" alt="Movie 1">
-    <p>Movie 1 — Rs 1000</p>
-  </div>
-  <div class="movie-card">
-    <img src="images/movie2.jpg" alt="Movie 2">
-    <p>Movie 2 — Rs 1200</p>
-  </div>
-
-  <!-- WhatsApp Floating Button -->
-  <div class="whatsapp-button">
-    <a href="https://wa.me/94771234567?text=Hello%20I%20want%20to%20know%20movie%20prices" target="_blank">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
-  </div>
+<!-- WhatsApp Floating Button -->
+<div class="whatsapp-button">
+  <a href="https://wa.me/94771234567?text=Hello%20I%20want%20to%20know%20movie%20prices" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+  </a>
+</div>
 
 </body>
 </html>
