@@ -2,184 +2,189 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV Shows - Large Cards</title>
+<title>TV Shows - VIP Edition</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-/* ===== Preloader ===== */
-#preloader {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:#121212;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  z-index:9999;
-  color:#ff0000;
-  font-size:20px;
-}
-.loader {
-  border: 8px solid #1e1e1e;
-  border-top: 8px solid #ff0000;
-  border-radius: 50%;
-  width:60px;
-  height:60px;
-  animation: spin 1s linear infinite;
-  margin-bottom:15px;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* ===== Body & cards ===== */
-body {
-    background:#121212;
-    color:#fff;
-    font-family:Arial;
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== Background ===== */
+body{
     margin:0;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(135deg,#0f0f0f,#1c1c1c,#000);
+    color:#fff;
     padding:40px;
 }
-h1 { text-align:center; color:#ff0000; margin-bottom:30px; font-size:36px; }
 
-/* Cards container */
-.cards-container {
+/* ===== Title ===== */
+h1{
+    text-align:center;
+    font-size:42px;
+    background: linear-gradient(45deg,#ff0000,#ff9900);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:50px;
+}
+
+/* ===== Cards Layout ===== */
+.cards-container{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:30px;
+    gap:40px;
 }
 
-/* Card */
-.card {
-    background:#1e1e1e;
-    border-radius:10px;
-    width:300px; /* bigger card */
-    box-shadow:0 0 20px rgba(0,0,0,0.7);
+/* ===== Glass Card ===== */
+.card{
+    width:320px;
+    border-radius:20px;
+    overflow:hidden;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(255,0,0,0.3);
+    transition:0.4s;
     cursor:pointer;
-    transition: transform 0.3s, background 0.3s;
 }
-.card:hover { transform:scale(1.05); background:#333; }
-.card img {
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 40px rgba(255,0,0,0.8);
+}
+
+.card img{
     width:100%;
-    height:220px; /* bigger image */
+    height:230px;
     object-fit:cover;
-    border-top-left-radius:10px;
-    border-top-right-radius:10px;
 }
-.card-content { padding:15px; }
-.card-content h3 { color:#ff0000; margin:0 0 8px 0; font-size:22px; }
-.card-content p { margin:5px 0; font-size:16px; }
-.card-content .genre { color:#00ffcc; }
-.card-content .year { color:#ff66cc; }
-.card-content .price { color:#ff0000; font-weight:bold; font-size:18px; }
 
-/* Modal */
-.modal {
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.85);
-  justify-content:center; align-items:center;
-  z-index:1000;
+.card-content{
+    padding:20px;
 }
-.modal-content {
-  background:#1e1e1e;
-  padding:25px;
-  border-radius:10px;
-  color:#fff;
-  max-width:600px; /* bigger modal */
-  width:90%;
-  max-height:90%;
-  overflow-y:auto;
-  position:relative;
+
+.card-content h3{
+    margin:0 0 10px;
+    font-size:24px;
+    color:#ff3c3c;
 }
-.close {
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:28px;
-  cursor:pointer;
-  color:#ff0000;
+
+.card-content p{
+    margin:6px 0;
+    font-size:15px;
 }
-.modal-content img {
+
+.genre{ color:#00ffd5; }
+.year{ color:#ff66cc; }
+.price{
+    font-size:18px;
+    font-weight:600;
+    color:#ff0000;
+}
+
+/* ===== Modal ===== */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:#111;
+    border-radius:20px;
+    padding:30px;
+    max-width:650px;
+    width:90%;
+    position:relative;
+    animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn{
+    from{transform:scale(0.7);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+.modal-content img{
     width:100%;
-    height:auto;
-    border-radius:10px;
-    margin-bottom:15px;
+    border-radius:15px;
+    margin-bottom:20px;
 }
 
-/* WhatsApp button */
-.whatsapp-button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index:1000;
+.close{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:30px;
+    color:#ff0000;
+    cursor:pointer;
 }
+
+/* ===== WhatsApp ===== */
+.whatsapp-button{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+}
+
 .whatsapp-button img{
-    width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s;
+    width:65px;
+    transition:0.3s;
 }
-.whatsapp-button img:hover{ transform: scale(1.1); }
+
+.whatsapp-button img:hover{
+    transform:scale(1.15);
+}
 
 </style>
 </head>
 <body>
 
-<!-- ===== Preloader ===== -->
-<div id="preloader">
-  <div class="loader"></div>
-  <p>Loading TV Shows...</p>
-</div>
+<h1>🔥 TV SHOWS VIP</h1>
 
-<h1>🎬 TV SHOWS</h1>
-
-<div class="cards-container" id="cardsContainer">
-    <!-- Cards generated by JS -->
-</div>
+<div class="cards-container" id="cardsContainer"></div>
 
 <!-- Modal -->
 <div id="tvModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2 id="modalTitle"></h2>
-    <img id="modalImage" src="" alt="TV Show">
-    <p class="genre" id="modalGenre"></p>
-    <p class="year" id="modalYear"></p>
-    <p class="price" id="modalPrice"></p>
-    <p class="description" id="modalDesc"></p>
+    <img id="modalImage">
+    <p id="modalGenre"></p>
+    <p id="modalYear"></p>
+    <p id="modalPrice"></p>
+    <p id="modalDesc"></p>
   </div>
 </div>
 
 <!-- WhatsApp -->
 <div class="whatsapp-button">
     <a href="https://wa.me/94703490292" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
     </a>
 </div>
 
 <script>
-// ===== Preloader hide after load =====
-window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
-  preloader.style.transition = "opacity 0.5s";
-  preloader.style.opacity = 0;
-  setTimeout(()=> preloader.style.display="none", 500);
-});
 
-// TV shows data
 const tvShows = [
-    {title:"TV Show 1", img:"images/tv1.jpg", genre:"Action", year:"2023", price:"Rs 500", desc:"Amazing TV show full of action and adventure."},
-    {title:"TV Show 2", img:"images/tv2.jpg", genre:"Drama", year:"2022", price:"Rs 600", desc:"Dramatic series with incredible storytelling."},
-    {title:"TV Show 3", img:"images/tv3.jpg", genre:"Comedy", year:"2021", price:"Rs 450", desc:"Laugh-out-loud comedy series for all ages."},
-    {title:"TV Show 4", img:"images/tv4.jpg", genre:"Thriller", year:"2023", price:"Rs 700", desc:"Thrilling episodes that keep you on the edge."}
+    {title:"TV Show 1", img:"images/tv1.jpg", genre:"Action", year:"2023", price:"Rs 500", desc:"Full action packed premium series experience."},
+    {title:"TV Show 2", img:"images/tv2.jpg", genre:"Drama", year:"2022", price:"Rs 600", desc:"Emotional dramatic storytelling masterpiece."},
+    {title:"TV Show 3", img:"images/tv3.jpg", genre:"Comedy", year:"2021", price:"Rs 450", desc:"Ultimate comedy entertainment for everyone."},
+    {title:"TV Show 4", img:"images/tv4.jpg", genre:"Thriller", year:"2023", price:"Rs 700", desc:"Edge of the seat thriller episodes."}
 ];
 
-// Generate cards dynamically
-const container = document.getElementById("cardsContainer");
-tvShows.forEach((show, index) => {
-    const card = document.createElement("div");
+const container=document.getElementById("cardsContainer");
+const modal=document.getElementById("tvModal");
+
+tvShows.forEach((show,index)=>{
+    const card=document.createElement("div");
     card.classList.add("card");
-    card.innerHTML = `
-        <img src="${show.img}" alt="${show.title}">
+    card.innerHTML=`
+        <img src="${show.img}">
         <div class="card-content">
             <h3>${show.title}</h3>
             <p class="genre">${show.genre}</p>
@@ -187,36 +192,25 @@ tvShows.forEach((show, index) => {
             <p class="price">${show.price}</p>
         </div>
     `;
-    card.addEventListener("click", () => openModal(index));
+    card.onclick=()=>openModal(index);
     container.appendChild(card);
 });
 
-// Modal elements
-const modal = document.getElementById("tvModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalImage = document.getElementById("modalImage");
-const modalGenre = document.getElementById("modalGenre");
-const modalYear = document.getElementById("modalYear");
-const modalPrice = document.getElementById("modalPrice");
-const modalDesc = document.getElementById("modalDesc");
-const span = document.querySelector(".close");
-
-// Open modal with dynamic content
 function openModal(index){
-    const show = tvShows[index];
-    modalTitle.textContent = show.title;
-    modalImage.src = show.img;
-    modalGenre.textContent = "Genre: "+show.genre;
-    modalYear.textContent = "Year: "+show.year;
-    modalPrice.textContent = "Price: "+show.price;
-    modalDesc.textContent = show.desc;
-    modal.style.display = "flex";
+    const show=tvShows[index];
+    document.getElementById("modalTitle").innerText=show.title;
+    document.getElementById("modalImage").src=show.img;
+    document.getElementById("modalGenre").innerText="Genre: "+show.genre;
+    document.getElementById("modalYear").innerText="Year: "+show.year;
+    document.getElementById("modalPrice").innerText="Price: "+show.price;
+    document.getElementById("modalDesc").innerText=show.desc;
+    modal.style.display="flex";
 }
 
-// Close modal
-span.onclick = () => { modal.style.display = "none"; }
-window.onclick = e => { if(e.target==modal) modal.style.display = "none"; }
+document.querySelector(".close").onclick=()=>modal.style.display="none";
+window.onclick=e=>{if(e.target==modal) modal.style.display="none";}
 
 </script>
+
 </body>
 </html>
