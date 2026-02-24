@@ -1,207 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAVESH VIMANSHANA - Streaming Store</title>
+<title>Stream Hub</title>
 
 <style>
 body{
     margin:0;
+    background:linear-gradient(135deg,#000000,#111111,#1a1a1a);
     font-family:Arial;
-    background:#121212;
-    color:#fff;
-    transition:0.3s;
+    color:white;
+    overflow-x:hidden;
 }
 
-/* Light Mode */
-body.light{
-    background:#f5f5f5;
-    color:#111;
-}
-
-/* Header */
-header{
+/* Hero */
+.hero{
+    height:220px;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     align-items:center;
-    padding:15px 25px;
-    background:#1e1e1e;
+    flex-direction:column;
+    text-align:center;
+    animation: fadeIn 1.5s ease-in-out;
 }
-body.light header{
-    background:#ffffff;
-}
-header h1{
-    margin:0;
+
+.hero h1{
+    font-size:30px;
     color:red;
-}
-.toggle-btn{
-    padding:8px 15px;
-    border:none;
-    border-radius:20px;
-    cursor:pointer;
+    letter-spacing:3px;
+    animation: slideDown 1.2s ease-out;
 }
 
-/* Section */
+.hero p{
+    font-size:14px;
+    opacity:0.8;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Sections */
 .section{
-    padding:30px;
+    padding:20px;
+    animation: slideUp 1s ease forwards;
 }
+
 .section h2{
-    margin-bottom:20px;
+    font-size:18px;
+    border-left:4px solid red;
+    padding-left:10px;
+    margin-bottom:15px;
 }
 
-/* Slider */
-.slider-wrapper{
-    position:relative;
-    display:flex;
-    align-items:center;
-}
-.slider{
-    display:flex;
-    overflow-x:auto;
-    scroll-behavior:smooth;
-    gap:20px;
-}
-.slider::-webkit-scrollbar{
-    display:none;
-}
-
-/* Card */
+/* Cards */
 .card{
-    min-width:200px;
-    position:relative;
-    cursor:pointer;
-}
-.card img{
-    width:200px;
-    height:280px;
-    object-fit:cover;
-    border-radius:10px;
+    background:#111;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:15px;
     transition:0.3s;
-}
-.card:hover img{
-    transform:scale(1.05);
-}
-
-/* Watermark */
-.watermark{
-    position:absolute;
-    bottom:10px;
-    right:10px;
-    background:rgba(0,0,0,0.7);
-    color:#fff;
-    padding:4px 8px;
-    font-size:11px;
-    border-radius:5px;
-    pointer-events:none;
+    transform:scale(0.95);
+    animation: zoomIn 0.8s ease forwards;
 }
 
-/* Buttons */
-.slide-btn{
-    background:red;
-    border:none;
-    color:#fff;
-    font-size:22px;
-    padding:10px;
-    cursor:pointer;
-    border-radius:50%;
-    margin:0 10px;
+.card:hover{
+    background:#1e1e1e;
+    transform:scale(1);
+}
+
+.card a{
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    display:block;
+}
+
+/* Animations */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+@keyframes slideDown{
+    from{transform:translateY(-30px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+}
+
+@keyframes slideUp{
+    from{transform:translateY(30px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+}
+
+@keyframes zoomIn{
+    from{transform:scale(0.8);opacity:0;}
+    to{transform:scale(0.95);opacity:1;}
 }
 </style>
 </head>
 <body>
 
-<header>
-    <h1>🎬 GAVESH VIMANSHANA</h1>
-    <button class="toggle-btn" onclick="toggleMode()">🌙 / ☀</button>
-</header>
+<div class="hero">
+    <h1>🎬 STREAM HUB</h1>
+    <p>Unlimited Movies & TV Shows</p>
+</div>
 
-<!-- 🔥 Movies Section -->
-<section class="section">
-  <h2>🔥 Latest Movies</h2>
-
-  <div class="slider-wrapper">
-    <button class="slide-btn" onclick="slideLeft('movieSlider')">❮</button>
-
-    <div class="slider" id="movieSlider">
-
-      <div class="card">
-        <img src="images/movie1.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
-      <div class="card">
-        <img src="images/movie2.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
-      <div class="card">
-        <img src="images/movie3.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
-      <div class="card">
-        <img src="images/movie4.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
+<div class="section">
+    <h2>📺 TV SHOWS</h2>
+    <div class="card">
+        <a href="tv.html">Go to TV Shows</a>
     </div>
+</div>
 
-    <button class="slide-btn" onclick="slideRight('movieSlider')">❯</button>
-  </div>
-</section>
-
-<!-- 📺 TV Shows Section -->
-<section class="section">
-  <h2>📺 Latest TV Shows</h2>
-
-  <div class="slider-wrapper">
-    <button class="slide-btn" onclick="slideLeft('tvSlider')">❮</button>
-
-    <div class="slider" id="tvSlider">
-
-      <div class="card">
-        <img src="images/tv1.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
-      <div class="card">
-        <img src="images/tv2.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
-      <div class="card">
-        <img src="images/tv3.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
-      <div class="card">
-        <img src="images/tv4.jpg">
-        <div class="watermark">GAVESH VIMANSHANA</div>
-      </div>
-
+<div class="section">
+    <h2>🎥 MOVIES</h2>
+    <div class="card">
+        <a href="movies.html">Go to Movies</a>
     </div>
-
-    <button class="slide-btn" onclick="slideRight('tvSlider')">❯</button>
-  </div>
-</section>
-
-<script>
-
-/* Slider Functions */
-function slideLeft(id){
-  document.getElementById(id).scrollLeft -= 300;
-}
-function slideRight(id){
-  document.getElementById(id).scrollLeft += 300;
-}
-
-/* Dark / Light Mode */
-function toggleMode(){
-  document.body.classList.toggle("light");
-}
-
-</script>
+</div>
 
 </body>
 </html>
