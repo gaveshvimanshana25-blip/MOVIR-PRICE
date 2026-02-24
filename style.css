@@ -1,113 +1,99 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-body{
-    background:#000;
-    color:#fff;
+body {
+  background-color: #000;
+  color: white;
 }
 
-/* Header */
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px;
-    background:linear-gradient(to right,#000,#111);
-    border-bottom:1px solid #222;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #111;
 }
 
-.logo{
-    font-size:22px;
-    font-weight:bold;
+.logo {
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.logo span{
-    color:red;
+.logo span {
+  color: red;
 }
 
-header input{
-    padding:8px;
-    border-radius:20px;
-    border:none;
-    background:#111;
-    color:#fff;
-    width:150px;
+.search-box {
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background: #222;
+  color: white;
 }
 
-/* Sections */
-.section{
-    padding:25px 15px;
-    border-bottom:1px solid #111;
+/* Hero Section */
+.hero {
+  height: 80vh;
+  background: url('https://images.unsplash.com/photo-1608889175123-5f23d1f3c7e6') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
 }
 
-.section-header h2{
-    font-size:20px;
+.premium {
+  background: red;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
 }
 
-.section-header a{
-    color:#aaa;
-    text-decoration:none;
+h1 {
+  font-size: 40px;
+  margin: 20px 0;
 }
 
-.purple{
-    color:#a855f7;
+h1 span {
+  color: red;
 }
 
-.red{
-    color:#ff0000;
+.buttons button {
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-/* Store Section */
-.store{
-    text-align:center;
-    padding:60px 20px;
-    background:radial-gradient(circle,#1a0000,#000);
+.browse {
+  background: red;
+  color: white;
 }
 
-.store h1{
-    font-size:28px;
+.proofs {
+  background: #222;
+  color: white;
 }
 
-.store p{
-    color:#aaa;
-    margin-top:10px;
+/* Latest Section */
+.latest {
+  padding: 40px 20px;
 }
 
-.support-box{
-    margin-top:30px;
-    background:#111;
-    padding:20px;
-    border-radius:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.support-box small{
-    color:#aaa;
-}
-
-.support-box h3{
-    margin-top:5px;
-}
-
-.whatsapp{
-    font-size:30px;
-}
-
-footer{
-    text-align:center;
-    padding:20px;
-    font-size:12px;
-    color:#555;
+.latest h2 span {
+  color: purple;
 }
