@@ -158,9 +158,9 @@ margin-top:5px;
 <button onclick="filterGenre('sci-fi')">Sci-Fi</button>
 </div>
 
-<div class="grid">
+<!-- IMPORTANT ID ADDED -->
+<div class="grid" id="movieGrid">
 
-<!-- Inception -->
 <div class="card" data-genre="sci-fi" data-title="Inception (2010)" onclick="goDetails('Inception (2010)','1600')">
 <img src="images/inception.jpg">
 <div class="card-content">
@@ -170,7 +170,6 @@ margin-top:5px;
 </div>
 </div>
 
-<!-- Interstellar -->
 <div class="card" data-genre="sci-fi" data-title="Interstellar (2014)" onclick="goDetails('Interstellar (2014)','1700')">
 <img src="images/interstellar.jpg">
 <div class="card-content">
@@ -180,7 +179,6 @@ margin-top:5px;
 </div>
 </div>
 
-<!-- Joker -->
 <div class="card" data-genre="crime" data-title="Joker (2019)" onclick="goDetails('Joker (2019)','1500')">
 <img src="images/joker.jpg">
 <div class="card-content">
@@ -190,7 +188,6 @@ margin-top:5px;
 </div>
 </div>
 
-<!-- Titanic -->
 <div class="card" data-genre="romance" data-title="Titanic (1997)" onclick="goDetails('Titanic (1997)','1400')">
 <img src="images/titanic.jpg">
 <div class="card-content">
@@ -200,7 +197,6 @@ margin-top:5px;
 </div>
 </div>
 
-<!-- The Dark Knight -->
 <div class="card" data-genre="action" data-title="The Dark Knight (2008)" onclick="goDetails('The Dark Knight (2008)','1800')">
 <img src="images/darkknight.jpg">
 <div class="card-content">
@@ -210,7 +206,6 @@ margin-top:5px;
 </div>
 </div>
 
-<!-- Fight Club -->
 <div class="card" data-genre="drama" data-title="Fight Club (1999)" onclick="goDetails('Fight Club (1999)','1550')">
 <img src="images/fightclub.jpg">
 <div class="card-content">
@@ -235,7 +230,7 @@ document.getElementById("search").addEventListener("keyup", function(){
 let value=this.value.toLowerCase();
 let cards=document.querySelectorAll(".card");
 cards.forEach(card=>{
-let title=card.getAttribute("data-title").toLowerCase();
+let title=card.getAttribute("data-title")?.toLowerCase() || "";
 card.style.display=title.includes(value)?"block":"none";
 });
 });
@@ -250,6 +245,26 @@ card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
 }
 });
 }
+
+/* ADMIN PANEL MOVIES LOAD */
+function loadAdminMovies(){
+    const movies = JSON.parse(localStorage.getItem("movies") || "[]");
+    const grid = document.getElementById("movieGrid");
+
+    movies.forEach(movie => {
+        grid.innerHTML += `
+        <div class="card" data-genre="admin" data-title="${movie.title}" onclick="goDetails('${movie.title}','${movie.price}')">
+            <img src="images/default.jpg">
+            <div class="card-content">
+                <h3>${movie.title}</h3>
+                <div class="rating">⭐ New</div>
+                <div class="price">Rs. ${movie.price}</div>
+            </div>
+        </div>`;
+    });
+}
+
+loadAdminMovies();
 </script>
 
 </body>
