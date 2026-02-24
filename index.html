@@ -10,15 +10,70 @@ body{
     background:black;
     font-family:Arial, sans-serif;
     color:white;
+    transition:0.3s;
 }
 
-/* ===== HERO SLIDER ===== */
+/* LIGHT MODE */
+body.light{
+    background:white;
+    color:black;
+}
+body.light .card{ background:#f2f2f2; }
+body.light .side-menu{ background:#eee; }
+body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
+
+/* MENU ICON */
+.menu-icon{
+    position:fixed;
+    top:15px;
+    left:15px;
+    font-size:26px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+/* TOGGLE BUTTON */
+.toggle-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    background:#e50914;
+    border:none;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+/* SIDE MENU */
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-230px;
+    width:200px;
+    height:100%;
+    background:#111;
+    padding-top:60px;
+    transition:0.4s;
+    z-index:1000;
+}
+.side-menu a{
+    display:block;
+    padding:14px 20px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid #222;
+}
+.side-menu a:hover{ background:#e50914; }
+.side-menu.active{ left:0; }
+
+/* HERO SLIDER */
 .slider{
     position:relative;
     height:220px;
     overflow:hidden;
 }
-
 .slide{
     position:absolute;
     width:100%;
@@ -27,14 +82,12 @@ body{
     background-position:center;
     opacity:0;
     transform:scale(1);
-    transition:opacity 0.7s ease-in-out, transform 6s ease;
+    transition:opacity 0.7s, transform 6s;
 }
-
 .slide.active{
     opacity:1;
     transform:scale(1.05);
 }
-
 .slide::after{
     content:"";
     position:absolute;
@@ -53,18 +106,15 @@ body{
     opacity:0;
     transition:0.5s;
 }
-
 .slide.active .content{
     transform:translateY(0);
     opacity:1;
 }
-
 .content h2{
     margin:0;
     font-size:18px;
     color:#e50914;
 }
-
 .content p{
     margin:3px 0 0;
     font-size:12px;
@@ -79,7 +129,6 @@ body{
     text-align:center;
     z-index:3;
 }
-
 .dot{
     display:inline-block;
     width:16px;
@@ -88,22 +137,18 @@ body{
     margin:2px;
     border-radius:10px;
 }
+.dot.active{ background:#e50914; }
 
-.dot.active{
-    background:#e50914;
-}
-
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 .section{
-    padding:20px 15px 10px;
+    padding:18px 14px 6px;
 }
-
 .section h2{
-    font-size:16px;
+    font-size:15px;
     margin-bottom:10px;
 }
 
-/* CARDS */
+/* CARD */
 .card{
     background:#111;
     border-radius:10px;
@@ -112,23 +157,39 @@ body{
     text-align:center;
     transition:0.3s;
 }
-
 .card a{
-    color:white;
     text-decoration:none;
+    color:inherit;
     font-weight:bold;
-    font-size:14px;
 }
-
 .card:hover{
     background:#e50914;
     transform:scale(1.03);
+    color:white;
+}
+
+/* WHATSAPP */
+.whatsapp{
+    position:fixed;
+    bottom:18px;
+    right:18px;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    text-decoration:none;
+    color:white;
+    z-index:999;
 }
 
 /* FOOTER */
 .footer{
     text-align:center;
-    padding:15px;
+    padding:12px;
     font-size:11px;
     opacity:0.5;
 }
@@ -136,6 +197,15 @@ body{
 </head>
 
 <body>
+
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
+
+<div class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="tv.html">📺 TV Shows</a>
+    <a href="movies.html">🎬 Movies</a>
+</div>
 
 <!-- HERO -->
 <div class="slider">
@@ -183,7 +253,7 @@ body{
     </div>
 </div>
 
-<!-- TV SHOWS -->
+<!-- TV -->
 <div class="section">
     <h2>📺 TV SHOWS</h2>
     <div class="card">
@@ -199,30 +269,43 @@ body{
     </div>
 </div>
 
-<div class="footer">
-STREAM HUB UI DEMO
-</div>
+<a href="https://wa.me/94700000000" class="whatsapp">💬</a>
+
+<div class="footer">STREAM HUB UI</div>
 
 <script>
 let slides = document.querySelectorAll(".slide");
 let dots = document.querySelectorAll(".dot");
 let index = 0;
 
+/* AUTO SLIDER */
 function showSlide(i){
     slides.forEach(s => s.classList.remove("active"));
     dots.forEach(d => d.classList.remove("active"));
-
     slides[i].classList.add("active");
     dots[i].classList.add("active");
 }
-
-function nextSlide(){
+setInterval(() => {
     index++;
     if(index >= slides.length) index = 0;
     showSlide(index);
+}, 3000);
+
+/* MENU */
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("active");
 }
 
-setInterval(nextSlide, 3000);
+/* DARK / LIGHT */
+function toggleMode(){
+    document.body.classList.toggle("light");
+    localStorage.setItem("mode",
+        document.body.classList.contains("light") ? "light" : "dark");
+}
+
+/* LOAD SAVED MODE */
+const saved = localStorage.getItem("mode");
+if(saved === "light") document.body.classList.add("light");
 </script>
 
 </body>
