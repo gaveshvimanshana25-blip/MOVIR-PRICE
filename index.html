@@ -12,10 +12,10 @@ body{
     color:white;
 }
 
-/* ===== SLIDER ===== */
+/* ===== HERO SLIDER ===== */
 .slider{
     position:relative;
-    height:260px;
+    height:220px;
     overflow:hidden;
 }
 
@@ -26,16 +26,15 @@ body{
     background-size:cover;
     background-position:center;
     opacity:0;
+    transform:scale(1);
     transition:opacity 0.7s ease-in-out, transform 6s ease;
 }
 
-/* ACTIVE SLIDE */
 .slide.active{
     opacity:1;
-    transform:scale(1.06);
+    transform:scale(1.05);
 }
 
-/* DARK OVERLAY */
 .slide::after{
     content:"";
     position:absolute;
@@ -44,31 +43,38 @@ body{
     background:linear-gradient(to top, black 15%, transparent 60%);
 }
 
-/* TEXT OVERLAY */
+/* TEXT */
 .content{
     position:absolute;
-    bottom:20px;
-    left:20px;
+    bottom:15px;
+    left:15px;
     z-index:2;
-    max-width:70%;
+    transform:translateY(15px);
+    opacity:0;
+    transition:0.5s;
+}
+
+.slide.active .content{
+    transform:translateY(0);
+    opacity:1;
 }
 
 .content h2{
     margin:0;
-    font-size:22px;
+    font-size:18px;
     color:#e50914;
 }
 
 .content p{
-    margin:5px 0 0;
-    font-size:13px;
-    opacity:0.85;
+    margin:3px 0 0;
+    font-size:12px;
+    opacity:0.8;
 }
 
 /* DOTS */
 .dots{
     position:absolute;
-    bottom:8px;
+    bottom:5px;
     width:100%;
     text-align:center;
     z-index:3;
@@ -76,62 +82,95 @@ body{
 
 .dot{
     display:inline-block;
-    width:18px;
+    width:16px;
     height:3px;
     background:gray;
-    margin:3px;
+    margin:2px;
     border-radius:10px;
-    transition:0.3s;
 }
 
 .dot.active{
     background:#e50914;
 }
 
-/* MOBILE */
-@media(max-width:600px){
-    .slider{ height:200px; }
-    .content h2{ font-size:18px; }
+/* ===== SECTIONS ===== */
+.section{
+    padding:20px 15px 10px;
+}
+
+.section h2{
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+/* CARDS */
+.card{
+    background:#111;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:12px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.card:hover{
+    background:#e50914;
+    transform:scale(1.03);
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:15px;
+    font-size:11px;
+    opacity:0.5;
 }
 </style>
 </head>
 
 <body>
 
-<div class="slider" id="slider">
-
+<!-- HERO -->
+<div class="slider">
     <div class="slide active" style="background-image:url('m1.jpg')">
-        <div class="content">
-            <h2>Hridayam</h2>
-            <p>Romantic • Drama</p>
-        </div>
-    </div>
-
-    <div class="slide" style="background-image:url('m2.jpg')">
         <div class="content">
             <h2>Interstellar</h2>
             <p>Sci-Fi • Adventure</p>
         </div>
     </div>
 
-    <div class="slide" style="background-image:url('m3.jpg')">
+    <div class="slide" style="background-image:url('m2.jpg')">
         <div class="content">
             <h2>Joker</h2>
             <p>Crime • Thriller</p>
         </div>
     </div>
 
-    <div class="slide" style="background-image:url('m4.jpg')">
+    <div class="slide" style="background-image:url('m3.jpg')">
         <div class="content">
             <h2>Avatar</h2>
             <p>Fantasy • Action</p>
         </div>
     </div>
 
-    <div class="slide" style="background-image:url('m5.jpg')">
+    <div class="slide" style="background-image:url('m4.jpg')">
         <div class="content">
             <h2>Batman</h2>
             <p>Action • Dark</p>
+        </div>
+    </div>
+
+    <div class="slide" style="background-image:url('m5.jpg')">
+        <div class="content">
+            <h2>Hridayam</h2>
+            <p>Romance • Drama</p>
         </div>
     </div>
 
@@ -142,19 +181,34 @@ body{
         <span class="dot"></span>
         <span class="dot"></span>
     </div>
+</div>
 
+<!-- TV SHOWS -->
+<div class="section">
+    <h2>📺 TV SHOWS</h2>
+    <div class="card">
+        <a href="tv.html">Go to TV Shows</a>
+    </div>
+</div>
+
+<!-- MOVIES -->
+<div class="section">
+    <h2>🎬 MOVIES</h2>
+    <div class="card">
+        <a href="movies.html">Go to Movies</a>
+    </div>
+</div>
+
+<div class="footer">
+STREAM HUB UI DEMO
 </div>
 
 <script>
 let slides = document.querySelectorAll(".slide");
 let dots = document.querySelectorAll(".dot");
-
 let index = 0;
-let startX = 0;
 
-/* AUTO SWIPE */
 function showSlide(i){
-
     slides.forEach(s => s.classList.remove("active"));
     dots.forEach(d => d.classList.remove("active"));
 
@@ -168,32 +222,7 @@ function nextSlide(){
     showSlide(index);
 }
 
-setInterval(nextSlide, 3500);
-
-/* TOUCH SWIPE SUPPORT */
-const slider = document.getElementById("slider");
-
-slider.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
-
-slider.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
-
-    if(Math.abs(diff) > 50){
-
-        if(diff > 0){
-            index++;
-            if(index >= slides.length) index = 0;
-        }else{
-            index--;
-            if(index < 0) index = slides.length - 1;
-        }
-
-        showSlide(index);
-    }
-});
+setInterval(nextSlide, 3000);
 </script>
 
 </body>
