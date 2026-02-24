@@ -13,12 +13,52 @@ body{
     color:white;
 }
 
+/* ===== MENU ICON ===== */
+.menu-icon{
+    position:fixed;
+    top:15px;
+    left:15px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+/* ===== SIDE MENU ===== */
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-250px;
+    width:250px;
+    height:100%;
+    background:#111;
+    padding-top:60px;
+    transition:0.4s;
+    z-index:1000;
+}
+
+.side-menu a{
+    display:block;
+    padding:15px 25px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid #222;
+}
+
+.side-menu a:hover{
+    background:#e50914;
+}
+
+.side-menu.active{
+    left:0;
+}
+
 /* HEADER */
 .header{
     padding:15px;
     font-size:22px;
     font-weight:bold;
     color:#e50914;
+    text-align:center;
 }
 
 /* SEARCH */
@@ -34,7 +74,7 @@ body{
     font-size:16px;
 }
 
-/* GENRE BUTTONS */
+/* GENRES */
 .genres{
     padding:10px;
 }
@@ -53,7 +93,7 @@ body{
     background:#e50914;
 }
 
-/* TRENDING SCROLL */
+/* TRENDING */
 .trending{
     padding:15px;
     overflow-x:auto;
@@ -66,12 +106,18 @@ body{
     border-radius:8px;
 }
 
-/* SHOW GRID */
+/* GRID */
 .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:15px;
     padding:15px;
+}
+
+@media(min-width:768px){
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
 }
 
 .card{
@@ -101,7 +147,6 @@ body{
     color:gold;
 }
 
-/* BUTTONS */
 .watch-btn{
     background:#e50914;
     border:none;
@@ -147,6 +192,16 @@ body{
 </style>
 </head>
 <body>
+
+<!-- MENU ICON -->
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="sideMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="tv.html">📺 TV Shows</a>
+    <a href="movies.html">🎥 Movies</a>
+</div>
 
 <div class="header">TV SHOWS</div>
 
@@ -200,7 +255,7 @@ body{
 <div class="card-content">
 <h3>Squid Game</h3>
 <div class="rating">⭐ 4.7</div>
-<button class="watch-btn" onclick="openTrailer(https://youtu.be/LHuDVf6FzI0?si=VdvuIy7wjiygfXh7)">Watch Trailer</button>
+<button class="watch-btn" onclick="openTrailer()">Watch Trailer</button>
 </div>
 </div>
 
@@ -213,12 +268,14 @@ body{
 </div>
 
 <script>
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
+}
 
 /* SEARCH */
 document.getElementById("search").addEventListener("keyup", function(){
 let value = this.value.toLowerCase();
 let cards = document.querySelectorAll(".card");
-
 cards.forEach(card=>{
 let title = card.getAttribute("data-title").toLowerCase();
 card.style.display = title.includes(value) ? "block" : "none";
@@ -228,7 +285,6 @@ card.style.display = title.includes(value) ? "block" : "none";
 /* GENRE FILTER */
 function filterGenre(genre){
 let cards = document.querySelectorAll(".card");
-
 cards.forEach(card=>{
 if(genre==="all"){
 card.style.display="block";
@@ -252,7 +308,6 @@ function addToList(el){
 el.style.color="red";
 alert("Added to My List ❤️");
 }
-
 </script>
 
 </body>
