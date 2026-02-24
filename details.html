@@ -12,7 +12,6 @@ body{
     color:white;
     font-family:Arial;
 }
-
 .header{
     background:#111;
     padding:15px;
@@ -23,11 +22,9 @@ body{
     position:sticky;
     top:0;
 }
-
 .container{
     padding:15px;
 }
-
 .poster{
     width:100%;
     max-height:340px;
@@ -35,29 +32,14 @@ body{
     border-radius:10px;
     background:#222;
 }
-
 .title{
     margin-top:15px;
     font-size:24px;
     font-weight:bold;
 }
-
-.genre{
-    margin-top:8px;
-    color:#aaa;
-}
-
-.rating{
-    margin-top:8px;
-    color:gold;
-    font-size:18px;
-}
-
-.description{
-    margin-top:15px;
-    line-height:1.6;
-    color:#ddd;
-}
+.genre{ margin-top:8px; color:#aaa; }
+.rating{ margin-top:8px; color:gold; font-size:18px; }
+.description{ margin-top:15px; line-height:1.6; color:#ddd; }
 
 .btn{
     display:block;
@@ -71,15 +53,8 @@ body{
     font-weight:bold;
     margin-top:15px;
 }
-
-.whatsapp-btn{
-    background:#25D366;
-}
-
-.trailer-btn{
-    background:#e50914;
-}
-
+.whatsapp-btn{ background:#25D366; }
+.trailer-btn{ background:#e50914; }
 .back-btn{
     display:inline-block;
     margin-top:20px;
@@ -104,7 +79,6 @@ body{
     <div class="rating" id="rating"></div>
     <div class="description" id="description"></div>
 
-    <!-- BUTTONS -->
     <a href="#" id="trailerBtn" target="_blank" class="btn trailer-btn">
         ▶ Watch Trailer
     </a>
@@ -120,22 +94,13 @@ body{
 
 const params = new URLSearchParams(window.location.search);
 const title = params.get("title");
-
 const phoneNumber = "94703490292";
 
-/* TRAILER LINKS */
+/* TRAILERS */
 const trailers = {
-"56 Days (2026)" : "https://www.youtube.com/",
-"Do You Wanna Partner (2025)" : "https://www.youtube.com/",
-"Motorvalley (2026)" : "https://www.youtube.com/",
-"Kohrra (2023)" : "https://www.youtube.com/",
-"The Summer I Turned Pretty (2022)" : "https://www.youtube.com/watch?v=6Tqg5V4iQ0E",
-"American Primeval (2025)" : "https://www.youtube.com/",
-"Yeh Kaali Kaali Ankhein (2022)" : "https://www.youtube.com/watch?v=XZOK1bZ8WmQ",
 "Prison Break (2005)" : "https://www.youtube.com/watch?v=AL9zLctDJaU",
 "Money Heist (2021)" : "https://www.youtube.com/watch?v=_InqQJRqGW4",
-"Money Heist Korea (2022)" : "https://www.youtube.com/watch?v=lKp3Nw9R8lA",
-"American Manhunt (2025)" : "https://www.youtube.com/",
+"Yeh Kaali Kaali Ankhein (2022)" : "https://www.youtube.com/watch?v=XZOK1bZ8WmQ",
 "Marvel’s Daredevil (2015)" : "https://www.youtube.com/watch?v=jAy6NJ_D5vU"
 };
 
@@ -145,95 +110,72 @@ const shows = {
 poster:"images/56days.jpg",
 genre:"Crime, Drama, Mystery (English)",
 rating:"⭐ 4.4",
-description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක්..."
+description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක් ඉක්මනින්ම එකට ජීවත් වෙන්න තීරණය කරනවා. Romance එකක් වගේ පටන් ගත්තත් suspicious behavior සහ murder investigation එකක් එක්ක story එක dark වෙලා යනවා."
 },
 
 "Do You Wanna Partner (2025)":{
 poster:"images/partner.jpg",
 genre:"Comedy, Drama (Hindi)",
 rating:"⭐ 7.7",
-description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්."
+description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්. Funny misunderstandings, jealousy සහ love drama mix වෙලා තියෙනවා."
 },
 
 "Motorvalley (2026)":{
 poster:"images/motorvalley.jpg",
 genre:"Action, Drama (Italian)",
 rating:"⭐ 6.8",
-description:"Luxury car industry power struggle එකක්."
+description:"Luxury car industry power struggle එකක්. Corporate politics, betrayal, rivalry සහ greed mix වෙන dark business drama එකක්."
 },
 
 "Kohrra (2023)":{
 poster:"images/kohrra.jpg",
 genre:"Crime, Drama (Hindi)",
 rating:"⭐ 6.9",
-description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්."
+description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්. Investigation එකත් එක්ක family conflicts සහ hidden secrets එළියට එන slow emotional crime drama එකක්."
 },
 
 "The Summer I Turned Pretty (2022)":{
 poster:"images/summer.jpg",
 genre:"Drama, Romance (English)",
 rating:"⭐ 8.1",
-description:"Teen emotions, crushes, jealousy සහ growing up moments."
+description:"Teen emotions, crushes, jealousy සහ growing up moments වටා යන emotional summer love story එකක්."
 },
 
 "American Primeval (2025)":{
 poster:"images/primeval.jpg",
 genre:"Action, Drama, Western (English)",
 rating:"⭐ 7.6",
-description:"Early America brutal world එකක survival story."
+description:"Early America brutal world එකක survival සහ revenge story එකක්. Tribe conflicts සහ moral dilemmas ගොඩක් තියෙනවා."
 },
 
 "Yeh Kaali Kaali Ankhein (2022)":{
 poster:"images/yehkaali.jpg",
 genre:"Crime, Drama, Mystery (Hindi)",
 rating:"⭐ 9.1",
-description:"Politician කෙනෙකුගේ දුවගේ obsession එකකට හසු වෙන කතාවක්."
+description:"Politician කෙනෙකුගේ දුවගේ obsession එකකට හසු වෙන සාමාන්‍ය පිරිමි කෙනෙක්. Love story එකක් වගේ පටන් ගත්තත් dark psychological game එකක් වෙනවා."
 },
 
 "Prison Break (2005)":{
 poster:"images/prisonbreak.jpg",
 genre:"Action, Crime, Drama",
 rating:"⭐ 8.1",
-description:"Michael තම සොහොයුරා බේරගන්න prison එකට යනවා."
+description:"Michael තම සොහොයුරා බේරගන්න හිතාමතා prison එකට යනවා. Smart escape plan + adrenaline tension + shocking twists."
 },
 
 "Money Heist (2021)":{
 poster:"images/money.jpg",
 genre:"Crime, Drama",
 rating:"⭐ 8.3",
-description:"Professor කියන mastermind කෙනෙක් ලොකු heist එකක් සැලසුම් කරනවා."
-},
-
-"Money Heist Korea (2022)":{
-poster:"images/mhkorea.jpg",
-genre:"Action, Crime, Drama",
-rating:"⭐ 8.1",
-description:"Korean setting එකක remake version එක."
-},
-
-"American Manhunt (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/g9CkBu9ZFGdguoukibrkyvbvCTo.jpg",
-genre:"Crime, Documentary (English)",
-rating:"⭐ 7.6",
-description:"Real-life intelligence operation story එක."
-},
-
-"Marvel’s Daredevil (2015)":{
-poster:"images/daredevil.jpg",
-genre:"Action, Crime, Drama",
-rating:"⭐ 8.2",
-description:"Blind lawyer vigilante කෙනෙක් වෙලා crime වලට එරෙහිව සටන් කරනවා."
+description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක් සැලසුම් කරනවා. Human emotions සහ unexpected twists නිසා plan එක complicated වෙනවා."
 }
 
 };
 
 if(shows[title]){
 
-document.title = title + " - Stream Hub";
-document.getElementById("headerTitle").innerText = title;
-
 const data = shows[title];
 
+document.getElementById("headerTitle").innerText = title;
 document.getElementById("poster").src = data.poster;
 document.getElementById("title").innerText = title;
 document.getElementById("genre").innerText = "Genre: " + data.genre;
@@ -243,9 +185,9 @@ document.getElementById("description").innerText = data.description;
 /* WhatsApp */
 const message = `Hello, I want to buy:\n\n${title}`;
 document.getElementById("buyBtn").href =
-`https://wa.me/${9470 349 0292}?text=${encodeURIComponent(message)}`;
+`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-/* Trailer */
+/* Trailer logic */
 if(trailers[title]){
 document.getElementById("trailerBtn").href = trailers[title];
 }else{
