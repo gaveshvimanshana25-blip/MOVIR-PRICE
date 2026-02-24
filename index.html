@@ -9,12 +9,12 @@
 body{
     margin:0;
     background:linear-gradient(135deg,#000000,#111111,#1a1a1a);
-    font-family:Arial;
+    font-family:Arial, sans-serif;
     color:white;
     overflow-x:hidden;
 }
 
-/* Hero */
+/* HERO */
 .hero{
     height:220px;
     display:flex;
@@ -29,16 +29,18 @@ body{
     font-size:30px;
     color:red;
     letter-spacing:3px;
+    margin:0;
     animation: slideDown 1.2s ease-out;
 }
 
 .hero p{
     font-size:14px;
     opacity:0.8;
+    margin-top:8px;
     animation: fadeIn 2s ease-in-out;
 }
 
-/* Sections */
+/* SECTION */
 .section{
     padding:20px;
     animation: slideUp 1s ease forwards;
@@ -51,7 +53,7 @@ body{
     margin-bottom:15px;
 }
 
-/* Cards */
+/* CARD */
 .card{
     background:#111;
     border-radius:12px;
@@ -75,7 +77,24 @@ body{
     display:block;
 }
 
-/* Animations */
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:15px;
+    font-size:13px;
+    background:#0d0d0d;
+    margin-top:20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.footer span{
+    color:red;
+    font-weight:bold;
+    letter-spacing:1px;
+    animation: glow 2s infinite alternate;
+}
+
+/* ANIMATIONS */
 @keyframes fadeIn{
     from{opacity:0;}
     to{opacity:1;}
@@ -94,6 +113,11 @@ body{
 @keyframes zoomIn{
     from{transform:scale(0.8);opacity:0;}
     to{transform:scale(0.95);opacity:1;}
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 5px red; }
+    to{ text-shadow:0 0 15px red; }
 }
 </style>
 </head>
@@ -117,6 +141,10 @@ body{
         <a href="movies.html">Go to Movies</a>
     </div>
 </div>
+
+<footer class="footer">
+    <p>System Developed By <span>GAVESH VIMANSHANA</span></p>
+</footer>
 
 </body>
 </html>
