@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#000;
+    color:white;
+    padding:20px;
+}
+
+.login-box, .panel{
+    max-width:400px;
+    margin:auto;
+    background:#111;
+    padding:20px;
+    border-radius:10px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    background:#e50914;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.movie{
+    background:#222;
+    padding:10px;
+    border-radius:5px;
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+}
+</style>
+</head>
+<body>
+
+<div class="login-box" id="loginBox">
+    <h2>Admin Login</h2>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<div class="panel" id="adminPanel" style="display:none;">
+    <h2>Admin Panel</h2>
+
+    <input type="text" id="title" placeholder="Movie Title">
+    <input type="text" id="price" placeholder="Price">
+
+    <button onclick="addMovie()">Add Movie</button>
+
+    <h3>Movie List</h3>
+    <div id="movieList"></div>
+</div>
+
+<script>
+const ADMIN_PASSWORD = "1234"; // change karapan
+
+function login(){
+    const pass = document.getElementById("password").value;
+    if(pass === ADMIN_PASSWORD){
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+        loadMovies();
+    } else {
+        alert("Wrong Password");
+    }
+}
+
+function getMovies(){
+    return JSON.parse(localStorage.getItem("movies") || "[]");
+}
+
+function saveMovies(movies){
+    localStorage.setItem("movies", JSON.stringify(movies));
+}
+
+function addMovie(){
+    const title = document.getElementById("title").value;
+    const price = document.getElementById("price").value;
+
+    if(!title || !price){
+        alert("Fill all fields");
+        return;
+    }
+
+    const movies = getMovies();
+    movies.push({title, price});
+    saveMovies(movies);
+    loadMovies();
+
+    document.getElementById("title").value = "";
+    document.getElementById("price").value = "";
+}
+
+function deleteMovie(index){
+    const movies = getMovies();
+    movies.splice(index, 1);
+    saveMovies(movies);
+    loadMovies();
+}
+
+function loadMovies(){
+    const list = document.getElementById("movieList");
+    const movies = getMovies();
+
+    list.innerHTML = "";
+
+    movies.forEach((movie, i)=>{
+        list.innerHTML += `
+            <div class="movie">
+                <span>${movie.title} - Rs. ${movie.price}</span>
+                <span onclick="deleteMovie(${i})" style="cursor:pointer;">❌</span>
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
