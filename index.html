@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Serious</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>TV Serious Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background:#121212; color:#fff; font-family:Arial; margin:0; padding:20px; }
+        header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+        .logo { font-size:24px; font-weight:bold; } .logo span{ color:#ffdd00; }
+        input[type=text]{ padding:5px; width:200px; border-radius:5px; border:none; }
+        .section { margin:40px 0; }
+        .section-header { display:flex; justify-content:space-between; align-items:center; }
+        .section-header h2 span { color:#ff00ff; } /* latest purple */
+        .section-header a { color:#ffdd00; text-decoration:none; font-size:16px; }
+        .section-header a:hover { text-decoration:underline; }
+        .store { text-align:center; margin-top:50px; }
+        .store h1 { color:#00ffcc; margin-bottom:10px; }
+        .store p { color:#aaa; margin-bottom:20px; }
+        /* WhatsApp button fixed */
+        .whatsapp-button {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index:1000;
+        }
+        .whatsapp-button img{ width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s; }
+        .whatsapp-button img:hover{ transform: scale(1.1);}
+        footer{ text-align:center; margin-top:50px; color:#888; font-size:14px; }
+        .clickable-section { cursor:pointer; padding:20px; background:#1e1e1e; border-radius:10px; margin-bottom:20px; }
+        .clickable-section:hover { background:#333; }
+    </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
+<header>
     <div class="logo">TV <span>SERIOUS</span></div>
-    <input type="text" placeholder="Search movies, series..." class="search-box" />
-  </header>
+    <input type="text" placeholder="Search movies, series...">
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="overlay">
-      <span class="premium">PREMIUM</span>
-      <h1>UNLIMITED <span>ENTERTAINMENT</span></h1>
-      <div class="buttons">
-        <button class="browse">▶ BROWSE</button>
-        <button class="proofs">PROOFS</button>
-      </div>
+<section class="section">
+    <div class="section-header clickable-section" onclick="window.location.href='tvshow.html'">
+        <h2><span class="purple">LATEST</span> TV SERIOUS</h2>
+        <span>VIEW ALL →</span>
     </div>
-  </section>
+</section>
 
-  <!-- Latest Section -->
-  <section class="latest">
-    <h2><span>LATEST</span> TV SERIOUS</h2>
-  </section>
+<section class="section">
+    <div class="section-header clickable-section" onclick="window.location.href='movie.html'">
+        <h2><span class="red">FRESH</span> MOVIES</h2>
+        <span>VIEW ALL →</span>
+    </div>
+</section>
+
+<section class="store">
+    <h1>TV SERIOUS STORE</h1>
+    <p>The Next Generation of Entertainment</p>
+</section>
+
+<!-- WhatsApp Floating Button -->
+<div class="whatsapp-button">
+    <a href="https://wa.me/94703490292" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+</div>
+
+<footer>
+    SYSTEM DEVELOPED BY GAVESH VIMANSHANA 
+</footer>
 
 </body>
 </html>
