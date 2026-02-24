@@ -34,6 +34,27 @@
       margin-top: 10px;
       font-size: 18px;
     }
+
+    /* Floating WhatsApp button */
+    .whatsapp-button {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 1000;
+    }
+
+    .whatsapp-button img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-button img:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -46,18 +67,21 @@
   </div>
 
   <div class="movie-card">
-    <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/IMG-20260222-WA0010.jpg" alt="Movie 2">
+    <img src="images/movie2.jpg" alt="Movie 2">
     <p>Movie 2 — Rs 1200</p>
   </div>
 
   <div class="movie-card">
-    <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/IMG-20260222-WA0010.jpg" alt="Movie 3">
+    <img src="images/movie3.jpg" alt="Movie 3">
     <p>Movie 3 — Rs 900</p>
   </div>
 
+  <!-- WhatsApp Floating Button -->
+  <div class="whatsapp-button">
+    <a href="https://wa.me/94771234567?text=Hello%20I%20want%20to%20know%20movie%20prices" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+  </div>
+
 </body>
-<a href="https://wa.me/94742549935?text=Hello%20I%20want%20to%20know%20movie%20prices" 
-   target="_blank" style="background-color:#25D366; color:white; padding:10px 20px; border-radius:10px; text-decoration:none; font-size:18px;">
-   📲 Contact on WhatsApp
-</a>
 </html>
