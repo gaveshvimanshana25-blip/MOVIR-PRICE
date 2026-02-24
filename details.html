@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TV Series Details</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
-font-family:Arial, sans-serif;
+margin:0;
 background:#0f0f0f;
 color:white;
+font-family:Arial;
 }
 
 .header{
@@ -35,7 +30,7 @@ padding:15px;
 width:100%;
 max-height:300px;
 object-fit:cover;
-border-radius:12px;
+border-radius:10px;
 }
 
 .title{
@@ -70,10 +65,6 @@ color:white;
 text-decoration:none;
 border-radius:8px;
 }
-
-.back-btn:hover{
-background:#c40812;
-}
 </style>
 </head>
 
@@ -100,38 +91,24 @@ const title = params.get("title");
 const shows = {
 
 "Money Heist":{
-poster:"https://via.placeholder.com/600x300?text=Money+Heist",
+poster:"images/money.jpg",
 genre:"Action, Crime",
 rating:"⭐ 4.8 / 5",
-description:"A criminal mastermind who goes by 'The Professor' plans the biggest heist in history."
+description:"A criminal mastermind known as The Professor plans the biggest heist in history."
 },
 
 "Wednesday":{
-poster:"https://via.placeholder.com/600x300?text=Wednesday",
+poster:"images/wednesday.jpg",
 genre:"Teen, Mystery",
 rating:"⭐ 4.5 / 5",
-description:"Wednesday Addams investigates a series of supernatural murders at Nevermore Academy."
+description:"Wednesday Addams investigates supernatural murders at Nevermore Academy."
 },
 
-"Squid Game":{
-poster:"https://via.placeholder.com/600x300?text=Squid+Game",
-genre:"Thriller, Drama",
-rating:"⭐ 4.7 / 5",
-description:"Hundreds of players compete in deadly childhood games for a massive cash prize."
-},
-
-"Bridgerton":{
-poster:"https://via.placeholder.com/600x300?text=Bridgerton",
-genre:"Romantic, Drama",
-rating:"⭐ 4.6 / 5",
-description:"A romantic drama following the lives of high society families in Regency London."
-},
-
-"The Haunting":{
-poster:"https://via.placeholder.com/600x300?text=The+Haunting",
-genre:"Horror, Mystery",
-rating:"⭐ 4.4 / 5",
-description:"A horror story revolving around a haunted house and the dark secrets within."
+"The Power (2023)":{
+poster:"images/thepower.jpg",
+genre:"Drama, Mystery, Sci-Fi & Fantasy",
+rating:"⭐ 6.0 / 10",
+description:"මේක 2023 අවුරුද්දේ ආපු TV Series එකක් වුනත්, කිසිම කම්මැලිකමක් නැතුව එක දිගටම කුතුහලයෙන් බලන්න පුළුවන් සුපිරිම නිර්මාණයක්. හිතන්නකෝ එකපාරටම ලෝකේ ඉන්න තරුණ ගැහැණු ළමයින්ට අමුතුම බලයක් ලැබෙනවා — එයාලගේ ඇඟෙන් විදුලිය පිටකරන්න පුළුවන් සුපිරිම බලයක්! මේ බලය නිසා මුළු ලෝකෙම කණපිට පෙරළෙනවා. සමාජයේ බල සම්බන්ධතා වෙනස් වෙනවා. Margot, Roxy, Allie සහ Tunde වටා ගෙතෙන මේ කතාව action, emotions සහ unexpected twists වලින් පිරිලා තියෙනවා."
 }
 
 };
@@ -143,7 +120,8 @@ document.getElementById("genre").innerText = "Genre: " + shows[title].genre;
 document.getElementById("rating").innerText = shows[title].rating;
 document.getElementById("description").innerText = shows[title].description;
 }else{
-document.querySelector(".container").innerHTML = "<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
+document.querySelector(".container").innerHTML =
+"<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
 }
 
 </script>
