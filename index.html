@@ -14,7 +14,7 @@ body {
     padding:40px;
 }
 
-/* ===== Preloader ===== */
+/* Preloader */
 #preloader {
   position: fixed;
   top:0; left:0;
@@ -26,7 +26,6 @@ body {
   flex-direction:column;
   z-index:9999;
   color:#ff0000;
-  font-size:20px;
 }
 .loader {
   border: 8px solid #1e1e1e;
@@ -35,11 +34,10 @@ body {
   width:60px;
   height:60px;
   animation: spin 1s linear infinite;
-  margin-bottom:15px;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
 
 /* Header */
@@ -51,78 +49,65 @@ header {
 }
 .logo {
   font-size:28px;
-  font-weight:bold;
   color:#ff0000;
-}
-input[type=text]{
-  padding:5px;
-  width:200px;
-  border-radius:5px;
-  border:none;
+  font-weight:bold;
 }
 
 /* Banner */
 .banner {
-    background: url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/images.jpeg') no-repeat center center;
-    background-size: cover;
-    height: 150px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#ff0000;
-    font-size:26px;
-    font-weight:bold;
-    text-shadow:1px 1px 5px #000;
+  background:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/images.jpeg') center/cover;
+  height:150px;
+  border-radius:10px;
+  margin-bottom:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:#ff0000;
+  font-weight:bold;
 }
 
 /* Sections */
 .clickable-section {
-    cursor:pointer;
-    padding:30px;
-    background:#1e1e1e;
-    border-radius:10px;
-    margin-bottom:20px;
-    text-align:center;
-    font-size:24px;
-    color:#ff0000;
-    font-weight:bold;
-    transition:0.3s;
+  cursor:pointer;
+  padding:30px;
+  background:#1e1e1e;
+  border-radius:10px;
+  margin-bottom:20px;
+  text-align:center;
+  font-size:24px;
+  color:#ff0000;
+  transition:0.3s;
 }
 .clickable-section:hover {
-    transform:scale(1.05);
-    background:#333;
+  transform:scale(1.05);
+  background:#333;
 }
 
 /* WhatsApp button */
 .whatsapp-button {
-    position: fixed;
-    right:20px;
-    bottom:20px;
-    z-index:1000;
+  position:fixed;
+  right:20px;
+  bottom:20px;
 }
 .whatsapp-button img {
-    width:60px;
-    height:60px;
-    border-radius:50%;
+  width:60px;
 }
 
-/* Music button */
+/* Music button (BLACK) */
 .music-button {
-    position: fixed;
-    right:20px;
-    bottom:100px;
-    z-index:1000;
+  position:fixed;
+  right:20px;
+  bottom:100px;
 }
 .music-button button {
-    background:#ff0000;
-    border:none;
-    padding:14px;
-    border-radius:50%;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
+  background:black;
+  border:none;
+  padding:14px;
+  border-radius:50%;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
 }
 
 footer {
@@ -143,48 +128,52 @@ footer {
 
 <header>
   <div class="logo">TV & MOVIE STORE</div>
-  <input type="text" placeholder="Search...">
 </header>
 
 <div class="banner">🎬 TV & Movie Store</div>
 
-<div class="clickable-section" onclick="window.location.href='tvshow.html'">
-  TV SHOWS
+<div class="clickable-section" onclick="location.href='tvshow.html'">
+TV SHOWS
 </div>
 
-<div class="clickable-section" onclick="window.location.href='movie.html'">
-  MOVIES
+<div class="clickable-section" onclick="location.href='movie.html'">
+MOVIES
 </div>
 
-<!-- Music Button -->
+<!-- Music toggle -->
 <div class="music-button">
-  <button onclick="playMusic()">🎵</button>
+<button onclick="toggleMusic()">🎵</button>
 </div>
 
-<audio id="music">
-  <source src="song.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop>
+<source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<!-- WhatsApp Button -->
+<!-- WhatsApp -->
 <div class="whatsapp-button">
-  <a href="https://wa.me/94703490292" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-  </a>
+<a href="https://wa.me/94703490292" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
 </div>
 
 <footer>
-  SYSTEM DEVELOPED BY GAVESH VIMANSHANA
+SYSTEM DEVELOPED BY GAVESH VIMANSHANA
 </footer>
 
 <script>
-window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
-  preloader.style.opacity = 0;
-  setTimeout(()=> preloader.style.display="none", 500);
+window.addEventListener("load",()=>{
+  const p=document.getElementById("preloader");
+  p.style.opacity=0;
+  setTimeout(()=>p.style.display="none",500);
 });
 
-function playMusic() {
-  document.getElementById("music").play();
+function toggleMusic(){
+  const music=document.getElementById("bgMusic");
+  if(music.paused){
+    music.play();
+  }else{
+    music.pause();
+  }
 }
 </script>
 
