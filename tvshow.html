@@ -5,6 +5,32 @@
 <title>TV Shows - Large Cards</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+/* ===== Preloader ===== */
+#preloader {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:#121212;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  color:#ff0000;
+  font-size:20px;
+}
+.loader {
+  border: 8px solid #1e1e1e;
+  border-top: 8px solid #ff0000;
+  border-radius: 50%;
+  width:60px;
+  height:60px;
+  animation: spin 1s linear infinite;
+  margin-bottom:15px;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* ===== Body & cards ===== */
 body {
     background:#121212;
     color:#fff;
@@ -31,10 +57,7 @@ h1 { text-align:center; color:#ff0000; margin-bottom:30px; font-size:36px; }
     cursor:pointer;
     transition: transform 0.3s, background 0.3s;
 }
-.card:hover {
-    transform:scale(1.05);
-    background:#333;
-}
+.card:hover { transform:scale(1.05); background:#333; }
 .card img {
     width:100%;
     height:220px; /* bigger image */
@@ -42,9 +65,7 @@ h1 { text-align:center; color:#ff0000; margin-bottom:30px; font-size:36px; }
     border-top-left-radius:10px;
     border-top-right-radius:10px;
 }
-.card-content {
-    padding:15px;
-}
+.card-content { padding:15px; }
 .card-content h3 { color:#ff0000; margin:0 0 8px 0; font-size:22px; }
 .card-content p { margin:5px 0; font-size:16px; }
 .card-content .genre { color:#00ffcc; }
@@ -103,6 +124,12 @@ h1 { text-align:center; color:#ff0000; margin-bottom:30px; font-size:36px; }
 </head>
 <body>
 
+<!-- ===== Preloader ===== -->
+<div id="preloader">
+  <div class="loader"></div>
+  <p>Loading TV Shows...</p>
+</div>
+
 <h1>🎬 TV SHOWS</h1>
 
 <div class="cards-container" id="cardsContainer">
@@ -130,9 +157,17 @@ h1 { text-align:center; color:#ff0000; margin-bottom:30px; font-size:36px; }
 </div>
 
 <script>
+// ===== Preloader hide after load =====
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  preloader.style.transition = "opacity 0.5s";
+  preloader.style.opacity = 0;
+  setTimeout(()=> preloader.style.display="none", 500);
+});
+
 // TV shows data
 const tvShows = [
-    {title:"TV Show 1", img:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg", genre:"Action", year:"2023", price:"Rs 500", desc:"Amazing TV show full of action and adventure."},
+    {title:"TV Show 1", img:"images/tv1.jpg", genre:"Action", year:"2023", price:"Rs 500", desc:"Amazing TV show full of action and adventure."},
     {title:"TV Show 2", img:"images/tv2.jpg", genre:"Drama", year:"2022", price:"Rs 600", desc:"Dramatic series with incredible storytelling."},
     {title:"TV Show 3", img:"images/tv3.jpg", genre:"Comedy", year:"2021", price:"Rs 450", desc:"Laugh-out-loud comedy series for all ages."},
     {title:"TV Show 4", img:"images/tv4.jpg", genre:"Thriller", year:"2023", price:"Rs 700", desc:"Thrilling episodes that keep you on the edge."}
