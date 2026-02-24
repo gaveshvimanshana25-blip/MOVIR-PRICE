@@ -87,24 +87,23 @@ body{
 <script>
 
 const params = new URLSearchParams(window.location.search);
-const title = params.get("title");
+const titleParam = params.get("title");
 const phoneNumber = "94703490292";
 
 /* ✅ TRAILERS */
 const trailers = {
-"Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU?si=hw_LP0gfmoC8eal0",
-"Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4?si=nXr0sSHg425NfncS",
-"Yeh Kaali Kaali Ankhein (2022)" : "https://youtu.be/6PcY7fn3ptc?si=dYvHQ6JIFvNDGNSU",
-"Marvel’s Daredevil (2015)" : "https://www.youtube.com/embed/jAy6NJ_D5vU",
-"56 Days (2026)" : "https://youtu.be/P5EhHeF99wg?si=PuMxtJiZRqf3f63G",
-"Do You Wanna Partner (2025)" : "https://youtu.be/vD39Kb3eXuU?si=hpzyF1X1YKVeqQ3k",
-"Motorvalley (2026)" : "https://youtu.be/ySXOmtBK4fk?si=N6mx4yDDzRGbjkdk",
-"Kohrra (2023)" : "https://youtu.be/sAx4aq6396E?si=d6ZUNBCeSzcqIfLi",
-"The Summer I Turned Pretty (2022)" : "https://youtu.be/LPNs5kKeEgE?si=njmqvnUzaAbLLsIA",
-"American Primeval (2025)" : "https://youtu.be/U8WMvCrywYg?si=48nsyX9bdRf21e_7",
-"American Manhunt (2025)" : "https://youtu.be/ZzjwcujKvho?si=kXwy2K072vc514-f",
-"Stranger Things" : "https://youtu.be/b9EkMc79ZSU?si=8ciG_CpvqTuUOI2A",
-"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw?si=yXa78BYi5bKxbd0z",
+"Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",
+"Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",
+"Yeh Kaali Kaali Ankhein (2022)" : "https://youtu.be/6PcY7fn3ptc",
+"56 Days (2026)" : "https://youtu.be/P5EhHeF99wg",
+"Do You Wanna Partner (2025)" : "https://youtu.be/vD39Kb3eXuU",
+"Motorvalley (2026)" : "https://youtu.be/ySXOmtBK4fk",
+"Kohrra (2023)" : "https://youtu.be/sAx4aq6396E",
+"The Summer I Turned Pretty (2022)" : "https://youtu.be/LPNs5kKeEgE",
+"American Primeval (2025)" : "https://youtu.be/U8WMvCrywYg",
+"American Manhunt (2025)" : "https://youtu.be/ZzjwcujKvho",
+"Stranger Things" : "https://youtu.be/b9EkMc79ZSU",
+"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw"
 };
 
 /* ✅ SHOW DATA */
@@ -114,14 +113,14 @@ const shows = {
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
 genre:"Crime, Drama, Mystery (English)",
 rating:"⭐ 4.4",
-description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක් ඉක්මනින්ම එකට ජීවත් වෙන්න තීරණය කරනවා..."
+description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක්..."
 },
 
 "Do You Wanna Partner (2025)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",
 genre:"Comedy, Drama (Hindi)",
 rating:"⭐ 7.7",
-description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්."
+description:"Relationships, dating, commitment problems වටා යන කතාවක්."
 },
 
 "Motorvalley (2026)":{
@@ -149,14 +148,14 @@ description:"Teen emotions, crushes, jealousy සහ growing up moments."
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg",
 genre:"Action, Drama, Western (English)",
 rating:"⭐ 7.6",
-description:"Early America brutal world එකක survival story එකක්."
+description:"Early America survival story එකක්."
 },
 
 "Yeh Kaali Kaali Ankhein (2022)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg",
 genre:"Crime, Drama, Mystery (Hindi)",
 rating:"⭐ 9.1",
-description:"Obsession සහ dark psychological game එකක්."
+description:"Obsession සහ psychological game එකක්."
 },
 
 "Prison Break (2005)":{
@@ -170,64 +169,63 @@ description:"Michael තම සොහොයුරා බේරගන්න priso
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
 genre:"Crime, Drama",
 rating:"⭐ 8.3",
-description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක්."
-},
-
-"One-Punch Man":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",
-genre:"Animatin,Action,japanese,Sci fi",
-rating:"⭐ 6.1",
-description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක්."
+description:"Professor කියන mastermind කෙනෙක් ලොකු heist එකක්."
 },
 
 "American Manhunt (2025)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/g9CkBu9ZFGdguoukibrkyvbvCTo.jpg",
 genre:"Crime, Drama",
 rating:"⭐ 8.3",
-description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක්."
+description:"True crime investigation story එකක්."
 },
 
 "Stranger Things":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",
-genre:"Mystery,sci-fi,English",
-rating:"⭐ 8.3",
-description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක්."
+genre:"Mystery, Sci-Fi (English)",
+rating:"⭐ 8.7",
+description:"Supernatural events + kids adventure story."
 },
-
 
 "One-Punch Man":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",
-genre:"Animatin,Action,japanese,Sci fi",
-rating:"⭐ 6.1",
-description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක්."
-},
+genre:"Animation, Action, Japanese, Sci-Fi",
+rating:"⭐ 8.7",
+description:"Saitama – එක punch එකකින් ඕනම enemy defeat කරන hero කෙනෙක්."
+}
 
 };
 
 /* ✅ MAIN LOGIC */
-if(title && shows[title]){
 
-const data = shows[title];
+if(titleParam && shows[titleParam]){
 
-headerTitle.innerText = title;
-poster.src = data.poster;
-title.innerText = title;
-genre.innerText = "Genre: " + data.genre;
-rating.innerText = data.rating;
-description.innerText = data.description;
+const data = shows[titleParam];
 
-poster.onerror = () => poster.src = "images/placeholder.jpg";
+document.getElementById("headerTitle").innerText = titleParam;
+document.getElementById("poster").src = data.poster;
+document.getElementById("title").innerText = titleParam;
+document.getElementById("genre").innerText = "Genre: " + data.genre;
+document.getElementById("rating").innerText = data.rating;
+document.getElementById("description").innerText = data.description;
 
-const message = `Hello, I want to buy:\n\n${title}`;
-buyBtn.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+document.getElementById("poster").onerror = () =>
+    document.getElementById("poster").src = "images/placeholder.jpg";
 
-if(trailers[title]){
-    trailerBtn.href = trailers[title];
+const message = `Hello, I want to buy:\n\n${titleParam}`;
+document.getElementById("buyBtn").href =
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+if(trailers[titleParam]){
+    document.getElementById("trailerBtn").href = trailers[titleParam];
 }else{
-    trailerBtn.style.display = "none";
+    document.getElementById("trailerBtn").style.display = "none";
 }
 
 }else{
+
+console.log("Title Param:", titleParam);
+console.log("Available Shows:", Object.keys(shows));
+
 document.querySelector(".container").innerHTML =
 "<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
 }
