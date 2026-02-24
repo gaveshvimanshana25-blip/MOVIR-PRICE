@@ -123,22 +123,15 @@ font-size:14px;
 color:gold;
 }
 
-.watch-btn{
+.price{
 background:#e50914;
-border:none;
-padding:6px 10px;
-color:white;
-cursor:pointer;
+padding:4px 8px;
+border-radius:20px;
+font-size:13px;
+display:inline-block;
 margin-top:5px;
 }
 
-.like{
-position:absolute;
-top:10px;
-right:10px;
-font-size:20px;
-cursor:pointer;
-}
 </style>
 </head>
 
@@ -170,110 +163,32 @@ cursor:pointer;
 <div class="grid">
 
 <!-- 56 Days -->
-<div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">
+<div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)','1200')">
 <img src="images/56days.jpg">
 <div class="card-content">
 <h3>56 Days (2026)</h3>
 <div class="rating">⭐ 4.4</div>
-</div>
-</div>
-
-<!-- Do You Wanna Partner -->
-<div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">
-<img src="images/partner.jpg">
-<div class="card-content">
-<h3>Do You Wanna Partner (2025)</h3>
-<div class="rating">⭐ 7.7</div>
-</div>
-</div>
-
-<!-- Motorvalley -->
-<div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">
-<img src="images/motorvalley.jpg">
-<div class="card-content">
-<h3>Motorvalley (2026)</h3>
-<div class="rating">⭐ 6.8</div>
-</div>
-</div>
-
-<!-- Kohrra -->
-<div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">
-<img src="images/kohrra.jpg">
-<div class="card-content">
-<h3>Kohrra (2023)</h3>
-<div class="rating">⭐ 6.9</div>
-</div>
-</div>
-
-<!-- The Summer I Turned Pretty -->
-<div class="card" data-genre="drama" data-title="The Summer I Turned Pretty (2022)" onclick="goDetails('The Summer I Turned Pretty (2022)')">
-<img src="images/summer.jpg">
-<div class="card-content">
-<h3>The Summer I Turned Pretty (2022)</h3>
-<div class="rating">⭐ 8.1</div>
-</div>
-</div>
-
-<!-- American Primeval -->
-<div class="card" data-genre="action" data-title="American Primeval (2025)" onclick="goDetails('American Primeval (2025)')">
-<img src="images/primeval.jpg">
-<div class="card-content">
-<h3>American Primeval (2025)</h3>
-<div class="rating">⭐ 7.6</div>
-</div>
-</div>
-
-<!-- Yeh Kaali Kaali Ankhein -->
-<div class="card" data-genre="crime" data-title="Yeh Kaali Kaali Ankhein (2022)" onclick="goDetails('Yeh Kaali Kaali Ankhein (2022)')">
-<img src="images/yehkaali.jpg">
-<div class="card-content">
-<h3>Yeh Kaali Kaali Ankhein (2022)</h3>
-<div class="rating">⭐ 9.1</div>
+<div class="price">Rs. 1200</div>
 </div>
 </div>
 
 <!-- Prison Break -->
-<div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)')">
+<div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)','1500')">
 <img src="images/prisonbreak.jpg">
 <div class="card-content">
 <h3>Prison Break (2005)</h3>
 <div class="rating">⭐ 8.1</div>
+<div class="price">Rs. 1500</div>
 </div>
 </div>
 
 <!-- Money Heist -->
-<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)')">
+<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)','1800')">
 <img src="images/money.jpg">
 <div class="card-content">
 <h3>Money Heist (2021)</h3>
 <div class="rating">⭐ 8.3</div>
-</div>
-</div>
-
-<!-- Money Heist Korea -->
-<div class="card" data-genre="crime" data-title="Money Heist Korea (2022)" onclick="goDetails('Money Heist Korea (2022)')">
-<img src="images/mhkorea.jpg">
-<div class="card-content">
-<h3>Money Heist Korea (2022)</h3>
-<div class="rating">⭐ 8.1</div>
-</div>
-</div>
-
-<!-- American Manhunt -->
-<div class="card" data-genre="crime" data-title="American Manhunt (2025)" onclick="goDetails('American Manhunt (2025)')">
-<img src="images/manhunt.jpg">
-<div class="card-content">
-<h3>American Manhunt (2025)</h3>
-<div class="rating">⭐ 7.6</div>
-</div>
-</div>
-
-<!-- Daredevil -->
-<div class="card" data-genre="action" data-title="Marvel’s Daredevil (2015)" onclick="goDetails('Marvel’s Daredevil (2015)')">
-<img src="images/daredevil.jpg">
-<div class="card-content">
-<h3>Marvel’s Daredevil (2015)</h3>
-<div class="rating">⭐ 8.2</div>
+<div class="price">Rs. 1800</div>
 </div>
 </div>
 
@@ -284,8 +199,8 @@ function toggleMenu(){
 document.getElementById("sideMenu").classList.toggle("active");
 }
 
-function goDetails(title){
-window.location.href="details.html?title="+encodeURIComponent(title);
+function goDetails(title,price){
+window.location.href="details.html?title="+encodeURIComponent(title)+"&price="+price;
 }
 
 document.getElementById("search").addEventListener("keyup", function(){
