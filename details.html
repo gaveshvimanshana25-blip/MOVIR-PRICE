@@ -60,21 +60,29 @@ margin-bottom:20px;
 color:#ccc;
 }
 
-.buy-btn{
+.button{
 display:block;
 width:100%;
 text-align:center;
-background:#e50914;
 padding:12px;
 border-radius:8px;
 text-decoration:none;
 color:white;
 font-size:18px;
 font-weight:bold;
+margin-top:10px;
 }
 
-.buy-btn:hover{
-background:#b20710;
+.buy-btn{
+background:#25D366;
+}
+
+.trailer-btn{
+background:#e50914;
+}
+
+.button:hover{
+opacity:0.8;
 }
 </style>
 </head>
@@ -94,7 +102,8 @@ background:#b20710;
 Premium TV show available in HD quality. Buy now to unlock full access.
 </div>
 
-<a href="#" class="buy-btn" onclick="buyNow()">Buy Now</a>
+<a href="#" id="whatsappBtn" class="button buy-btn">Order on WhatsApp</a>
+<a href="#" id="trailerBtn" target="_blank" class="button trailer-btn">Watch Trailer</a>
 
 </div>
 
@@ -106,30 +115,44 @@ const price = params.get("price");
 document.getElementById("movieTitle").innerText = title || "Unknown Show";
 document.getElementById("moviePrice").innerText = price ? "Rs. " + price : "Price Not Available";
 
-/* Manual Image Mapping (ALL Shows Supported) */
+/* CHANGE THIS TO YOUR WHATSAPP NUMBER */
+const phoneNumber = "947XXXXXXXX"; // Example: 94771234567
+
+const message = `Hello, I want to order:\n\n${title}\nPrice: Rs. ${price}`;
+const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+document.getElementById("whatsappBtn").href = whatsappURL;
+
+/* Trailer Links */
+const trailers = {
+"Prison Break (2005)" : "https://www.youtube.com/watch?v=AL9zLctDJaU",
+"Money Heist (2021)" : "https://www.youtube.com/watch?v=_InqQJRqGW4",
+"Kohrra (2023)" : "https://www.youtube.com/watch?v=6zD8W9P1R2I",
+"Motorvalley (2026)" : "https://www.youtube.com/",
+"56 Days (2026)" : "https://www.youtube.com/",
+"Do You Wanna Partner (2025)" : "https://www.youtube.com/"
+};
+
+if(title && trailers[title]){
+document.getElementById("trailerBtn").href = trailers[title];
+}else{
+document.getElementById("trailerBtn").style.display="none";
+}
+
+/* Poster Mapping */
 const images = {
-"56 Days (2026)" : "56days.jpg",
-"Do You Wanna Partner (2025)" : "partner.jpg",
-"Motorvalley (2026)" : "motorvalley.jpg",
-"Kohrra (2023)" : "kohrra.jpg",
-"The Summer I Turned Pretty (2022)" : "summer.jpg",
-"American Primeval (2025)" : "primeval.jpg",
-"Yeh Kaali Kaali Ankhein (2022)" : "yehkaali.jpg",
 "Prison Break (2005)" : "prisonbreak.jpg",
 "Money Heist (2021)" : "money.jpg",
-"Money Heist Korea (2022)" : "mhkorea.jpg",
-"American Manhunt (2025)" : "manhunt.jpg",
-"Marvel’s Daredevil (2015)" : "daredevil.jpg"
+"Kohrra (2023)" : "kohrra.jpg",
+"Motorvalley (2026)" : "motorvalley.jpg",
+"56 Days (2026)" : "56days.jpg",
+"Do You Wanna Partner (2025)" : "partner.jpg"
 };
 
 if(title && images[title]){
 document.getElementById("poster").src = "images/" + images[title];
 }else{
 document.getElementById("poster").src = "images/default.jpg";
-}
-
-function buyNow(){
-alert("Selected: " + title + "\nPrice: Rs. " + price);
 }
 </script>
 
