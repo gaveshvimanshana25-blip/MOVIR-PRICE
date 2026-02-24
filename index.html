@@ -1,38 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TV Serious</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinema Ticket Prices</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #000000, #111111);
+    color: white;
+}
+
+header {
+    background: #0d0d0d;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: #e50914;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.movie-card {
+    background: #1c1c1c;
+    width: 250px;
+    margin: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(229,9,20,0.5);
+    transition: 0.3s;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.price {
+    color: #00ff99;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+button {
+    background: #e50914;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #b00610;
+}
+</style>
+
 </head>
 <body>
 
-<header>
-    <div class="logo">TV <span>SERIOUS</span></div>
-</header>
+<header>🎬 DARK CINEMA</header>
 
-<section class="hero">
-    <div class="overlay">
-        <div class="badge">PREMIUM</div>
-        <h1>Unlimited <span>Entertainment</span></h1>
+<div class="container">
+
+    <div class="movie-card">
+        <img src="https://via.placeholder.com/250x350" alt="Movie">
+        <div class="movie-info">
+            <h3>Avatar 2</h3>
+            <p class="price">Rs. 1200</p>
+            <button>Book Now</button>
+        </div>
     </div>
-</section>
 
-<section class="category">
-    <div class="row">
-        <h2>
-            <a href="latest.html">
-                <span class="purple">Latest</span> TV Serious
-            </a>
-        </h2>
-        <div class="view">VIEW ALL →</div>
+    <div class="movie-card">
+        <img src="https://via.placeholder.com/250x350" alt="Movie">
+        <div class="movie-info">
+            <h3>Oppenheimer</h3>
+            <p class="price">Rs. 1500</p>
+            <button>Book Now</button>
+        </div>
     </div>
-</section>
 
-<section class="category">
-    <h2><span class="red">Fresh</span> Movies</h2>
-</section>
+    <div class="movie-card">
+        <img src="https://via.placeholder.com/250x350" alt="Movie">
+        <div class="movie-info">
+            <h3>Fast X</h3>
+            <p class="price">Rs. 1000</p>
+            <button>Book Now</button>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
