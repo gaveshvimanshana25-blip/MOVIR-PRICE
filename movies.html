@@ -1,20 +1,251 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Movies</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Movies - Premium</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    background:#121212;
+    color:#fff;
+    font-family:Arial;
+    margin:0;
+    padding:20px;
+}
+
+/* Preloader */
+#preloader{
+  position:fixed;
+  inset:0;
+  background:#121212;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  color:#ff0000;
+}
+.loader{
+  border:6px solid #1e1e1e;
+  border-top:6px solid #ff0000;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  animation:spin 1s linear infinite;
+  margin-bottom:15px;
+}
+@keyframes spin{
+  0%{transform:rotate(0)}
+  100%{transform:rotate(360deg)}
+}
+
+h1{
+    text-align:center;
+    color:#ff0000;
+}
+
+/* Search */
+.search-box{
+    text-align:center;
+    margin:20px 0;
+}
+.search-box input{
+    padding:10px;
+    width:280px;
+    border-radius:30px;
+    border:none;
+    outline:none;
+    font-size:14px;
+}
+
+/* Cards */
+.cards-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    background:#1e1e1e;
+    border-radius:12px;
+    width:280px;
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
+    cursor:pointer;
+    transition:0.3s;
+}
+.card:hover{
+    transform:scale(1.05);
+    background:#2b2b2b;
+}
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-top-left-radius:12px;
+    border-top-right-radius:12px;
+}
+.card-content{
+    padding:15px;
+}
+.card-content h3{
+    color:#ff0000;
+    margin:0 0 5px 0;
+}
+.genre{color:#00ffcc;}
+.year{color:#ff66cc;}
+.price{color:#ff0000;font-weight:bold;}
+
+/* Modal */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  background:#1e1e1e;
+  padding:20px;
+  border-radius:12px;
+  max-width:500px;
+  width:90%;
+  max-height:90%;
+  overflow-y:auto;
+  position:relative;
+}
+.modal-content img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+.close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:24px;
+  cursor:pointer;
+  color:#ff0000;
+}
+
+/* WhatsApp button in modal */
+.order-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 20px;
+    background:#25D366;
+    color:#fff;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+@media(max-width:600px){
+    .card{width:100%;}
+}
+</style>
 </head>
 <body>
 
-<h1>🎥 Movies</h1>
-
-<div class="search">
-<input type="text" id="searchMovie" placeholder="Search movies...">
+<div id="preloader">
+  <div class="loader"></div>
+  <p>Loading Movies...</p>
 </div>
 
-<div class="container" id="movieContainer"></div>
+<h1>🎬 MOVIES</h1>
 
-<script src="script.js"></script>
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search Movies...">
+</div>
+
+<div class="cards-container" id="cardsContainer"></div>
+
+<!-- Modal -->
+<div id="movieModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage">
+    <p id="modalGenre"></p>
+    <p id="modalYear"></p>
+    <p id="modalPrice"></p>
+    <p id="modalDesc"></p>
+    <a id="orderBtn" class="order-btn" target="_blank">Order on WhatsApp</a>
+  </div>
+</div>
+
+<script>
+
+/* Preloader */
+window.addEventListener("load",()=>{
+  const p=document.getElementById("preloader");
+  p.style.opacity="0";
+  setTimeout(()=>p.style.display="none",500);
+});
+
+/* MOVIE DATA - Add Unlimited Movies Here */
+const movies=[
+ {title:"Movie 1",img:"images/movie1.jpg",genre:"Action",year:"2023",price:"Rs 500",desc:"High quality action movie."},
+ {title:"Movie 2",img:"images/movie2.jpg",genre:"Drama",year:"2022",price:"Rs 600",desc:"Emotional drama movie."},
+ {title:"Movie 3",img:"images/movie3.jpg",genre:"Comedy",year:"2021",price:"Rs 450",desc:"Fun comedy movie."},
+ {title:"Movie 4",img:"images/movie4.jpg",genre:"Horror",year:"2023",price:"Rs 700",desc:"Scary horror movie."}
+];
+
+const container=document.getElementById("cardsContainer");
+
+/* Generate Cards */
+function displayMovies(list){
+ container.innerHTML="";
+ list.forEach((movie,index)=>{
+   const card=document.createElement("div");
+   card.className="card";
+   card.innerHTML=`
+     <img src="${movie.img}">
+     <div class="card-content">
+       <h3>${movie.title}</h3>
+       <p class="genre">${movie.genre}</p>
+       <p class="year">${movie.year}</p>
+       <p class="price">${movie.price}</p>
+     </div>`;
+   card.onclick=()=>openModal(index);
+   container.appendChild(card);
+ });
+}
+displayMovies(movies);
+
+/* Search */
+document.getElementById("searchInput").addEventListener("keyup",function(){
+ const value=this.value.toLowerCase();
+ const filtered=movies.filter(movie=>movie.title.toLowerCase().includes(value));
+ displayMovies(filtered);
+});
+
+/* Modal */
+const modal=document.getElementById("movieModal");
+const span=document.querySelector(".close");
+
+function openModal(index){
+ const movie=movies[index];
+ document.getElementById("modalTitle").textContent=movie.title;
+ document.getElementById("modalImage").src=movie.img;
+ document.getElementById("modalGenre").textContent="Genre: "+movie.genre;
+ document.getElementById("modalYear").textContent="Year: "+movie.year;
+ document.getElementById("modalPrice").textContent="Price: "+movie.price;
+ document.getElementById("modalDesc").textContent=movie.desc;
+
+ const message=`I want to order ${movie.title} - ${movie.price}`;
+ document.getElementById("orderBtn").href=
+   "https://wa.me/94703490292?text="+encodeURIComponent(message);
+
+ modal.style.display="flex";
+}
+
+span.onclick=()=>modal.style.display="none";
+window.onclick=e=>{if(e.target==modal)modal.style.display="none";}
+
+</script>
 
 </body>
 </html>
