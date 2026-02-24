@@ -22,9 +22,7 @@ body{
     position:sticky;
     top:0;
 }
-.container{
-    padding:15px;
-}
+.container{ padding:15px; }
 .poster{
     width:100%;
     max-height:340px;
@@ -32,11 +30,7 @@ body{
     border-radius:10px;
     background:#222;
 }
-.title{
-    margin-top:15px;
-    font-size:24px;
-    font-weight:bold;
-}
+.title{ margin-top:15px; font-size:24px; font-weight:bold; }
 .genre{ margin-top:8px; color:#aaa; }
 .rating{ margin-top:8px; color:gold; font-size:18px; }
 .description{ margin-top:15px; line-height:1.6; color:#ddd; }
@@ -96,84 +90,81 @@ const params = new URLSearchParams(window.location.search);
 const title = params.get("title");
 const phoneNumber = "94703490292";
 
-/* TRAILERS */
+/* ✅ TRAILERS */
 const trailers = {
-"Prison Break (2005)" : "https://www.youtube.com/watch?v=AL9zLctDJaU",
-"Money Heist (2021)" : "https://www.youtube.com/watch?v=_InqQJRqGW4",
-"Yeh Kaali Kaali Ankhein (2022)" : "https://www.youtube.com/watch?v=XZOK1bZ8WmQ",
-"Marvel’s Daredevil (2015)" : "https://www.youtube.com/watch?v=jAy6NJ_D5vU",
-"56 Days (2026)" : "https://www.youtube.com/watch?v=jAy6NJ_D5vU",
-"Do You Wanna Partner":"https://www.youtube.com/watch?v=XZOK1bZ8WmQ",
-"Do You Wanna Partner (2025)" : "https://www.youtube.com/embed/VIDEO_ID",
+"Prison Break (2005)" : "https://www.youtube.com/embed/AL9zLctDJaU",
+"Money Heist (2021)" : "https://www.youtube.com/embed/_InqQJRqGW4",
+"Yeh Kaali Kaali Ankhein (2022)" : "https://www.youtube.com/embed/XZOK1bZ8WmQ",
+"Marvel’s Daredevil (2015)" : "https://www.youtube.com/embed/jAy6NJ_D5vU",
+"56 Days (2026)" : "https://www.youtube.com/embed/jAy6NJ_D5vU",
+"Do You Wanna Partner (2025)" : "https://www.youtube.com/embed/XZOK1bZ8WmQ",
 "Motorvalley (2026)" : "https://www.youtube.com/embed/VIDEO_ID",
 "Kohrra (2023)" : "https://www.youtube.com/embed/VIDEO_ID",
-"The Summer I Turned Pretty (2022)" : "https://www.youtube.com/embed/VIDEO_ID,
-"American Primeval (2025)" : "https://www.youtube.com/embed/VIDEO_ID,
-"" : "https://www.youtube.com/embed/VIDEO_ID,
-"" : "https://www.youtube.com/embed/VIDEO_ID,
-
+"The Summer I Turned Pretty (2022)" : "https://www.youtube.com/embed/VIDEO_ID",
+"American Primeval (2025)" : "https://www.youtube.com/embed/VIDEO_ID"
 };
 
+/* ✅ SHOW DATA */
 const shows = {
 
 "56 Days (2026)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
 genre:"Crime, Drama, Mystery (English)",
 rating:"⭐ 4.4",
 description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක් ඉක්මනින්ම එකට ජීවත් වෙන්න තීරණය කරනවා..."
 },
 
 "Do You Wanna Partner (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",
 genre:"Comedy, Drama (Hindi)",
 rating:"⭐ 7.7",
 description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්."
 },
 
 "Motorvalley (2026)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg",
 genre:"Action, Drama (Italian)",
 rating:"⭐ 6.8",
 description:"Luxury car industry power struggle එකක්."
 },
 
 "Kohrra (2023)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg",
-genre:"Crime, Drama (Hindii)",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg",
+genre:"Crime, Drama (Hindi)",
 rating:"⭐ 6.9",
 description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්."
 },
 
 "The Summer I Turned Pretty (2022)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg",
 genre:"Drama, Romance (English)",
 rating:"⭐ 8.1",
 description:"Teen emotions, crushes, jealousy සහ growing up moments."
 },
 
 "American Primeval (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg",
 genre:"Action, Drama, Western (English)",
 rating:"⭐ 7.6",
 description:"Early America brutal world එකක survival story එකක්."
 },
 
 "Yeh Kaali Kaali Ankhein (2022)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg",
 genre:"Crime, Drama, Mystery (Hindi)",
 rating:"⭐ 9.1",
 description:"Obsession සහ dark psychological game එකක්."
 },
 
 "Prison Break (2005)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/qq.jpg",
 genre:"Action, Crime, Drama",
 rating:"⭐ 8.1",
 description:"Michael තම සොහොයුරා බේරගන්න prison එකට යනවා."
 },
 
 "Money Heist (2021)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
 genre:"Crime, Drama",
 rating:"⭐ 8.3",
 description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක්."
@@ -181,40 +172,32 @@ description:"Professor කියන mastermind කෙනෙක් history එක
 
 };
 
-/* MAIN LOGIC */
+/* ✅ MAIN LOGIC */
 if(title && shows[title]){
 
 const data = shows[title];
 
-document.getElementById("headerTitle").innerText = title;
-document.getElementById("poster").src = data.poster;
-document.getElementById("title").innerText = title;
-document.getElementById("genre").innerText = "Genre: " + data.genre;
-document.getElementById("rating").innerText = data.rating;
-document.getElementById("description").innerText = data.description;
+headerTitle.innerText = title;
+poster.src = data.poster;
+title.innerText = title;
+genre.innerText = "Genre: " + data.genre;
+rating.innerText = data.rating;
+description.innerText = data.description;
 
-/* Image fallback */
-document.getElementById("poster").onerror = function(){
-    this.src = "images/placeholder.jpg";
-};
+poster.onerror = () => poster.src = "images/placeholder.jpg";
 
-/* WhatsApp */
 const message = `Hello, I want to buy:\n\n${title}`;
-document.getElementById("buyBtn").href =
-`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+buyBtn.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-/* Trailer */
 if(trailers[title]){
-    document.getElementById("trailerBtn").href = trailers[title];
+    trailerBtn.href = trailers[title];
 }else{
-    document.getElementById("trailerBtn").style.display = "none";
+    trailerBtn.style.display = "none";
 }
 
 }else{
-
 document.querySelector(".container").innerHTML =
 "<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
-
 }
 
 </script>
