@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV Shows - Loading & Fade-In</title>
+<title>TV Shows - Animated Loading</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
@@ -14,7 +14,7 @@ body {
     overflow-x:hidden;
 }
 
-/* Preloader */
+/* Preloader container */
 #preloader {
     position: fixed;
     top:0;
@@ -23,11 +23,14 @@ body {
     height:100%;
     background:#121212;
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
     z-index:9999;
 }
-#preloader .loader {
+
+/* Spinner */
+.loader {
     border:8px solid #f3f3f3;
     border-top:8px solid #ff0000;
     border-radius:50%;
@@ -40,7 +43,21 @@ body {
     100% { transform: rotate(360deg);}
 }
 
-/* Content hidden and fade-in */
+/* Animated loading text */
+.loading-text {
+    margin-top:20px;
+    color:#ff0000;
+    font-weight:bold;
+    font-size:18px;
+    animation: blink 1s infinite;
+    text-align:center;
+}
+@keyframes blink {
+    0%, 50%, 100% { opacity:1; }
+    25%, 75% { opacity:0.3; }
+}
+
+/* Main content hidden until load */
 #content {
     opacity:0;
     transition: opacity 1s ease-in-out;
@@ -109,6 +126,7 @@ header h1 {
     width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s;
 }
 .whatsapp-button img:hover{ transform: scale(1.1); }
+
 </style>
 </head>
 <body>
@@ -116,6 +134,7 @@ header h1 {
 <!-- Preloader -->
 <div id="preloader">
     <div class="loader"></div>
+    <div class="loading-text">SYSTEM DEVELOPED BY GAVESH VIMANSHANA</div>
 </div>
 
 <!-- Main content -->
