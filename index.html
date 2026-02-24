@@ -1,46 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Movie Slider</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    color:white;
+}
+
+/* SLIDER */
+.slider{
+    position:relative;
+    height:420px;
+    overflow:hidden;
+}
+
+/* SLIDES */
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:opacity 0.8s ease-in-out;
+}
+
+/* DARK OVERLAY */
+.slide::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    top:0;
+    left:0;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+/* TEXT CONTENT */
+.content{
+    position:absolute;
+    left:60px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:2;
+    max-width:520px;
+}
+
+.tag{
+    color:red;
+    font-size:14px;
+    letter-spacing:1px;
+    margin-bottom:10px;
+}
+
+.content h1{
+    font-size:52px;
+    margin:0 0 10px;
+}
+
+.content p{
+    opacity:0.85;
+    line-height:1.6;
+}
+
+/* DOT INDICATORS */
+.dots{
+    position:absolute;
+    bottom:25px;
+    width:100%;
+    text-align:center;
+    z-index:3;
+}
+
+.dot{
+    display:inline-block;
+    width:35px;
+    height:4px;
+    background:gray;
+    margin:6px;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.dot.active{
+    background:red;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .content{
+        left:20px;
+        right:20px;
+    }
+
+    .content h1{
+        font-size:32px;
+    }
+
+    .content p{
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
 <div class="slider">
 
     <div class="slide active" style="background-image:url('m1.jpg')">
         <div class="content">
-            <p class="tag">#3 New Arrival • Movie</p>
+            <div class="tag">#3 New Arrival • Movie</div>
             <h1>Hridayam</h1>
-            <p>Arun and Darshana are first-year engineering students and they fall in love...</p>
+            <p>Arun and Darshana are first-year engineering students and they fall in love soon after their college begins.</p>
         </div>
     </div>
 
     <div class="slide" style="background-image:url('m2.jpg')">
         <div class="content">
-            <p class="tag">Top Rated • Movie</p>
+            <div class="tag">Top Rated • Movie</div>
             <h1>Interstellar</h1>
-            <p>A team of explorers travel through a wormhole in space...</p>
+            <p>A team of explorers travel through a wormhole in space in an attempt to ensure humanity’s survival.</p>
         </div>
     </div>
 
     <div class="slide" style="background-image:url('m3.jpg')">
         <div class="content">
-            <p class="tag">Trending • Movie</p>
+            <div class="tag">Trending • Movie</div>
             <h1>Joker</h1>
-            <p>In Gotham City, mentally troubled comedian Arthur Fleck...</p>
+            <p>In Gotham City, mentally troubled comedian Arthur Fleck embarks on a downward spiral of revolution.</p>
         </div>
     </div>
 
     <div class="slide" style="background-image:url('m4.jpg')">
         <div class="content">
-            <p class="tag">Popular • Movie</p>
+            <div class="tag">Popular • Movie</div>
             <h1>Avatar</h1>
-            <p>A marine on an alien planet becomes torn between worlds...</p>
+            <p>A marine on an alien planet becomes torn between following orders and protecting his new world.</p>
         </div>
     </div>
 
     <div class="slide" style="background-image:url('m5.jpg')">
         <div class="content">
-            <p class="tag">New • Movie</p>
+            <div class="tag">New • Movie</div>
             <h1>Batman</h1>
-            <p>Batman faces new threats across Gotham City...</p>
+            <p>Batman faces new threats across Gotham City while battling enemies from the shadows.</p>
         </div>
     </div>
 
-    <!-- Indicators -->
+    <!-- DOTS -->
     <div class="dots">
         <span class="dot active"></span>
         <span class="dot"></span>
@@ -50,3 +167,29 @@
     </div>
 
 </div>
+
+<script>
+let slides = document.querySelectorAll(".slide");
+let dots = document.querySelectorAll(".dot");
+
+let index = 0;
+
+function changeSlide(){
+
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    index++;
+    if(index >= slides.length){
+        index = 0;
+    }
+
+    slides[index].classList.add("active");
+    dots[index].classList.add("active");
+}
+
+setInterval(changeSlide, 3000);
+</script>
+
+</body>
+</html>
