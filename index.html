@@ -10,14 +10,26 @@ body {
     margin: 0;
     padding: 20px;
     color: #fff;
-    background: url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg') no-repeat center center fixed;
+    background-color: #121212; /* Dark page background */
+}
+
+/* Small banner section with background image */
+.banner {
+    background: url('images/background.jpg') no-repeat center center;
     background-size: cover;
+    height: 200px; /* Height of banner */
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px #000;
 }
-h1 {
-    text-align: center;
-    color: #00ffcc;
-    margin-bottom: 40px;
-}
+
+/* TV/Movie sections */
 .section {
     background: rgba(30,30,30,0.7);
     margin: 20px auto;
@@ -32,10 +44,7 @@ h1 {
     background: rgba(50,50,50,0.8);
     transform: scale(1.03);
 }
-h2 {
-    color: #ffdd00;
-    margin: 0 0 10px 0;
-}
+h2 { color:#ffdd00; margin:0 0 10px 0; }
 
 /* WhatsApp floating button */
 .whatsapp-button {
@@ -58,7 +67,8 @@ h2 {
 </head>
 <body>
 
-<h1>🎬 TV & Movie Store</h1>
+<!-- Small banner background -->
+<div class="banner">🎬 TV & Movie Store</div>
 
 <!-- TV SHOW Section -->
 <div class="section" onclick="window.location.href='tvshow.html'">
@@ -72,7 +82,7 @@ h2 {
     <p>Click to view all Movies</p>
 </div>
 
-<!-- WhatsApp Floating Button -->
+<!-- WhatsApp floating button -->
 <div class="whatsapp-button">
     <a href="https://wa.me/94703490292" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
