@@ -8,118 +8,47 @@ body {
 /* HEADER */
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 15px 20px;
-    background: black;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 10;
-}
-
-.left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 20px;
+    background: #050505;
+    border-bottom: 1px solid #111;
 }
 
 .logo {
+    font-size: 20px;
     font-weight: bold;
-    font-size: 18px;
 }
 
 .logo span {
     color: red;
 }
 
-.right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.search {
-    background: #111;
-    padding: 8px 12px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.search input {
-    background: transparent;
-    border: none;
-    color: white;
-    outline: none;
-    width: 120px;
-}
-
-.user {
-    font-size: 22px;
-}
-
 /* HERO */
 
 .hero {
-    height: 320px;
-    background: url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg") center/cover;
-    margin-top: 60px;
-    position: relative;
+    height: 220px;
+    background: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba") center/cover;
 }
 
 .overlay {
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,0.6);
     height: 100%;
-    padding: 30px 20px;
+    padding: 20px;
 }
 
 .badge {
     display: inline-block;
     background: red;
-    padding: 5px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-size: 11px;
-    margin-bottom: 10px;
 }
 
 .hero h1 {
-    font-size: 28px;
-    margin: 10px 0;
+    font-size: 24px;
 }
 
 .hero span {
     color: red;
-}
-
-/* BUTTONS */
-
-.buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 10px;
-}
-
-.buttons button {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.browse {
-    background: red;
-    color: white;
-}
-
-.proofs {
-    background: #222;
-    color: white;
 }
 
 /* CATEGORY */
@@ -136,8 +65,8 @@ header {
 }
 
 h2 {
-    font-size: 18px;
     margin: 0;
+    font-size: 18px;
 }
 
 .purple {
@@ -153,58 +82,30 @@ h2 {
     color: gray;
 }
 
-/* FOOTER */
+/* LINKS */
 
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    background: #050505;
-    margin-top: 30px;
+a {
+    text-decoration: none;
+    color: white;
 }
 
-/* FLOATING BUTTONS */
-
-.floating {
-    position: fixed;
-    right: 15px;
-    bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+a:hover {
+    color: red;
 }
 
-.circle {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+/* BACK BUTTON */
+
+.back {
+    display: inline-block;
+    margin-top: 20px;
+    color: red;
 }
 
-.dark {
-    background: #111;
-}
-
-.green {
-    background: #25D366;
-}
-
-/* MOBILE FIX */
+/* MOBILE */
 
 @media (max-width: 600px) {
-
     .hero {
-        height: 260px;
-    }
-
-    .hero h1 {
-        font-size: 22px;
-    }
-
-    .search input {
-        width: 80px;
+        height: 180px;
     }
 
     h2 {
