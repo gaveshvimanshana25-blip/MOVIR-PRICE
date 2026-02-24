@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show Details</title>
+
+<style>
+body{
+margin:0;
+background:#000;
+color:white;
+font-family:Arial;
+}
+
+.container{
+padding:20px;
+}
+
+img{
+width:100%;
+max-height:350px;
+object-fit:cover;
+border-radius:10px;
+}
+
+h1{
+color:#e50914;
+}
+
+.rating{
+color:gold;
+margin:10px 0;
+}
+
+.back{
+margin-top:15px;
+display:inline-block;
+background:#e50914;
+padding:8px 15px;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<img id="poster">
+<h1 id="title"></h1>
+<div class="rating" id="rating"></div>
+<p id="description"></p>
+<a href="tv.html" class="back">⬅ Back</a>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const title = params.get("title");
+
+const shows = {
+"Money Heist":{
+poster:"https://via.placeholder.com/600x350",
+rating:"⭐ 4.8",
+desc:"A criminal mastermind plans the biggest heist in history."
+},
+"Wednesday":{
+poster:"https://via.placeholder.com/600x350",
+rating:"⭐ 4.5",
+desc:"Wednesday Addams investigates mysteries at Nevermore Academy."
+},
+"Squid Game":{
+poster:"https://via.placeholder.com/600x350",
+rating:"⭐ 4.7",
+desc:"Contestants risk their lives playing deadly childhood games."
+}
+};
+
+if(shows[title]){
+document.getElementById("poster").src = shows[title].poster;
+document.getElementById("title").innerText = title;
+document.getElementById("rating").innerText = shows[title].rating;
+document.getElementById("description").innerText = shows[title].desc;
+}
+</script>
+
+</body>
+</html>
