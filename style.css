@@ -5,110 +5,38 @@ body {
     color: white;
 }
 
-/* HEADER */
-
 header {
     padding: 15px 20px;
     background: #050505;
     border-bottom: 1px solid #111;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: red;
-}
-
-/* HERO */
+.logo span { color: red; }
 
 .hero {
-    height: 220px;
-    background: url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba") center/cover;
+    height: 200px;
+    background: linear-gradient(to bottom, #222, black);
 }
 
-.overlay {
-    background: rgba(0,0,0,0.6);
-    height: 100%;
-    padding: 20px;
-}
+.overlay { padding: 20px; }
 
 .badge {
-    display: inline-block;
     background: red;
     padding: 4px 10px;
     border-radius: 20px;
     font-size: 11px;
 }
 
-.hero h1 {
-    font-size: 24px;
-}
+.purple { color: #a855f7; }
+.red { color: red; }
 
-.hero span {
-    color: red;
-}
-
-/* CATEGORY */
-
-.category {
-    padding: 20px;
-    border-top: 1px solid #111;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-h2 {
-    margin: 0;
-    font-size: 18px;
-}
-
-.purple {
-    color: #a855f7;
-}
-
-.red {
-    color: red;
-}
-
-.view {
-    font-size: 12px;
-    color: gray;
-}
-
-/* LINKS */
+.category { padding: 20px; }
 
 a {
     text-decoration: none;
     color: white;
 }
 
-a:hover {
-    color: red;
-}
+a:hover { color: red; }
 
-/* BACK BUTTON */
-
-.back {
-    display: inline-block;
-    margin-top: 20px;
-    color: red;
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-    .hero {
-        height: 180px;
-    }
-
-    h2 {
-        font-size: 16px;
-    }
-}
+.back { color: red; }
