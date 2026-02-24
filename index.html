@@ -2,98 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV & Movie Store</title>
+<title>TV Serious Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
-    font-family: Arial;
-    margin: 0;
-    padding: 20px;
-    color: #fff;
-    background-color: #121212; /* Dark page background */
-}
+    body {
+        background:#121212;
+        color:#fff;
+        font-family:Arial;
+        margin:0;
+        padding:20px;
+    }
 
-/* Small banner section with background image */
-.banner {
-    background: url('images/background.jpg') no-repeat center center;
-    background-size: cover;
-    height: 200px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffdd00; /* Yellow banner text */
-    font-size: 28px;
-    font-weight: bold;
-    text-shadow: 1px 1px 5px #000;
-}
+    header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+    .logo { font-size:24px; font-weight:bold; } 
+    .logo span{ color:#ff0000; } /* Logo red color */
+    input[type=text]{ padding:5px; width:200px; border-radius:5px; border:none; }
 
-/* TV/Movie sections */
-.section {
-    background: rgba(30,30,30,0.7);
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 400px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    text-align: center;
-}
-.section:hover {
-    background: rgba(50,50,50,0.8);
-    transform: scale(1.03);
-}
-h2 { 
-    color:#ffdd00; /* Neon Yellow Titles */
-    margin:0 0 10px 0;
-}
-.section p {
-    color: #ff0000; /* Red description / small text */
-}
+    /* Small banner background */
+    .banner {
+        background: url('images/background.jpg') no-repeat center center;
+        background-size: cover;
+        height: 150px; /* small banner */
+        border-radius: 10px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ff0000; /* banner text red */
+        font-size: 26px;
+        font-weight: bold;
+        text-shadow: 1px 1px 5px #000;
+    }
 
-/* WhatsApp floating button */
-.whatsapp-button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 1000;
-}
-.whatsapp-button img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-.whatsapp-button img:hover {
-    transform: scale(1.1);
-}
+    .section { margin:40px 0; }
+    .section-header { display:flex; justify-content:space-between; align-items:center; }
+    .section-header h2 span { color:#ff0000; } /* Red section titles */
+    .section-header a, .section-header span { color:#ff0000; text-decoration:none; font-size:16px; }
+    .section-header a:hover, .section-header span:hover { text-decoration:underline; }
+
+    .store { text-align:center; margin-top:50px; }
+    .store h1 { color:#ff0000; margin-bottom:10px; }
+    .store p { color:#aaa; margin-bottom:20px; }
+
+    /* WhatsApp button fixed */
+    .whatsapp-button {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index:1000;
+    }
+    .whatsapp-button img{
+        width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s;
+    }
+    .whatsapp-button img:hover{ transform: scale(1.1); }
+
+    footer{ text-align:center; margin-top:50px; color:#888; font-size:14px; }
+
+    .clickable-section { cursor:pointer; padding:20px; background:#1e1e1e; border-radius:10px; margin-bottom:20px; }
+    .clickable-section:hover { background:#333; }
 </style>
 </head>
 <body>
 
-<!-- Small banner background -->
+<header>
+    <div class="logo">TV <span>SERIOUS</span></div>
+    <input type="text" placeholder="Search movies, series...">
+</header>
+
+<!-- Small background banner -->
 <div class="banner">🎬 TV & Movie Store</div>
 
-<!-- TV SHOW Section -->
-<div class="section" onclick="window.location.href='tvshow.html'">
-    <h2>TV SHOWS</h2>
-    <p>Click to view all TV Shows</p>
-</div>
+<section class="section">
+    <div class="section-header clickable-section" onclick="window.location.href='tvshow.html'">
+        <h2><span>LATEST</span> TV SERIOUS</h2>
+        <span>VIEW ALL →</span>
+    </div>
+</section>
 
-<!-- Movie Section -->
-<div class="section" onclick="window.location.href='movie.html'">
-    <h2>MOVIES</h2>
-    <p>Click to view all Movies</p>
-</div>
+<section class="section">
+    <div class="section-header clickable-section" onclick="window.location.href='movie.html'">
+        <h2><span>FRESH</span> MOVIES</h2>
+        <span>VIEW ALL →</span>
+    </div>
+</section>
 
-<!-- WhatsApp floating button -->
+<section class="store">
+    <h1>TV SERIOUS STORE</h1>
+    <p>The Next Generation of Entertainment</p>
+</section>
+
+<!-- WhatsApp Floating Button -->
 <div class="whatsapp-button">
     <a href="https://wa.me/94703490292" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 </div>
+
+<footer>
+    SYSTEM DEVELOPED BY GAVESH VIMANSHANA 
+</footer>
 
 </body>
 </html>
