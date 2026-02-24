@@ -1,177 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stream Hub</title>
-
-<!-- WhatsApp Icon CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Movie Store - Home</title>
 
 <style>
 body{
     margin:0;
-    background:linear-gradient(135deg,#000000,#111111,#1a1a1a);
-    font-family:Arial, sans-serif;
-    color:white;
-    overflow-x:hidden;
+    font-family:Arial;
+    background:#121212;
+    color:#fff;
+    transition:0.3s;
 }
 
-/* HERO */
-.hero{
-    height:220px;
+/* Light Mode */
+body.light{
+    background:#f5f5f5;
+    color:#111;
+}
+
+/* Header */
+header{
     display:flex;
-    justify-content:center;
+    justify-content:space-between;
     align-items:center;
-    flex-direction:column;
-    text-align:center;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-.hero h1{
-    font-size:30px;
-    color:red;
-    letter-spacing:3px;
-    margin:0;
-    animation: slideDown 1.2s ease-out;
-}
-
-.hero p{
-    font-size:14px;
-    opacity:0.8;
-    margin-top:8px;
-    animation: fadeIn 2s ease-in-out;
-}
-
-/* SECTION */
-.section{
-    padding:20px;
-    animation: slideUp 1s ease forwards;
-}
-
-.section h2{
-    font-size:18px;
-    border-left:4px solid red;
-    padding-left:10px;
-    margin-bottom:15px;
-}
-
-/* CARD */
-.card{
-    background:#111;
-    border-radius:12px;
-    padding:20px;
-    text-align:center;
-    margin-bottom:15px;
-    transition:0.3s;
-    transform:scale(0.95);
-    animation: zoomIn 0.8s ease forwards;
-}
-
-.card:hover{
+    padding:15px 25px;
     background:#1e1e1e;
-    transform:scale(1);
 }
-
-.card a{
-    text-decoration:none;
-    color:white;
-    font-size:16px;
-    display:block;
+body.light header{
+    background:#ffffff;
 }
-
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:15px;
-    font-size:13px;
-    background:#0d0d0d;
-    margin-top:20px;
-    animation: fadeIn 2s ease-in-out;
-}
-
-.footer span{
+header h1{
+    margin:0;
     color:red;
-    font-weight:bold;
-    letter-spacing:1px;
-    animation: glow 2s infinite alternate;
+}
+.toggle-btn{
+    padding:8px 15px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
 }
 
-/* WhatsApp Floating Button */
-.whatsapp-float{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    color:white;
-    font-size:28px;
-    padding:15px;
+/* Section */
+.latest-section{
+    padding:30px;
+}
+.latest-section h2{
+    margin-bottom:20px;
+}
+
+/* Slider */
+.slider-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+.movie-slider{
+    display:flex;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    gap:20px;
+}
+.movie-slider::-webkit-scrollbar{
+    display:none;
+}
+
+/* Card */
+.slide-card{
+    min-width:200px;
+    position:relative;
+    cursor:pointer;
+}
+.slide-card img{
+    width:200px;
+    height:280px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* Watermark */
+.watermark{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    background:rgba(0,0,0,0.7);
+    color:#fff;
+    padding:4px 8px;
+    font-size:12px;
+    border-radius:5px;
+    pointer-events:none;
+}
+
+/* Buttons */
+.slide-btn{
+    background:red;
+    border:none;
+    color:#fff;
+    font-size:22px;
+    padding:10px;
+    cursor:pointer;
     border-radius:50%;
-    box-shadow:0 0 15px rgba(0,0,0,0.5);
-    z-index:100;
-    transition:0.3s;
-}
-
-.whatsapp-float:hover{
-    transform:scale(1.1);
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-@keyframes slideDown{
-    from{transform:translateY(-30px);opacity:0;}
-    to{transform:translateY(0);opacity:1;}
-}
-
-@keyframes slideUp{
-    from{transform:translateY(30px);opacity:0;}
-    to{transform:translateY(0);opacity:1;}
-}
-
-@keyframes zoomIn{
-    from{transform:scale(0.8);opacity:0;}
-    to{transform:scale(0.95);opacity:1;}
-}
-
-@keyframes glow{
-    from{ text-shadow:0 0 5px red; }
-    to{ text-shadow:0 0 15px red; }
+    margin:0 10px;
 }
 </style>
 </head>
 <body>
 
-<div class="hero">
-    <h1>🎬 STREAM HUB</h1>
-    <p>Unlimited Movies & TV Shows</p>
-</div>
+<header>
+    <h1>🎬 MOVIE STORE</h1>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 / ☀</button>
+</header>
 
-<div class="section">
-    <h2>📺 TV SHOWS</h2>
-    <div class="card">
-        <a href="tv.html">Go to TV Shows</a>
+<!-- 🔥 Latest Releases -->
+<section class="latest-section">
+  <h2>🔥 Latest Releases</h2>
+
+  <div class="slider-wrapper">
+    <button class="slide-btn" onclick="slideLeft()">❮</button>
+
+    <div class="movie-slider" id="movieSlider">
+
+      <div class="slide-card">
+        <img src="images/movie1.jpg">
+        <div class="watermark">MyMovieStore</div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/movie2.jpg">
+        <div class="watermark">MyMovieStore</div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/movie3.jpg">
+        <div class="watermark">MyMovieStore</div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/movie4.jpg">
+        <div class="watermark">MyMovieStore</div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/movie5.jpg">
+        <div class="watermark">MyMovieStore</div>
+      </div>
+
     </div>
-</div>
 
-<div class="section">
-    <h2>🎥 MOVIES</h2>
-    <div class="card">
-        <a href="movies.html">Go to Movies</a>
-    </div>
-</div>
+    <button class="slide-btn" onclick="slideRight()">❯</button>
+  </div>
+</section>
 
-<footer class="footer">
-    <p>System Developed By <span>GAVESH VIMANSHANA</span></p>
-</footer>
+<script>
 
-<!-- WhatsApp Button -->
-<a href="https://wa.me/94XXXXXXXXX" target="_blank" class="whatsapp-float">
-    <i class="fab fa-whatsapp"></i>
-</a>
+/* Slider */
+const slider=document.getElementById("movieSlider");
+
+function slideLeft(){
+  slider.scrollLeft -= 300;
+}
+
+function slideRight(){
+  slider.scrollLeft += 300;
+}
+
+/* Dark / Light Mode */
+function toggleMode(){
+  document.body.classList.toggle("light");
+}
+
+</script>
 
 </body>
 </html>
