@@ -11,7 +11,6 @@ body{
     background:linear-gradient(135deg,#000000,#111111,#1a1a1a);
     font-family:Arial;
     color:white;
-    overflow-x:hidden;
 }
 
 /* 🔥 Preloader */
@@ -25,26 +24,32 @@ body{
     align-items:center;
     flex-direction:column;
     z-index:9999;
+    transition:opacity 0.8s ease, visibility 0.8s;
+}
+
+#preloader.hide{
+    opacity:0;
+    visibility:hidden;
 }
 
 .loader{
-    border:5px solid #222;
-    border-top:5px solid red;
+    border:6px solid #222;
+    border-top:6px solid red;
     border-radius:50%;
-    width:60px;
-    height:60px;
-    animation: spin 1s linear infinite;
-}
-
-#preloader h2{
-    margin-top:15px;
-    color:red;
-    letter-spacing:2px;
+    width:70px;
+    height:70px;
+    animation:spin 1s linear infinite;
 }
 
 @keyframes spin{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
+}
+
+#preloader h2{
+    color:red;
+    margin-top:15px;
+    letter-spacing:2px;
 }
 
 /* Hero */
@@ -58,47 +63,7 @@ body{
 }
 
 .hero h1{
-    font-size:30px;
     color:red;
-    letter-spacing:3px;
-}
-
-.hero p{
-    font-size:14px;
-    opacity:0.8;
-}
-
-/* Sections */
-.section{
-    padding:20px;
-}
-
-.section h2{
-    font-size:18px;
-    border-left:4px solid red;
-    padding-left:10px;
-    margin-bottom:15px;
-}
-
-/* Cards */
-.card{
-    background:#111;
-    border-radius:12px;
-    padding:20px;
-    text-align:center;
-    margin-bottom:15px;
-    transition:0.3s;
-}
-
-.card:hover{
-    background:#1e1e1e;
-}
-
-.card a{
-    text-decoration:none;
-    color:white;
-    font-size:16px;
-    display:block;
 }
 
 /* Footer */
@@ -106,9 +71,7 @@ body{
     text-align:center;
     padding:20px;
     background:#0d0d0d;
-    font-size:13px;
-    letter-spacing:2px;
-    margin-top:30px;
+    margin-top:40px;
 }
 
 .footer span{
@@ -119,7 +82,7 @@ body{
 </head>
 <body>
 
-<!-- 🔥 Loading Screen -->
+<!-- 🔥 Loader -->
 <div id="preloader">
     <div class="loader"></div>
     <h2>LOADING STREAM HUB...</h2>
@@ -130,27 +93,15 @@ body{
     <p>Unlimited Movies & TV Shows</p>
 </div>
 
-<div class="section">
-    <h2>📺 TV SHOWS</h2>
-    <div class="card">
-        <a href="tv.html">Go to TV Shows</a>
-    </div>
-</div>
-
-<div class="section">
-    <h2>🎥 MOVIES</h2>
-    <div class="card">
-        <a href="movies.html">Go to Movies</a>
-    </div>
-</div>
-
 <footer class="footer">
     SYSTEM DEVELOPED BY <span>GAVESH VIMANSHANA</span>
 </footer>
 
 <script>
 window.addEventListener("load", function(){
-    document.getElementById("preloader").style.display = "none";
+    setTimeout(function(){
+        document.getElementById("preloader").classList.add("hide");
+    }, 2500); // 🔥 2.5 seconds loader eka pennanawa
 });
 </script>
 
