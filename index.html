@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movie Price List</title>
+  <title>Movie & TV Show Price List</title>
   <style>
     body {
       background-color: #121212;
@@ -14,6 +14,15 @@
     h1 {
       color: #00ffcc;
       margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #ffdd00;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ffffff33;
+      display: inline-block;
+      padding-bottom: 5px;
     }
 
     .movie-card {
@@ -38,8 +47,8 @@
     /* Floating WhatsApp button on right side */
     .whatsapp-button {
       position: fixed;
-      right: 20px; /* right side */
-      bottom: 20px; /* bottom corner */
+      right: 20px;
+      bottom: 20px;
       z-index: 1000;
     }
 
@@ -59,21 +68,28 @@
 </head>
 <body>
 
-  <h1>🎬 Movie Price List</h1>
+  <h1>🎬 Movie & TV Show Price List</h1>
 
+  <!-- TV SHOW Section -->
+  <h2>TV SHOW</h2>
+  <div class="movie-card">
+    <img src="images/tv1.jpg" alt="TV Show 1">
+    <p>TV Show 1 — Rs 500</p>
+  </div>
+  <div class="movie-card">
+    <img src="images/tv2.jpg" alt="TV Show 2">
+    <p>TV Show 2 — Rs 700</p>
+  </div>
+
+  <!-- Movie Section -->
+  <h2>Movie</h2>
   <div class="movie-card">
     <img src="images/movie1.jpg" alt="Movie 1">
     <p>Movie 1 — Rs 1000</p>
   </div>
-
   <div class="movie-card">
     <img src="images/movie2.jpg" alt="Movie 2">
     <p>Movie 2 — Rs 1200</p>
-  </div>
-
-  <div class="movie-card">
-    <img src="images/movie3.jpg" alt="Movie 3">
-    <p>Movie 3 — Rs 900</p>
   </div>
 
   <!-- WhatsApp Floating Button -->
