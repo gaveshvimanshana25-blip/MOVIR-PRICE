@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Show Details</title>
+<title>Details - Stream Hub</title>
 
 <style>
 body{
@@ -15,6 +15,8 @@ color:white;
 
 .container{
 padding:20px;
+max-width:600px;
+margin:auto;
 }
 
 .back-btn{
@@ -82,7 +84,7 @@ background:#e50914;
 }
 
 .button:hover{
-opacity:0.8;
+opacity:0.85;
 }
 </style>
 </head>
@@ -91,15 +93,15 @@ opacity:0.8;
 
 <div class="container">
 
-<a href="tv.html" class="back-btn">⬅ Back</a>
+<a href="javascript:history.back()" class="back-btn">⬅ Back</a>
 
-<img id="poster" class="poster" src="" alt="Poster">
+<img id="poster" class="poster" src="images/default.jpg" alt="Poster">
 
 <div id="movieTitle" class="title"></div>
 <div id="moviePrice" class="price"></div>
 
 <div class="description">
-Premium TV show available in HD quality. Buy now to unlock full access.
+Premium content available in HD quality. Order now to unlock full access.
 </div>
 
 <a href="#" id="whatsappBtn" class="button buy-btn">Order on WhatsApp</a>
@@ -109,50 +111,67 @@ Premium TV show available in HD quality. Buy now to unlock full access.
 
 <script>
 const params = new URLSearchParams(window.location.search);
+
 const title = params.get("title");
 const price = params.get("price");
 
-document.getElementById("movieTitle").innerText = title || "Unknown Show";
-document.getElementById("moviePrice").innerText = price ? "Rs. " + price : "Price Not Available";
+document.getElementById("movieTitle").innerText =
+title || "Unknown Title";
 
-/* CHANGE THIS TO YOUR WHATSAPP NUMBER */
-const phoneNumber = "947XXXXXXXX"; // Example: 94771234567
+document.getElementById("moviePrice").innerText =
+price ? "Rs. " + price : "Price Not Available";
+
+/* ---------------- WHATSAPP ---------------- */
+
+const phoneNumber = "947XXXXXXXX"; // PUT YOUR NUMBER
 
 const message = `Hello, I want to order:\n\n${title}\nPrice: Rs. ${price}`;
-const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+const whatsappURL =
+`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
 document.getElementById("whatsappBtn").href = whatsappURL;
 
-/* Trailer Links */
+/* ---------------- TRAILERS ---------------- */
+
 const trailers = {
+
+/* TV SHOWS */
 "Prison Break (2005)" : "https://www.youtube.com/watch?v=AL9zLctDJaU",
 "Money Heist (2021)" : "https://www.youtube.com/watch?v=_InqQJRqGW4",
 "Kohrra (2023)" : "https://www.youtube.com/watch?v=6zD8W9P1R2I",
-"Motorvalley (2026)" : "https://www.youtube.com/",
-"56 Days (2026)" : "https://www.youtube.com/",
-"Do You Wanna Partner (2025)" : "https://www.youtube.com/"
+
+/* MOVIES */
+"Inception (2010)" : "https://www.youtube.com/watch?v=YoHD9XEInc0",
+"Interstellar (2014)" : "https://www.youtube.com/watch?v=zSWdZVtXT7E",
+"Joker (2019)" : "https://www.youtube.com/watch?v=zAGVQLHvwOY",
+"The Dark Knight (2008)" : "https://www.youtube.com/watch?v=EXeTwQWrcwY"
 };
 
 if(title && trailers[title]){
 document.getElementById("trailerBtn").href = trailers[title];
 }else{
-document.getElementById("trailerBtn").style.display="none";
+document.getElementById("trailerBtn").style.display = "none";
 }
 
-/* Poster Mapping */
+/* ---------------- POSTERS ---------------- */
+
 const images = {
+
+/* TV */
 "Prison Break (2005)" : "prisonbreak.jpg",
 "Money Heist (2021)" : "money.jpg",
 "Kohrra (2023)" : "kohrra.jpg",
-"Motorvalley (2026)" : "motorvalley.jpg",
-"56 Days (2026)" : "56days.jpg",
-"Do You Wanna Partner (2025)" : "partner.jpg"
+
+/* MOVIES */
+"Inception (2010)" : "inception.jpg",
+"Interstellar (2014)" : "interstellar.jpg",
+"Joker (2019)" : "joker.jpg",
+"The Dark Knight (2008)" : "darkknight.jpg"
 };
 
 if(title && images[title]){
-document.getElementById("poster").src = "images/" + images[title];
-}else{
-document.getElementById("poster").src = "images/default.jpg";
+document.getElementById("poster").src =
+"images/" + images[title];
 }
 </script>
 
