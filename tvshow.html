@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV Shows - Loading Effect</title>
+<title>TV Shows - Loading & Fade-In</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-/* Body */
 body {
     background:#121212;
     color:#fff;
@@ -30,7 +29,7 @@ body {
 }
 #preloader .loader {
     border:8px solid #f3f3f3;
-    border-top:8px solid #ff0000; /* red color */
+    border-top:8px solid #ff0000;
     border-radius:50%;
     width:80px;
     height:80px;
@@ -41,9 +40,10 @@ body {
     100% { transform: rotate(360deg);}
 }
 
-/* Page content hidden until loaded */
+/* Content hidden and fade-in */
 #content {
-    display:none;
+    opacity:0;
+    transition: opacity 1s ease-in-out;
 }
 
 /* Page title */
@@ -54,7 +54,7 @@ header h1 {
     font-size:32px;
 }
 
-/* Cards container vertical */
+/* Vertical cards layout */
 .cards-container {
     display:flex;
     flex-direction:column;
@@ -62,7 +62,7 @@ header h1 {
     align-items:center;
 }
 
-/* Card styles */
+/* Card style */
 .card {
     background:#1e1e1e;
     border-radius:10px;
@@ -152,6 +152,15 @@ header h1 {
             <p class="price">Rs 450</p>
         </div>
     </div>
+    <div class="card">
+        <img src="images/tv4.jpg" alt="TV Show 4">
+        <div class="card-content">
+            <h3>TV Show 4</h3>
+            <p class="genre">Thriller</p>
+            <p class="year">2023</p>
+            <p class="price">Rs 700</p>
+        </div>
+    </div>
 </div>
 
 <!-- WhatsApp button -->
@@ -169,7 +178,7 @@ window.addEventListener('load', function() {
     const preloader = document.getElementById('preloader');
     const content = document.getElementById('content');
     preloader.style.display = 'none';
-    content.style.display = 'block';
+    content.style.opacity = '1'; // fade-in effect
 });
 </script>
 
