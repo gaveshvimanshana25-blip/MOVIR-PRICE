@@ -3,149 +3,324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neglix TV</title>
+<title>TV Shows - Stream Hub</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
 body{
-background:#111;
-color:white;
+    margin:0;
+    background:#000;
+    font-family:Arial;
+    color:white;
 }
 
-/* Loading Line */
-.loading-bar{
-position:fixed;
-top:0;
-left:0;
-height:3px;
-background:red;
-width:0%;
-z-index:3000;
-animation:load 2s forwards;
-}
-@keyframes load{
-0%{width:0%;}
-100%{width:100%;}
-}
-
-/* Header */
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px;
-background:#000;
-position:sticky;
-top:0;
-z-index:2000;
-}
-
-.logo{
-color:red;
-font-size:22px;
-font-weight:bold;
-}
-
+/* MENU ICON */
 .menu-icon{
-font-size:26px;
-cursor:pointer;
+    position:fixed;
+    top:15px;
+    left:15px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
 }
 
-/* Side Menu */
+/* SIDE MENU */
 .side-menu{
-position:fixed;
-top:0;
-left:-260px;
-width:260px;
-height:100%;
-background:#000;
-padding:25px;
-transition:0.4s;
-z-index:2500;
-}
-
-.side-menu.active{
-left:0;
+    position:fixed;
+    top:0;
+    left:-250px;
+    width:250px;
+    height:100%;
+    background:#111;
+    padding-top:60px;
+    transition:0.4s;
+    z-index:1000;
 }
 
 .side-menu a{
-display:block;
-color:white;
-text-decoration:none;
-margin:20px 0;
-font-size:18px;
-transition:0.3s;
+    display:block;
+    padding:15px 25px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid #222;
 }
 
 .side-menu a:hover{
-color:red;
+    background:#e50914;
 }
 
-/* Overlay */
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-display:none;
-z-index:2400;
+.side-menu.active{
+    left:0;
 }
 
-.overlay.active{
-display:block;
+/* HEADER */
+.header{
+    padding:15px;
+    font-size:22px;
+    font-weight:bold;
+    color:#e50914;
+    text-align:center;
 }
 
-/* Content */
-.container{
-padding:20px;
+/* SEARCH */
+.search-box{
+    padding:15px;
 }
 
+.search-box input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+}
+
+/* GENRES */
+.genres{
+    padding:10px;
+}
+
+.genres button{
+    margin:5px;
+    padding:8px 12px;
+    border:none;
+    border-radius:20px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+
+.genres button:hover{
+    background:#e50914;
+}
+
+/* TRENDING */
+.trending{
+    padding:15px;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+.trending img{
+    height:150px;
+    margin-right:10px;
+    border-radius:8px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:15px;
+}
+
+@media(min-width:768px){
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
+}
+
+.card{
+    background:#111;
+    border-radius:8px;
+    overflow:hidden;
+    position:relative;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:10px;
+}
+
+.rating{
+    font-size:14px;
+    color:gold;
+}
+
+.watch-btn{
+    background:#e50914;
+    border:none;
+    padding:6px 10px;
+    color:white;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.like{
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal iframe{
+    width:90%;
+    height:250px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:25px;
+    cursor:pointer;
+}
 </style>
 </head>
-
 <body>
 
-<div class="loading-bar"></div>
-
-<header>
-<div class="menu-icon" onclick="openMenu()">☰</div>
-<div class="logo">NEGLIX</div>
-</header>
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
 
 <div class="side-menu" id="sideMenu">
-<a href="index.html" onclick="closeMenu()">Home</a>
-<a href="tv.html" onclick="closeMenu()">TV Shows</a>
-<a href="movies.html" onclick="closeMenu()">Movies</a>
-<a href="#" onclick="closeMenu()">My List</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="tv.html">📺 TV Shows</a>
+    <a href="movies.html">🎥 Movies</a>
 </div>
 
-<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+<div class="header">TV SHOWS</div>
 
-<div class="container">
-<h2>TV Shows Page</h2>
-<p>Mobile optimized version 🔥</p>
+<div class="search-box">
+<input type="text" id="search" placeholder="Search shows...">
+</div>
+
+<div class="genres">
+<button onclick="filterGenre('all')">All</button>
+<button onclick="filterGenre('action')">Action</button>
+<button onclick="filterGenre('teen')">Teen</button>
+<button onclick="filterGenre('korean')">Korean</button>
+<button onclick="filterGenre('romantic')">Romantic</button>
+<button onclick="filterGenre('horror')">Horror</button>
+</div>
+
+<div class="trending">
+<img src="https://via.placeholder.com/100x150">
+<img src="https://via.placeholder.com/100x150">
+<img src="https://via.placeholder.com/100x150">
+<img src="https://via.placeholder.com/100x150">
+</div>
+
+<div class="grid" id="showGrid">
+
+<div class="card" data-genre="action" data-title="Money Heist">
+<span class="like" onclick="addToList(this)">❤️</span>
+<img src="https://via.placeholder.com/300x200">
+<div class="card-content">
+<h3>Money Heist</h3>
+<div class="rating">⭐ 4.8</div>
+<button class="watch-btn" onclick="openTrailer()">Watch Trailer</button>
+</div>
+</div>
+
+<div class="card" data-genre="teen" data-title="Wednesday">
+<span class="like" onclick="addToList(this)">❤️</span>
+<img src="https://via.placeholder.com/300x200">
+<div class="card-content">
+<h3>Wednesday</h3>
+<div class="rating">⭐ 4.5</div>
+<button class="watch-btn" onclick="openTrailer()">Watch Trailer</button>
+</div>
+</div>
+
+<div class="card" data-genre="korean" data-title="Squid Game">
+<span class="like" onclick="addToList(this)">❤️</span>
+<img src="https://via.placeholder.com/300x200">
+<div class="card-content">
+<h3>Squid Game</h3>
+<div class="rating">⭐ 4.7</div>
+<button class="watch-btn" onclick="openTrailer()">Watch Trailer</button>
+</div>
+</div>
+
+<!-- NEW ROMANTIC -->
+<div class="card" data-genre="romantic" data-title="Bridgerton">
+<span class="like" onclick="addToList(this)">❤️</span>
+<img src="https://via.placeholder.com/300x200">
+<div class="card-content">
+<h3>Bridgerton</h3>
+<div class="rating">⭐ 4.6</div>
+<button class="watch-btn" onclick="openTrailer()">Watch Trailer</button>
+</div>
+</div>
+
+<!-- NEW HORROR -->
+<div class="card" data-genre="horror" data-title="The Haunting">
+<span class="like" onclick="addToList(this)">❤️</span>
+<img src="https://via.placeholder.com/300x200">
+<div class="card-content">
+<h3>The Haunting</h3>
+<div class="rating">⭐ 4.4</div>
+<button class="watch-btn" onclick="openTrailer()">Watch Trailer</button>
+</div>
+</div>
+
+</div>
+
+<div class="modal" id="trailerModal">
+<span class="close" onclick="closeTrailer()">✖</span>
+<iframe src="https://www.youtube.com/embed/YoHD9XEInc0" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <script>
-
-function openMenu(){
-document.getElementById("sideMenu").classList.add("active");
-document.getElementById("overlay").classList.add("active");
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("active");
 }
 
-function closeMenu(){
-document.getElementById("sideMenu").classList.remove("active");
-document.getElementById("overlay").classList.remove("active");
+document.getElementById("search").addEventListener("keyup", function(){
+let value = this.value.toLowerCase();
+let cards = document.querySelectorAll(".card");
+cards.forEach(card=>{
+let title = card.getAttribute("data-title").toLowerCase();
+card.style.display = title.includes(value) ? "block" : "none";
+});
+});
+
+function filterGenre(genre){
+let cards = document.querySelectorAll(".card");
+cards.forEach(card=>{
+if(genre==="all"){
+card.style.display="block";
+}else{
+card.style.display = card.getAttribute("data-genre")===genre ? "block" : "none";
+}
+});
 }
 
+function openTrailer(){
+document.getElementById("trailerModal").style.display="flex";
+}
+
+function closeTrailer(){
+document.getElementById("trailerModal").style.display="none";
+}
+
+function addToList(el){
+el.style.color="red";
+alert("Added to My List ❤️");
+}
 </script>
 
 </body>
