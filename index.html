@@ -3,258 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stream Hub</title>
+<title>Simple Movie Download</title>
 
 <style>
 body{
-    margin:0;
-    background:#000;
-    font-family:Arial, sans-serif;
-    color:white;
-    overflow-x:hidden;
+margin:0;
+background:#000;
+font-family:Arial;
+color:white;
 }
 
-/* ===== TOP LOADING LINE ===== */
-#topLoader{
-    position:fixed;
-    top:0;
-    left:0;
-    height:4px;
-    width:0%;
-    background:#e50914;
-    z-index:9999;
-    transition:width 0.8s ease;
+.header{
+padding:15px;
+text-align:center;
+font-size:22px;
+color:#e50914;
+font-weight:bold;
 }
 
-/* ===== MENU ICON ===== */
-.menu-icon{
-    position:fixed;
-    top:20px;
-    left:20px;
-    font-size:28px;
-    cursor:pointer;
-    z-index:1001;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+padding:15px;
 }
 
-/* ===== SIDE MENU ===== */
-.side-menu{
-    position:fixed;
-    top:0;
-    left:-250px;
-    width:250px;
-    height:100%;
-    background:#111;
-    padding-top:60px;
-    transition:0.4s;
-    z-index:1000;
-}
-
-.side-menu a{
-    display:block;
-    padding:15px 25px;
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid #222;
-}
-
-.side-menu a:hover{
-    background:#e50914;
-}
-
-.side-menu.active{
-    left:0;
-}
-
-/* HERO */
-.hero{
-    padding:20px;
-    text-align:center;
-}
-
-.hero h1{
-    font-size:26px;
-    color:red;
-    letter-spacing:3px;
-}
-
-/* BANNER */
-.banner{
-    position:relative;
-    width:100%;
-    height:320px;
-    overflow:hidden;
-}
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-size:cover;
-    background-position:center;
-    opacity:0;
-    animation-name:fade, zoom;
-    animation-duration:15s;
-    animation-iteration-count:infinite;
-}
-
-.slide:nth-child(1){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg");
-    animation-delay:0s;
-}
-
-.slide:nth-child(2){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg");
-    animation-delay:5s;
-}
-
-.slide:nth-child(3){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg");
-    animation-delay:10s;
-}
-
-@keyframes fade{
-    0%{opacity:0;}
-    10%{opacity:1;}
-    30%{opacity:1;}
-    40%{opacity:0;}
-    100%{opacity:0;}
-}
-
-@keyframes zoom{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.1);}
-    100%{transform:scale(1);}
-}
-
-.banner::after{
-    content:"";
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60%;
-    background:linear-gradient(to top, #000 10%, transparent 100%);
-}
-
-/* SECTION */
-.section{
-    padding:20px;
-}
-
-.section h2{
-    font-size:18px;
-    margin-bottom:15px;
-}
-
-/* CARD */
 .card{
-    background:#111;
-    border-radius:8px;
-    padding:20px;
-    text-align:center;
-    margin-bottom:15px;
-    transition:0.3s;
-    cursor:pointer;
+background:#111;
+border-radius:8px;
+overflow:hidden;
+text-align:center;
+padding-bottom:10px;
 }
 
-.card a{
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
 }
 
-.card:hover{
-    background:#e50914;
-    transform:scale(1.05);
+.card h3{
+font-size:16px;
+padding:10px;
 }
 
-/* WhatsApp */
-.whatsapp{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:26px;
-    color:white;
-    text-decoration:none;
-}
-
-.footer{
-    text-align:center;
-    padding:15px;
-    font-size:12px;
-    opacity:0.6;
-    border-top:1px solid #222;
+.download-btn{
+display:inline-block;
+background:#e50914;
+color:white;
+padding:8px 15px;
+border-radius:5px;
+text-decoration:none;
 }
 </style>
 </head>
+
 <body>
 
-<!-- LOADING LINE -->
-<div id="topLoader"></div>
+<div class="header">🎬 Movie Download Site</div>
 
-<!-- MENU ICON -->
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="grid">
 
-<!-- SIDE MENU -->
-<div class="side-menu" id="sideMenu">
-    <a href="#" onclick="startLoading(event,'index.html')">🏠 Home</a>
-    <a href="#" onclick="startLoading(event,'tv.html')">📺 TV Shows</a>
-    <a href="#" onclick="startLoading(event,'movies.html')">🎥 Movies</a>
+<div class="card">
+<img src="images/money.jpg">
+<h3>Money Heist</h3>
+<a href="money.html" class="download-btn">Download</a>
 </div>
 
-<div class="hero">
-    <h1>STREAM HUB</h1>
+<div class="card">
+<img src="images/prisonbreak.jpg">
+<h3>Prison Break</h3>
+<a href="prison.html" class="download-btn">Download</a>
 </div>
 
-<div class="banner">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
 </div>
-
-<div class="section">
-    <h2>📺 TV SHOWS</h2>
-    <div class="card">
-        <a href="#" onclick="startLoading(event,'tv.html')">Go to TV Shows</a>
-    </div>
-</div>
-
-<div class="section">
-    <h2>🎥 MOVIES</h2>
-    <div class="card">
-        <a href="#" onclick="startLoading(event,'movies.html')">Go to Movies</a>
-    </div>
-</div>
-
-<a href="https://wa.me/947XXXXXXXX" class="whatsapp" target="_blank">
-💬
-</a>
-
-<div class="footer">
-SYSTEM DEVELOP BY GAVESH VIMANSHANA
-</div>
-
-<script>
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("active");
-}
-
-function startLoading(event, url){
-    event.preventDefault();
-    var loader = document.getElementById("topLoader");
-    loader.style.width = "100%";
-
-    setTimeout(function(){
-        window.location.href = url;
-    }, 800);
-}
-</script>
 
 </body>
 </html>
