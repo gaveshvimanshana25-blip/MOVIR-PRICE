@@ -59,9 +59,26 @@ body{
     color:#ddd;
 }
 
+.btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    padding:12px;
+    border-radius:8px;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.whatsapp-btn{
+    background:#25D366;
+}
+
 .back-btn{
     display:inline-block;
-    margin-top:25px;
+    margin-top:20px;
     padding:10px 20px;
     background:#e50914;
     color:white;
@@ -83,6 +100,8 @@ body{
     <div class="rating" id="rating"></div>
     <div class="description" id="description"></div>
 
+    <a href="#" id="buyBtn" class="btn whatsapp-btn">Buy via WhatsApp</a>
+
     <a href="tv.html" class="back-btn">⬅ Back</a>
 </div>
 
@@ -91,90 +110,92 @@ body{
 const params = new URLSearchParams(window.location.search);
 const title = params.get("title");
 
+const phoneNumber = "94703490292";
+
 const shows = {
 
 "56 Days (2026)":{
 poster:"images/56days.jpg",
 genre:"Crime, Drama, Mystery (English)",
 rating:"⭐ 4.4",
-description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක් ඉක්මනින්ම එකට ජීවත් වෙන්න තීරණය කරනවා. Romance එකක් වගේ පටන් ගත්තත් suspicious behavior සහ murder investigation එකක් එක්ක story එක dark වෙලා යනවා."
+description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක්..."
 },
 
 "Do You Wanna Partner (2025)":{
 poster:"images/partner.jpg",
 genre:"Comedy, Drama (Hindi)",
 rating:"⭐ 7.7",
-description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්. Funny misunderstandings, jealousy සහ love drama mix වෙලා තියෙනවා."
+description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්."
 },
 
 "Motorvalley (2026)":{
 poster:"images/motorvalley.jpg",
 genre:"Action, Drama (Italian)",
 rating:"⭐ 6.8",
-description:"Luxury car industry power struggle එකක්. Corporate politics, betrayal, rivalry සහ greed mix වෙන dark business drama එකක්."
+description:"Luxury car industry power struggle එකක්."
 },
 
 "Kohrra (2023)":{
 poster:"images/kohrra.jpg",
 genre:"Crime, Drama (Hindi)",
 rating:"⭐ 6.9",
-description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්. Investigation එකත් එක්ක family conflicts සහ hidden secrets එළියට එන slow emotional crime drama එකක්."
+description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්."
 },
 
 "The Summer I Turned Pretty (2022)":{
 poster:"images/summer.jpg",
 genre:"Drama, Romance (English)",
 rating:"⭐ 8.1",
-description:"Teen emotions, crushes, jealousy සහ growing up moments වටා යන emotional summer love story එකක්."
+description:"Teen emotions, crushes, jealousy සහ growing up moments."
 },
 
 "American Primeval (2025)":{
 poster:"images/primeval.jpg",
 genre:"Action, Drama, Western (English)",
 rating:"⭐ 7.6",
-description:"Early America brutal world එකක survival සහ revenge story එකක්. Tribe conflicts සහ moral dilemmas ගොඩක් තියෙනවා."
+description:"Early America brutal world එකක survival story."
 },
 
 "Yeh Kaali Kaali Ankhein (2022)":{
 poster:"images/yehkaali.jpg",
 genre:"Crime, Drama, Mystery (Hindi)",
 rating:"⭐ 9.1",
-description:"Politician කෙනෙකුගේ දුවගේ obsession එකකට හසු වෙන සාමාන්‍ය පිරිමි කෙනෙක්. Love story එකක් වගේ පටන් ගත්තත් dark psychological game එකක් වෙනවා."
+description:"Politician කෙනෙකුගේ දුවගේ obsession එකකට හසු වෙන කතාවක්."
 },
 
 "Prison Break (2005)":{
 poster:"images/prisonbreak.jpg",
 genre:"Action, Crime, Drama",
 rating:"⭐ 8.1",
-description:"Michael තම සොහොයුරා බේරගන්න හිතාමතා prison එකට යනවා. Smart escape plan + adrenaline tension + shocking twists."
+description:"Michael තම සොහොයුරා බේරගන්න prison එකට යනවා."
 },
 
 "Money Heist (2021)":{
 poster:"images/money.jpg",
 genre:"Crime, Drama",
 rating:"⭐ 8.3",
-description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක් සැලසුම් කරනවා. Human emotions සහ unexpected twists නිසා plan එක complicated වෙනවා."
+description:"Professor කියන mastermind කෙනෙක් ලොකු heist එකක් සැලසුම් කරනවා."
 },
 
 "Money Heist Korea (2022)":{
 poster:"images/mhkorea.jpg",
 genre:"Action, Crime, Drama",
 rating:"⭐ 8.1",
-description:"Korean setting එකක economic zone heist එකක්. Political tension සහ new character dynamics එක්ක remake version එක."
+description:"Korean setting එකක remake version එක."
 },
 
 "American Manhunt (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/g9CkBu9ZFGdguoukibrkyvbvCTo.jpg",
+poster:"images/manhunt.jpg",
 genre:"Crime, Documentary (English)",
 rating:"⭐ 7.6",
-description:"Osama bin Laden hunt එක documentary thriller style එකෙන් පෙන්නන real-life intelligence operation story එක."
+description:"Real-life intelligence operation story එක."
 },
 
 "Marvel’s Daredevil (2015)":{
 poster:"images/daredevil.jpg",
 genre:"Action, Crime, Drama",
 rating:"⭐ 8.2",
-description:"Blind lawyer කෙනෙක් රෑට vigilante කෙනෙක් වෙලා crime වලට එරෙහිව සටන් කරන dark superhero series එක."
+description:"Blind lawyer vigilante කෙනෙක් වෙලා crime වලට එරෙහිව සටන් කරනවා."
 }
 
 };
@@ -184,17 +205,17 @@ if(shows[title]){
 document.title = title + " - Stream Hub";
 document.getElementById("headerTitle").innerText = title;
 
-const posterEl = document.getElementById("poster");
-posterEl.src = shows[title].poster;
+const data = shows[title];
 
-posterEl.onerror = function(){
-    this.src = "images/default.jpg";
-};
-
+document.getElementById("poster").src = data.poster;
 document.getElementById("title").innerText = title;
-document.getElementById("genre").innerText = "Genre: " + shows[title].genre;
-document.getElementById("rating").innerText = shows[title].rating;
-document.getElementById("description").innerText = shows[title].description;
+document.getElementById("genre").innerText = "Genre: " + data.genre;
+document.getElementById("rating").innerText = data.rating;
+document.getElementById("description").innerText = data.description;
+
+const message = `Hello, I want to buy:\n\n${title}`;
+document.getElementById("buyBtn").href =
+`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
 }else{
 
