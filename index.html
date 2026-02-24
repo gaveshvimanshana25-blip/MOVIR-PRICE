@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Hub</title>
 
+<!-- WhatsApp Icon CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 body{
     margin:0;
@@ -94,6 +97,25 @@ body{
     animation: glow 2s infinite alternate;
 }
 
+/* WhatsApp Floating Button */
+.whatsapp-float{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    font-size:28px;
+    padding:15px;
+    border-radius:50%;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    z-index:100;
+    transition:0.3s;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.1);
+}
+
 /* ANIMATIONS */
 @keyframes fadeIn{
     from{opacity:0;}
@@ -145,6 +167,11 @@ body{
 <footer class="footer">
     <p>System Developed By <span>GAVESH VIMANSHANA</span></p>
 </footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/94XXXXXXXXX" target="_blank" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
