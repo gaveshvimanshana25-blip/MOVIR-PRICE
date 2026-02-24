@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV Shows - TV Serious Store</title>
+<title>TV Shows - Vertical Scroll</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
@@ -18,59 +18,51 @@ header h1 {
     color:#ff0000;
     text-align:center;
     margin-bottom:30px;
-    font-size:32px; /* bigger page title */
+    font-size:32px;
 }
 
-/* Horizontal scroll container */
+/* Vertical cards layout */
 .cards-container {
     display:flex;
-    overflow-x:auto;  /* horizontal scroll */
+    flex-direction:column; /* vertical stack */
     gap:25px;
-    padding-bottom:10px;
-}
-.cards-container::-webkit-scrollbar {
-    height:10px;
-}
-.cards-container::-webkit-scrollbar-thumb {
-    background:#ff0000;
-    border-radius:5px;
+    align-items:center;
 }
 
 /* Card style */
 .card {
     background:#1e1e1e;
     border-radius:10px;
-    min-width:300px; /* bigger width */
-    flex:0 0 auto;
+    width:300px; /* fixed width */
     box-shadow:0 0 15px rgba(0,0,0,0.6);
     transition: transform 0.3s, background 0.3s;
     cursor:pointer;
 }
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     background:#333;
 }
 .card img {
     width:100%;
-    height:180px; /* bigger image */
+    height:180px;
     object-fit:cover;
     border-top-left-radius:10px;
     border-top-right-radius:10px;
 }
 .card-content {
-    padding:20px; /* bigger padding */
+    padding:20px;
 }
 .card-content h3 { 
     color:#ff0000; 
     margin:0 0 10px 0; 
-    font-size:20px; /* bigger title */
+    font-size:20px;
 }
 .card-content p { 
     margin:5px 0; 
-    font-size:16px; /* bigger info text */
+    font-size:16px;
 }
-.card-content .genre { color:#00ffcc; } /* cyan */
-.card-content .year { color:#ff66cc; } /* pink */
+.card-content .genre { color:#00ffcc; }
+.card-content .year { color:#ff66cc; }
 .card-content .price { color:#ff0000; font-weight:bold; font-size:18px; }
 
 /* WhatsApp button */
@@ -94,7 +86,7 @@ header h1 {
 
 <div class="cards-container">
     <div class="card">
-        <img src="https://github.com/gaveshvimanshana25-blip/MOVIR-PRICE/blob/main/images%2FImage%2FIMG-20260222-WA0004.jpg">
+        <img src="images/tv1.jpg" alt="TV Show 1">
         <div class="card-content">
             <h3>TV Show 1</h3>
             <p class="genre">Action</p>
@@ -129,7 +121,7 @@ header h1 {
             <p class="price">Rs 700</p>
         </div>
     </div>
-    <!-- Add more cards as needed -->
+    <!-- add more cards as needed -->
 </div>
 
 <!-- WhatsApp Floating Button -->
