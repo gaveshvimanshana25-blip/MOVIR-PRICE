@@ -14,48 +14,7 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== MENU ICON ===== */
-.menu-icon{
-    position:fixed;
-    top:20px;
-    left:20px;
-    font-size:28px;
-    cursor:pointer;
-    z-index:1001;
-}
-
-/* ===== SIDE MENU ===== */
-.side-menu{
-    position:fixed;
-    top:0;
-    left:-250px;
-    width:250px;
-    height:100%;
-    background:#111;
-    padding-top:60px;
-    transition:0.4s;
-    z-index:1000;
-}
-
-.side-menu a{
-    display:block;
-    padding:15px 25px;
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid #222;
-    transition:0.3s;
-}
-
-.side-menu a:hover{
-    background:#1a1a1a;
-    padding-left:35px;
-}
-
-.side-menu.active{
-    left:0;
-}
-
-/* HERO TITLE */
+/* HERO */
 .hero{
     padding:20px;
     text-align:center;
@@ -67,7 +26,7 @@ body{
     letter-spacing:3px;
 }
 
-/* ===== NETFLIX STYLE BANNER ===== */
+/* BANNER */
 .banner{
     position:relative;
     width:100%;
@@ -87,7 +46,6 @@ body{
     animation-iteration-count:infinite;
 }
 
-/* Individual slide timing */
 .slide:nth-child(1){
     background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg");
     animation-delay:0s;
@@ -103,7 +61,6 @@ body{
     animation-delay:10s;
 }
 
-/* Fade animation */
 @keyframes fade{
     0%{opacity:0;}
     10%{opacity:1;}
@@ -112,14 +69,12 @@ body{
     100%{opacity:0;}
 }
 
-/* Zoom animation */
 @keyframes zoom{
     0%{transform:scale(1);}
     50%{transform:scale(1.1);}
     100%{transform:scale(1);}
 }
 
-/* Gradient Overlay */
 .banner::after{
     content:"";
     position:absolute;
@@ -129,7 +84,6 @@ body{
     background:linear-gradient(to top, #000 10%, transparent 100%);
 }
 
-/* Banner Text */
 .banner-text{
     position:absolute;
     bottom:40px;
@@ -137,17 +91,6 @@ body{
     z-index:2;
 }
 
-.banner-text h2{
-    font-size:28px;
-    margin:0;
-}
-
-.banner-text p{
-    font-size:14px;
-    opacity:0.8;
-}
-
-/* Sections */
 .section{
     padding:20px;
 }
@@ -157,7 +100,7 @@ body{
     margin-bottom:15px;
 }
 
-/* Cards */
+/* ===== RED BUTTON CARD ===== */
 .card{
     background:#111;
     border-radius:8px;
@@ -165,16 +108,25 @@ body{
     text-align:center;
     margin-bottom:15px;
     transition:0.3s;
-}
-
-.card:hover{
-    background:#1a1a1a;
-    transform:scale(1.05);
+    cursor:pointer;
 }
 
 .card a{
     text-decoration:none;
     color:white;
+    font-weight:bold;
+}
+
+/* Hover Effect */
+.card:hover{
+    background:#e50914;
+    transform:scale(1.05);
+}
+
+/* Click Effect */
+.card:active{
+    background:#b20710;
+    transform:scale(0.98);
 }
 
 /* WhatsApp */
@@ -206,23 +158,10 @@ body{
 </head>
 <body>
 
-<!-- MENU ICON -->
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-
-<!-- SIDE MENU -->
-<div class="side-menu" id="sideMenu">
-    <a href="#">🏠 Home</a>
-    <a href="tv.html">📺 TV Shows</a>
-    <a href="movies.html">🎥 Movies</a>
-    <a href="#">⭐ My List</a>
-    <a href="#">⚙ Settings</a>
-</div>
-
 <div class="hero">
     <h1>STREAM HUB</h1>
 </div>
 
-<!-- Banner -->
 <div class="banner">
     <div class="slide"></div>
     <div class="slide"></div>
@@ -234,7 +173,6 @@ body{
     </div>
 </div>
 
-<!-- TV Shows -->
 <div class="section">
     <h2>📺 TV SHOWS</h2>
     <div class="card">
@@ -242,7 +180,6 @@ body{
     </div>
 </div>
 
-<!-- Movies -->
 <div class="section">
     <h2>🎥 MOVIES</h2>
     <div class="card">
@@ -250,21 +187,13 @@ body{
     </div>
 </div>
 
-<!-- WhatsApp -->
 <a href="https://wa.me/947XXXXXXXX" class="whatsapp" target="_blank">
 💬
 </a>
 
-<!-- Footer -->
 <div class="footer">
 SYSTEM DEVELOP BY GAVESH VIMANSHANA
 </div>
-
-<script>
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("active");
-}
-</script>
 
 </body>
 </html>
