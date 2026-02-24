@@ -72,6 +72,7 @@ font-size:16px;
 
 .genres{
 padding:10px;
+text-align:center;
 }
 
 .genres button{
@@ -130,7 +131,6 @@ font-size:13px;
 display:inline-block;
 margin-top:5px;
 }
-
 </style>
 </head>
 
@@ -155,54 +155,18 @@ margin-top:5px;
 <button onclick="filterGenre('action')">Action</button>
 <button onclick="filterGenre('crime')">Crime</button>
 <button onclick="filterGenre('drama')">Drama</button>
-<button onclick="filterGenre('romance')">Romance</button>
 </div>
 
 <div class="grid">
 
-<!-- 56 Days -->
-<div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)','1200')">
-<img src="images/56days.jpg">
-<div class="card-content">
-<h3>56 Days (2026)</h3>
-<div class="rating">⭐ 4.4</div>
-<div class="price">Rs. 1200</div>
-</div>
-</div>
-
-<!-- Do You Wanna Partner -->
-<div class="card" data-genre="romance" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)','1000')">
-<img src="images/partner.jpg">
-<div class="card-content">
-<h3>Do You Wanna Partner (2025)</h3>
-<div class="rating">⭐ 4.6</div>
-<div class="price">Rs. 1000</div>
-</div>
-</div>
-
-<!-- Motorvalley -->
-<div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)','1300')">
-<img src="images/motorvalley.jpg">
-<div class="card-content">
-<h3>Motorvalley (2026)</h3>
-<div class="rating">⭐ 4.7</div>
-<div class="price">Rs. 1300</div>
-</div>
-</div>
-
-<!-- Kohrra -->
-<div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)','1100')">
-<img src="images/kohrra.jpg">
-<div class="card-content">
-<h3>Kohrra (2023)</h3>
-<div class="rating">⭐ 8.2</div>
-<div class="price">Rs. 1100</div>
-</div>
-</div>
-
 <!-- Prison Break -->
-<div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)','1500')">
+<div class="card"
+data-genre="action"
+data-title="Prison Break (2005)"
+onclick="goDetails('Prison Break (2005)','1500')">
+
 <img src="images/prisonbreak.jpg">
+
 <div class="card-content">
 <h3>Prison Break (2005)</h3>
 <div class="rating">⭐ 8.1</div>
@@ -211,12 +175,47 @@ margin-top:5px;
 </div>
 
 <!-- Money Heist -->
-<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)','1800')">
+<div class="card"
+data-genre="crime"
+data-title="Money Heist (2021)"
+onclick="goDetails('Money Heist (2021)','1800')">
+
 <img src="images/money.jpg">
+
 <div class="card-content">
 <h3>Money Heist (2021)</h3>
 <div class="rating">⭐ 8.3</div>
 <div class="price">Rs. 1800</div>
+</div>
+</div>
+
+<!-- Kohrra -->
+<div class="card"
+data-genre="crime"
+data-title="Kohrra (2023)"
+onclick="goDetails('Kohrra (2023)','1100')">
+
+<img src="images/kohrra.jpg">
+
+<div class="card-content">
+<h3>Kohrra (2023)</h3>
+<div class="rating">⭐ 8.2</div>
+<div class="price">Rs. 1100</div>
+</div>
+</div>
+
+<!-- Dark -->
+<div class="card"
+data-genre="drama"
+data-title="Dark (2017)"
+onclick="goDetails('Dark (2017)','1700')">
+
+<img src="images/dark.jpg">
+
+<div class="card-content">
+<h3>Dark (2017)</h3>
+<div class="rating">⭐ 8.8</div>
+<div class="price">Rs. 1700</div>
 </div>
 </div>
 
@@ -227,26 +226,35 @@ function toggleMenu(){
 document.getElementById("sideMenu").classList.toggle("active");
 }
 
-function goDetails(title,price){
-window.location.href="details.html?title="+encodeURIComponent(title)+"&price="+price;
+function goDetails(title, price){
+window.location.href =
+"details.html?title=" + encodeURIComponent(title) +
+"&price=" + price;
 }
 
+/* SEARCH */
+
 document.getElementById("search").addEventListener("keyup", function(){
-let value=this.value.toLowerCase();
-let cards=document.querySelectorAll(".card");
+let value = this.value.toLowerCase();
+let cards = document.querySelectorAll(".card");
+
 cards.forEach(card=>{
-let title=card.getAttribute("data-title").toLowerCase();
-card.style.display=title.includes(value)?"block":"none";
+let title = card.getAttribute("data-title").toLowerCase();
+card.style.display = title.includes(value) ? "block" : "none";
 });
 });
 
+/* GENRE FILTER */
+
 function filterGenre(genre){
-let cards=document.querySelectorAll(".card");
+let cards = document.querySelectorAll(".card");
+
 cards.forEach(card=>{
-if(genre==="all"){
-card.style.display="block";
+if(genre === "all"){
+card.style.display = "block";
 }else{
-card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
+card.style.display =
+card.getAttribute("data-genre") === genre ? "block" : "none";
 }
 });
 }
