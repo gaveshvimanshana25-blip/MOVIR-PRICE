@@ -8,70 +8,105 @@
 <style>
 body{
     margin:0;
-    background:linear-gradient(135deg,#000000,#111111,#1a1a1a);
-    font-family:Arial;
+    background:#000;
+    font-family:Arial, sans-serif;
     color:white;
     overflow-x:hidden;
 }
 
-/* Hero */
+/* HERO TITLE */
 .hero{
-    padding:25px;
+    padding:20px;
     text-align:center;
 }
 
 .hero h1{
-    font-size:28px;
+    font-size:26px;
     color:red;
     letter-spacing:3px;
 }
 
-/* ===== 3D Banner Slider ===== */
-.slider{
-    width:100%;
-    height:240px;
-    perspective:1000px;
-    overflow:hidden;
+/* ===== NETFLIX STYLE BANNER ===== */
+.banner{
     position:relative;
-}
-
-.slides{
-    display:flex;
-    width:300%;
-    height:100%;
-    animation:slide3d 12s infinite;
-}
-
-.slides img{
     width:100%;
-    height:240px;
-    object-fit:cover;
-    transition:1s;
+    height:320px;
+    overflow:hidden;
 }
 
-/* 3D Slide Animation */
-@keyframes slide3d{
-    0%{
-        transform:translateX(0) rotateY(0deg);
-    }
-    30%{
-        transform:translateX(0) rotateY(0deg);
-    }
-    35%{
-        transform:translateX(-100%) rotateY(-10deg);
-    }
-    65%{
-        transform:translateX(-100%) rotateY(0deg);
-    }
-    70%{
-        transform:translateX(-200%) rotateY(-10deg);
-    }
-    95%{
-        transform:translateX(-200%) rotateY(0deg);
-    }
-    100%{
-        transform:translateX(0) rotateY(0deg);
-    }
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    animation:fade 15s infinite;
+}
+
+/* Individual slide timing */
+.slide:nth-child(1){
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg");
+    animation-delay:0s;
+}
+
+.slide:nth-child(2){
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg");
+    animation-delay:5s;
+}
+
+.slide:nth-child(3){
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg");
+    animation-delay:10s;
+}
+
+/* Fade animation */
+@keyframes fade{
+    0%{opacity:0;}
+    10%{opacity:1;}
+    30%{opacity:1;}
+    40%{opacity:0;}
+    100%{opacity:0;}
+}
+
+/* Cinematic Zoom */
+.slide{
+    animation-name:fade, zoom;
+    animation-duration:15s;
+}
+
+@keyframes zoom{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+/* Gradient Overlay */
+.banner::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60%;
+    background:linear-gradient(to top, #000 10%, transparent 100%);
+}
+
+/* Banner Text */
+.banner-text{
+    position:absolute;
+    bottom:40px;
+    left:30px;
+    z-index:2;
+}
+
+.banner-text h2{
+    font-size:28px;
+    margin:0;
+}
+
+.banner-text p{
+    font-size:14px;
+    opacity:0.8;
 }
 
 /* Sections */
@@ -81,35 +116,30 @@ body{
 
 .section h2{
     font-size:18px;
-    border-left:4px solid red;
-    padding-left:10px;
     margin-bottom:15px;
 }
 
 /* Cards */
 .card{
     background:#111;
-    border-radius:12px;
+    border-radius:8px;
     padding:20px;
     text-align:center;
     margin-bottom:15px;
-    transition:0.4s;
+    transition:0.3s;
 }
 
 .card:hover{
-    background:#1e1e1e;
-    transform:scale(1.07);
-    box-shadow:0 0 20px red;
+    background:#1a1a1a;
+    transform:scale(1.05);
 }
 
 .card a{
     text-decoration:none;
     color:white;
-    font-size:16px;
-    display:block;
 }
 
-/* WhatsApp Button */
+/* WhatsApp */
 .whatsapp{
     position:fixed;
     bottom:20px;
@@ -124,14 +154,6 @@ body{
     font-size:26px;
     color:white;
     text-decoration:none;
-    box-shadow:0 0 15px rgba(0,0,0,0.6);
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.1);}
-    100%{transform:scale(1);}
 }
 
 /* Footer */
@@ -147,17 +169,21 @@ body{
 <body>
 
 <div class="hero">
-    <h1>🎬 STREAM HUB</h1>
-    <p>Unlimited Movies & TV Shows</p>
+    <h1>STREAM HUB</h1>
 </div>
 
-<!-- 3D Banner -->
-<div class="slider">
-    <div class="slides">
-        <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg">
-        <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg">
-        <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg">
+<!-- Netflix Style Banner -->
+<div class="banner">
+
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+
+    <div class="banner-text">
+        <h2>Unlimited Entertainment</h2>
+        <p>Watch the latest Movies & TV Shows anytime</p>
     </div>
+
 </div>
 
 <!-- TV Shows -->
@@ -176,14 +202,14 @@ body{
     </div>
 </div>
 
-<!-- WhatsApp Button -->
+<!-- WhatsApp -->
 <a href="https://wa.me/947XXXXXXXX" class="whatsapp" target="_blank">
-    💬
+💬
 </a>
 
 <!-- Footer -->
 <div class="footer">
-    SYSTEM DEVELOP BY GAVESH VIMANSHANA
+SYSTEM DEVELOP BY GAVESH VIMANSHANA
 </div>
 
 </body>
