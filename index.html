@@ -75,6 +75,47 @@ body{
     display:block;
 }
 
+/* Footer */
+.footer{
+    text-align:center;
+    padding:20px;
+    background:#0d0d0d;
+    font-size:13px;
+    letter-spacing:2px;
+    margin-top:30px;
+    border-top:1px solid #222;
+}
+
+.footer span{
+    color:red;
+    font-weight:bold;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-btn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#25D366;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
+    transition:0.3s;
+    z-index:1000;
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.1);
+}
+
+.whatsapp-btn img{
+    width:30px;
+}
+
 /* Animations */
 @keyframes fadeIn{
     from{opacity:0;}
@@ -117,6 +158,16 @@ body{
         <a href="movies.html">Go to Movies</a>
     </div>
 </div>
+
+<!-- Footer -->
+<footer class="footer">
+    SYSTEM DEVELOPED BY <span>GAVESH VIMANSHANA</span>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/9470 349 0292" target="_blank" class="whatsapp-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+</a>
 
 </body>
 </html>
