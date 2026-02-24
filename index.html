@@ -14,6 +14,47 @@ body{
     overflow-x:hidden;
 }
 
+/* ===== MENU ICON ===== */
+.menu-icon{
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size:28px;
+    cursor:pointer;
+    z-index:1001;
+}
+
+/* ===== SIDE MENU ===== */
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-250px;
+    width:250px;
+    height:100%;
+    background:#111;
+    padding-top:60px;
+    transition:0.4s;
+    z-index:1000;
+}
+
+.side-menu a{
+    display:block;
+    padding:15px 25px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid #222;
+    transition:0.3s;
+}
+
+.side-menu a:hover{
+    background:#1a1a1a;
+    padding-left:35px;
+}
+
+.side-menu.active{
+    left:0;
+}
+
 /* HERO TITLE */
 .hero{
     padding:20px;
@@ -41,7 +82,9 @@ body{
     background-size:cover;
     background-position:center;
     opacity:0;
-    animation:fade 15s infinite;
+    animation-name:fade, zoom;
+    animation-duration:15s;
+    animation-iteration-count:infinite;
 }
 
 /* Individual slide timing */
@@ -69,12 +112,7 @@ body{
     100%{opacity:0;}
 }
 
-/* Cinematic Zoom */
-.slide{
-    animation-name:fade, zoom;
-    animation-duration:15s;
-}
-
+/* Zoom animation */
 @keyframes zoom{
     0%{transform:scale(1);}
     50%{transform:scale(1.1);}
@@ -168,13 +206,24 @@ body{
 </head>
 <body>
 
+<!-- MENU ICON -->
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="sideMenu">
+    <a href="#">🏠 Home</a>
+    <a href="tv.html">📺 TV Shows</a>
+    <a href="movies.html">🎥 Movies</a>
+    <a href="#">⭐ My List</a>
+    <a href="#">⚙ Settings</a>
+</div>
+
 <div class="hero">
     <h1>STREAM HUB</h1>
 </div>
 
-<!-- Netflix Style Banner -->
+<!-- Banner -->
 <div class="banner">
-
     <div class="slide"></div>
     <div class="slide"></div>
     <div class="slide"></div>
@@ -183,7 +232,6 @@ body{
         <h2>Unlimited Entertainment</h2>
         <p>Watch the latest Movies & TV Shows anytime</p>
     </div>
-
 </div>
 
 <!-- TV Shows -->
@@ -211,6 +259,12 @@ body{
 <div class="footer">
 SYSTEM DEVELOP BY GAVESH VIMANSHANA
 </div>
+
+<script>
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("active");
+}
+</script>
 
 </body>
 </html>
