@@ -12,46 +12,6 @@ body{
     font-family:Arial, sans-serif;
     color:white;
     overflow-x:hidden;
-    transition: background 0.3s, color 0.3s;
-}
-
-/* LIGHT MODE */
-body.light{
-    background:white;
-    color:black;
-}
-
-body.light .side-menu{
-    background:#f2f2f2;
-}
-
-body.light .side-menu a{
-    color:black;
-    border-bottom:1px solid #ddd;
-}
-
-body.light .card{
-    background:#f2f2f2;
-    color:black;
-}
-
-body.light .footer{
-    border-top:1px solid #ddd;
-}
-
-/* TOGGLE BUTTON */
-.toggle-btn{
-    position:fixed;
-    top:20px;
-    right:20px;
-    padding:8px 14px;
-    border:none;
-    border-radius:20px;
-    cursor:pointer;
-    font-weight:bold;
-    background:#e50914;
-    color:white;
-    z-index:9999;
 }
 
 /* TOP LOADER */
@@ -63,46 +23,7 @@ body.light .footer{
     width:0%;
     background:#e50914;
     z-index:9999;
-    transition:width 0.8s ease;
-}
-
-/* MENU ICON */
-.menu-icon{
-    position:fixed;
-    top:20px;
-    left:20px;
-    font-size:28px;
-    cursor:pointer;
-    z-index:1001;
-}
-
-/* SIDE MENU */
-.side-menu{
-    position:fixed;
-    top:0;
-    left:-250px;
-    width:250px;
-    height:100%;
-    background:#111;
-    padding-top:60px;
-    transition:0.4s;
-    z-index:1000;
-}
-
-.side-menu a{
-    display:block;
-    padding:15px 25px;
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid #222;
-}
-
-.side-menu a:hover{
-    background:#e50914;
-}
-
-.side-menu.active{
-    left:0;
+    transition:width 0.6s ease;
 }
 
 /* HERO */
@@ -117,54 +38,12 @@ body.light .footer{
     letter-spacing:3px;
 }
 
-/* ===== BANNER ===== */
+/* BANNER */
 .banner{
-    position:relative;
-    width:100%;
-    height:320px;
-    overflow:hidden;
-}
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background-size:cover;
-    background-position:center;
-    opacity:0;
-    animation: cinematic 15s infinite;
-}
-
-.slide:nth-child(1){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg");
-    animation-delay:0s;
-}
-
-.slide:nth-child(2){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg");
-    animation-delay:5s;
-}
-
-.slide:nth-child(3){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg");
-    animation-delay:10s;
-}
-
-@keyframes cinematic{
-    0%{opacity:0; transform:scale(1);}
-    10%{opacity:1;}
-    30%{opacity:1; transform:scale(1.08);}
-    40%{opacity:0;}
-    100%{opacity:0; transform:scale(1);}
-}
-
-.banner::after{
-    content:"";
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60%;
-    background:linear-gradient(to top, #000 10%, transparent 100%);
+    height:220px;
+    background:url('banner.jpg') center/cover;
+    margin:10px;
+    border-radius:10px;
 }
 
 /* SECTIONS */
@@ -179,108 +58,57 @@ body.light .footer{
 /* CARD */
 .card{
     background:#111;
-    border-radius:8px;
-    padding:20px;
+    border-radius:10px;
+    padding:18px;
+    margin-top:10px;
     text-align:center;
-    margin-bottom:15px;
-    transition:0.3s;
     cursor:pointer;
+    transition:0.3s;
 }
 
 .card:hover{
     background:#e50914;
     transform:scale(1.05);
 }
-
-/* WhatsApp */
-.whatsapp{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#25D366;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:26px;
-    color:white;
-    text-decoration:none;
-}
-
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:15px;
-    font-size:12px;
-    opacity:0.6;
-    border-top:1px solid #222;
-}
-
-/* MOBILE */
-@media(max-width:600px){
-    .banner{ height:200px; }
-}
 </style>
 </head>
 
 <body>
 
-<button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
 <div id="topLoader"></div>
-
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-
-<div class="side-menu" id="sideMenu">
-    <a href="#" onclick="startLoading(event,'index.html')">🏠 Home</a>
-    <a href="#" onclick="startLoading(event,'tv.html')">📺 TV Shows</a>
-    <a href="#" onclick="startLoading(event,'movies.html')">🎥 Movies</a>
-</div>
 
 <div class="hero">
     <h1>STREAM HUB</h1>
 </div>
 
-<div class="banner">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
-</div>
+<div class="banner"></div>
 
 <div class="section">
     <h2>📺 TV SHOWS</h2>
-    <div class="card">Go to TV Shows</div>
+
+    <div class="card" onclick="openPage('tv.html')">
+        Go to TV Shows
+    </div>
 </div>
 
 <div class="section">
     <h2>🎥 MOVIES</h2>
-    <div class="card">Go to Movies</div>
-</div>
 
-<a href="https://wa.me/94703490292" class="whatsapp">💬</a>
-
-<div class="footer">
-SYSTEM DEVELOP BY GAVESH VIMANSHANA
+    <div class="card" onclick="openPage('movies.html')">
+        Go to Movies
+    </div>
 </div>
 
 <script>
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("active");
-}
+function openPage(url){
 
-function startLoading(event, url){
-    event.preventDefault();
     var loader = document.getElementById("topLoader");
+
     loader.style.width = "100%";
 
     setTimeout(function(){
         window.location.href = url;
-    }, 800);
-}
-
-function toggleMode(){
-    document.body.classList.toggle("light");
+    }, 500);
 }
 </script>
 
