@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>TV & Movie Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <style>
 body {
     background:#121212;
@@ -14,7 +13,7 @@ body {
     padding:40px;
 }
 
-/* Preloader */
+/* ===== Preloader ===== */
 #preloader {
   position: fixed;
   top:0; left:0;
@@ -26,46 +25,53 @@ body {
   flex-direction:column;
   z-index:9999;
   color:#ff0000;
+  font-size:20px;
 }
 .loader {
   border: 8px solid #1e1e1e;
   border-top: 8px solid #ff0000;
   border-radius: 50%;
-  width:70px;
-  height:70px;
+  width:60px;
+  height:60px;
   animation: spin 1s linear infinite;
+  margin-bottom:15px;
 }
-@keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+@keyframes spin { 0% { transform:rotate(0deg);} 100% { transform:rotate(360deg);} }
 
 /* Header */
 header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:20px;
 }
 .logo {
-  font-size:36px;
+  font-size:28px;
   color:#ff0000;
   font-weight:bold;
 }
 
-/* Banner */
+/* Banner with Store Info */
 .banner {
   background:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/images.jpeg') center/cover;
   height:200px;
   border-radius:10px;
-  margin-bottom:40px;
+  margin-bottom:30px;
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  font-size:36px;
+  font-size:26px;
   color:#ff0000;
   font-weight:bold;
-  text-shadow:1px 1px 5px #000;
+  text-align:center;
 }
+.banner h1 { font-size:40px; margin:0; }
+.banner p { margin:5px 0; }
+.banner .support { color:#ffdd00; font-size:20px; }
+.banner .name { color:#00ffcc; font-size:24px; font-weight:bold; }
 
-/* Sections */
+/* Clickable sections - big boxes */
 .clickable-section {
   cursor:pointer;
   padding:50px;
@@ -76,48 +82,28 @@ header {
   font-size:32px;
   color:#ff0000;
   font-weight:bold;
-  transition: transform 0.4s, background 0.4s;
+  transition: transform 0.3s, background 0.3s;
 }
 .clickable-section:hover {
-  transform:scale(1.1);
+  transform:scale(1.05);
   background:#333;
 }
 
-/* WhatsApp button */
+/* WhatsApp button right bottom */
 .whatsapp-button {
-  position:fixed;
-  right:20px;
-  bottom:20px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index:1000;
 }
-.whatsapp-button img {
-  width:70px;
+.whatsapp-button img{
+  width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s;
 }
+.whatsapp-button img:hover{ transform: scale(1.1); }
 
-/* Music button (BLACK) */
-.music-button {
-  position:fixed;
-  right:20px;
-  bottom:110px;
-}
-.music-button button {
-  background:black;
-  border:none;
-  padding:16px;
-  border-radius:50%;
-  color:white;
-  font-size:22px;
-  cursor:pointer;
-}
-
-footer {
-  text-align:center;
-  margin-top:60px;
-  color:#888;
-  font-size:16px;
-}
+footer{ text-align:center; margin-top:50px; color:#888; font-size:14px; }
 </style>
 </head>
-
 <body>
 
 <!-- Preloader -->
@@ -130,8 +116,15 @@ footer {
   <div class="logo">TV & MOVIE STORE</div>
 </header>
 
-<div class="banner">🎬 TV & Movie Store</div>
+<!-- Banner with Store Info -->
+<div class="banner">
+  <h1>TV SERIOUS STORE</h1>
+  <p>The Next Generation of Entertainment</p>
+  <p class="support">Support Line</p>
+  <p class="name">Mr. VIMA</p>
+</div>
 
+<!-- Clickable Sections -->
 <div class="clickable-section" onclick="location.href='tvshow.html'">
 TV SHOWS
 </div>
@@ -140,16 +133,7 @@ TV SHOWS
 MOVIES
 </div>
 
-<!-- Music toggle -->
-<div class="music-button">
-<button onclick="toggleMusic()">🎵</button>
-</div>
-
-<audio id="bgMusic" loop>
-<source src="song.mp3" type="audio/mpeg">
-</audio>
-
-<!-- WhatsApp -->
+<!-- WhatsApp Floating Button -->
 <div class="whatsapp-button">
 <a href="https://wa.me/94703490292" target="_blank">
 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
@@ -161,21 +145,13 @@ SYSTEM DEVELOPED BY GAVESH VIMANSHANA
 </footer>
 
 <script>
-window.addEventListener("load",()=>{
-  const p=document.getElementById("preloader");
-  p.style.transition="opacity 0.5s";
-  p.style.opacity=0;
-  setTimeout(()=>p.style.display="none",500);
+// Hide preloader after page load
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  preloader.style.transition = "opacity 0.5s";
+  preloader.style.opacity = 0;
+  setTimeout(()=> preloader.style.display="none", 500);
 });
-
-function toggleMusic(){
-  const music=document.getElementById("bgMusic");
-  if(music.paused){
-    music.play();
-  }else{
-    music.pause();
-  }
-}
 </script>
 
 </body>
