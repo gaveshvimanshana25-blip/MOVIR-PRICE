@@ -27,12 +27,10 @@ body{
     z-index:9999;
     transition:opacity 0.8s ease, visibility 0.8s;
 }
-
 #preloader.hide{
     opacity:0;
     visibility:hidden;
 }
-
 .loader{
     border:6px solid #222;
     border-top:6px solid red;
@@ -41,44 +39,69 @@ body{
     height:70px;
     animation:spin 1s linear infinite;
 }
-
 @keyframes spin{
     0%{transform:rotate(0deg);}
     100%{transform:rotate(360deg);}
 }
-
 #preloader h2{
     color:red;
     margin-top:15px;
-    letter-spacing:2px;
 }
 
-/* HERO */
-.hero{
-    height:220px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
+/* 🔥 SLIDER */
+.slider{
+    position:relative;
+    width:100%;
+    height:260px;
+    overflow:hidden;
 }
-
-.hero h1{
-    font-size:30px;
-    color:red;
-    letter-spacing:3px;
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
 }
-
-.hero p{
-    font-size:14px;
-    opacity:0.8;
+.slide.active{
+    opacity:1;
+}
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.slide::after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+    top:0;
+    left:0;
+}
+.slide-content{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    z-index:2;
+}
+.slide-content h2{
+    margin:0;
+}
+.slide-content button{
+    margin-top:10px;
+    padding:8px 15px;
+    border:none;
+    background:red;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
 }
 
 /* SECTION */
 .section{
     padding:20px;
 }
-
 .section h2{
     font-size:18px;
     border-left:4px solid red;
@@ -95,17 +118,13 @@ body{
     margin-bottom:15px;
     transition:0.3s;
 }
-
 .card:hover{
     background:#1e1e1e;
     transform:scale(1.03);
 }
-
 .card a{
     text-decoration:none;
     color:white;
-    font-size:16px;
-    display:block;
 }
 
 /* FOOTER */
@@ -116,13 +135,12 @@ body{
     margin-top:40px;
     letter-spacing:2px;
 }
-
 .footer span{
     color:red;
     font-weight:bold;
 }
 
-/* WHATSAPP BUTTON */
+/* WHATSAPP */
 .whatsapp-btn{
     position:fixed;
     right:20px;
@@ -138,11 +156,9 @@ body{
     transition:0.3s;
     z-index:1000;
 }
-
 .whatsapp-btn:hover{
     transform:scale(1.1);
 }
-
 .whatsapp-btn img{
     width:30px;
 }
@@ -156,10 +172,33 @@ body{
     <h2>LOADING STREAM HUB...</h2>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>🎬 STREAM HUB</h1>
-    <p>Unlimited Movies & TV Shows</p>
+<!-- 🔥 AUTO SLIDER -->
+<div class="slider">
+
+    <div class="slide active">
+        <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg">
+        <div class="slide-content">
+            <h2>🔥 Featured Movie 1</h2>
+            <button>Watch Now</button>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006%281%29.jpg">
+        <div class="slide-content">
+            <h2>🎬 Featured Movie 2</h2>
+            <button>Watch Now</button>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg">
+        <div class="slide-content">
+            <h2>⭐ Featured Movie 3</h2>
+            <button>Watch Now</button>
+        </div>
+    </div>
+
 </div>
 
 <!-- TV SHOW -->
@@ -189,11 +228,26 @@ body{
 </a>
 
 <script>
+/* Loader */
 window.addEventListener("load", function(){
     setTimeout(function(){
         document.getElementById("preloader").classList.add("hide");
-    }, 2500);
+    }, 2000);
 });
+
+/* Auto Slider */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(){
+    slides.forEach(slide => slide.classList.remove("active"));
+    index++;
+    if(index >= slides.length){
+        index = 0;
+    }
+    slides[index].classList.add("active");
+}
+setInterval(showSlide, 3000);
 </script>
 
 </body>
