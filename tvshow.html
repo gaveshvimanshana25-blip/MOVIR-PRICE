@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TV Shows - Animated Loading</title>
+<title>TV Shows - Animated Preloader</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
@@ -43,18 +43,19 @@ body {
     100% { transform: rotate(360deg);}
 }
 
-/* Animated loading text */
+/* Slide-in SYSTEM text */
 .loading-text {
     margin-top:20px;
     color:#ff0000;
     font-weight:bold;
     font-size:18px;
-    animation: blink 1s infinite;
     text-align:center;
+    animation: slideIn 1s ease-in-out infinite alternate;
 }
-@keyframes blink {
-    0%, 50%, 100% { opacity:1; }
-    25%, 75% { opacity:0.3; }
+
+@keyframes slideIn {
+    0% { transform: translateX(-100px); opacity:0; }
+    100% { transform: translateX(0); opacity:1; }
 }
 
 /* Main content hidden until load */
