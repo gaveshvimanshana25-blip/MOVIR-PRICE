@@ -9,26 +9,30 @@
       color: #ffffff;
       font-family: Arial, sans-serif;
       padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
       color: #00ffcc;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 400px;
-      margin: auto;
-    }
-
-    li {
+    .movie-card {
       background: #1e1e1e;
       padding: 15px;
-      margin: 10px 0;
+      margin: 20px auto;
       border-radius: 10px;
+      max-width: 300px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .movie-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .movie-card p {
+      margin-top: 10px;
+      font-size: 18px;
     }
   </style>
 
@@ -37,11 +41,20 @@
 
   <h1>🎬 Movie Price List</h1>
 
-  <ul>
-    <li>Movie 1 — Rs 1000</li>
-    <li>Movie 2 — Rs 1200</li>
-    <li>Movie 3 — Rs 900</li>
-  </ul>
+  <div class="movie-card">
+    <img src="https://via.placeholder.com/300x400.png?text=Movie+1" alt="Movie 1">
+    <p>Movie 1 — Rs 1000</p>
+  </div>
+
+  <div class="movie-card">
+    <img src="https://via.placeholder.com/300x400.png?text=Movie+2" alt="Movie 2">
+    <p>Movie 2 — Rs 1200</p>
+  </div>
+
+  <div class="movie-card">
+    <img src="https://via.placeholder.com/300x400.png?text=Movie+3" alt="Movie 3">
+    <p>Movie 3 — Rs 900</p>
+  </div>
 
 </body>
 </html>
