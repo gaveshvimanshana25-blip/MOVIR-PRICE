@@ -72,7 +72,6 @@ font-size:16px;
 
 .genres{
 padding:10px;
-text-align:center;
 }
 
 .genres button{
@@ -100,6 +99,7 @@ padding:15px;
 background:#111;
 border-radius:8px;
 overflow:hidden;
+position:relative;
 cursor:pointer;
 transition:0.3s;
 }
@@ -123,13 +123,21 @@ font-size:14px;
 color:gold;
 }
 
-.price{
+.watch-btn{
 background:#e50914;
-padding:4px 8px;
-border-radius:20px;
-font-size:13px;
-display:inline-block;
+border:none;
+padding:6px 10px;
+color:white;
+cursor:pointer;
 margin-top:5px;
+}
+
+.like{
+position:absolute;
+top:10px;
+right:10px;
+font-size:20px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -155,67 +163,117 @@ margin-top:5px;
 <button onclick="filterGenre('action')">Action</button>
 <button onclick="filterGenre('crime')">Crime</button>
 <button onclick="filterGenre('drama')">Drama</button>
+<button onclick="filterGenre('comedy')">Comedy</button>
+<button onclick="filterGenre('romance')">Romance</button>
 </div>
 
 <div class="grid">
 
-<!-- Prison Break -->
-<div class="card"
-data-genre="action"
-data-title="Prison Break (2005)"
-onclick="goDetails('Prison Break (2005)','1500')">
-
-<img src="images/prisonbreak.jpg">
-
+<!-- 56 Days -->
+<div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">
+<img src="images/56days.jpg">
 <div class="card-content">
-<h3>Prison Break (2005)</h3>
-<div class="rating">⭐ 8.1</div>
-<div class="price">Rs. 1500</div>
+<h3>56 Days (2026)</h3>
+<div class="rating">⭐ 4.4</div>
 </div>
 </div>
 
-<!-- Money Heist -->
-<div class="card"
-data-genre="crime"
-data-title="Money Heist (2021)"
-onclick="goDetails('Money Heist (2021)','1800')">
-
-<img src="images/money.jpg">
-
+<!-- Do You Wanna Partner -->
+<div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">
+<img src="images/partner.jpg">
 <div class="card-content">
-<h3>Money Heist (2021)</h3>
-<div class="rating">⭐ 8.3</div>
-<div class="price">Rs. 1800</div>
+<h3>Do You Wanna Partner (2025)</h3>
+<div class="rating">⭐ 7.7</div>
+</div>
+</div>
+
+<!-- Motorvalley -->
+<div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">
+<img src="images/motorvalley.jpg">
+<div class="card-content">
+<h3>Motorvalley (2026)</h3>
+<div class="rating">⭐ 6.8</div>
 </div>
 </div>
 
 <!-- Kohrra -->
-<div class="card"
-data-genre="crime"
-data-title="Kohrra (2023)"
-onclick="goDetails('Kohrra (2023)','1100')">
-
+<div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">
 <img src="images/kohrra.jpg">
-
 <div class="card-content">
 <h3>Kohrra (2023)</h3>
-<div class="rating">⭐ 8.2</div>
-<div class="price">Rs. 1100</div>
+<div class="rating">⭐ 6.9</div>
 </div>
 </div>
 
-<!-- Dark -->
-<div class="card"
-data-genre="drama"
-data-title="Dark (2017)"
-onclick="goDetails('Dark (2017)','1700')">
-
-<img src="images/dark.jpg">
-
+<!-- The Summer I Turned Pretty -->
+<div class="card" data-genre="drama" data-title="The Summer I Turned Pretty (2022)" onclick="goDetails('The Summer I Turned Pretty (2022)')">
+<img src="images/summer.jpg">
 <div class="card-content">
-<h3>Dark (2017)</h3>
-<div class="rating">⭐ 8.8</div>
-<div class="price">Rs. 1700</div>
+<h3>The Summer I Turned Pretty (2022)</h3>
+<div class="rating">⭐ 8.1</div>
+</div>
+</div>
+
+<!-- American Primeval -->
+<div class="card" data-genre="action" data-title="American Primeval (2025)" onclick="goDetails('American Primeval (2025)')">
+<img src="images/primeval.jpg">
+<div class="card-content">
+<h3>American Primeval (2025)</h3>
+<div class="rating">⭐ 7.6</div>
+</div>
+</div>
+
+<!-- Yeh Kaali Kaali Ankhein -->
+<div class="card" data-genre="crime" data-title="Yeh Kaali Kaali Ankhein (2022)" onclick="goDetails('Yeh Kaali Kaali Ankhein (2022)')">
+<img src="images/yehkaali.jpg">
+<div class="card-content">
+<h3>Yeh Kaali Kaali Ankhein (2022)</h3>
+<div class="rating">⭐ 9.1</div>
+</div>
+</div>
+
+<!-- Prison Break -->
+<div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)')">
+<img src="images/prisonbreak.jpg">
+<div class="card-content">
+<h3>Prison Break (2005)</h3>
+<div class="rating">⭐ 8.1</div>
+</div>
+</div>
+
+<!-- Money Heist -->
+<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)')">
+<img src="images/money.jpg">
+<div class="card-content">
+<h3>Money Heist (2021)</h3>
+<div class="rating">⭐ 8.3</div>
+</div>
+</div>
+
+<!-- Money Heist Korea -->
+<div class="card" data-genre="crime" data-title="Money Heist Korea (2022)" onclick="goDetails('Money Heist Korea (2022)')">
+<img src="images/mhkorea.jpg">
+<div class="card-content">
+<h3>Money Heist Korea (2022)</h3>
+<div class="rating">⭐ 8.1</div>
+</div>
+</div>
+
+<!-- American Manhunt -->
+<div class="card" data-genre="crime" data-title="American Manhunt (2025)" onclick="goDetails('American Manhunt (2025)')">
+<img src="images/manhunt.jpg">
+<div class="card-content">
+<h3>American Manhunt (2025)</h3>
+<div class="rating">⭐ 7.6</div>
+</div>
+</div>
+
+<!-- Daredevil -->
+<div class="card" data-genre="action" data-title="Marvel’s Daredevil (2015)" onclick="goDetails('Marvel’s Daredevil (2015)')">
+<img src="images/daredevil.jpg">
+<div class="card-content">
+<h3>Marvel’s Daredevil (2015)</h3>
+<div class="rating">⭐ 8.2</div>
 </div>
 </div>
 
@@ -226,35 +284,26 @@ function toggleMenu(){
 document.getElementById("sideMenu").classList.toggle("active");
 }
 
-function goDetails(title, price){
-window.location.href =
-"details.html?title=" + encodeURIComponent(title) +
-"&price=" + price;
+function goDetails(title){
+window.location.href="details.html?title="+encodeURIComponent(title);
 }
 
-/* SEARCH */
-
 document.getElementById("search").addEventListener("keyup", function(){
-let value = this.value.toLowerCase();
-let cards = document.querySelectorAll(".card");
-
+let value=this.value.toLowerCase();
+let cards=document.querySelectorAll(".card");
 cards.forEach(card=>{
-let title = card.getAttribute("data-title").toLowerCase();
-card.style.display = title.includes(value) ? "block" : "none";
+let title=card.getAttribute("data-title").toLowerCase();
+card.style.display=title.includes(value)?"block":"none";
 });
 });
-
-/* GENRE FILTER */
 
 function filterGenre(genre){
-let cards = document.querySelectorAll(".card");
-
+let cards=document.querySelectorAll(".card");
 cards.forEach(card=>{
-if(genre === "all"){
-card.style.display = "block";
+if(genre==="all"){
+card.style.display="block";
 }else{
-card.style.display =
-card.getAttribute("data-genre") === genre ? "block" : "none";
+card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
 }
 });
 }
