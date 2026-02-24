@@ -3,182 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Details - Stream Hub</title>
+<title>TV Series Details</title>
 
 <style>
 body{
 margin:0;
-background:#000;
-font-family:Arial;
+background:#0f0f0f;
 color:white;
+font-family:Arial;
+}
+
+.header{
+background:#111;
+padding:15px;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+color:#e50914;
 }
 
 .container{
-padding:20px;
-max-width:600px;
-margin:auto;
-text-align:center;
-}
-
-.back-btn{
-display:inline-block;
-margin-bottom:15px;
-color:white;
-text-decoration:none;
-background:#222;
-padding:8px 12px;
-border-radius:5px;
-}
-
-.back-btn:hover{
-background:#e50914;
+padding:15px;
 }
 
 .poster{
 width:100%;
-max-height:400px;
+max-height:320px;
 object-fit:cover;
 border-radius:10px;
-margin-bottom:15px;
 }
 
 .title{
+margin-top:15px;
 font-size:24px;
 font-weight:bold;
-margin-bottom:10px;
 }
 
-.price{
-background:#e50914;
-display:inline-block;
-padding:6px 12px;
-border-radius:20px;
-font-size:16px;
-margin-bottom:15px;
+.genre{
+margin-top:8px;
+color:#aaa;
+}
+
+.rating{
+margin-top:8px;
+color:gold;
+font-size:18px;
 }
 
 .description{
+margin-top:15px;
 line-height:1.6;
-margin-bottom:20px;
-color:#ccc;
+color:#ddd;
 }
 
-.button{
-display:block;
-width:100%;
-text-align:center;
-padding:12px;
-border-radius:8px;
-text-decoration:none;
-color:white;
-font-size:18px;
-font-weight:bold;
-margin-top:10px;
-}
-
-.buy-btn{
-background:#25D366;
-}
-
-.trailer-btn{
+.back-btn{
+display:inline-block;
+margin-top:20px;
+padding:10px 20px;
 background:#e50914;
-}
-
-.button:hover{
-opacity:0.85;
+color:white;
+text-decoration:none;
+border-radius:8px;
 }
 </style>
 </head>
 
 <body>
 
+<div class="header">TV Series Details</div>
+
 <div class="container">
+<img id="poster" class="poster">
 
-<a href="javascript:history.back()" class="back-btn">⬅ Back</a>
+<div class="title" id="title"></div>
+<div class="genre" id="genre"></div>
+<div class="rating" id="rating"></div>
+<div class="description" id="description"></div>
 
-<img id="poster" class="poster" src="images/default.jpg">
-
-<div id="movieTitle" class="title"></div>
-<div id="moviePrice" class="price"></div>
-
-<div class="description">
-Premium content available in HD quality.
-</div>
-
-<a href="#" id="whatsappBtn" class="button buy-btn">Order on WhatsApp</a>
-<a href="#" id="trailerBtn" target="_blank" class="button trailer-btn">Watch Trailer</a>
-
+<a href="tv.html" class="back-btn">⬅ Back</a>
 </div>
 
 <script>
+
 const params = new URLSearchParams(window.location.search);
-
 const title = params.get("title");
-const price = params.get("price");
 
-const titleEl = document.getElementById("movieTitle");
-const priceEl = document.getElementById("moviePrice");
-const posterEl = document.getElementById("poster");
-const trailerBtn = document.getElementById("trailerBtn");
+const shows = {
 
-titleEl.innerText = title || "Unknown Title";
-priceEl.innerText = price ? "Rs. " + price : "Price Not Available";
+"56 Days (2026)":{
+poster:"images/56days.jpg",
+genre:"Crime, Drama, Mystery (English)",
+rating:"⭐ 4.4",
+description:"Lockdown කාලයේ dating app එකකින් හඳුනාගන්නා දෙන්නෙක් ඉක්මනින්ම එකට ජීවත් වෙන්න තීරණය කරනවා. Romance එකක් වගේ පටන් ගත්තත් suspicious behavior සහ murder investigation එකක් එක්ක story එක dark වෙලා යනවා."
+},
 
-/* ---------------- WHATSAPP ---------------- */
+"Do You Wanna Partner (2025)":{
+poster:"images/partner.jpg",
+genre:"Comedy, Drama (Hindi)",
+rating:"⭐ 7.7",
+description:"Relationships, dating, commitment problems වටා යන हलුවැලි කතාවක්. Funny misunderstandings, jealousy සහ love drama mix වෙලා තියෙනවා."
+},
 
-const phoneNumber = "947XXXXXXXX"; // PUT YOUR NUMBER
+"Motorvalley (2026)":{
+poster:"images/motorvalley.jpg",
+genre:"Action, Drama (Italian)",
+rating:"⭐ 6.8",
+description:"Luxury car industry power struggle එකක්. Corporate politics, betrayal, rivalry සහ greed mix වෙන dark business drama එකක්."
+},
 
-const message = `Hello, I want to order:\n\n${title}\nPrice: Rs. ${price}`;
+"Kohrra (2023)":{
+poster:"images/kohrra.jpg",
+genre:"Crime, Drama (Hindi)",
+rating:"⭐ 6.9",
+description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්. Investigation එකත් එක්ක family conflicts සහ hidden secrets එළියට එන slow emotional crime drama එකක්."
+},
 
-document.getElementById("whatsappBtn").href =
-`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+"The Summer I Turned Pretty (2022)":{
+poster:"images/summer.jpg",
+genre:"Drama, Romance (English)",
+rating:"⭐ 8.1",
+description:"Teen emotions, crushes, jealousy සහ growing up moments වටා යන emotional summer love story එකක්."
+},
 
-/* ---------------- TRAILERS ---------------- */
+"American Primeval (2025)":{
+poster:"images/primeval.jpg",
+genre:"Action, Drama, Western (English)",
+rating:"⭐ 7.6",
+description:"Early America brutal world එකක survival සහ revenge story එකක්. Tribe conflicts සහ moral dilemmas ගොඩක් තියෙනවා."
+},
 
-const trailers = {
+"Yeh Kaali Kaali Ankhein (2022)":{
+poster:"images/yehkaali.jpg",
+genre:"Crime, Drama, Mystery (Hindi)",
+rating:"⭐ 9.1",
+description:"Politician කෙනෙකුගේ දුවගේ obsession එකකට හසු වෙන සාමාන්‍ය පිරිමි කෙනෙක්. Love story එකක් වගේ පටන් ගත්තත් dark psychological game එකක් වෙනවා."
+},
 
-/* TV SHOWS */
-"Prison Break (2005)" : "https://www.youtube.com/watch?v=AL9zLctDJaU",
-"Money Heist (2021)" : "https://www.youtube.com/watch?v=_InqQJRqGW4",
-"Kohrra (2023)" : "https://www.youtube.com/watch?v=6zD8W9P1R2I",
-"Dark (2017)" : "https://www.youtube.com/watch?v=rrwycJ08PSA",
-"Breaking Bad (2008)" : "https://www.youtube.com/watch?v=HhesaQXLuRY",
+"Prison Break (2005)":{
+poster:"images/prisonbreak.jpg",
+genre:"Action, Crime, Drama",
+rating:"⭐ 8.1",
+description:"Michael තම සොහොයුරා බේරගන්න හිතාමතා prison එකට යනවා. Smart escape plan + adrenaline tension + shocking twists."
+},
 
-/* MOVIES */
-"Inception (2010)" : "https://www.youtube.com/watch?v=YoHD9XEInc0",
-"Interstellar (2014)" : "https://www.youtube.com/watch?v=zSWdZVtXT7E",
-"Joker (2019)" : "https://www.youtube.com/watch?v=zAGVQLHvwOY",
-"The Dark Knight (2008)" : "https://www.youtube.com/watch?v=EXeTwQWrcwY"
-};
+"Money Heist (2021)":{
+poster:"images/money.jpg",
+genre:"Crime, Drama",
+rating:"⭐ 8.3",
+description:"Professor කියන mastermind කෙනෙක් history එකේ ලොකු heist එකක් සැලසුම් කරනවා. Human emotions සහ unexpected twists නිසා plan එක complicated වෙනවා."
+},
 
-if(title && trailers[title]){
-    trailerBtn.href = trailers[title];
-    trailerBtn.style.display = "block";
-} else {
-    trailerBtn.style.display = "none";
+"Money Heist Korea (2022)":{
+poster:"images/mhkorea.jpg",
+genre:"Action, Crime, Drama",
+rating:"⭐ 8.1",
+description:"Korean setting එකක economic zone heist එකක්. Political tension සහ new character dynamics එක්ක remake version එක."
+},
+
+"American Manhunt (2025)":{
+poster:"images/manhunt.jpg",
+genre:"Crime, Documentary (English)",
+rating:"⭐ 7.6",
+description:"Osama bin Laden hunt එක documentary thriller style එකෙන් පෙන්නන real-life intelligence operation story එක."
+},
+
+"Marvel’s Daredevil (2015)":{
+poster:"images/daredevil.jpg",
+genre:"Action, Crime, Drama",
+rating:"⭐ 8.2",
+description:"Blind lawyer කෙනෙක් රෑට vigilante කෙනෙක් වෙලා crime වලට එරෙහිව සටන් කරන dark superhero series එක."
 }
 
-/* ---------------- POSTERS ---------------- */
-
-const images = {
-
-/* TV */
-"Prison Break (2005)" : "prisonbreak.jpg",
-"Money Heist (2021)" : "money.jpg",
-"Kohrra (2023)" : "kohrra.jpg",
-"Dark (2017)" : "dark.jpg",
-"Breaking Bad (2008)" : "breakingbad.jpg",
-
-/* MOVIES */
-"Inception (2010)" : "inception.jpg",
-"Interstellar (2014)" : "interstellar.jpg",
-"Joker (2019)" : "joker.jpg",
-"The Dark Knight (2008)" : "darkknight.jpg"
 };
 
-if(title && images[title]){
-    posterEl.src = "images/" + images[title];
+if(shows[title]){
+document.getElementById("poster").src = shows[title].poster;
+document.getElementById("title").innerText = title;
+document.getElementById("genre").innerText = "Genre: " + shows[title].genre;
+document.getElementById("rating").innerText = shows[title].rating;
+document.getElementById("description").innerText = shows[title].description;
+}else{
+document.querySelector(".container").innerHTML =
+"<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
 }
+
 </script>
 
 </body>
