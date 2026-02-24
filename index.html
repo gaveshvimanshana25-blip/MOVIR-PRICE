@@ -1,154 +1,158 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobile Movie UI</title>
+<title>Stream Hub</title>
 
 <style>
 body{
     margin:0;
+    background:#000;
     font-family:Arial, sans-serif;
-    background:#111;
     color:white;
+    overflow-x:hidden;
 }
 
-/* TOP BAR */
-.topbar{
-    position:fixed;
-    top:0;
-    width:100%;
-    background:black;
-    padding:15px;
-    font-size:20px;
-    font-weight:bold;
-    color:red;
-    z-index:100;
-}
-
-/* HERO */
+/* HERO TITLE */
 .hero{
-    margin-top:60px;
-    height:180px;
-    background:url('banner.jpg') center/cover;
-    position:relative;
+    padding:20px;
+    text-align:center;
 }
 
-.hero::after{
-    content:"";
+.hero h1{
+    font-size:26px;
+    color:#e50914;
+    letter-spacing:3px;
+}
+
+/* ===== BANNER ===== */
+.banner{
+    position:relative;
+    width:100%;
+    height:320px;
+    overflow:hidden;
+}
+
+/* SLIDES */
+.slide{
     position:absolute;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.5);
-}
-
-.hero-text{
-    position:absolute;
-    bottom:15px;
-    left:15px;
-    z-index:2;
-}
-
-.hero-text h2{
-    margin:0;
-}
-
-/* SECTION */
-.section{
-    padding:15px;
-}
-
-.section h3{
-    margin:10px 0;
-}
-
-/* HORIZONTAL SCROLL */
-.row{
-    display:flex;
-    overflow-x:auto;
-    gap:10px;
-    padding-bottom:10px;
-}
-
-.row::-webkit-scrollbar{
-    display:none;
-}
-
-/* MOVIE CARD */
-.movie{
-    min-width:110px;
-    height:160px;
-    background:#222;
-    border-radius:10px;
     background-size:cover;
     background-position:center;
-    flex-shrink:0;
+    opacity:0;
+    animation: cinematic 15s infinite;
 }
 
-/* BOTTOM NAV */
-.bottom-nav{
-    position:fixed;
+/* DIFFERENT DELAYS */
+.slide:nth-child(1){
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg");
+    animation-delay:0s;
+}
+
+.slide:nth-child(2){
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg");
+    animation-delay:5s;
+}
+
+.slide:nth-child(3){
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg");
+    animation-delay:10s;
+}
+
+/* CINEMATIC ANIMATION */
+@keyframes cinematic{
+
+    0%{
+        opacity:0;
+        transform:scale(1);
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    30%{
+        opacity:1;
+        transform:scale(1.08);
+    }
+
+    40%{
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(1);
+    }
+}
+
+/* DARK GRADIENT OVERLAY */
+.banner::after{
+    content:"";
+    position:absolute;
     bottom:0;
     width:100%;
-    background:black;
-    display:flex;
-    justify-content:space-around;
-    padding:10px 0;
-    z-index:100;
+    height:60%;
+    background:linear-gradient(to top, #000 10%, transparent 100%);
 }
 
-.bottom-nav div{
-    font-size:12px;
-    opacity:0.6;
+/* SECTIONS */
+.section{
+    padding:20px;
 }
 
-.bottom-nav div.active{
-    color:red;
-    opacity:1;
+.section h2{
+    font-size:18px;
+}
+
+/* CARDS */
+.card{
+    background:#111;
+    border-radius:8px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:15px;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    background:#e50914;
+    transform:scale(1.05);
+}
+
+/* MOBILE OPTIMIZATION */
+@media(max-width:600px){
+
+    .banner{
+        height:200px;
+    }
+
+    .hero h1{
+        font-size:20px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">CINEFLIX</div>
-
 <div class="hero">
-    <div class="hero-text">
-        <h2>Hridayam</h2>
-        <p>Trending Now</p>
-    </div>
+    <h1>STREAM HUB</h1>
+</div>
+
+<div class="banner">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
 </div>
 
 <div class="section">
-    <h3>🔥 Trending</h3>
-    <div class="row">
-        <div class="movie" style="background-image:url('m1.jpg')"></div>
-        <div class="movie" style="background-image:url('m2.jpg')"></div>
-        <div class="movie" style="background-image:url('m3.jpg')"></div>
-        <div class="movie" style="background-image:url('m4.jpg')"></div>
-    </div>
-
-    <h3>⭐ Top Rated</h3>
-    <div class="row">
-        <div class="movie" style="background-image:url('m5.jpg')"></div>
-        <div class="movie" style="background-image:url('m6.jpg')"></div>
-        <div class="movie" style="background-image:url('m7.jpg')"></div>
-        <div class="movie" style="background-image:url('m8.jpg')"></div>
-    </div>
-
-    <h3>🎬 New Releases</h3>
-    <div class="row">
-        <div class="movie" style="background-image:url('m9.jpg')"></div>
-        <div class="movie" style="background-image:url('m10.jpg')"></div>
-        <div class="movie" style="background-image:url('m11.jpg')"></div>
-    </div>
-</div>
-
-<div class="bottom-nav">
-    <div class="active">🏠 Home</div>
-    <div>🔍 Search</div>
-    <div>🎞 Movies</div>
-    <div>👤 Profile</div>
+    <h2>🎥 MOVIES</h2>
+    <div class="card">Trending Movies</div>
+    <div class="card">New Releases</div>
 </div>
 
 </body>
