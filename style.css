@@ -1,99 +1,79 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
 body {
-  background-color: #000;
-  color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
-  background: #111;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #111;
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: bold;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .logo span {
-  color: red;
+    color: red;
 }
 
-.search-box {
-  padding: 8px 15px;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  background: #222;
-  color: white;
+header input {
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
 }
 
-/* Hero Section */
 .hero {
-  height: 80vh;
-  background: url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, #222, black);
 }
 
-.overlay {
-  background: rgba(0, 0, 0, 0.7);
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
+.badge {
+    display: inline-block;
+    background: red;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 15px;
 }
 
-.premium {
-  background: red;
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 14px;
+.hero h1 {
+    font-size: 40px;
 }
 
-h1 {
-  font-size: 40px;
-  margin: 20px 0;
-}
-
-h1 span {
-  color: red;
+.hero span {
+    color: red;
 }
 
 .buttons button {
-  padding: 12px 25px;
-  margin: 10px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 .browse {
-  background: red;
-  color: white;
+    background: red;
+    color: white;
 }
 
 .proofs {
-  background: #222;
-  color: white;
+    background: #333;
+    color: white;
 }
 
-/* Latest Section */
-.latest {
-  padding: 40px 20px;
+.category {
+    padding: 30px;
 }
 
-.latest h2 span {
-  color: purple;
-}
+.category span {
+    color: red;
