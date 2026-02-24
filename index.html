@@ -1,61 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>TV Serious Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { background:#121212; color:#fff; font-family:Arial; margin:0; padding:20px; }
-        header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
-        .logo { font-size:24px; font-weight:bold; } .logo span{ color:#ffdd00; }
-        input[type=text]{ padding:5px; width:200px; border-radius:5px; border:none; }
-        .section { margin:40px 0; }
-        .section-header { display:flex; justify-content:space-between; align-items:center; }
-        .section-header h2 span { color:#ff00ff; } /* latest purple */
-        .section-header a { color:#ffdd00; text-decoration:none; font-size:16px; }
-        .section-header a:hover { text-decoration:underline; }
-        .store { text-align:center; margin-top:50px; }
-        .store h1 { color:#00ffcc; margin-bottom:10px; }
-        .store p { color:#aaa; margin-bottom:20px; }
-        /* WhatsApp button fixed */
-        .whatsapp-button {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index:1000;
-        }
-        .whatsapp-button img{ width:60px; height:60px; border-radius:50%; cursor:pointer; transition: transform 0.2s; }
-        .whatsapp-button img:hover{ transform: scale(1.1);}
-        footer{ text-align:center; margin-top:50px; color:#888; font-size:14px; }
-        .clickable-section { cursor:pointer; padding:20px; background:#1e1e1e; border-radius:10px; margin-bottom:20px; }
-        .clickable-section:hover { background:#333; }
-    </style>
+<meta charset="UTF-8">
+<title>TV & Movie Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+h1 {
+    text-align: center;
+    color: #00ffcc;
+    margin-bottom: 40px;
+}
+.section {
+    background: rgba(30,30,30,0.7);
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    text-align: center;
+}
+.section:hover {
+    background: rgba(50,50,50,0.8);
+    transform: scale(1.03);
+}
+h2 {
+    color: #ffdd00;
+    margin: 0 0 10px 0;
+}
+
+/* WhatsApp floating button */
+.whatsapp-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+}
+.whatsapp-button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.whatsapp-button img:hover {
+    transform: scale(1.1);
+}
+</style>
 </head>
 <body>
 
-<header>
-    <div class="logo">TV <span>SERIOUS</span></div>
-    <input type="text" placeholder="Search movies, series...">
-</header>
+<h1>🎬 TV & Movie Store</h1>
 
-<section class="section">
-    <div class="section-header clickable-section" onclick="window.location.href='tvshow.html'">
-        <h2><span class="purple">LATEST</span> TV SERIOUS</h2>
-        <span>VIEW ALL →</span>
-    </div>
-</section>
+<!-- TV SHOW Section -->
+<div class="section" onclick="window.location.href='tvshow.html'">
+    <h2>TV SHOWS</h2>
+    <p>Click to view all TV Shows</p>
+</div>
 
-<section class="section">
-    <div class="section-header clickable-section" onclick="window.location.href='movie.html'">
-        <h2><span class="red">FRESH</span> MOVIES</h2>
-        <span>VIEW ALL →</span>
-    </div>
-</section>
-
-<section class="store">
-    <h1>TV SERIOUS STORE</h1>
-    <p>The Next Generation of Entertainment</p>
-</section>
+<!-- Movie Section -->
+<div class="section" onclick="window.location.href='movie.html'">
+    <h2>MOVIES</h2>
+    <p>Click to view all Movies</p>
+</div>
 
 <!-- WhatsApp Floating Button -->
 <div class="whatsapp-button">
@@ -63,10 +78,6 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 </div>
-
-<footer>
-    SYSTEM DEVELOPED BY GAVESH VIMANSHANA 
-</footer>
 
 </body>
 </html>
