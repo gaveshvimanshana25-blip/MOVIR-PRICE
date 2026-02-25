@@ -130,12 +130,19 @@ body{
 }
 .card-content{ padding:10px; }
 .rating{ font-size:14px; color:gold; }
+
+/* NO RESULTS */
+#noResults{
+    text-align:center;
+    padding:20px;
+    opacity:0.6;
+    display:none;
+}
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
 <div id="loader">
     <div class="loader-box">
         <div class="spinner"></div>
@@ -158,66 +165,24 @@ body{
 </div>
 
 <div class="genres">
-    <button onclick="filterGenre('all')">All</button>
-    <button onclick="filterGenre('action')">Action</button>
-    <button onclick="filterGenre('crime')">Crime</button>
-    <button onclick="filterGenre('drama')">Drama</button>
-    <button onclick="filterGenre('comedy')">Comedy</button>
-    <button onclick="filterGenre('romance')">Romance</button>
-    <button onclick="filterGenre('sci fi')">Sci fi</button>
-    <button onclick="filterGenre('anime')">Anime</button>
+    <button onclick="setGenre('all')">All</button>
+    <button onclick="setGenre('action')">Action</button>
+    <button onclick="setGenre('crime')">Crime</button>
+    <button onclick="setGenre('drama')">Drama</button>
+    <button onclick="setGenre('comedy')">Comedy</button>
+    <button onclick="setGenre('anime')">Anime</button>
 </div>
 
-<div class="grid">
+<div class="grid" id="grid">
 
 <div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg">
 <div class="card-content"><h3>56 Days (2026)</h3><div class="rating">⭐ 4.4</div></div>
 </div>
 
-<div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg">
-<div class="card-content"><h3>Do You Wanna Partner (2025)</h3><div class="rating">⭐ 7.7</div></div>
-</div>
-
-<div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg">
-<div class="card-content"><h3>Motorvalley (2026)</h3><div class="rating">⭐ 6.8</div></div>
-</div>
-
-<div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg">
-<div class="card-content"><h3>Kohrra (2023)</h3><div class="rating">⭐ 6.9</div></div>
-</div>
-
-<div class="card" data-genre="drama" data-title="The Summer I Turned Pretty (2022)" onclick="goDetails('The Summer I Turned Pretty (2022)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg">
-<div class="card-content"><h3>The Summer I Turned Pretty</h3><div class="rating">⭐ 8.1</div></div>
-</div>
-
-<div class="card" data-genre="action" data-title="American Primeval (2025)" onclick="goDetails('American Primeval (2025)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg">
-<div class="card-content"><h3>American Primeval</h3><div class="rating">⭐ 7.6</div></div>
-</div>
-
-<div class="card" data-genre="crime" data-title="Yeh Kaali Kaali Ankhein (2022)" onclick="goDetails('Yeh Kaali Kaali Ankhein (2022)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg">
-<div class="card-content"><h3>Yeh Kaali Kaali Ankhein</h3><div class="rating">⭐ 9.1</div></div>
-</div>
-
-<div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)')">
+<div class="card" data-genre="action" data-title="Prison Break" onclick="goDetails('Prison Break')">
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg">
 <div class="card-content"><h3>Prison Break</h3><div class="rating">⭐ 8.1</div></div>
-</div>
-
-<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg">
-<div class="card-content"><h3>Money Heist</h3><div class="rating">⭐ 8.3</div></div>
-</div>
-
-<div class="card" data-genre="anime" data-title="SPY x FAMILY (2022)" onclick="goDetails('SPY x FAMILY (2022)')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg">
-<div class="card-content"><h3>SPY x FAMILY</h3><div class="rating">⭐ 6.7</div></div>
 </div>
 
 <div class="card" data-genre="anime" data-title="One-Punch Man" onclick="goDetails('One-Punch Man')">
@@ -225,23 +190,57 @@ body{
 <div class="card-content"><h3>One-Punch Man</h3><div class="rating">⭐ 6.1</div></div>
 </div>
 
-<div class="card" data-genre="sci fi" data-title="Stranger Things" onclick="goDetails('Stranger Things')">
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg">
-<div class="card-content"><h3>Stranger Things</h3><div class="rating">⭐ 8.6</div></div>
 </div>
 
-</div>
+<div id="noResults">No results found</div>
 
 <script>
+let activeGenre = "all";
+
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("active");
 }
+
 function goDetails(title){
     window.location.href="details.html?title="+encodeURIComponent(title);
 }
+
 window.addEventListener("load", ()=>{
     document.getElementById("loader").classList.add("hide");
 });
+
+const searchInput = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const noResults = document.getElementById("noResults");
+
+searchInput.addEventListener("keyup", applyFilters);
+
+function setGenre(genre){
+    activeGenre = genre;
+    applyFilters();
+}
+
+function applyFilters(){
+    const searchValue = searchInput.value.toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card=>{
+        const title = card.dataset.title.toLowerCase();
+        const genre = card.dataset.genre;
+
+        const matchesSearch = title.includes(searchValue);
+        const matchesGenre = (activeGenre === "all" || genre === activeGenre);
+
+        if(matchesSearch && matchesGenre){
+            card.style.display = "block";
+            visibleCount++;
+        }else{
+            card.style.display = "none";
+        }
+    });
+
+    noResults.style.display = visibleCount ? "none" : "block";
+}
 </script>
 
 </body>
