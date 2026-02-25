@@ -26,6 +26,45 @@ body.light .side-menu a{
     border-bottom:1px solid #ddd;
 }
 
+/* LOADER */
+#loader{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:5000;
+    transition:0.4s;
+}
+.loader-box{
+    text-align:center;
+}
+.spinner{
+    width:46px;
+    height:46px;
+    border:4px solid rgba(255,255,255,0.2);
+    border-top:4px solid #e50914;
+    border-radius:50%;
+    animation:spin 0.8s linear infinite;
+    margin:auto;
+}
+.loading-text{
+    margin-top:12px;
+    font-size:13px;
+    letter-spacing:2px;
+    color:white;
+    opacity:0.85;
+}
+@keyframes spin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+#loader.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
 /* MENU ICON */
 .menu-icon{
     position:fixed;
@@ -79,7 +118,6 @@ body.light .side-menu a{
     overflow:hidden;
     touch-action:pan-y;
 }
-
 .slide{
     position:absolute;
     width:100%;
@@ -90,12 +128,10 @@ body.light .side-menu a{
     transform:scale(1);
     transition:opacity 0.6s ease, transform 5s ease;
 }
-
 .slide.active{
     opacity:1;
     transform:scale(1.05);
 }
-
 .slide::after{
     content:"";
     position:absolute;
@@ -118,22 +154,9 @@ body.light .side-menu a{
     transform:translateY(0);
     opacity:1;
 }
-
-.tag{
-    color:#e50914;
-    font-size:11px;
-}
-
-.title{
-    font-size:20px;
-    font-weight:bold;
-    margin:4px 0;
-}
-
-.desc{
-    font-size:12px;
-    opacity:0.85;
-}
+.tag{ color:#e50914; font-size:11px; }
+.title{ font-size:20px; font-weight:bold; margin:4px 0; }
+.desc{ font-size:12px; opacity:0.85; }
 
 /* BUTTON */
 .btn{
@@ -167,12 +190,8 @@ body.light .side-menu a{
 .dot.active{ background:#e50914; }
 
 /* SECTIONS */
-.section{
-    padding:18px 14px 6px;
-}
-.section h2{
-    font-size:15px;
-}
+.section{ padding:18px 14px 6px; }
+.section h2{ font-size:15px; }
 
 /* CARD */
 .card{
@@ -266,6 +285,14 @@ body.light .side-menu a{
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-box">
+        <div class="spinner"></div>
+        <div class="loading-text">LOADING CINZOON HUB</div>
+    </div>
+</div>
+
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
 
@@ -275,7 +302,6 @@ body.light .side-menu a{
     <a href="movies.html">🎬 Movies</a>
 </div>
 
-<!-- HERO -->
 <div class="hero" id="hero">
 
     <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg')">
@@ -312,7 +338,6 @@ body.light .side-menu a{
     </div>
 </div>
 
-<!-- TV -->
 <div class="section">
     <h2>📺 TV SHOWS</h2>
     <div class="card">
@@ -320,7 +345,6 @@ body.light .side-menu a{
     </div>
 </div>
 
-<!-- MOVIES -->
 <div class="section">
     <h2>🎬 MOVIES</h2>
     <div class="card">
@@ -334,7 +358,6 @@ body.light .side-menu a{
 SYSTEM DEVELOP BY GAVESH VIMANSHANA
 </div>
 
-<!-- TRAILER MODAL -->
 <div class="modal" id="modal">
     <div class="modal-box">
         <iframe id="frame"></iframe>
@@ -348,7 +371,6 @@ let dots = document.querySelectorAll(".dot");
 let index = 0;
 let startX = 0;
 
-/* SHOW */
 function showSlide(i){
     slides.forEach(s => s.classList.remove("active"));
     dots.forEach(d => d.classList.remove("active"));
@@ -356,14 +378,12 @@ function showSlide(i){
     dots[i].classList.add("active");
 }
 
-/* AUTO */
 setInterval(()=>{
     index++;
     if(index >= slides.length) index = 0;
     showSlide(index);
 }, 4000);
 
-/* SWIPE */
 const hero = document.getElementById("hero");
 
 hero.addEventListener("touchstart", e=>{
@@ -372,7 +392,6 @@ hero.addEventListener("touchstart", e=>{
 
 hero.addEventListener("touchend", e=>{
     let diff = startX - e.changedTouches[0].clientX;
-
     if(Math.abs(diff) > 50){
         if(diff > 0){
             index++;
@@ -385,12 +404,10 @@ hero.addEventListener("touchend", e=>{
     }
 });
 
-/* MENU */
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("active");
 }
 
-/* MODE */
 function toggleMode(){
     document.body.classList.toggle("light");
     localStorage.setItem("mode",
@@ -399,7 +416,6 @@ function toggleMode(){
 if(localStorage.getItem("mode")==="light")
     document.body.classList.add("light");
 
-/* TRAILER */
 function openTrailer(url){
     document.getElementById("modal").classList.add("active");
     document.getElementById("frame").src = url + "?autoplay=1";
@@ -408,6 +424,11 @@ function closeTrailer(){
     document.getElementById("modal").classList.remove("active");
     document.getElementById("frame").src = "";
 }
+
+/* LOADER */
+window.addEventListener("load", ()=>{
+    document.getElementById("loader").classList.add("hide");
+});
 </script>
 
 </body>
