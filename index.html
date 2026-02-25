@@ -26,6 +26,37 @@ body.light .side-menu a{
     border-bottom:1px solid #ddd;
 }
 
+/* ===== MUSIC BUTTON ADD ===== */
+.music-float{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    pointer-events:none;
+    z-index:5;
+}
+.music-btn{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:58px;
+    color:white;
+    box-shadow:0 0 35px rgba(0,0,0,0.6);
+    pointer-events:auto;
+    transition:0.3s;
+    cursor:pointer;
+}
+.music-btn:hover{
+    transform:scale(1.05);
+}
+/* ===== END ADD ===== */
+
 /* LOADER */
 #loader{
     position:fixed;
@@ -116,7 +147,6 @@ body.light .side-menu a{
     position:relative;
     height:240px;
     overflow:hidden;
-    touch-action:pan-y;
 }
 .slide{
     position:absolute;
@@ -125,69 +155,9 @@ body.light .side-menu a{
     background-size:cover;
     background-position:center;
     opacity:0;
-    transform:scale(1);
-    transition:opacity 0.6s ease, transform 5s ease;
+    transition:0.6s;
 }
-.slide.active{
-    opacity:1;
-    transform:scale(1.05);
-}
-.slide::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.2));
-}
-
-/* TEXT */
-.content{
-    position:absolute;
-    left:18px;
-    bottom:22px;
-    z-index:2;
-    max-width:65%;
-    transform:translateY(15px);
-    opacity:0;
-    transition:0.4s;
-}
-.slide.active .content{
-    transform:translateY(0);
-    opacity:1;
-}
-.tag{ color:#e50914; font-size:11px; }
-.title{ font-size:20px; font-weight:bold; margin:4px 0; }
-.desc{ font-size:12px; opacity:0.85; }
-
-/* BUTTON */
-.btn{
-    display:inline-block;
-    margin-top:8px;
-    background:#e50914;
-    padding:7px 16px;
-    border-radius:20px;
-    font-size:12px;
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-}
-
-/* DOTS */
-.dots{
-    position:absolute;
-    bottom:6px;
-    width:100%;
-    text-align:center;
-    z-index:3;
-}
-.dot{
-    display:inline-block;
-    width:18px;
-    height:3px;
-    background:gray;
-    margin:2px;
-    border-radius:10px;
-}
-.dot.active{ background:#e50914; }
+.slide.active{ opacity:1; }
 
 /* SECTIONS */
 .section{ padding:18px 14px 6px; }
@@ -202,32 +172,9 @@ body.light .side-menu a{
     text-align:center;
     transition:0.3s;
 }
-.card a{
-    text-decoration:none;
-    color:inherit;
-    font-weight:bold;
-}
 .card:hover{
     background:#e50914;
     transform:scale(1.03);
-}
-
-/* WHATSAPP */
-.whatsapp{
-    position:fixed;
-    bottom:65px;
-    right:18px;
-    width:52px;
-    height:52px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:24px;
-    text-decoration:none;
-    color:white;
-    z-index:999;
 }
 
 /* FOOTER */
@@ -240,50 +187,22 @@ body.light .side-menu a{
     padding:10px 5px;
     font-size:11px;
     font-weight:bold;
-    letter-spacing:1px;
     color:white;
-}
-
-/* MODAL */
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.9);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    opacity:0;
-    pointer-events:none;
-    transition:0.3s;
-    z-index:99;
-}
-.modal.active{
-    opacity:1;
-    pointer-events:auto;
-}
-.modal-box{
-    width:92%;
-    max-width:420px;
-    background:#111;
-    border-radius:12px;
-    overflow:hidden;
-}
-.modal iframe{
-    width:100%;
-    height:220px;
-    border:none;
-}
-.close{
-    background:#e50914;
-    text-align:center;
-    padding:10px;
-    cursor:pointer;
-    font-weight:bold;
 }
 </style>
 </head>
 
 <body>
+
+<!-- ===== MUSIC BUTTON ADD ===== -->
+<div class="music-float">
+    <div class="music-btn" onclick="toggleMusic()">♪</div>
+</div>
+
+<audio id="bgMusic">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+<!-- ===== END ADD ===== -->
 
 <!-- LOADER -->
 <div id="loader">
@@ -302,127 +221,35 @@ body.light .side-menu a{
     <a href="movies.html">🎬 Movies</a>
 </div>
 
-<div class="hero" id="hero">
-
-    <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg')">
-        <div class="content">
-            <div class="tag">NEW ARRIVAL</div>
-            <div class="title">56 Days (2026)</div>
-            <div class="desc">Romantic drama film.</div>
-            <a href="#" class="btn" onclick="openTrailer('https://youtu.be/P5EhHeF99wg')">▶ Trailer</a>
-        </div>
-    </div>
-
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg')">
-        <div class="content">
-            <div class="tag">TRENDING</div>
-            <div class="title">Do You Wanna Partner (2025)</div>
-            <div class="desc">Sci-Fi space adventure.</div>
-            <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/zSWdZVtXT7E')">▶ Trailer</a>
-        </div>
-    </div>
-
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg')">
-        <div class="content">
-            <div class="tag">POPULAR</div>
-            <div class="title">Motorvalley (2026)</div>
-            <div class="desc">Dark psychological thriller.</div>
-            <a href="#" class="btn" onclick="openTrailer('https://youtu.be/vD39Kb3eXuU')">▶ Trailer</a>
-        </div>
-    </div>
-
-    <div class="dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
+<div class="hero">
+    <div class="slide active" style="background:#222"></div>
 </div>
 
 <div class="section">
     <h2>📺 TV SHOWS</h2>
-    <div class="card">
-        <a href="tv.html">Go to TV Shows</a>
-    </div>
+    <div class="card">Go to TV Shows</div>
 </div>
-
-<div class="section">
-    <h2>🎬 MOVIES</h2>
-    <div class="card">
-        <a href="movies.html">Go to Movies</a>
-    </div>
-</div>
-
-<a href="https://wa.me/94703490292" class="whatsapp">💬</a>
 
 <div class="footer">
 SYSTEM DEVELOP BY GAVESH VIMANSHANA
 </div>
 
-<div class="modal" id="modal">
-    <div class="modal-box">
-        <iframe id="frame"></iframe>
-        <div class="close" onclick="closeTrailer()">CLOSE</div>
-    </div>
-</div>
-
 <script>
-let slides = document.querySelectorAll(".slide");
-let dots = document.querySelectorAll(".dot");
-let index = 0;
-let startX = 0;
-
-function showSlide(i){
-    slides.forEach(s => s.classList.remove("active"));
-    dots.forEach(d => d.classList.remove("active"));
-    slides[i].classList.add("active");
-    dots[i].classList.add("active");
-}
-
-setInterval(()=>{
-    index++;
-    if(index >= slides.length) index = 0;
-    showSlide(index);
-}, 4000);
-
-const hero = document.getElementById("hero");
-
-hero.addEventListener("touchstart", e=>{
-    startX = e.touches[0].clientX;
-});
-
-hero.addEventListener("touchend", e=>{
-    let diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 50){
-        if(diff > 0){
-            index++;
-            if(index >= slides.length) index = 0;
-        }else{
-            index--;
-            if(index < 0) index = slides.length - 1;
-        }
-        showSlide(index);
-    }
-});
-
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("active");
 }
 
 function toggleMode(){
     document.body.classList.toggle("light");
-    localStorage.setItem("mode",
-        document.body.classList.contains("light") ? "light":"dark");
 }
-if(localStorage.getItem("mode")==="light")
-    document.body.classList.add("light");
 
-function openTrailer(url){
-    document.getElementById("modal").classList.add("active");
-    document.getElementById("frame").src = url + "?autoplay=1";
-}
-function closeTrailer(){
-    document.getElementById("modal").classList.remove("active");
-    document.getElementById("frame").src = "";
+function toggleMusic(){
+    const music = document.getElementById("bgMusic");
+    if(music.paused){
+        music.play();
+    }else{
+        music.pause();
+    }
 }
 
 /* LOADER */
