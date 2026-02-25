@@ -24,9 +24,7 @@ body{
     z-index:5000;
     transition:0.4s;
 }
-.loader-box{
-    text-align:center;
-}
+.loader-box{ text-align:center; }
 .spinner{
     width:46px;
     height:46px;
@@ -60,7 +58,6 @@ body{
     cursor:pointer;
     z-index:1001;
 }
-
 .side-menu{
     position:fixed;
     top:0;
@@ -79,12 +76,8 @@ body{
     text-decoration:none;
     border-bottom:1px solid #222;
 }
-.side-menu a:hover{
-    background:#e50914;
-}
-.side-menu.active{
-    left:0;
-}
+.side-menu a:hover{ background:#e50914; }
+.side-menu.active{ left:0; }
 
 .header{
     padding:15px;
@@ -94,9 +87,7 @@ body{
     text-align:center;
 }
 
-.search-box{
-    padding:15px;
-}
+.search-box{ padding:15px; }
 .search-box input{
     width:100%;
     padding:10px;
@@ -105,9 +96,7 @@ body{
     font-size:16px;
 }
 
-.genres{
-    padding:10px;
-}
+.genres{ padding:10px; }
 .genres button{
     margin:5px;
     padding:8px 12px;
@@ -117,9 +106,7 @@ body{
     color:white;
     cursor:pointer;
 }
-.genres button:hover{
-    background:#e50914;
-}
+.genres button:hover{ background:#e50914; }
 
 .grid{
     display:grid;
@@ -135,21 +122,14 @@ body{
     cursor:pointer;
     transition:0.3s;
 }
-.card:hover{
-    transform:scale(1.05);
-}
+.card:hover{ transform:scale(1.05); }
 .card img{
     width:100%;
     height:200px;
     object-fit:cover;
 }
-.card-content{
-    padding:10px;
-}
-.rating{
-    font-size:14px;
-    color:gold;
-}
+.card-content{ padding:10px; }
+.rating{ font-size:14px; color:gold; }
 </style>
 </head>
 
@@ -192,26 +172,62 @@ body{
 
 <div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg">
-<div class="card-content">
-<h3>56 Days (2026)</h3>
-<div class="rating">⭐ 4.4</div>
-</div>
+<div class="card-content"><h3>56 Days (2026)</h3><div class="rating">⭐ 4.4</div></div>
 </div>
 
 <div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg">
-<div class="card-content">
-<h3>Do You Wanna Partner (2025)</h3>
-<div class="rating">⭐ 7.7</div>
-</div>
+<div class="card-content"><h3>Do You Wanna Partner (2025)</h3><div class="rating">⭐ 7.7</div></div>
 </div>
 
 <div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg">
-<div class="card-content">
-<h3>Motorvalley (2026)</h3>
-<div class="rating">⭐ 6.8</div>
+<div class="card-content"><h3>Motorvalley (2026)</h3><div class="rating">⭐ 6.8</div></div>
 </div>
+
+<div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg">
+<div class="card-content"><h3>Kohrra (2023)</h3><div class="rating">⭐ 6.9</div></div>
+</div>
+
+<div class="card" data-genre="drama" data-title="The Summer I Turned Pretty (2022)" onclick="goDetails('The Summer I Turned Pretty (2022)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg">
+<div class="card-content"><h3>The Summer I Turned Pretty</h3><div class="rating">⭐ 8.1</div></div>
+</div>
+
+<div class="card" data-genre="action" data-title="American Primeval (2025)" onclick="goDetails('American Primeval (2025)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg">
+<div class="card-content"><h3>American Primeval</h3><div class="rating">⭐ 7.6</div></div>
+</div>
+
+<div class="card" data-genre="crime" data-title="Yeh Kaali Kaali Ankhein (2022)" onclick="goDetails('Yeh Kaali Kaali Ankhein (2022)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg">
+<div class="card-content"><h3>Yeh Kaali Kaali Ankhein</h3><div class="rating">⭐ 9.1</div></div>
+</div>
+
+<div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg">
+<div class="card-content"><h3>Prison Break</h3><div class="rating">⭐ 8.1</div></div>
+</div>
+
+<div class="card" data-genre="crime" data-title="Money Heist (2021)" onclick="goDetails('Money Heist (2021)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg">
+<div class="card-content"><h3>Money Heist</h3><div class="rating">⭐ 8.3</div></div>
+</div>
+
+<div class="card" data-genre="anime" data-title="SPY x FAMILY (2022)" onclick="goDetails('SPY x FAMILY (2022)')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg">
+<div class="card-content"><h3>SPY x FAMILY</h3><div class="rating">⭐ 6.7</div></div>
+</div>
+
+<div class="card" data-genre="anime" data-title="One-Punch Man" onclick="goDetails('One-Punch Man')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg">
+<div class="card-content"><h3>One-Punch Man</h3><div class="rating">⭐ 6.1</div></div>
+</div>
+
+<div class="card" data-genre="sci fi" data-title="Stranger Things" onclick="goDetails('Stranger Things')">
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg">
+<div class="card-content"><h3>Stranger Things</h3><div class="rating">⭐ 8.6</div></div>
 </div>
 
 </div>
@@ -220,32 +236,9 @@ body{
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("active");
 }
-
 function goDetails(title){
     window.location.href="details.html?title="+encodeURIComponent(title);
 }
-
-document.getElementById("search").addEventListener("keyup", function(){
-    let value=this.value.toLowerCase();
-    let cards=document.querySelectorAll(".card");
-    cards.forEach(card=>{
-        let title=card.getAttribute("data-title").toLowerCase();
-        card.style.display=title.includes(value)?"block":"none";
-    });
-});
-
-function filterGenre(genre){
-    let cards=document.querySelectorAll(".card");
-    cards.forEach(card=>{
-        if(genre==="all"){
-            card.style.display="block";
-        }else{
-            card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
-        }
-    });
-}
-
-/* LOADER HIDE */
 window.addEventListener("load", ()=>{
     document.getElementById("loader").classList.add("hide");
 });
