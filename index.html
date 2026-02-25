@@ -14,7 +14,7 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== TOP LOADING LINE ===== */
+/* TOP LOADER */
 #topLoader{
     position:fixed;
     top:0;
@@ -26,7 +26,7 @@ body{
     transition:width 0.8s ease;
 }
 
-/* ===== MENU ICON ===== */
+/* MENU */
 .menu-icon{
     position:fixed;
     top:20px;
@@ -36,7 +36,6 @@ body{
     z-index:1001;
 }
 
-/* ===== SIDE MENU ===== */
 .side-menu{
     position:fixed;
     top:0;
@@ -92,35 +91,15 @@ body{
     background-size:cover;
     background-position:center;
     opacity:0;
-    animation-name:fade, zoom;
-    animation-duration:25s;
-    animation-iteration-count:infinite;
+    animation:fade 30s infinite, zoom 30s infinite;
 }
 
-.slide:nth-child(1){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0004.jpg");
-    animation-delay:0s;
-}
-
-.slide:nth-child(2){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg");
-    animation-delay:5s;
-}
-
-.slide:nth-child(3){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg");
-    animation-delay:10s;
-}
-
-.slide:nth-child(4){
-    background-image:url("https://images.unsplash.com/photo-1524985069026-dd778a71c7b4");
-    animation-delay:15s;
-}
-
-.slide:nth-child(5){
-    background-image:url("https://images.unsplash.com/photo-1505685296765-3a2736de412f");
-    animation-delay:20s;
-}
+.slide:nth-child(1){ background-image:url("https://images.unsplash.com/photo-1505685296765-3a2736de412f"); animation-delay:0s; }
+.slide:nth-child(2){ background-image:url("https://images.unsplash.com/photo-1524985069026-dd778a71c7b4"); animation-delay:5s; }
+.slide:nth-child(3){ background-image:url("https://images.unsplash.com/photo-1497032628192-86f99bcd76bc"); animation-delay:10s; }
+.slide:nth-child(4){ background-image:url("https://images.unsplash.com/photo-1517602302552-471fe67acf66"); animation-delay:15s; }
+.slide:nth-child(5){ background-image:url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba"); animation-delay:20s; }
+.slide:nth-child(6){ background-image:url("https://images.unsplash.com/photo-1478720568477-152d9b164e26"); animation-delay:25s; }
 
 @keyframes fade{
     0%{opacity:0;}
@@ -132,10 +111,11 @@ body{
 
 @keyframes zoom{
     0%{transform:scale(1);}
-    50%{transform:scale(1.1);}
+    50%{transform:scale(1.08);}
     100%{transform:scale(1);}
 }
 
+/* Overlay */
 .banner::after{
     content:"";
     position:absolute;
@@ -143,6 +123,45 @@ body{
     width:100%;
     height:60%;
     background:linear-gradient(to top, #000 10%, transparent 100%);
+    z-index:2;
+}
+
+/* Movie Text */
+.banner-content{
+    position:absolute;
+    bottom:35px;
+    left:25px;
+    z-index:3;
+    font-size:26px;
+    font-weight:bold;
+    animation:textSwitch 30s infinite;
+}
+
+@keyframes textSwitch{
+    0%, 14%{opacity:1;}      /* Movie 1 */
+    15%, 100%{opacity:0;}
+}
+
+.banner-content span{
+    position:absolute;
+    left:0;
+    opacity:0;
+    animation:showText 30s infinite;
+}
+
+.banner-content span:nth-child(1){ animation-delay:0s; }
+.banner-content span:nth-child(2){ animation-delay:5s; }
+.banner-content span:nth-child(3){ animation-delay:10s; }
+.banner-content span:nth-child(4){ animation-delay:15s; }
+.banner-content span:nth-child(5){ animation-delay:20s; }
+.banner-content span:nth-child(6){ animation-delay:25s; }
+
+@keyframes showText{
+    0%{opacity:0; transform:translateY(10px);}
+    10%{opacity:1; transform:translateY(0);}
+    30%{opacity:1;}
+    40%{opacity:0;}
+    100%{opacity:0;}
 }
 
 /* SECTION */
@@ -155,7 +174,6 @@ body{
     margin-bottom:15px;
 }
 
-/* CARD */
 .card{
     background:#111;
     border-radius:8px;
@@ -225,6 +243,16 @@ body{
     <div class="slide"></div>
     <div class="slide"></div>
     <div class="slide"></div>
+    <div class="slide"></div>
+
+    <div class="banner-content">
+        <span>Hridayam</span>
+        <span>Interstellar</span>
+        <span>Joker</span>
+        <span>Inception</span>
+        <span>Avatar</span>
+        <span>Doctor Strange</span>
+    </div>
 </div>
 
 <div class="section">
@@ -241,9 +269,7 @@ body{
     </div>
 </div>
 
-<a href="https://wa.me/947XXXXXXXX" class="whatsapp" target="_blank">
-💬
-</a>
+<a href="https://wa.me/947XXXXXXXX" class="whatsapp" target="_blank">💬</a>
 
 <div class="footer">
 SYSTEM DEVELOP BY GAVESH VIMANSHANA
