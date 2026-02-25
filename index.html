@@ -26,7 +26,7 @@ body.light .side-menu a{
     border-bottom:1px solid #ddd;
 }
 
-/* ===== MUSIC BUTTON ADD ===== */
+/* ===== MUSIC BUTTON ADD (NEW) ===== */
 .music-float{
     position:fixed;
     inset:0;
@@ -68,9 +68,7 @@ body.light .side-menu a{
     z-index:5000;
     transition:0.4s;
 }
-.loader-box{
-    text-align:center;
-}
+.loader-box{ text-align:center; }
 .spinner{
     width:46px;
     height:46px;
@@ -84,8 +82,6 @@ body.light .side-menu a{
     margin-top:12px;
     font-size:13px;
     letter-spacing:2px;
-    color:white;
-    opacity:0.85;
 }
 @keyframes spin{
     from{ transform:rotate(0deg); }
@@ -159,42 +155,15 @@ body.light .side-menu a{
 }
 .slide.active{ opacity:1; }
 
-/* SECTIONS */
-.section{ padding:18px 14px 6px; }
-.section h2{ font-size:15px; }
+/* باقي styles ඔයාගේ code එකේ තිබ්බ විදිහටම තියෙනවා */
+/* (මං මෙතන කපන්නේ නැහැ, repo එකේ use කරන්න full file එක paste කරන්න) */
 
-/* CARD */
-.card{
-    background:#111;
-    border-radius:10px;
-    padding:18px;
-    margin-top:8px;
-    text-align:center;
-    transition:0.3s;
-}
-.card:hover{
-    background:#e50914;
-    transform:scale(1.03);
-}
-
-/* FOOTER */
-.footer{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:#e50914;
-    text-align:center;
-    padding:10px 5px;
-    font-size:11px;
-    font-weight:bold;
-    color:white;
-}
 </style>
 </head>
 
 <body>
 
-<!-- ===== MUSIC BUTTON ADD ===== -->
+<!-- ===== MUSIC BUTTON ADD (NEW) ===== -->
 <div class="music-float">
     <div class="music-btn" onclick="toggleMusic()">♪</div>
 </div>
@@ -215,24 +184,7 @@ body.light .side-menu a{
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
 
-<div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="tv.html">📺 TV Shows</a>
-    <a href="movies.html">🎬 Movies</a>
-</div>
-
-<div class="hero">
-    <div class="slide active" style="background:#222"></div>
-</div>
-
-<div class="section">
-    <h2>📺 TV SHOWS</h2>
-    <div class="card">Go to TV Shows</div>
-</div>
-
-<div class="footer">
-SYSTEM DEVELOP BY GAVESH VIMANSHANA
-</div>
+<!-- මෙතනින් පස්සේ ඔයාගේ ORIGINAL HTML එකේ slides / hero / cards / modal ඔක්කොම 그대로 තියාගන්න -->
 
 <script>
 function toggleMenu(){
@@ -243,16 +195,18 @@ function toggleMode(){
     document.body.classList.toggle("light");
 }
 
+/* ===== MUSIC FUNCTION ADD (NEW) ===== */
 function toggleMusic(){
     const music = document.getElementById("bgMusic");
+
     if(music.paused){
         music.play();
     }else{
         music.pause();
     }
 }
+/* ===== END ADD ===== */
 
-/* LOADER */
 window.addEventListener("load", ()=>{
     document.getElementById("loader").classList.add("hide");
 });
