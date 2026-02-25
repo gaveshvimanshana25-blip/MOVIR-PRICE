@@ -93,7 +93,7 @@ body{
     background-position:center;
     opacity:0;
     animation-name:fade, zoom;
-    animation-duration:15s;
+    animation-duration:25s;
     animation-iteration-count:infinite;
 }
 
@@ -110,6 +110,16 @@ body{
 .slide:nth-child(3){
     background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg");
     animation-delay:10s;
+}
+
+.slide:nth-child(4){
+    background-image:url("https://images.unsplash.com/photo-1524985069026-dd778a71c7b4");
+    animation-delay:15s;
+}
+
+.slide:nth-child(5){
+    background-image:url("https://images.unsplash.com/photo-1505685296765-3a2736de412f");
+    animation-delay:20s;
 }
 
 @keyframes fade{
@@ -195,13 +205,10 @@ body{
 </head>
 <body>
 
-<!-- LOADING LINE -->
 <div id="topLoader"></div>
 
-<!-- MENU ICON -->
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
-<!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
     <a href="#" onclick="startLoading(event,'index.html')">🏠 Home</a>
     <a href="#" onclick="startLoading(event,'tv.html')">📺 TV Shows</a>
@@ -213,6 +220,8 @@ body{
 </div>
 
 <div class="banner">
+    <div class="slide"></div>
+    <div class="slide"></div>
     <div class="slide"></div>
     <div class="slide"></div>
     <div class="slide"></div>
