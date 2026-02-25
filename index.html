@@ -12,56 +12,6 @@ body{
     font-family:Arial, sans-serif;
     color:white;
     overflow-x:hidden;
-    transition: background 0.3s, color 0.3s;
-}
-
-/* ===== LIGHT MODE ===== */
-body.light{
-    background:white;
-    color:black;
-}
-
-body.light .side-menu{
-    background:#f2f2f2;
-}
-
-body.light .side-menu a{
-    color:black;
-    border-bottom:1px solid #ddd;
-}
-
-body.light .card{
-    background:#f2f2f2;
-    color:black;
-}
-
-body.light .footer{
-    border-top:1px solid #ddd;
-}
-
-/* ===== DARK MODE ===== */
-body.dark{
-    background:#000;
-    color:white;
-}
-
-body.dark .card{
-    background:#111;
-}
-
-/* TOGGLE BUTTON */
-.toggle-btn{
-    position:fixed;
-    top:20px;
-    right:20px;
-    padding:8px 14px;
-    border:none;
-    border-radius:20px;
-    cursor:pointer;
-    font-weight:bold;
-    background:#e50914;
-    color:white;
-    z-index:9999;
 }
 
 /* ===== TOP LOADING LINE ===== */
@@ -153,12 +103,12 @@ body.dark .card{
 }
 
 .slide:nth-child(2){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg");
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/IMG-20260222-WA0006(1).jpg");
     animation-delay:5s;
 }
 
 .slide:nth-child(3){
-    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg");
+    background-image:url("https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/teen-shows-1582317535.jpg");
     animation-delay:10s;
 }
 
@@ -208,14 +158,13 @@ body.dark .card{
 
 .card a{
     text-decoration:none;
-    color:inherit;
+    color:white;
     font-weight:bold;
 }
 
 .card:hover{
     background:#e50914;
     transform:scale(1.05);
-    color:white;
 }
 
 /* WhatsApp */
@@ -244,14 +193,15 @@ body.dark .card{
 }
 </style>
 </head>
-<body class="dark">
+<body>
 
-<button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
-
+<!-- LOADING LINE -->
 <div id="topLoader"></div>
 
+<!-- MENU ICON -->
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
+<!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
     <a href="#" onclick="startLoading(event,'index.html')">🏠 Home</a>
     <a href="#" onclick="startLoading(event,'tv.html')">📺 TV Shows</a>
@@ -282,7 +232,9 @@ body.dark .card{
     </div>
 </div>
 
-<a href="https://wa.me/94703490292" class="whatsapp" target="_blank">💬</a>
+<a href="https://wa.me/947XXXXXXXX" class="whatsapp" target="_blank">
+💬
+</a>
 
 <div class="footer">
 SYSTEM DEVELOP BY GAVESH VIMANSHANA
@@ -301,21 +253,6 @@ function startLoading(event, url){
     setTimeout(function(){
         window.location.href = url;
     }, 800);
-}
-
-/* DARK / LIGHT TOGGLE */
-function toggleMode(){
-    document.body.classList.toggle("light");
-    document.body.classList.toggle("dark");
-
-    localStorage.setItem("mode", document.body.classList.contains("light") ? "light" : "dark");
-}
-
-/* LOAD SAVED MODE */
-const savedMode = localStorage.getItem("mode");
-if(savedMode){
-    document.body.classList.remove("light","dark");
-    document.body.classList.add(savedMode);
 }
 </script>
 
