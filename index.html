@@ -174,9 +174,20 @@ color:#e50914;
 transform:scale(1.2);
 }
 
-.copyright{
-font-size:11px;
-opacity:0.6;
+/* Popup */
+.music-popup{
+position:fixed;
+bottom:100px;
+left:50%;
+transform:translateX(-50%);
+background:#e50914;
+color:white;
+padding:12px 22px;
+border-radius:25px;
+z-index:3000;
+display:none;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.5);
 }
 </style>
 </head>
@@ -222,22 +233,24 @@ opacity:0.6;
 </a>
 </div>
 
-<p class="copyright">
+<p style="font-size:11px;opacity:0.6;">
 © 2026 GAVESH VIMANSHANA | All Rights Reserved
 </p>
 </div>
 
-<!-- Music Button -->
+<!-- Floating Buttons -->
 <div class="floating-btn music-btn" onclick="toggleMusic()">
 <i id="musicIcon" class="fa-solid fa-play"></i>
 </div>
 
-<!-- WhatsApp Floating -->
 <a href="https://wa.me/94703490292" target="_blank" class="floating-btn whatsapp-btn">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- FIXED AUDIO LINK -->
+<!-- Music Popup -->
+<div id="musicPopup" class="music-popup">🎵 Tap to Start Music</div>
+
+<!-- Audio -->
 <audio id="bgMusic" loop>
 <source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/AUD-20240527-WA0004.mp3" type="audio/mpeg">
 </audio>
@@ -262,17 +275,20 @@ document.body.classList.toggle("light");
 
 var music=document.getElementById("bgMusic");
 var icon=document.getElementById("musicIcon");
+var popup=document.getElementById("musicPopup");
 
 window.addEventListener("load", function(){
 setTimeout(function(){
-music.muted = true;
-music.play().then(()=>{
-music.muted = false;
-icon.classList.remove("fa-play");
-icon.classList.add("fa-pause");
-}).catch(()=>{});
+popup.style.display="block";
 },3000);
 });
+
+popup.onclick=function(){
+music.play();
+icon.classList.remove("fa-play");
+icon.classList.add("fa-pause");
+popup.style.display="none";
+};
 
 function toggleMusic(){
 if(music.paused){
