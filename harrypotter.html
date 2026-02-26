@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harry Potter Collection</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    font-family:Arial, sans-serif;
+    color:white;
+}
+
+.header{
+    padding:15px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+    background:#111;
+    border-bottom:1px solid #222;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(140px,1fr));
+    gap:12px;
+    padding:12px;
+}
+
+.card{
+    background:#111;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.title{
+    padding:8px;
+    font-size:12px;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="header">🧙 Harry Potter Collection</div>
+
+<div class="grid">
+
+    <div class="card"><img src="https://picsum.photos/300/400?11"><div class="title">Sorcerer's Stone</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?12"><div class="title">Chamber of Secrets</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?13"><div class="title">Prisoner of Azkaban</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?14"><div class="title">Goblet of Fire</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?15"><div class="title">Order of the Phoenix</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?16"><div class="title">Half-Blood Prince</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?17"><div class="title">Deathly Hallows Part 1</div></div>
+    <div class="card"><img src="https://picsum.photos/300/400?18"><div class="title">Deathly Hallows Part 2</div></div>
+
+</div>
+
+</body>
+</html>
