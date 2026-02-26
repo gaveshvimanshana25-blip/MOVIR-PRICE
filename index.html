@@ -269,7 +269,7 @@ body.light .side-menu a{
     font-weight:bold;
 }
 
-/* NOTICE POPUP */
+/* NOTICE */
 #notice{
     position:fixed;
     top:50%;
@@ -283,10 +283,7 @@ body.light .side-menu a{
     text-align:center;
     box-shadow:0 0 25px rgba(0,0,0,0.9);
     z-index:5000;
-    animation:popin 0.25s ease;
 }
-#notice h3{ margin:0 0 8px; }
-#notice p{ font-size:13px; opacity:0.7; }
 #notice button{
     margin-top:12px;
     padding:7px 18px;
@@ -297,10 +294,6 @@ body.light .side-menu a{
     font-weight:bold;
     cursor:pointer;
 }
-@keyframes popin{
-    from{ transform:translate(-50%,-50%) scale(0.8); opacity:0; }
-    to{ transform:translate(-50%,-50%) scale(1); opacity:1; }
-}
 </style>
 </head>
 
@@ -308,7 +301,7 @@ body.light .side-menu a{
 
 <div id="notice">
     <h3>👋 Welcome to Stream Hub</h3>
-    <p>Movies & TV Series එකම තැනකින් බලන්න. Latest releases enjoy කරන්න Stream Hub එක්ක.</p>
+    <p>Movies & TV Series එකම තැනකින් බලන්න.</p>
     <button onclick="closeNotice()">OK</button>
 </div>
 
@@ -321,13 +314,13 @@ body.light .side-menu a{
     <a href="movies.html">🎬 Movies</a>
 </div>
 
-<div class="hero" id="hero">
+<div class="hero">
 
 <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')">
 <div class="content">
 <div class="tag">NEW ARRIVAL</div>
-<div class="title"Moon knight</div>
-<div class="desc">crime drama film.</div>
+<div class="title">Moon Knight</div>
+<div class="desc">Crime drama film.</div>
 <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/0a9fK9wzQk8')">▶ Trailer</a>
 </div>
 </div>
@@ -335,7 +328,7 @@ body.light .side-menu a{
 <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg')">
 <div class="content">
 <div class="tag">TRENDING</div>
-<div class="title">> 𝘾𝙄𝙉𝙀𝙕𝙊𝙊𝙉   〽️𝙊𝙑𝙄𝙀𝙃𝙐𝘽</div>
+<div class="title">CINEZOON MOVIEHUB</div>
 <div class="desc">Sci-Fi space adventure.</div>
 <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/zSWdZVtXT7E')">▶ Trailer</a>
 </div>
@@ -407,8 +400,7 @@ document.getElementById("frame").src="";
 }
 
 function closeNotice(){
-const n=document.getElementById("notice");
-if(n) n.style.display="none";
+document.getElementById("notice").style.display="none";
 }
 setTimeout(closeNotice,10000);
 </script>
