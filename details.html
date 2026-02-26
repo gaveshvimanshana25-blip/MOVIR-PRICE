@@ -33,7 +33,7 @@ body{
 .title{ margin-top:15px; font-size:24px; font-weight:bold; }
 .genre{ margin-top:8px; color:#aaa; }
 .rating{ margin-top:8px; color:gold; font-size:18px; }
-.description{ margin-top:15px; line-height:1.6; color:#ddd; }
+.description{ margin-top:15px; line-height:1.6; color:#ddd; white-space:pre-line; }
 
 .btn{
     display:block;
@@ -90,7 +90,7 @@ const params = new URLSearchParams(window.location.search);
 const titleParam = params.get("title");
 const phoneNumber = "94703490292";
 
-/* ✅ TRAILERS */
+/* TRAILERS */
 const trailers = {
 "Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",
 "Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",
@@ -104,162 +104,92 @@ const trailers = {
 "American Manhunt (2025)" : "https://youtu.be/ZzjwcujKvho",
 "Stranger Things" : "https://youtu.be/b9EkMc79ZSU",
 "One-Punch Man" : "https://youtu.be/Poo5lqoWSGw",
-"SPY x FAMILY (2022)" : "https://youtu.be/JP6vBnazpWI?si=6MxbNex8HuaLqGoR",
-"Money Heist: Korea – Joint Economic Area" : "https://youtu.be/Uafg97czxeQ?si=36ENqZjulcsCGCfl",
-
-
+"SPY x FAMILY (2022)" : "https://youtu.be/JP6vBnazpWI",
+"Money Heist: Korea – Joint Economic Area" : "https://youtu.be/Uafg97czxeQ"
 };
 
-/* ✅ SHOW DATA */
+/* SHOW DATA */
 const shows = {
 
 "56 Days (2026)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
 genre:"Crime, Drama, Mystery (English)",
 rating:"⭐ 4.4",
-description:"56 Days කියන්නේ thriller / mystery /, crime drama වර්ගයේ කතා මාලාවක්. කතාව මූලික, වෙන්නේ අහම්බෙන් හමුවෙන පුද්ගලයන් දෙන්නෙක් අතර, ඇතිවෙන ඉක්මන් ආදරයක් සහ ඒ ආදරය පිටුපස සැඟවෙන, අඳුරු රහස් ගැනයි.,
-🧩 කතාවේ මූලික අදහස,
-ඔලිවර් කෙනඩි සහ සියා‍රා වයිස් කියන අය දෙන්නා, අහම්බෙන් හමුවෙලා ඉතා ඉක්මනින් සමීප වෙලා, සම්බන්ධතාවයකට පත්වෙනවා. ඒත් දින 56කට පස්සේ, ඔලිවර්ගේ apartment එකෙන් හඳුනාගත නොහැකි ලෙස, විනාශවූ මළ සිරුරක් හමුවෙනවා.,
-ඊට පස්සේ කතාව ගලා යන්නේ ,
-ඔවුන් හමුවී ආදරය වර්ධනය වුණ කාලය,
-පොලිස් පරීක්ෂණ සිදුවන වර්තමාන කාලය,
-කාලරේඛා දෙක අතර මාරු වෙමින්. පරීක්ෂකයන් උත්සාහ, කරන්නේ ඇත්තටම මොනවාද සිදුවුණේ කියලා හෙළි, කරන්න.,
-🔥 කතා මාලාවේ විශේෂත්වය,
-මෙම සිරිස් එකේ තියෙන්නේ:,
-✔ රහස් සහ වංචා,
-✔ ආදරය + සැකය,
-✔ මනෝවිද්‍යාත්මක තද බව,
-✔ අනුමාන කරන්න බැරි හැරීම් (twists),
-🎭 ස්වභාවය / Mood,
-මෙය psychological thriller එකක්. ආදර කතාවක්, වගේ, පටන්ගෙන, ටික ටික අපරාධ හා රහස් වලට මාරු වෙනවා"
+description:`56 Days කියන්නේ thriller / mystery / crime drama කතා මාලාවක්.
+
+ඔලිවර් සහ සියා‍රා අහම්බෙන් හමුවෙලා ඉක්මන් සම්බන්ධතාවයකට යනවා.
+දින 56කට පස්සේ apartment එකෙන් හඳුනාගත නොහැකි මළ සිරුරක් හමුවෙනවා.
+
+කතාව ආදරය, රහස්, සහ psychological tension එක්ක ගලා යනවා.`
 },
 
 "Do You Wanna Partner (2025)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",
 genre:"Comedy, Drama (Hindi)",
 rating:"⭐ 7.7",
-description:"Relationships, dating, commitment problems වටා යන කතාවක්."
+description:`Relationships, dating, commitment problems වටා යන light comedy drama එකක්.`
 },
 
 "Motorvalley (2026)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg",
 genre:"Action, Drama (Italian)",
 rating:"⭐ 6.8",
-description:"Luxury car industry power struggle එකක්."
+description:`Luxury car industry එක තුළ power struggle සහ betrayal කතාවක්.`
 },
 
 "Kohrra (2023)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg",
 genre:"Crime, Drama (Hindi)",
 rating:"⭐ 6.9",
-description:"Wedding එකකට ආපු NRI කෙනෙක්ගේ murder case එකක්."
-},
-
-"The Summer I Turned Pretty (2022)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg",
-genre:"Drama, Romance (English)",
-rating:"⭐ 8.1",
-description:"Teen emotions, crushes, jealousy සහ growing up moments."
-},
-
-"American Primeval (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg",
-genre:"Action, Drama, Western (English)",
-rating:"⭐ 7.6",
-description:"Early America survival story එකක්."
-},
-
-"Yeh Kaali Kaali Ankhein (2022)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg",
-genre:"Crime, Drama, Mystery (Hindi)",
-rating:"⭐ 9.1",
-description:"Obsession සහ psychological game එකක්."
-},
-
-"Prison Break (2005)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/qq.jpg",
-genre:"Action, Crime, Drama",
-rating:"⭐ 8.1",
-description:"Michael තම සොහොයුරා බේරගන්න prison එකට යනවා."
-},
-
-"Money Heist (2021)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
-genre:"Crime, Drama",
-rating:"⭐ 8.3",
-description:"Professor කියන mastermind කෙනෙක් ලොකු heist එකක්."
-},
-
-"American Manhunt (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/g9CkBu9ZFGdguoukibrkyvbvCTo.jpg",
-genre:"Crime, Drama",
-rating:"⭐ 8.3",
-description:"True crime investigation story එකක්."
+description:`Wedding එකකට ආපු NRI කෙනෙක්ගේ murder investigation කතාවක්.`
 },
 
 "Stranger Things":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",
 genre:"Mystery, Sci-Fi (English)",
 rating:"⭐ 8.7",
-description:"Supernatural events + kids adventure story."
+description:`Supernatural events + kids adventure + 80s vibe.`
 },
 
 "One-Punch Man":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",
-genre:"Animation, Action, Japanese, Sci-Fi",
+genre:"Animation, Action, Japanese",
 rating:"⭐ 8.7",
-description:"Saitama – එක punch එකකින් ඕනම enemy defeat කරන hero කෙනෙක්."
-},
-
-"SPY x FAMILY (2022)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg",
-genre:"Animation, Action, Japananime, comedy",
-rating:"⭐ 6.7",
-description:"Saitama – එක punch එකකින් ඕනම enemy defeat කරන hero කෙනෙක්."
-},
-
-"Money Heist: Korea – Joint Economic Area":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Money-Heist-Korea-S01-EP-01-to-EP-12.jpg",
-genre:"Action,Crime,Drama",
-rating:"⭐ 6.7",
-description:"Saitama – එක punch එකකින් ඕනම enemy defeat කරන hero කෙනෙක්."
-},
+description:`Saitama – එක punch එකකින් ඕනම enemy defeat කරන hero කෙනෙක්.`
+}
 
 };
 
-/* ✅ MAIN LOGIC */
+/* MAIN LOGIC */
 
 if(titleParam && shows[titleParam]){
 
 const data = shows[titleParam];
 
-document.getElementById("headerTitle").innerText = titleParam;
-document.getElementById("poster").src = data.poster;
-document.getElementById("title").innerText = titleParam;
-document.getElementById("genre").innerText = "Genre: " + data.genre;
-document.getElementById("rating").innerText = data.rating;
-document.getElementById("description").innerText = data.description;
+headerTitle.innerText = titleParam;
+poster.src = data.poster;
+title.innerText = titleParam;
+genre.innerText = "Genre: " + data.genre;
+rating.innerText = data.rating;
+description.innerText = data.description;
 
-document.getElementById("poster").onerror = () =>
-    document.getElementById("poster").src = "images/placeholder.jpg";
+poster.onerror = () =>
+poster.src = "https://via.placeholder.com/500x300?text=No+Image";
 
 const message = `Hello, I want to buy:\n\n${titleParam}`;
-document.getElementById("buyBtn").href =
-    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+buyBtn.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
 if(trailers[titleParam]){
-    document.getElementById("trailerBtn").href = trailers[titleParam];
+    trailerBtn.href = trailers[titleParam];
 }else{
-    document.getElementById("trailerBtn").style.display = "none";
+    trailerBtn.style.display = "none";
 }
 
 }else{
 
-console.log("Title Param:", titleParam);
-console.log("Available Shows:", Object.keys(shows));
-
 document.querySelector(".container").innerHTML =
 "<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
+
 }
 
 </script>
