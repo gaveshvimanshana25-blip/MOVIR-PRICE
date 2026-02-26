@@ -13,6 +13,58 @@ body{
     color:white;
 }
 
+/* NOTICE POPUP */
+.notice-box{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.75);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:6000;
+    animation:fadeIn 0.3s ease;
+}
+
+.notice-content{
+    background:#111;
+    padding:25px;
+    width:85%;
+    max-width:320px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(229,9,20,0.3);
+    border:1px solid #222;
+}
+
+.notice-title{
+    font-size:18px;
+    color:#e50914;
+    margin-bottom:10px;
+    font-weight:bold;
+}
+
+.notice-text{
+    font-size:14px;
+    opacity:0.85;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.notice-content button{
+    background:#e50914;
+    border:none;
+    color:white;
+    padding:10px 20px;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; }
+    to{ opacity:1; }
+}
+
 /* LOADER */
 #loader{
     position:fixed;
@@ -24,7 +76,6 @@ body{
     z-index:5000;
     transition:0.4s;
 }
-.loader-box{ text-align:center; }
 .spinner{
     width:46px;
     height:46px;
@@ -33,12 +84,6 @@ body{
     border-radius:50%;
     animation:spin 0.8s linear infinite;
     margin:auto;
-}
-.loading-text{
-    margin-top:12px;
-    font-size:13px;
-    letter-spacing:2px;
-    opacity:0.85;
 }
 @keyframes spin{
     from{ transform:rotate(0deg); }
@@ -49,36 +94,6 @@ body{
     pointer-events:none;
 }
 
-/* MENU */
-.menu-icon{
-    position:fixed;
-    top:15px;
-    left:15px;
-    font-size:28px;
-    cursor:pointer;
-    z-index:1001;
-}
-.side-menu{
-    position:fixed;
-    top:0;
-    left:-250px;
-    width:250px;
-    height:100%;
-    background:#111;
-    padding-top:60px;
-    transition:0.4s;
-    z-index:1000;
-}
-.side-menu a{
-    display:block;
-    padding:15px 25px;
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid #222;
-}
-.side-menu a:hover{ background:#e50914; }
-.side-menu.active{ left:0; }
-
 .header{
     padding:15px;
     font-size:22px;
@@ -86,27 +101,6 @@ body{
     color:#e50914;
     text-align:center;
 }
-
-.search-box{ padding:15px; }
-.search-box input{
-    width:100%;
-    padding:10px;
-    border:none;
-    border-radius:5px;
-    font-size:16px;
-}
-
-.genres{ padding:10px; text-align:center; }
-.genres button{
-    margin:5px;
-    padding:8px 14px;
-    border:none;
-    border-radius:20px;
-    background:#222;
-    color:white;
-    cursor:pointer;
-}
-.genres button:hover{ background:#e50914; }
 
 .grid{
     display:grid;
@@ -119,136 +113,62 @@ body{
     background:#111;
     border-radius:8px;
     overflow:hidden;
-    cursor:pointer;
-    transition:0.3s;
 }
-.card:hover{ transform:scale(1.05); }
 .card img{
     width:100%;
     height:200px;
     object-fit:cover;
 }
 .card-content{ padding:10px; }
-.rating{ font-size:14px; color:gold; }
 </style>
 </head>
 
 <body>
 
-<div id="loader">
-    <div class="loader-box">
-        <div class="spinner"></div>
-        <div class="loading-text">LOADING MOVIES...</div>
+<!-- NOTICE POPUP (Movies page only) -->
+<div id="noticeBox" class="notice-box">
+    <div class="notice-content">
+        <div class="notice-title">📢 NOTICE</div>
+        <div class="notice-text">
+            🔥 මෙහි MOVIE COLLECTION පමණක් ලබා දේ<br><br>
+            Example: Harry Potter Collection / Fast & Furious Collection / Marvel Collection
+        </div>
+        <button onclick="closeNotice()">CANCEL</button>
     </div>
 </div>
 
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-
-<div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="tv.html">📺 TV Shows</a>
-    <a href="movies.html">🎥 Movies</a>
+<!-- LOADER -->
+<div id="loader">
+    <div class="spinner"></div>
 </div>
 
 <div class="header">MOVIES</div>
 
-<div class="search-box">
-    <input type="text" id="search" placeholder="Search movies...">
-</div>
-
-<div class="genres">
-    <button onclick="filterGenre('all')">All</button>
-    <button onclick="filterGenre('action')">Action</button>
-    <button onclick="filterGenre('thriller')">Thriller</button>
-    <button onclick="filterGenre('comedy')">Comedy</button>
-    <button onclick="filterGenre('horror')">Horror</button>
-    <button onclick="filterGenre('sci fi')">Sci fi</button>
-</div>
-
 <div class="grid">
+    <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg">
+        <div class="card-content">Inception</div>
+    </div>
 
-<div class="card" data-genre="action" data-title="John Wick 4" onclick="goDetails('John Wick 4')">
-<img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg">
-<div class="card-content"><h3>John Wick 4</h3><div class="rating">⭐ 8.2</div></div>
-</div>
-
-<div class="card" data-genre="thriller" data-title="The Batman" onclick="goDetails('The Batman')">
-<img src="https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg">
-<div class="card-content"><h3>The Batman</h3><div class="rating">⭐ 7.9</div></div>
-</div>
-
-<div class="card" data-genre="horror" data-title="The Nun 2" onclick="goDetails('The Nun 2')">
-<img src="https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg">
-<div class="card-content"><h3>The Nun 2</h3><div class="rating">⭐ 5.9</div></div>
-</div>
-
-<div class="card" data-genre="comedy" data-title="Free Guy" onclick="goDetails('Free Guy')">
-<img src="https://image.tmdb.org/t/p/w500/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg">
-<div class="card-content"><h3>Free Guy</h3><div class="rating">⭐ 7.1</div></div>
-</div>
-
-<div class="card" data-genre="sci fi" data-title="Interstellar" onclick="goDetails('Interstellar')">
-<img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg">
-<div class="card-content"><h3>Interstellar</h3><div class="rating">⭐ 8.6</div></div>
-</div>
-
-<div class="card" data-genre="action" data-title="Gladiator" onclick="goDetails('Gladiator')">
-<img src="https://image.tmdb.org/t/p/w500/ty8TGRuvJLPUmAR1H1nRIsgwvim.jpg">
-<div class="card-content"><h3>Gladiator</h3><div class="rating">⭐ 8.5</div></div>
-</div>
-
-<div class="card" data-genre="thriller" data-title="Inception" onclick="goDetails('Inception')">
-<img src="https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg">
-<div class="card-content"><h3>Inception</h3><div class="rating">⭐ 8.8</div></div>
-</div>
-
-<div class="card" data-genre="action" data-title="Mad Max Fury Road" onclick="goDetails('Mad Max Fury Road')">
-<img src="https://image.tmdb.org/t/p/w500/8tZYtuWezp8JbcsvHYO0O46tFbo.jpg">
-<div class="card-content"><h3>Mad Max Fury Road</h3><div class="rating">⭐ 8.1</div></div>
-</div>
-
-<div class="card" data-genre="sci fi" data-title="Avatar" onclick="goDetails('Avatar')">
-<img src="https://image.tmdb.org/t/p/w500/jRXYjXNq0Cs2TcJjLkki24MLp7u.jpg">
-<div class="card-content"><h3>Avatar</h3><div class="rating">⭐ 7.8</div></div>
-</div>
-
-<div class="card" data-genre="comedy" data-title="The Mask" onclick="goDetails('The Mask')">
-<img src="https://image.tmdb.org/t/p/w500/Ag21jjgDh9Wq2yR3Zb5kM2gWwHh.jpg">
-<div class="card-content"><h3>The Mask</h3><div class="rating">⭐ 6.9</div></div>
-</div>
-
+    <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg">
+        <div class="card-content">Interstellar</div>
+    </div>
 </div>
 
 <script>
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("active");
+function closeNotice(){
+    document.getElementById("noticeBox").style.display = "none";
 }
 
-function goDetails(title){
-    window.location.href="details.html?title="+encodeURIComponent(title);
-}
-
+/* AUTO CLOSE AFTER 10 SECONDS */
 window.addEventListener("load", ()=>{
     document.getElementById("loader").classList.add("hide");
+
+    setTimeout(()=>{
+        closeNotice();
+    }, 10000);
 });
-
-const searchInput = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-
-searchInput.addEventListener("keyup", function(){
-    const value = this.value.toLowerCase();
-    cards.forEach(card=>{
-        const title = card.dataset.title.toLowerCase();
-        card.style.display = title.includes(value) ? "block" : "none";
-    });
-});
-
-function filterGenre(genre){
-    cards.forEach(card=>{
-        const g = card.dataset.genre;
-        card.style.display = (genre === "all" || g === genre) ? "block" : "none";
-    });
-}
 </script>
 
 </body>
