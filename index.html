@@ -1,148 +1,147 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Hub</title>
 
 <style>
-/* (CSS oyāge ekama - kisima wenasak ne) */
 body{
     margin:0;
-    background:black;
-    font-family:Arial, sans-serif;
+    background:#0f0f0f;
+    font-family:Arial;
     color:white;
-    transition:0.3s;
-    padding-bottom:60px;
 }
 
-/* LIGHT MODE */
-body.light{ background:white; color:black; }
-body.light .card{ background:#f2f2f2; }
-body.light .side-menu{ background:#eee; }
-body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
+/* HEADER */
+.header{
+    background:#111;
+    padding:15px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
 
-/* MENU */
-.menu-icon{ position:fixed; top:15px; left:15px; font-size:26px; cursor:pointer; z-index:1001; }
-.toggle-btn{ position:fixed; top:15px; right:15px; background:#e50914; border:none; color:white; padding:6px 12px; border-radius:20px; cursor:pointer; z-index:1001; }
+/* NAV */
+.nav{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    background:#1a1a1a;
+    padding:10px;
+}
 
-/* SIDE MENU */
-.side-menu{ position:fixed; top:0; left:-230px; width:200px; height:100%; background:#111; padding-top:60px; transition:0.4s; z-index:1000; }
-.side-menu a{ display:block; padding:14px 20px; color:white; text-decoration:none; border-bottom:1px solid #222; }
-.side-menu a:hover{ background:#e50914; }
-.side-menu.active{ left:0; }
+.nav a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+}
 
-/* HERO */
-.hero{ position:relative; height:240px; overflow:hidden; }
-.slide{ position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:0.6s; }
-.slide.active{ opacity:1; }
-.slide::after{ content:""; position:absolute; inset:0; background:linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.2)); }
-
-.content{ position:absolute; left:18px; bottom:22px; z-index:2; max-width:65%; }
-.tag{ color:#e50914; font-size:11px; }
-.title{ font-size:20px; font-weight:bold; margin:4px 0; }
-.desc{ font-size:12px; opacity:0.85; }
-
-.btn{ display:inline-block; margin-top:8px; background:#e50914; padding:7px 16px; border-radius:20px; font-size:12px; text-decoration:none; color:white; font-weight:bold; }
+.nav a:hover{
+    color:#00ffcc;
+}
 
 /* CARD */
-.section{ padding:18px 14px 6px; }
-.section h2{ font-size:15px; }
-.card{ background:#111; border-radius:10px; padding:18px; margin-top:8px; text-align:center; }
-.card a{ text-decoration:none; color:inherit; font-weight:bold; }
+.card{
+    background:#1a1a1a;
+    margin:20px;
+    padding:15px;
+    border-radius:10px;
+}
 
-/* FOOTER */
-.footer{ position:fixed; bottom:0; width:100%; background:#111; text-align:center; padding:12px 5px; font-size:11px; font-weight:bold; letter-spacing:2px; color:#00ffcc; }
+.card img{
+    width:100%;
+    border-radius:10px;
+}
 
-/* MODAL */
-.modal{ position:fixed; inset:0; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:0.3s; z-index:99; }
-.modal.active{ opacity:1; pointer-events:auto; }
-.modal-box{ width:92%; max-width:420px; background:#111; border-radius:12px; overflow:hidden; }
-.modal iframe{ width:100%; height:220px; border:none; }
-.close{ background:#e50914; text-align:center; padding:10px; cursor:pointer; font-weight:bold; }
+.btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:8px 15px;
+    background:#00ffcc;
+    color:black;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+/* TRAILER MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-content{
+    width:90%;
+    max-width:800px;
+}
+
+iframe{
+    width:100%;
+    height:450px;
+    border:none;
+}
 </style>
 </head>
 
 <body>
 
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-<button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
+<div class="header">STREAM HUB</div>
 
-<div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="tv.html">📺 TV Shows</a>
-    <a href="movies.html">🎬 Movies</a>
-</div>
-
-<div class="hero">
-
-<!-- SLIDE 1 -->
-<div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')">
-<div class="content">
-<div class="tag">NEW ARRIVAL</div>
-<div class="title">Moon Knight</div>
-<div class="desc">Crime drama film.</div>
-<a href="#" class="btn"
-onclick="openTrailer('https://www.youtube.com/embed/0a9fK9wzQk8')">
-▶ Trailer
-</a>
-</div>
+<div class="nav">
+    <a href="#">🏠 Home</a>
+    <a href="#">🎬 Movies</a>
+    <a href="#">📺 TV Shows</a>
 </div>
 
-<!-- SLIDE 2 -->
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg')">
-<div class="content">
-<div class="tag">TRENDING</div>
-<div class="title">Vikings: Valhalla</div>
-<div class="desc">Action adventure series.</div>
-<a href="#" class="btn"
-onclick="openTrailer('https://www.youtube.com/embed/Yi4YnwFT7Gk')">
-▶ Trailer
-</a>
-</div>
+<!-- MOVIE CARD -->
+<div class="card">
+    <h2>Sample Movie</h2>
+    <img src="https://via.placeholder.com/500x300">
+    <p>This is a sample movie description.</p>
+    <a href="#" class="btn"
+    onclick="openTrailer('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ')">
+    ▶ Watch Trailer
+    </a>
 </div>
 
+<!-- TV SHOW CARD -->
+<div class="card">
+    <h2>Sample TV Show</h2>
+    <img src="https://via.placeholder.com/500x300">
+    <p>Season 1, 2, 3 Available</p>
+    <a href="#" class="btn"
+    onclick="openTrailer('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ')">
+    ▶ Watch Trailer
+    </a>
 </div>
 
-<div class="footer">
-⚡ SYSTEM DEVELOP BY GAVESH VIMANSHANA 🚀
-</div>
-
-<div class="modal" id="modal">
-<div class="modal-box">
-<iframe id="frame"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen>
-</iframe>
-<div class="close" onclick="closeTrailer()">CLOSE</div>
-</div>
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="closeTrailer()">
+    <div class="modal-content">
+        <iframe id="frame"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
 </div>
 
 <script>
-let slides=document.querySelectorAll(".slide");
-let index=0;
-
-setInterval(()=>{
-slides[index].classList.remove("active");
-index=(index+1)%slides.length;
-slides[index].classList.add("active");
-},4000);
-
-function toggleMenu(){
-document.getElementById("sideMenu").classList.toggle("active");
-}
-
-function toggleMode(){
-document.body.classList.toggle("light");
-}
-
 function openTrailer(url){
-document.getElementById("modal").classList.add("active");
-document.getElementById("frame").src=url+"?autoplay=1&rel=0";
+    document.getElementById("modal").classList.add("active");
+    document.getElementById("frame").src = url + "?autoplay=1&rel=0";
 }
 
 function closeTrailer(){
-document.getElementById("modal").classList.remove("active");
-document.getElementById("frame").src="";
+    document.getElementById("modal").classList.remove("active");
+    document.getElementById("frame").src = "";
 }
 </script>
 
