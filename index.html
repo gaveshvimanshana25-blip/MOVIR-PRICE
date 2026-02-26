@@ -214,7 +214,7 @@ opacity:0.6;
 <p>Your Entertainment Partner 🎬</p>
 
 <div class="social-icons">
-<a href="https://wa.me/9470 349 0292" target="_blank">
+<a href="https://wa.me/94703490292" target="_blank">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 <a href="#">
@@ -233,12 +233,13 @@ opacity:0.6;
 </div>
 
 <!-- WhatsApp Floating -->
-<a href="https://wa.me/9470 349 0292" target="_blank" class="floating-btn whatsapp-btn">
+<a href="https://wa.me/94703490292" target="_blank" class="floating-btn whatsapp-btn">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
+<!-- FIXED AUDIO LINK -->
 <audio id="bgMusic" loop>
-<source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/song.mp3/AUD-20240527-WA0004.mp3" type="audio/mpeg">
+<source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/AUD-20240527-WA0004.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -264,7 +265,9 @@ var icon=document.getElementById("musicIcon");
 
 window.addEventListener("load", function(){
 setTimeout(function(){
+music.muted = true;
 music.play().then(()=>{
+music.muted = false;
 icon.classList.remove("fa-play");
 icon.classList.add("fa-pause");
 }).catch(()=>{});
