@@ -13,120 +13,85 @@ body{
     color:white;
 }
 
+/* HEADER */
+.header{
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#e50914;
+    background:#111;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
 /* NOTICE POPUP */
-.notice-box{
+.notice{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,0.75);
+    background:rgba(0,0,0,0.85);
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:6000;
+    z-index:9999;
 }
 
-.notice-content{
-    background:#111;
-    padding:25px;
-    width:85%;
+.notice-box{
+    width:90%;
     max-width:320px;
-    border-radius:10px;
+    background:#111;
+    border-radius:12px;
+    padding:20px;
     text-align:center;
-    box-shadow:0 0 25px rgba(229,9,20,0.35);
-    border:1px solid #222;
-    animation:fadeIn 0.3s ease;
+    box-shadow:0 0 20px rgba(229,9,20,0.3);
+    animation:pop 0.3s ease;
 }
 
 .notice-title{
     font-size:18px;
-    color:#e50914;
     margin-bottom:10px;
-    font-weight:bold;
+    color:#e50914;
 }
 
 .notice-text{
-    font-size:14px;
+    font-size:13px;
     opacity:0.85;
-    margin-bottom:15px;
-    line-height:1.5;
+    margin-bottom:10px;
 }
 
 .timer{
-    font-size:13px;
+    font-size:12px;
     opacity:0.6;
     margin-bottom:15px;
 }
 
-.notice-content button{
-    background:#e50914;
+.notice button{
+    padding:8px 18px;
     border:none;
+    border-radius:20px;
+    background:#e50914;
     color:white;
-    padding:10px 22px;
-    border-radius:6px;
-    font-weight:bold;
     cursor:pointer;
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:scale(0.95);}
-    to{opacity:1; transform:scale(1);}
-}
-
-/* HEADER */
-.header{
-    padding:15px;
-    font-size:20px;
-    font-weight:bold;
-    background:#111;
-    text-align:center;
-    border-bottom:1px solid #222;
 }
 
 /* SEARCH */
 .search-box{
-    padding:15px;
-    text-align:center;
-    background:#000;
-    position:sticky;
-    top:0;
-    z-index:100;
+    padding:12px;
 }
 
 .search-box input{
-    width:90%;
-    max-width:400px;
+    width:100%;
     padding:10px;
-    border-radius:20px;
-    border:1px solid #222;
-    background:#111;
-    color:white;
-    outline:none;
-}
-
-/* GENRES */
-.genres{
-    padding:10px;
-    text-align:center;
-}
-
-.genres button{
-    margin:5px;
-    padding:8px 14px;
-    border-radius:20px;
     border:none;
-    background:#111;
-    color:white;
-    cursor:pointer;
-    font-size:13px;
+    border-radius:6px;
+    font-size:15px;
 }
 
-.genres button:hover{
-    background:#e50914;
-}
-
-/* MOVIE GRID */
+/* GRID */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(140px,1fr));
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
     padding:12px;
 }
@@ -135,11 +100,12 @@ body{
     background:#111;
     border-radius:10px;
     overflow:hidden;
+    cursor:pointer;
     transition:0.2s;
 }
 
 .card:hover{
-    transform:scale(1.04);
+    transform:scale(1.05);
 }
 
 .card img{
@@ -154,52 +120,91 @@ body{
     text-align:center;
 }
 
+/* ANIMATION */
+@keyframes pop{
+    from{ transform:scale(0.8); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+}
 </style>
 </head>
+
 <body>
 
-<!-- NOTICE POPUP -->
-<div id="noticeBox" class="notice-box">
-    <div class="notice-content">
-        <div class="notice-title">📢 NOTICE</div>
+<!-- NOTICE -->
+<div class="notice" id="noticeBox">
+    <div class="notice-box">
+        <div class="notice-title">NOTICE</div>
+
         <div class="notice-text">
             🔥 මෙහි MOVIE COLLECTION පමණක් ලබා දේ<br><br>
-            Example: Harry Potter Collection / Fast & Furious / Marvel Collection
+            Example: Harry Potter Collection / Marvel Collection
         </div>
-        <div class="timer" id="noticeTimer">Closing in 10s</div>
+
+        <div class="timer" id="noticeTimer">
+            Closing in 10s
+        </div>
+
         <button onclick="closeNotice()">CANCEL</button>
     </div>
 </div>
 
-<div class="header">🎬 MOVIES</div>
+<div class="header">MOVIES</div>
 
-<!-- SEARCH BAR -->
 <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search movies..." onkeyup="searchMovies()">
+    <input type="text" id="search" placeholder="Search movies...">
 </div>
 
-<!-- GENRE BUTTONS -->
-<div class="genres">
-    <button>All</button>
-    <button>Action</button>
-    <button>Adventure</button>
-    <button>Comedy</button>
-    <button>Sci-Fi</button>
-</div>
-
-<!-- MOVIE CARDS -->
 <div class="grid" id="movieGrid">
 
-    <div class="card"><img src="https://picsum.photos/300/400?1"><div class="card-title">Avatar</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?2"><div class="card-title">Inception</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?3"><div class="card-title">Interstellar</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?4"><div class="card-title">Joker</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?5"><div class="card-title">The Batman</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?6"><div class="card-title">Deadpool</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?7"><div class="card-title">Doctor Strange</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?8"><div class="card-title">Fast & Furious</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?9"><div class="card-title">Harry Potter</div></div>
-    <div class="card"><img src="https://picsum.photos/300/400?10"><div class="card-title">John Wick</div></div>
+    <div class="card" data-title="Harry Potter Collection" onclick="openMovie('harrypotter.html')">
+        <img src="https://picsum.photos/300/400?1">
+        <div class="card-title">Harry Potter Collection</div>
+    </div>
+
+    <div class="card" data-title="Fast & Furious Collection">
+        <img src="https://picsum.photos/300/400?2">
+        <div class="card-title">Fast & Furious</div>
+    </div>
+
+    <div class="card" data-title="Marvel Collection">
+        <img src="https://picsum.photos/300/400?3">
+        <div class="card-title">Marvel Collection</div>
+    </div>
+
+    <div class="card" data-title="DC Collection">
+        <img src="https://picsum.photos/300/400?4">
+        <div class="card-title">DC Collection</div>
+    </div>
+
+    <div class="card" data-title="Transformers Collection">
+        <img src="https://picsum.photos/300/400?5">
+        <div class="card-title">Transformers</div>
+    </div>
+
+    <div class="card" data-title="Mission Impossible Collection">
+        <img src="https://picsum.photos/300/400?6">
+        <div class="card-title">Mission Impossible</div>
+    </div>
+
+    <div class="card" data-title="John Wick Collection">
+        <img src="https://picsum.photos/300/400?7">
+        <div class="card-title">John Wick</div>
+    </div>
+
+    <div class="card" data-title="The Conjuring Collection">
+        <img src="https://picsum.photos/300/400?8">
+        <div class="card-title">The Conjuring</div>
+    </div>
+
+    <div class="card" data-title="Pirates of the Caribbean">
+        <img src="https://picsum.photos/300/400?9">
+        <div class="card-title">Pirates Caribbean</div>
+    </div>
+
+    <div class="card" data-title="Spider-Man Collection">
+        <img src="https://picsum.photos/300/400?10">
+        <div class="card-title">Spider-Man</div>
+    </div>
 
 </div>
 
@@ -212,29 +217,30 @@ function closeNotice(){
     document.getElementById("noticeBox").style.display = "none";
 }
 
-function startTimer(){
-    const interval = setInterval(()=>{
-        timeLeft--;
-        timerEl.innerText = "Closing in " + timeLeft + "s";
+const interval = setInterval(()=>{
+    timeLeft--;
+    timerEl.innerText = "Closing in " + timeLeft + "s";
 
-        if(timeLeft <= 0){
-            clearInterval(interval);
-            closeNotice();
-        }
-    }, 1000);
-}
+    if(timeLeft <= 0){
+        clearInterval(interval);
+        closeNotice();
+    }
+}, 1000);
 
-window.addEventListener("load", startTimer);
-
-/* SEARCH FUNCTION */
-function searchMovies(){
-    const input = document.getElementById("searchInput").value.toLowerCase();
+/* SEARCH */
+document.getElementById("search").addEventListener("keyup", function(){
+    const value = this.value.toLowerCase();
     const cards = document.querySelectorAll(".card");
 
     cards.forEach(card=>{
-        const title = card.innerText.toLowerCase();
-        card.style.display = title.includes(input) ? "block" : "none";
+        const title = card.dataset.title.toLowerCase();
+        card.style.display = title.includes(value) ? "block" : "none";
     });
+});
+
+/* OPEN PAGE */
+function openMovie(url){
+    window.location.href = url;
 }
 </script>
 
