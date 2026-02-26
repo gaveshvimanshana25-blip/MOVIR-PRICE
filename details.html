@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TV Series Details</title>
+<title>Details - Stream Hub</title>
 
 <style>
 body{
     margin:0;
     background:#0f0f0f;
     color:white;
-    font-family:Arial;
+    font-family:Arial, sans-serif;
 }
+
+/* HEADER */
 .header{
     background:#111;
     padding:15px;
@@ -21,34 +23,55 @@ body{
     color:#e50914;
     position:sticky;
     top:0;
+    z-index:5;
 }
-.container{ padding:15px; }
+
+.container{
+    padding:15px;
+    animation:fadeIn 0.35s ease;
+}
+
+/* POSTER */
 .poster{
     width:100%;
     max-height:340px;
     object-fit:cover;
-    border-radius:10px;
+    border-radius:12px;
     background:#222;
+    box-shadow:0 0 25px rgba(229,9,20,0.25);
+    animation:posterPop 0.3s ease;
 }
+
 .title{ margin-top:15px; font-size:24px; font-weight:bold; }
 .genre{ margin-top:8px; color:#aaa; }
 .rating{ margin-top:8px; color:gold; font-size:18px; }
-.description{ margin-top:15px; line-height:1.6; color:#ddd; white-space:pre-line; }
+.description{
+    margin-top:15px;
+    line-height:1.6;
+    color:#ddd;
+    white-space:pre-line;
+}
 
+/* BUTTONS */
 .btn{
     display:block;
     width:100%;
     text-align:center;
     padding:12px;
-    border-radius:8px;
+    border-radius:10px;
     text-decoration:none;
     color:white;
-    font-size:18px;
+    font-size:16px;
     font-weight:bold;
     margin-top:15px;
+    transition:0.2s;
 }
-.whatsapp-btn{ background:#25D366; }
+
+.btn:hover{ transform:scale(1.03); }
+
 .trailer-btn{ background:#e50914; }
+.whatsapp-btn{ background:#25D366; }
+
 .back-btn{
     display:inline-block;
     margin-top:20px;
@@ -58,12 +81,23 @@ body{
     text-decoration:none;
     border-radius:8px;
 }
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:none; }
+}
+
+@keyframes posterPop{
+    from{ transform:scale(0.96); opacity:0; }
+    to{ transform:scale(1); opacity:1; }
+}
 </style>
 </head>
 
 <body>
 
-<div class="header" id="headerTitle">TV Series Details</div>
+<div class="header" id="headerTitle">Details</div>
 
 <div class="container">
     <img id="poster" class="poster" alt="Poster">
@@ -81,7 +115,7 @@ body{
         Buy via WhatsApp
     </a>
 
-    <a href="tv.html" class="back-btn">⬅ Back</a>
+    <a href="#" id="backBtn" class="back-btn">⬅ Back</a>
 </div>
 
 <script>
@@ -101,70 +135,55 @@ const trailers = {
 "Kohrra (2023)" : "https://youtu.be/sAx4aq6396E",
 "The Summer I Turned Pretty (2022)" : "https://youtu.be/LPNs5kKeEgE",
 "American Primeval (2025)" : "https://youtu.be/U8WMvCrywYg",
-"American Manhunt (2025)" : "https://youtu.be/ZzjwcujKvho",
 "Stranger Things" : "https://youtu.be/b9EkMc79ZSU",
 "One-Punch Man" : "https://youtu.be/Poo5lqoWSGw",
-"SPY x FAMILY (2022)" : "https://youtu.be/JP6vBnazpWI",
-"Money Heist: Korea – Joint Economic Area" : "https://youtu.be/Uafg97czxeQ"
+
+/* MOVIES 🔥 */
+"Harry Potter Collection" : "https://youtu.be/VyHV0BRtdxo",
+"Marvel Collection" : "https://youtu.be/TcMBFSGVi1c",
+"Fast & Furious Collection" : "https://youtu.be/uisBaTkQAEs",
+"DC Collection" : "https://youtu.be/0WWzgGyAH6Y",
+"Transformers Collection" : "https://youtu.be/AzGQo7HfDss",
+"John Wick Collection" : "https://youtu.be/2AUmvWm5ZDQ"
 };
 
-/* SHOW DATA */
-const shows = {
+/* DATA */
+const dataMap = {
 
 "56 Days (2026)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
 genre:"Crime, Drama, Mystery (English)",
 rating:"⭐ 4.4",
-description:`56 Days කියන්නේ thriller / mystery / crime drama කතා මාලාවක්.
-
-ඔලිවර් සහ සියා‍රා අහම්බෙන් හමුවෙලා ඉක්මන් සම්බන්ධතාවයකට යනවා.
-දින 56කට පස්සේ apartment එකෙන් හඳුනාගත නොහැකි මළ සිරුරක් හමුවෙනවා.
-
-කතාව ආදරය, රහස්, සහ psychological tension එක්ක ගලා යනවා.`
-},
-
-"Do You Wanna Partner (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",
-genre:"Comedy, Drama (Hindi)",
-rating:"⭐ 7.7",
-description:`Relationships, dating, commitment problems වටා යන light comedy drama එකක්.`
-},
-
-"Motorvalley (2026)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg",
-genre:"Action, Drama (Italian)",
-rating:"⭐ 6.8",
-description:`Luxury car industry එක තුළ power struggle සහ betrayal කතාවක්.`
-},
-
-"Kohrra (2023)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg",
-genre:"Crime, Drama (Hindi)",
-rating:"⭐ 6.9",
-description:`Wedding එකකට ආපු NRI කෙනෙක්ගේ murder investigation කතාවක්.`
-},
-
-"Stranger Things":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",
-genre:"Mystery, Sci-Fi (English)",
-rating:"⭐ 8.7",
-description:`Supernatural events + kids adventure + 80s vibe.`
+description:"Thriller / Mystery / Crime drama series."
 },
 
 "One-Punch Man":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",
-genre:"Animation, Action, Japanese",
+genre:"Anime, Action",
 rating:"⭐ 8.7",
-description:`Saitama – එක punch එකකින් ඕනම enemy defeat කරන hero කෙනෙක්.`
+description:"Saitama – එක punch hero කෙනෙක්."
+},
+
+/* MOVIES */
+"Harry Potter Collection":{
+poster:"https://picsum.photos/500/300?hp",
+genre:"Fantasy, Adventure",
+rating:"⭐ 9.5",
+description:"All Harry Potter movies collection."
+},
+
+"Marvel Collection":{
+poster:"https://picsum.photos/500/300?marvel",
+genre:"Action, Superhero",
+rating:"⭐ 9.0",
+description:"Marvel universe movies collection."
 }
 
 };
 
-/* MAIN LOGIC */
+if(titleParam && dataMap[titleParam]){
 
-if(titleParam && shows[titleParam]){
-
-const data = shows[titleParam];
+const data = dataMap[titleParam];
 
 headerTitle.innerText = titleParam;
 poster.src = data.poster;
@@ -185,10 +204,17 @@ if(trailers[titleParam]){
     trailerBtn.style.display = "none";
 }
 
+/* BACK BUTTON AUTO */
+if(document.referrer.includes("movies")){
+    backBtn.href = "movies.html";
+}else{
+    backBtn.href = "tv.html";
+}
+
 }else{
 
 document.querySelector(".container").innerHTML =
-"<h2>Series Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
+"<h2>Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
 
 }
 
