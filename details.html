@@ -13,7 +13,6 @@ body{
     font-family:Arial, sans-serif;
 }
 
-/* HEADER */
 .header{
     background:#111;
     padding:15px;
@@ -23,7 +22,6 @@ body{
     color:#e50914;
     position:sticky;
     top:0;
-    z-index:5;
 }
 
 .container{
@@ -31,7 +29,6 @@ body{
     animation:fadeIn 0.35s ease;
 }
 
-/* POSTER */
 .poster{
     width:100%;
     max-height:340px;
@@ -39,7 +36,6 @@ body{
     border-radius:12px;
     background:#222;
     box-shadow:0 0 25px rgba(229,9,20,0.25);
-    animation:posterPop 0.3s ease;
 }
 
 .title{ margin-top:15px; font-size:24px; font-weight:bold; }
@@ -52,7 +48,6 @@ body{
     white-space:pre-line;
 }
 
-/* BUTTONS */
 .btn{
     display:block;
     width:100%;
@@ -70,27 +65,14 @@ body{
 .btn:hover{ transform:scale(1.03); }
 
 .trailer-btn{ background:#e50914; }
-.whatsapp-btn{ background:#25D366; }
-
 .back-btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:10px 20px;
     background:#333;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+    margin-top:20px;
 }
 
-/* ANIMATIONS */
 @keyframes fadeIn{
     from{ opacity:0; transform:translateY(10px); }
     to{ opacity:1; transform:none; }
-}
-
-@keyframes posterPop{
-    from{ transform:scale(0.96); opacity:0; }
-    to{ transform:scale(1); opacity:1; }
 }
 </style>
 </head>
@@ -99,8 +81,8 @@ body{
 
 <div class="header" id="headerTitle">Details</div>
 
-<div class="container">
-    <img id="poster" class="poster" alt="Poster">
+<div class="container" id="container">
+    <img id="poster" class="poster">
 
     <div class="title" id="title"></div>
     <div class="genre" id="genre"></div>
@@ -111,20 +93,15 @@ body{
         ▶ Watch Trailer
     </a>
 
-    <a href="#" id="buyBtn" class="btn whatsapp-btn">
-        Buy via WhatsApp
-    </a>
-
-    <a href="#" id="backBtn" class="back-btn">⬅ Back</a>
+    <a href="tv.html" class="btn back-btn">⬅ Back</a>
 </div>
 
 <script>
 
 const params = new URLSearchParams(window.location.search);
 const titleParam = params.get("title");
-const phoneNumber = "94703490292";
 
-/* TRAILERS */
+/* TRAILERS – TV ONLY */
 const trailers = {
 "Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",
 "Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",
@@ -136,47 +113,45 @@ const trailers = {
 "The Summer I Turned Pretty (2022)" : "https://youtu.be/LPNs5kKeEgE",
 "American Primeval (2025)" : "https://youtu.be/U8WMvCrywYg",
 "Stranger Things" : "https://youtu.be/b9EkMc79ZSU",
-"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw",
-
-/* MOVIES 🔥 */
-"Harry Potter Collection" : "https://youtu.be/VyHV0BRtdxo",
-"Marvel Collection" : "https://youtu.be/TcMBFSGVi1c",
-"Fast & Furious Collection" : "https://youtu.be/uisBaTkQAEs",
-"DC Collection" : "https://youtu.be/0WWzgGyAH6Y",
-"Transformers Collection" : "https://youtu.be/AzGQo7HfDss",
-"John Wick Collection" : "https://youtu.be/2AUmvWm5ZDQ"
+"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw"
 };
 
-/* DATA */
+/* DATA – TV ONLY */
 const dataMap = {
 
 "56 Days (2026)":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
-genre:"Crime, Drama, Mystery (English)",
+genre:"Crime / Drama / Mystery",
 rating:"⭐ 4.4",
 description:"Thriller / Mystery / Crime drama series."
 },
 
+"Prison Break (2005)":{
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",
+genre:"Action / Crime / Thriller",
+rating:"⭐ 8.1",
+description:"Two brothers, one escape plan."
+},
+
+"Money Heist (2021)":{
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
+genre:"Crime / Thriller",
+rating:"⭐ 8.3",
+description:"The Professor's biggest heist."
+},
+
 "One-Punch Man":{
 poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",
-genre:"Anime, Action",
+genre:"Anime / Action",
 rating:"⭐ 8.7",
 description:"Saitama – එක punch hero කෙනෙක්."
 },
 
-/* MOVIES */
-"Harry Potter Collection":{
-poster:"https://picsum.photos/500/300?hp",
-genre:"Fantasy, Adventure",
-rating:"⭐ 9.5",
-description:"All Harry Potter movies collection."
-},
-
-"Marvel Collection":{
-poster:"https://picsum.photos/500/300?marvel",
-genre:"Action, Superhero",
-rating:"⭐ 9.0",
-description:"Marvel universe movies collection."
+"Stranger Things":{
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",
+genre:"Sci-Fi / Mystery",
+rating:"⭐ 8.6",
+description:"Mysteries of the Upside Down."
 }
 
 };
@@ -195,26 +170,16 @@ description.innerText = data.description;
 poster.onerror = () =>
 poster.src = "https://via.placeholder.com/500x300?text=No+Image";
 
-const message = `Hello, I want to buy:\n\n${titleParam}`;
-buyBtn.href = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
 if(trailers[titleParam]){
     trailerBtn.href = trailers[titleParam];
 }else{
     trailerBtn.style.display = "none";
 }
 
-/* BACK BUTTON AUTO */
-if(document.referrer.includes("movies")){
-    backBtn.href = "movies.html";
-}else{
-    backBtn.href = "tv.html";
-}
-
 }else{
 
-document.querySelector(".container").innerHTML =
-"<h2>Not Found</h2><a href='tv.html' class='back-btn'>⬅ Back</a>";
+container.innerHTML =
+"<h2>Show Not Found</h2><a href='tv.html' class='btn back-btn'>⬅ Back</a>";
 
 }
 
