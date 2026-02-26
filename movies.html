@@ -104,9 +104,15 @@ body{
 }
 
 .card-content{ padding:10px; }
-.rating{ font-size:14px; color:gold; }
 
-/* NOTICE BOARD */
+.rating{ font-size:14px; color:gold; }
+.price{
+    font-size:14px;
+    color:#e50914;
+    margin-top:4px;
+}
+
+/* NOTICE POPUP */
 .notice{
     position:fixed;
     top:50%;
@@ -186,8 +192,7 @@ body{
     <button onclick="filterGenre('all')">All</button>
     <button onclick="filterGenre('fantasy')">Fantasy</button>
     <button onclick="filterGenre('action')">Action</button>
-    <button
-onclick="filterGenre('action')">HORROR</button>
+    <button onclick="filterGenre('horror')">Horror</button>
 </div>
 
 <div class="grid">
@@ -198,6 +203,7 @@ onclick="filterGenre('action')">HORROR</button>
 <div class="card-content">
 <h3>Harry Potter Collection</h3>
 <div class="rating">⭐ Fantasy</div>
+<div class="price">Rs. 1200</div>
 </div>
 </div>
 
@@ -207,6 +213,7 @@ onclick="filterGenre('action')">HORROR</button>
 <div class="card-content">
 <h3>Marvel Collection</h3>
 <div class="rating">⭐ Action</div>
+<div class="price">Rs. 1500</div>
 </div>
 </div>
 
@@ -265,7 +272,6 @@ function closeNotice(){
     noticeBox.style.display = "none";
     clearInterval(countdown);
 }
-
 </script>
 
 </body>
