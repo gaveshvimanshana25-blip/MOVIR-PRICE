@@ -4,6 +4,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Hub</title>
 
+<!-- FONT AWESOME (Icons walaṭa) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 body{
     margin:0;
@@ -29,14 +32,6 @@ body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 .hero{ position:relative; height:240px; overflow:hidden; }
 .slide{ position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:0.6s; }
 .slide.active{ opacity:1; }
-.slide::after{ content:""; position:absolute; inset:0; background:linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.2)); }
-
-.content{ position:absolute; left:18px; bottom:22px; z-index:2; max-width:65%; }
-.tag{ color:#e50914; font-size:11px; }
-.title{ font-size:20px; font-weight:bold; margin:4px 0; }
-.desc{ font-size:12px; opacity:0.85; }
-
-.btn{ display:inline-block; margin-top:8px; background:#e50914; padding:7px 16px; border-radius:20px; font-size:12px; text-decoration:none; color:white; font-weight:bold; }
 
 .section{ padding:18px 14px 6px; }
 .section h2{ font-size:15px; }
@@ -45,24 +40,34 @@ body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 
 .footer{ position:fixed; bottom:0; width:100%; background:#111; text-align:center; padding:12px 5px; font-size:11px; font-weight:bold; letter-spacing:2px; color:#00ffcc; }
 
-.modal{ position:fixed; inset:0; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:0.3s; z-index:99; }
-.modal.active{ opacity:1; pointer-events:auto; }
-.modal-box{ width:92%; max-width:420px; background:#111; border-radius:12px; overflow:hidden; }
-.modal iframe{ width:100%; height:220px; border:none; }
-.close{ background:#e50914; text-align:center; padding:10px; cursor:pointer; font-weight:bold; }
-
-.music-btn{
+/* ROUND FLOATING BUTTONS */
+.floating-btn{
 position:fixed;
-bottom:70px;
-right:15px;
-background:#e50914;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
 color:white;
-border:none;
-padding:10px 14px;
-border-radius:25px;
+font-size:22px;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
 cursor:pointer;
 z-index:1001;
-font-weight:bold;
+}
+
+/* MUSIC BUTTON */
+.music-btn{
+bottom:140px;
+right:15px;
+background:#e50914;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn{
+bottom:70px;
+right:15px;
+background:#25D366;
 }
 </style>
 </head>
@@ -79,31 +84,8 @@ font-weight:bold;
 </div>
 
 <div class="hero">
-
-<div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')">
-<div class="content">
-<div class="tag">NEW ARRIVAL</div>
-<div class="title">Moon Knight</div>
-<div class="desc">Crime drama film.</div>
-<a href="#" class="btn"
-onclick="openTrailer('https://youtu.be/x7Krla_UxRg')">
-▶ Trailer
-</a>
-</div>
-</div>
-
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg')">
-<div class="content">
-<div class="tag">TRENDING</div>
-<div class="title">Vikings: Valhalla</div>
-<div class="desc">Action adventure series.</div>
-<a href="#" class="btn"
-onclick="openTrailer('https://www.youtube-nocookie.com/embed/Yi4YnwFT7Gk')">
-▶ Trailer
-</a>
-</div>
-</div>
-
+<div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0001.jpg')"></div>
+<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0000(1).jpg')"></div>
 </div>
 
 <div class="section">
@@ -122,19 +104,18 @@ onclick="openTrailer('https://www.youtube-nocookie.com/embed/Yi4YnwFT7Gk')">
 ⚡ SYSTEM DEVELOP BY GAVESH VIMANSHANA 🚀
 </div>
 
-<div class="modal" id="modal">
-<div class="modal-box">
-<iframe id="frame"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen></iframe>
-<div class="close" onclick="closeTrailer()">CLOSE</div>
-</div>
+<!-- 🎵 MUSIC FLOATING BUTTON -->
+<div class="floating-btn music-btn" onclick="toggleMusic()">
+<i id="musicIcon" class="fa-solid fa-play"></i>
 </div>
 
-<!-- 🎵 MUSIC BUTTON -->
-<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+<!-- 📱 WHATSAPP BUTTON -->
+<a href="https://wa.me/947XXXXXXXX" target="_blank" 
+class="floating-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
 
-<!-- 🎵 AUDIO (YOUR GITHUB SONG ADDED) -->
+<!-- 🎵 AUDIO -->
 <audio id="bgMusic" loop>
 <source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/song.mp3/AUD-20240527-WA0004.mp3" type="audio/mpeg">
 </audio>
@@ -157,22 +138,18 @@ function toggleMode(){
 document.body.classList.toggle("light");
 }
 
-function openTrailer(url){
-document.getElementById("modal").classList.add("active");
-document.getElementById("frame").src=url+"?autoplay=1&rel=0";
-}
-
-function closeTrailer(){
-document.getElementById("modal").classList.remove("active");
-document.getElementById("frame").src="";
-}
-
 function toggleMusic(){
 var music=document.getElementById("bgMusic");
+var icon=document.getElementById("musicIcon");
+
 if(music.paused){
 music.play();
+icon.classList.remove("fa-play");
+icon.classList.add("fa-pause");
 }else{
 music.pause();
+icon.classList.remove("fa-pause");
+icon.classList.add("fa-play");
 }
 }
 </script>
