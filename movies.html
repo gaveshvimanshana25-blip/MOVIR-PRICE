@@ -1,271 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="si">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Movies - Stream Hub</title>
+<title>Movie Download</title>
 
 <style>
 body{
-margin:0;
-background:#000;
-font-family:Arial;
-color:white;
-}
-
-.menu-icon{
-position:fixed;
-top:15px;
-left:15px;
-font-size:28px;
-cursor:pointer;
-z-index:1001;
-}
-
-.side-menu{
-position:fixed;
-top:0;
-left:-250px;
-width:250px;
-height:100%;
-background:#111;
-padding-top:60px;
-transition:0.4s;
-z-index:1000;
-}
-
-.side-menu a{
-display:block;
-padding:15px 25px;
-color:white;
-text-decoration:none;
-border-bottom:1px solid #222;
-}
-
-.side-menu a:hover{
-background:#e50914;
-}
-
-.side-menu.active{
-left:0;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
 }
 
 .header{
-padding:15px;
-font-size:22px;
-font-weight:bold;
-color:#e50914;
-text-align:center;
+    background:#111;
+    padding:15px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
 }
 
-.search-box{
-padding:15px;
+.container{
+    padding:20px;
+    max-width:500px;
+    margin:auto;
 }
 
-.search-box input{
-width:100%;
-padding:10px;
-border:none;
-border-radius:5px;
-font-size:16px;
+.poster{
+    width:100%;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 
-.genres{
-padding:10px;
+.title{
+    font-size:22px;
+    margin-top:15px;
+    font-weight:bold;
 }
 
-.genres button{
-margin:5px;
-padding:8px 12px;
-border:none;
-border-radius:20px;
-background:#222;
-color:white;
-cursor:pointer;
+.desc{
+    font-size:14px;
+    color:#ccc;
+    margin:10px 0 20px;
 }
 
-.genres button:hover{
-background:#e50914;
+.btn{
+    display:block;
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-padding:15px;
-}
+.download{ background:#e50914; color:white; }
+.trailer{ background:#333; color:white; }
 
-.card{
-background:#111;
-border-radius:8px;
-overflow:hidden;
-cursor:pointer;
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.05);
-}
-
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
-}
-
-.card-content{
-padding:10px;
-}
-
-.rating{
-font-size:14px;
-color:gold;
-}
-
-.price{
-background:#e50914;
-padding:4px 8px;
-border-radius:20px;
-font-size:13px;
-display:inline-block;
-margin-top:5px;
+.footer{
+    text-align:center;
+    font-size:12px;
+    color:#777;
+    padding:20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="header">🎬 Movie Download</div>
 
-<div class="side-menu" id="sideMenu">
-<a href="index.html">🏠 Home</a>
-<a href="tv.html">📺 TV Shows</a>
-<a href="movies.html">🎥 Movies</a>
-</div>
+<div class="container">
 
-<div class="header">MOVIES</div>
+    <img class="poster" src="POSTER_IMAGE_URL">
 
-<div class="search-box">
-<input type="text" id="search" placeholder="Search movies...">
-</div>
+    <div class="title">MOVIE NAME</div>
 
-<div class="genres">
-<button onclick="filterGenre('all')">All</button>
-<button onclick="filterGenre('action')">Action</button>
-<button onclick="filterGenre('crime')">Crime</button>
-<button onclick="filterGenre('drama')">Drama</button>
-<button onclick="filterGenre('romance')">Romance</button>
-<button onclick="filterGenre('sci-fi')">Sci-Fi</button>
-</div>
+    <div class="desc">
+        Year • Quality • Size <br><br>
+        Movie description එක මෙතන දාන්න බං 😄
+    </div>
 
-<!-- IMPORTANT ID ADDED -->
-<div class="grid" id="movieGrid">
+    <a class="btn download" href="MOVIE_DOWNLOAD_LINK">⬇ Download Movie</a>
 
-<div class="card" data-genre="sci-fi" data-title="Inception (2010)" onclick="goDetails('Inception (2010)','1600')">
-<img src="images/inception.jpg">
-<div class="card-content">
-<h3>Inception (2010)</h3>
-<div class="rating">⭐ 8.8</div>
-<div class="price">Rs. 1600</div>
-</div>
-</div>
-
-<div class="card" data-genre="sci-fi" data-title="Interstellar (2014)" onclick="goDetails('Interstellar (2014)','1700')">
-<img src="images/interstellar.jpg">
-<div class="card-content">
-<h3>Interstellar (2014)</h3>
-<div class="rating">⭐ 8.6</div>
-<div class="price">Rs. 1700</div>
-</div>
-</div>
-
-<div class="card" data-genre="crime" data-title="Joker (2019)" onclick="goDetails('Joker (2019)','1500')">
-<img src="images/joker.jpg">
-<div class="card-content">
-<h3>Joker (2019)</h3>
-<div class="rating">⭐ 8.4</div>
-<div class="price">Rs. 1500</div>
-</div>
-</div>
-
-<div class="card" data-genre="romance" data-title="Titanic (1997)" onclick="goDetails('Titanic (1997)','1400')">
-<img src="images/titanic.jpg">
-<div class="card-content">
-<h3>Titanic (1997)</h3>
-<div class="rating">⭐ 7.9</div>
-<div class="price">Rs. 1400</div>
-</div>
-</div>
-
-<div class="card" data-genre="action" data-title="The Dark Knight (2008)" onclick="goDetails('The Dark Knight (2008)','1800')">
-<img src="images/darkknight.jpg">
-<div class="card-content">
-<h3>The Dark Knight (2008)</h3>
-<div class="rating">⭐ 9.0</div>
-<div class="price">Rs. 1800</div>
-</div>
-</div>
-
-<div class="card" data-genre="drama" data-title="Fight Club (1999)" onclick="goDetails('Fight Club (1999)','1550')">
-<img src="images/fightclub.jpg">
-<div class="card-content">
-<h3>Fight Club (1999)</h3>
-<div class="rating">⭐ 8.8</div>
-<div class="price">Rs. 1550</div>
-</div>
-</div>
+    <a class="btn trailer" href="TRAILER_LINK">▶ Watch Trailer</a>
 
 </div>
 
-<script>
-function toggleMenu(){
-document.getElementById("sideMenu").classList.toggle("active");
-}
-
-function goDetails(title,price){
-window.location.href="details.html?title="+encodeURIComponent(title)+"&price="+price;
-}
-
-document.getElementById("search").addEventListener("keyup", function(){
-let value=this.value.toLowerCase();
-let cards=document.querySelectorAll(".card");
-cards.forEach(card=>{
-let title=card.getAttribute("data-title")?.toLowerCase() || "";
-card.style.display=title.includes(value)?"block":"none";
-});
-});
-
-function filterGenre(genre){
-let cards=document.querySelectorAll(".card");
-cards.forEach(card=>{
-if(genre==="all"){
-card.style.display="block";
-}else{
-card.style.display=card.getAttribute("data-genre")===genre?"block":"none";
-}
-});
-}
-
-/* ADMIN PANEL MOVIES LOAD */
-function loadAdminMovies(){
-    const movies = JSON.parse(localStorage.getItem("movies") || "[]");
-    const grid = document.getElementById("movieGrid");
-
-    movies.forEach(movie => {
-        grid.innerHTML += `
-        <div class="card" data-genre="admin" data-title="${movie.title}" onclick="goDetails('${movie.title}','${movie.price}')">
-            <img src="images/default.jpg">
-            <div class="card-content">
-                <h3>${movie.title}</h3>
-                <div class="rating">⭐ New</div>
-                <div class="price">Rs. ${movie.price}</div>
-            </div>
-        </div>`;
-    });
-}
-
-loadAdminMovies();
-</script>
+<div class="footer">
+    SYSTEM DEVELOPED BY YOUR NAME
+</div>
 
 </body>
 </html>
