@@ -261,10 +261,55 @@ body.light .side-menu a{
     cursor:pointer;
     font-weight:bold;
 }
+
+/* NOTICE POPUP */
+#notice{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#111;
+    border:1px solid #222;
+    width:260px;
+    padding:18px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,0.9);
+    z-index:5000;
+    animation:popin 0.25s ease;
+}
+#notice h3{
+    margin:0 0 8px;
+}
+#notice p{
+    font-size:13px;
+    opacity:0.7;
+}
+#notice button{
+    margin-top:12px;
+    padding:7px 18px;
+    border:none;
+    border-radius:20px;
+    background:#e50914;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+@keyframes popin{
+    from{ transform:translate(-50%,-50%) scale(0.8); opacity:0; }
+    to{ transform:translate(-50%,-50%) scale(1); opacity:1; }
+}
 </style>
 </head>
 
 <body>
+
+<!-- NOTICE -->
+<div id="notice">
+    <h3>👋 Welcome to Stream Hub</h3>
+    <p>Movies & TV Series එකම තැනකින් බලන්න. Latest releases enjoy කරන්න Stream Hub එක්ක.</p>
+    <button onclick="closeNotice()">OK</button>
+</div>
 
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
@@ -296,20 +341,6 @@ body.light .side-menu a{
         </div>
     </div>
 
-    <div class="slide" style="background-image:url('m3.jpg')">
-        <div class="content">
-            <div class="tag">POPULAR</div>
-            <div class="title">Joker</div>
-            <div class="desc">Dark psychological thriller.</div>
-            <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/zAGVQLHvwOY')">▶ Trailer</a>
-        </div>
-    </div>
-
-    <div class="dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
 </div>
 
 <!-- TV -->
@@ -344,46 +375,19 @@ SYSTEM DEVELOP BY GAVESH VIMANSHANA
 
 <script>
 let slides = document.querySelectorAll(".slide");
-let dots = document.querySelectorAll(".dot");
 let index = 0;
-let startX = 0;
 
-/* SHOW */
+/* SLIDER AUTO */
 function showSlide(i){
     slides.forEach(s => s.classList.remove("active"));
-    dots.forEach(d => d.classList.remove("active"));
     slides[i].classList.add("active");
-    dots[i].classList.add("active");
 }
 
-/* AUTO */
 setInterval(()=>{
     index++;
     if(index >= slides.length) index = 0;
     showSlide(index);
 }, 4000);
-
-/* SWIPE */
-const hero = document.getElementById("hero");
-
-hero.addEventListener("touchstart", e=>{
-    startX = e.touches[0].clientX;
-});
-
-hero.addEventListener("touchend", e=>{
-    let diff = startX - e.changedTouches[0].clientX;
-
-    if(Math.abs(diff) > 50){
-        if(diff > 0){
-            index++;
-            if(index >= slides.length) index = 0;
-        }else{
-            index--;
-            if(index < 0) index = slides.length - 1;
-        }
-        showSlide(index);
-    }
-});
 
 /* MENU */
 function toggleMenu(){
@@ -408,6 +412,13 @@ function closeTrailer(){
     document.getElementById("modal").classList.remove("active");
     document.getElementById("frame").src = "";
 }
+
+/* NOTICE */
+function closeNotice(){
+    const n = document.getElementById("notice");
+    if(n) n.style.display = "none";
+}
+setTimeout(closeNotice, 10000);
 </script>
 
 </body>
