@@ -1,203 +1,195 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Details - Stream Hub</title>
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Details - Stream Hub</title>  
+  
+<style>  
+body{  
+    margin:0;  
+    background:#0f0f0f;  
+    color:white;  
+    font-family:Arial, sans-serif;  
+}  
+  
+.header{  
+    background:#111;  
+    padding:15px;  
+    text-align:center;  
+    font-size:20px;  
+    font-weight:bold;  
+    color:#e50914;  
+    position:sticky;  
+    top:0;  
+}  
+  
+.container{  
+    padding:15px;  
+    animation:fadeIn 0.35s ease;  
+}  
+  
+.poster{  
+    width:100%;  
+    max-height:340px;  
+    object-fit:cover;  
+    border-radius:12px;  
+    background:#222;  
+    box-shadow:0 0 25px rgba(229,9,20,0.25);  
+}  
+  
+.title{ margin-top:15px; font-size:24px; font-weight:bold; }  
+.genre{ margin-top:8px; color:#aaa; }  
+.rating{ margin-top:8px; color:gold; font-size:18px; }  
+.price{ margin-top:6px; color:#00e676; font-size:18px; font-weight:bold; }
 
-<style>
-body{
-    margin:0;
-    background:#0f0f0f;
-    color:white;
-    font-family:Arial, sans-serif;
-}
-
-.header{
-    background:#111;
-    padding:15px;
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    color:#e50914;
-    position:sticky;
-    top:0;
-}
-
-.container{
-    padding:15px;
-    animation:fadeIn 0.35s ease;
-}
-
-.poster{
-    width:100%;
-    max-height:340px;
-    object-fit:cover;
-    border-radius:12px;
-    background:#222;
-    box-shadow:0 0 25px rgba(229,9,20,0.25);
-}
-
-.title{ margin-top:15px; font-size:24px; font-weight:bold; }
-.genre{ margin-top:8px; color:#aaa; }
-.rating{ margin-top:8px; color:gold; font-size:18px; }
-.description{
-    margin-top:15px;
-    line-height:1.6;
-    color:#ddd;
-    white-space:pre-line;
-}
-
-.btn{
-    display:block;
-    width:100%;
-    text-align:center;
-    padding:12px;
-    border-radius:10px;
-    text-decoration:none;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    margin-top:15px;
-    transition:0.2s;
-}
-
-.btn:hover{ transform:scale(1.03); }
-
-.trailer-btn{ background:#e50914; }
-.back-btn{
-    background:#333;
-    margin-top:20px;
-}
-
-@keyframes fadeIn{
-    from{ opacity:0; transform:translateY(10px); }
-    to{ opacity:1; transform:none; }
-}
-</style>
-</head>
-
-<body>
-
-<div class="header" id="headerTitle">Details</div>
-
-<div class="container" id="container">
-    <img id="poster" class="poster">
-
-    <div class="title" id="title"></div>
-    <div class="genre" id="genre"></div>
-    <div class="rating" id="rating"></div>
-    <div class="description" id="description"></div>
-
+.description{  
+    margin-top:15px;  
+    line-height:1.6;  
+    color:#ddd;  
+    white-space:pre-line;  
+}  
+  
+.btn{  
+    display:block;  
+    width:100%;  
+    text-align:center;  
+    padding:12px;  
+    border-radius:10px;  
+    text-decoration:none;  
+    color:white;  
+    font-size:16px;  
+    font-weight:bold;  
+    margin-top:15px;  
+    transition:0.2s;  
+}  
+  
+.btn:hover{ transform:scale(1.03); }  
+  
+.trailer-btn{ background:#e50914; }  
+.buy-btn{ background:#00c853; }  
+.back-btn{ background:#333; margin-top:20px; }  
+  
+@keyframes fadeIn{  
+    from{ opacity:0; transform:translateY(10px); }  
+    to{ opacity:1; transform:none; }  
+}  
+</style>  
+</head>  
+  
+<body>  
+  
+<div class="header" id="headerTitle">Details</div>  
+  
+<div class="container" id="container">  
+    <img id="poster" class="poster">  
+  
+    <div class="title" id="title"></div>  
+    <div class="genre" id="genre"></div>  
+    <div class="rating" id="rating"></div>  
+    <div class="price" id="price"></div>  
+    <div class="description" id="description"></div>  
+  
     <a href="#" id="trailerBtn" target="_blank" class="btn trailer-btn">
-        ▶ Watch Trailer
+        ▶ Watch Trailer  
+    </a>  
+
+    <a href="#" id="buyBtn" class="btn buy-btn">
+        💰 Buy Now
     </a>
+  
+    <a href="tv.html" class="btn back-btn">⬅ Back</a>  
+</div>  
+  
+<script>  
+  
+const params = new URLSearchParams(window.location.search);  
+const titleParam = params.get("title");  
+  
+const trailers = {  
+"Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",  
+"Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",  
+"Yeh Kaali Kaali Ankhein (2022)" : "https://youtu.be/6PcY7fn3ptc",  
+"56 Days (2026)" : "https://youtu.be/P5EhHeF99wg",  
+"Do You Wanna Partner (2025)" : "https://youtu.be/vD39Kb3eXuU",  
+"Motorvalley (2026)" : "https://youtu.be/ySXOmtBK4fk",  
+"Kohrra (2023)" : "https://youtu.be/sAx4aq6396E",  
+"The Summer I Turned Pretty (2022)" : "https://youtu.be/LPNs5kKeEgE",  
+"American Primeval (2025)" : "https://youtu.be/U8WMvCrywYg",  
+"Stranger Things" : "https://youtu.be/b9EkMc79ZSU",  
+"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw"  
+};  
+  
+const dataMap = {  
 
-    <a href="tv.html" class="btn back-btn">⬅ Back</a>
-</div>
+"56 Days (2026)":{  
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",  
+genre:"Crime / Drama / Mystery",  
+rating:"⭐ 4.4",  
+price:"Rs. 1600",
+description:"Thriller / Mystery / Crime drama series."  
+},  
+  
+"Prison Break (2005)":{  
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",  
+genre:"Action / Crime / Thriller",  
+rating:"⭐ 8.1",  
+price:"Rs. 2000",
+description:"Two brothers, one escape plan."  
+},  
+  
+"Money Heist (2021)":{  
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",  
+genre:"Crime / Thriller",  
+rating:"⭐ 8.3",  
+price:"Rs. 1900",
+description:"The Professor's biggest heist."  
+},  
+  
+"One-Punch Man":{  
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",  
+genre:"Anime / Action",  
+rating:"⭐ 8.7",  
+price:"Rs. 1600",
+description:"Saitama – එක punch hero කෙනෙක්."  
+},  
+  
+"Stranger Things":{  
+poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",  
+genre:"Sci-Fi / Mystery",  
+rating:"⭐ 8.6",  
+price:"Rs. 2100",
+description:"Mysteries of the Upside Down."  
+}  
 
-<script>
+};  
+  
+if(titleParam && dataMap[titleParam]){  
 
-const params = new URLSearchParams(window.location.search);
-const titleParam = params.get("title");
+const data = dataMap[titleParam];  
 
-/* TRAILERS – TV ONLY */
-const trailers = {
-"Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",
-"Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",
-"Yeh Kaali Kaali Ankhein (2022)" : "https://youtu.be/6PcY7fn3ptc",
-"56 Days (2026)" : "https://youtu.be/P5EhHeF99wg",
-"Do You Wanna Partner (2025)" : "https://youtu.be/vD39Kb3eXuU",
-"Motorvalley (2026)" : "https://youtu.be/ySXOmtBK4fk",
-"Kohrra (2023)" : "https://youtu.be/sAx4aq6396E",
-"The Summer I Turned Pretty (2022)" : "https://youtu.be/LPNs5kKeEgE",
-"American Primeval (2025)" : "https://youtu.be/U8WMvCrywYg",
-"Stranger Things" : "https://youtu.be/b9EkMc79ZSU",
-"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw"
-};
+headerTitle.innerText = titleParam;  
+poster.src = data.poster;  
+title.innerText = titleParam;  
+genre.innerText = "Genre: " + data.genre;  
+rating.innerText = data.rating;  
+price.innerText = data.price;
+description.innerText = data.description;  
+  
+buyBtn.onclick = () => alert("Purchase: " + titleParam);
 
-/* DATA – TV ONLY */
-const dataMap = {
-
-"56 Days (2026)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",
-genre:"Crime / Drama / Mystery",
-rating:"⭐ 4.4",
-description:"Thriller / Mystery / Crime drama series."
-},
-
-"Prison Break (2005)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",
-genre:"Action / Crime / Thriller",
-rating:"⭐ 8.1",
-description:"Two brothers, one escape plan."
-},
-
-"Money Heist (2021)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",
-genre:"Crime / Thriller",
-rating:"⭐ 8.3",
-description:"The Professor's biggest heist."
-},
-
-"One-Punch Man":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",
-genre:"Anime / Action",
-rating:"⭐ 8.7",
-description:"Saitama – එක punch hero කෙනෙක්."
-},
-
-"Stranger Things":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",
-genre:"Sci-Fi / Mystery",
-rating:"⭐ 8.6",
-description:"Mysteries of the Upside Down."
-},
-
-"SPY x FAMILY (2022)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg",
-genre:"Sci-Fi / Mystery",
-rating:"⭐ 8.6",
-description:"Mysteries of the Upside Down."
-},
-
-"Do You Wanna Partner (2025)":{
-poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",
-genre:"Sci-Fi / Mystery",
-rating:"⭐ 8.6",
-description:"Mysteries of the Upside Down."
-},
-
-};
-
-if(titleParam && dataMap[titleParam]){
-
-const data = dataMap[titleParam];
-
-headerTitle.innerText = titleParam;
-poster.src = data.poster;
-title.innerText = titleParam;
-genre.innerText = "Genre: " + data.genre;
-rating.innerText = data.rating;
-description.innerText = data.description;
-
-poster.onerror = () =>
-poster.src = "https://via.placeholder.com/500x300?text=No+Image";
-
-if(trailers[titleParam]){
-    trailerBtn.href = trailers[titleParam];
-}else{
-    trailerBtn.style.display = "none";
-}
-
-}else{
-
-container.innerHTML =
-"<h2>Show Not Found</h2><a href='tv.html' class='btn back-btn'>⬅ Back</a>";
-
-}
-
-</script>
-
-</body>
+if(trailers[titleParam]){  
+    trailerBtn.href = trailers[titleParam];  
+}else{  
+    trailerBtn.style.display = "none";  
+}  
+  
+}else{  
+container.innerHTML =  
+"<h2>Show Not Found</h2><a href='tv.html' class='btn back-btn'>⬅ Back</a>";  
+}  
+  
+</script>  
+  
+</body>  
 </html>
