@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Details</title>
+
+<style>
+body{
+    margin:0;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+/* HEADER */
+.header{
+    background:#111;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#e50914;
+    position:sticky;
+    top:0;
+}
+
+/* CONTAINER */
+.container{
+    padding:15px;
+    animation:fadeIn .35s ease;
+}
+
+/* POSTER */
+.poster{
+    width:100%;
+    max-height:340px;
+    object-fit:cover;
+    border-radius:14px;
+    background:#222;
+    box-shadow:0 0 25px rgba(229,9,20,.25);
+}
+
+/* TEXT */
+.title{ font-size:24px; margin-top:15px; }
+.meta{ color:#aaa; margin-top:6px; }
+.rating{ color:gold; margin-top:6px; font-size:18px; }
+.description{
+    margin-top:15px;
+    line-height:1.6;
+    color:#ddd;
+}
+
+/* BUTTONS */
+.btn{
+    display:block;
+    text-align:center;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    margin-top:15px;
+    transition:.2s;
+}
+
+.btn:hover{ transform:scale(1.03); }
+
+.trailer{ background:#e50914; }
+.buy{ background:#25D366; }
+.back{
+    background:#333;
+    display:inline-block;
+    margin-top:25px;
+    padding:10px 20px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header" id="header">Movie Details</div>
+
+<div class="container" id="container">
+
+    <img id="poster" class="poster">
+
+    <div class="title" id="title"></div>
+    <div class="meta" id="genre"></div>
+    <div class="rating" id="rating"></div>
+    <div class="description" id="description"></div>
+
+    <a id="trailerBtn" target="_blank" class="btn trailer">
+        ▶ Watch Trailer
+    </a>
+
+    <a id="buyBtn" class="btn buy">
+        Buy via WhatsApp
+    </a>
+
+    <a id="backBtn" class="btn back">⬅ Back</a>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const titleParam = params.get("title");
+const phoneNumber = "94703490292";
+
+/* MOVIE DATABASE */
+const movies = {
+
+"Harry Potter Collection":{
+poster:"https://picsum.photos/600/350?harrypotter",
+genre:"Fantasy / Adventure",
+rating:"⭐ 9.5",
+description:"Complete Harry Potter movie collection."
+},
+
+"Marvel Collection":{
+poster:"https://picsum.photos/600/350?marvel",
+genre:"Action / Superhero",
+rating:"⭐ 9.2",
+description:"Marvel Universe movie collection."
+},
+
+"Fast & Furious Collection":{
+poster:"https://picsum.photos/600/350?fastfurious",
+genre:"Action / Racing",
+rating:"⭐ 8.8",
+description:"All Fast & Furious movies."
+}
+
+};
+
+/* TRAILERS */
+const trailers = {
+"Harry Potter Collection":"https://youtu.be/VyHV0BRtdxo",
+"Marvel Collection":"https://youtu.be/TcMBFSGVi1c",
+"Fast & Furious Collection":"https://youtu.be/uisBaTkQAEs"
+};
+
+if(titleParam && movies[titleParam]){
+
+const data = movies[titleParam];
+
+header.innerText = titleParam;
+poster.src = data.poster;
+title.innerText = titleParam;
+genre.innerText = "Genre: " + data.genre;
+rating.innerText = data.rating;
+description.innerText = data.description;
+
+/* FALLBACK IMAGE */
+poster.onerror = () =>
+poster.src = "https://via.placeholder.com/600x350?text=No+Image";
+
+/* WHATSAPP */
+const message = `Hello, I want to buy:\n\n${titleParam}`;
+buyBtn.href =
+`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+/* TRAILER */
+if(trailers[titleParam]){
+    trailerBtn.href = trailers[titleParam];
+}else{
+    trailerBtn.style.display = "none";
+}
+
+/* BACK */
+const ref = document.referrer;
+backBtn.href = (ref && ref.includes("movies"))
+    ? "movies.html"
+    : "movies.html";
+
+}else{
+
+container.innerHTML =
+"<h2>Movie Not Found</h2><a href='movies.html' class='btn back'>⬅ Back</a>";
+
+}
+
+</script>
+
+</body>
+</html>
