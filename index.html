@@ -4,7 +4,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stream Hub</title>
 
-<!-- FONT AWESOME (Icons walaṭa) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -14,12 +13,9 @@ body{
     font-family:Arial, sans-serif;
     color:white;
     transition:0.3s;
-    padding-bottom:60px;
+    padding-bottom:80px;
 }
 body.light{ background:white; color:black; }
-body.light .card{ background:#f2f2f2; }
-body.light .side-menu{ background:#eee; }
-body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 
 .menu-icon{ position:fixed; top:15px; left:15px; font-size:26px; cursor:pointer; z-index:1001; }
 .toggle-btn{ position:fixed; top:15px; right:15px; background:#e50914; border:none; color:white; padding:6px 12px; border-radius:20px; cursor:pointer; z-index:1001; }
@@ -36,11 +32,8 @@ body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 .section{ padding:18px 14px 6px; }
 .section h2{ font-size:15px; }
 .card{ background:#111; border-radius:10px; padding:18px; margin-top:8px; text-align:center; }
-.card a{ text-decoration:none; color:inherit; font-weight:bold; }
 
-.footer{ position:fixed; bottom:0; width:100%; background:#111; text-align:center; padding:12px 5px; font-size:11px; font-weight:bold; letter-spacing:2px; color:#00ffcc; }
-
-/* ROUND FLOATING BUTTONS */
+/* Floating Buttons */
 .floating-btn{
 position:fixed;
 width:55px;
@@ -56,18 +49,59 @@ cursor:pointer;
 z-index:1001;
 }
 
-/* MUSIC BUTTON */
 .music-btn{
 bottom:140px;
 right:15px;
 background:#e50914;
 }
 
-/* WHATSAPP BUTTON */
 .whatsapp-btn{
 bottom:70px;
 right:15px;
 background:#25D366;
+}
+
+/* 🔥 MODERN FOOTER */
+.footer{
+position:relative;
+background:linear-gradient(45deg,#0f0f0f,#1a1a1a);
+text-align:center;
+padding:30px 10px;
+color:white;
+margin-top:40px;
+}
+
+.footer h3{
+margin:0;
+color:#e50914;
+letter-spacing:2px;
+}
+
+.footer p{
+margin:6px 0;
+font-size:13px;
+opacity:0.8;
+}
+
+.social-icons{
+margin:15px 0;
+}
+
+.social-icons a{
+color:white;
+font-size:22px;
+margin:0 10px;
+transition:0.3s;
+}
+
+.social-icons a:hover{
+color:#e50914;
+transform:scale(1.2);
+}
+
+.copyright{
+font-size:11px;
+opacity:0.6;
 }
 </style>
 </head>
@@ -78,9 +112,9 @@ background:#25D366;
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
 
 <div class="side-menu" id="sideMenu">
-<a href="index.html">🏠 Home</a>
-<a href="tv.html">📺 TV Shows</a>
-<a href="movies.html">🎬 Movies</a>
+<a href="#">🏠 Home</a>
+<a href="#">📺 TV Shows</a>
+<a href="#">🎬 Movies</a>
 </div>
 
 <div class="hero">
@@ -90,28 +124,38 @@ background:#25D366;
 
 <div class="section">
 <h2>📺 TV SHOWS</h2>
-<div class="card">
-<a href="tv.html">Go to TV Shows</a>
-</div>
+<div class="card">Go to TV Shows</div>
 
 <h2>🎬 MOVIES</h2>
-<div class="card">
-<a href="movies.html">Go to Movies</a>
-</div>
+<div class="card">Go to Movies</div>
 </div>
 
+<!-- 🔥 MODERN FOOTER -->
 <div class="footer">
-⚡ SYSTEM DEVELOP BY GAVESH VIMANSHANA 🚀
+    <h3>STREAM HUB</h3>
+    <p>Your Entertainment Partner 🎬</p>
+
+    <div class="social-icons">
+        <a href="https://wa.me/94771234567" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="#">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+    </div>
+
+    <p class="copyright">
+        © 2026 GAVESH VIMANSHANA | All Rights Reserved
+    </p>
 </div>
 
-<!-- 🎵 MUSIC FLOATING BUTTON -->
+<!-- 🎵 MUSIC BUTTON -->
 <div class="floating-btn music-btn" onclick="toggleMusic()">
 <i id="musicIcon" class="fa-solid fa-play"></i>
 </div>
 
-<!-- 📱 WHATSAPP BUTTON -->
-<a href="https://wa.me/947XXXXXXXX" target="_blank" 
-class="floating-btn whatsapp-btn">
+<!-- 📱 WHATSAPP FLOATING -->
+<a href="https://wa.me/94771234567" target="_blank" class="floating-btn whatsapp-btn">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
@@ -138,10 +182,20 @@ function toggleMode(){
 document.body.classList.toggle("light");
 }
 
-function toggleMusic(){
 var music=document.getElementById("bgMusic");
 var icon=document.getElementById("musicIcon");
 
+/* 🔥 AUTO PLAY AFTER 3 SECONDS */
+window.addEventListener("load", function(){
+setTimeout(function(){
+music.play().then(()=>{
+icon.classList.remove("fa-play");
+icon.classList.add("fa-pause");
+}).catch(()=>{});
+},3000);
+});
+
+function toggleMusic(){
 if(music.paused){
 music.play();
 icon.classList.remove("fa-play");
