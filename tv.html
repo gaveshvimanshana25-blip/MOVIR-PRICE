@@ -49,36 +49,7 @@ body{
     pointer-events:none;
 }
 
-/* MENU */
-.menu-icon{
-    position:fixed;
-    top:15px;
-    left:15px;
-    font-size:28px;
-    cursor:pointer;
-    z-index:1001;
-}
-.side-menu{
-    position:fixed;
-    top:0;
-    left:-250px;
-    width:250px;
-    height:100%;
-    background:#111;
-    padding-top:60px;
-    transition:0.4s;
-    z-index:1000;
-}
-.side-menu a{
-    display:block;
-    padding:15px 25px;
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid #222;
-}
-.side-menu a:hover{ background:#e50914; }
-.side-menu.active{ left:0; }
-
+/* HEADER */
 .header{
     padding:15px;
     font-size:22px;
@@ -99,6 +70,30 @@ body{
     color:#ddd;
 }
 
+/* SEARCH */
+.search-box{ padding:15px; }
+.search-box input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+}
+
+/* GENRES */
+.genres{ padding:10px; text-align:center; }
+.genres button{
+    margin:5px;
+    padding:8px 12px;
+    border:none;
+    border-radius:20px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+.genres button:hover{ background:#e50914; }
+
+/* GRID */
 .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -153,14 +148,6 @@ body{
     </div>
 </div>
 
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-
-<div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="tv.html">📺 TV Shows</a>
-    <a href="movies.html">🎥 Movies</a>
-</div>
-
 <div class="header">TV SHOWS</div>
 
 <div class="notice">
@@ -168,62 +155,100 @@ body{
 TV SERIOUS එකේ SESSION 1, 2, 3 AVAILABLE කියලයි.
 </div>
 
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search shows..." onkeyup="searchShows()">
+</div>
+
+<div class="genres">
+    <button onclick="filterGenre('all')">All</button>
+    <button onclick="filterGenre('action')">Action</button>
+    <button onclick="filterGenre('crime')">Crime</button>
+    <button onclick="filterGenre('drama')">Drama</button>
+    <button onclick="filterGenre('anime')">Anime</button>
+    <button onclick="filterGenre('sci fi')">Sci-Fi</button>
+</div>
+
 <div class="grid">
 
-<div class="card"><div class="badge">S1</div>
+<div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">
+<div class="badge">S1</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg">
-<div class="card-content"><h3>56 Days (2026)</h3><div class="rating">⭐ 4.4</div><div class="price">Rs. 800</div></div></div>
+<div class="card-content"><h3>56 Days (2026)</h3><div class="rating">⭐ 4.4</div><div class="price">Rs. 800</div></div>
+</div>
 
-<div class="card"><div class="badge">S1</div>
+<div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">
+<div class="badge">S1</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg">
-<div class="card-content"><h3>Do You Wanna Partner (2025)</h3><div class="rating">⭐ 7.7</div><div class="price">Rs. 700</div></div></div>
+<div class="card-content"><h3>Do You Wanna Partner</h3><div class="rating">⭐ 7.7</div><div class="price">Rs. 700</div></div>
+</div>
 
-<div class="card"><div class="badge">S1</div>
+<div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">
+<div class="badge">S1</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg">
-<div class="card-content"><h3>Motorvalley (2026)</h3><div class="rating">⭐ 6.8</div><div class="price">Rs. 900</div></div></div>
+<div class="card-content"><h3>Motorvalley (2026)</h3><div class="rating">⭐ 6.8</div><div class="price">Rs. 900</div></div>
+</div>
 
-<div class="card"><div class="badge">S1</div>
+<div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">
+<div class="badge">S1</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg">
-<div class="card-content"><h3>Kohrra (2023)</h3><div class="rating">⭐ 6.9</div><div class="price">Rs. 1000</div></div></div>
+<div class="card-content"><h3>Kohrra (2023)</h3><div class="rating">⭐ 6.9</div><div class="price">Rs. 1000</div></div>
+</div>
 
-<div class="card"><div class="badge">S2</div>
+<div class="card" data-genre="drama" data-title="The Summer I Turned Pretty" onclick="goDetails('The Summer I Turned Pretty')">
+<div class="badge">S2</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg">
-<div class="card-content"><h3>The Summer I Turned Pretty</h3><div class="rating">⭐ 8.1</div><div class="price">Rs. 1200</div></div></div>
+<div class="card-content"><h3>The Summer I Turned Pretty</h3><div class="rating">⭐ 8.1</div><div class="price">Rs. 1200</div></div>
+</div>
 
-<div class="card"><div class="badge">S1</div>
+<div class="card" data-genre="action" data-title="American Primeval" onclick="goDetails('American Primeval')">
+<div class="badge">S1</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg">
-<div class="card-content"><h3>American Primeval</h3><div class="rating">⭐ 7.6</div><div class="price">Rs. 950</div></div></div>
+<div class="card-content"><h3>American Primeval</h3><div class="rating">⭐ 7.6</div><div class="price">Rs. 950</div></div>
+</div>
 
-<div class="card"><div class="badge">S2</div>
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg">
-<div class="card-content"><h3>Yeh Kaali Kaali Ankhein</h3><div class="rating">⭐ 9.1</div><div class="price">Rs. 1300</div></div></div>
-
-<div class="card"><div class="badge">S5</div>
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg">
-<div class="card-content"><h3>Prison Break</h3><div class="rating">⭐ 8.1</div><div class="price">Rs. 1500</div></div></div>
-
-<div class="card"><div class="badge">S3</div>
-<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg">
-<div class="card-content"><h3>Money Heist</h3><div class="rating">⭐ 8.3</div><div class="price">Rs. 1400</div></div></div>
-
-<div class="card"><div class="badge">S2</div>
+<div class="card" data-genre="anime" data-title="SPY x FAMILY" onclick="goDetails('SPY x FAMILY')">
+<div class="badge">S2</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg">
-<div class="card-content"><h3>SPY x FAMILY</h3><div class="rating">⭐ 6.7</div><div class="price">Rs. 1100</div></div></div>
+<div class="card-content"><h3>SPY x FAMILY</h3><div class="rating">⭐ 6.7</div><div class="price">Rs. 1100</div></div>
+</div>
 
-<div class="card"><div class="badge">S3</div>
+<div class="card" data-genre="anime" data-title="One-Punch Man" onclick="goDetails('One-Punch Man')">
+<div class="badge">S3</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg">
-<div class="card-content"><h3>One-Punch Man</h3><div class="rating">⭐ 6.1</div><div class="price">Rs. 1600</div></div></div>
+<div class="card-content"><h3>One-Punch Man</h3><div class="rating">⭐ 6.1</div><div class="price">Rs. 1600</div></div>
+</div>
 
-<div class="card"><div class="badge">S4</div>
+<div class="card" data-genre="sci fi" data-title="Stranger Things" onclick="goDetails('Stranger Things')">
+<div class="badge">S4</div>
 <img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg">
-<div class="card-content"><h3>Stranger Things</h3><div class="rating">⭐ 8.6</div><div class="price">Rs. 1700</div></div></div>
+<div class="card-content"><h3>Stranger Things</h3><div class="rating">⭐ 8.6</div><div class="price">Rs. 1700</div></div>
+</div>
 
 </div>
 
 <script>
-function toggleMenu(){
-    document.getElementById("sideMenu").classList.toggle("active");
+function goDetails(title){
+    window.location.href="details.html?title="+encodeURIComponent(title);
 }
+
+function searchShows(){
+    let input = document.getElementById("search").value.toLowerCase();
+    document.querySelectorAll(".card").forEach(card=>{
+        let title = card.dataset.title.toLowerCase();
+        card.style.display = title.includes(input) ? "block" : "none";
+    });
+}
+
+function filterGenre(genre){
+    document.querySelectorAll(".card").forEach(card=>{
+        if(genre==="all" || card.dataset.genre===genre){
+            card.style.display="block";
+        } else {
+            card.style.display="none";
+        }
+    });
+}
+
 window.addEventListener("load", ()=>{
     document.getElementById("loader").classList.add("hide");
 });
