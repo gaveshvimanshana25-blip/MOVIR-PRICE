@@ -11,7 +11,7 @@ body{
     font-family:Arial, sans-serif;
     color:white;
     transition:0.3s;
-    padding-bottom:50px;
+    padding-bottom:60px;
 }
 
 /* LIGHT MODE */
@@ -196,7 +196,7 @@ body.light .side-menu a{
 /* WHATSAPP */
 .whatsapp{
     position:fixed;
-    bottom:65px;
+    bottom:70px;
     right:18px;
     width:52px;
     height:52px;
@@ -211,18 +211,44 @@ body.light .side-menu a{
     z-index:999;
 }
 
-/* FOOTER */
+/* FOOTER WITH TYPING + GLOW */
 .footer{
     position:fixed;
     bottom:0;
     width:100%;
-    background:#e50914;
+    background:#111;
     text-align:center;
-    padding:10px 5px;
+    padding:12px 5px;
     font-size:11px;
     font-weight:bold;
-    letter-spacing:1px;
-    color:white;
+    letter-spacing:2px;
+    color:#00ffcc;
+    border-top:1px solid #222;
+}
+
+.footer span{
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+    border-right:2px solid #00ffcc;
+    width:0;
+    animation:typing 4s steps(35,end) forwards,
+              blink 0.8s infinite,
+              glow 2s infinite alternate;
+}
+
+@keyframes typing{
+    from{width:0;}
+    to{width:100%;}
+}
+
+@keyframes blink{
+    50%{border-color:transparent;}
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 5px #00ffcc; }
+    to{ text-shadow:0 0 20px #00ffcc, 0 0 30px #00ffcc; }
 }
 
 /* MODAL */
@@ -261,55 +287,10 @@ body.light .side-menu a{
     cursor:pointer;
     font-weight:bold;
 }
-
-/* NOTICE POPUP */
-#notice{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    background:#111;
-    border:1px solid #222;
-    width:260px;
-    padding:18px;
-    border-radius:12px;
-    text-align:center;
-    box-shadow:0 0 25px rgba(0,0,0,0.9);
-    z-index:5000;
-    animation:popin 0.25s ease;
-}
-#notice h3{
-    margin:0 0 8px;
-}
-#notice p{
-    font-size:13px;
-    opacity:0.7;
-}
-#notice button{
-    margin-top:12px;
-    padding:7px 18px;
-    border:none;
-    border-radius:20px;
-    background:#e50914;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-@keyframes popin{
-    from{ transform:translate(-50%,-50%) scale(0.8); opacity:0; }
-    to{ transform:translate(-50%,-50%) scale(1); opacity:1; }
-}
 </style>
 </head>
 
 <body>
-
-<!-- NOTICE -->
-<div id="notice">
-    <h3>👋 Welcome to Stream Hub</h3>
-    <p>Movies & TV Series එකම තැනකින් බලන්න. Latest releases enjoy කරන්න Stream Hub එක්ක.</p>
-    <button onclick="closeNotice()">OK</button>
-</div>
 
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
@@ -320,9 +301,7 @@ body.light .side-menu a{
     <a href="movies.html">🎬 Movies</a>
 </div>
 
-<!-- HERO -->
-<div class="hero" id="hero">
-
+<div class="hero">
     <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg')">
         <div class="content">
             <div class="tag">NEW ARRIVAL</div>
@@ -331,94 +310,24 @@ body.light .side-menu a{
             <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/0a9fK9wzQk8')">▶ Trailer</a>
         </div>
     </div>
-
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg')">
-        <div class="content">
-            <div class="tag">TRENDING</div>
-            <div class="title">Interstellar</div>
-            <div class="desc">Sci-Fi space adventure.</div>
-            <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/zSWdZVtXT7E')">▶ Trailer</a>
-        </div>
-    </div>
-
-</div>
-
-<!-- TV -->
-<div class="section">
-    <h2>📺 TV SHOWS</h2>
-    <div class="card">
-        <a href="tv.html">Go to TV Shows</a>
-    </div>
-</div>
-
-<!-- MOVIES -->
-<div class="section">
-    <h2>🎬 MOVIES</h2>
-    <div class="card">
-        <a href="movies.html">Go to Movies</a>
-    </div>
 </div>
 
 <a href="https://wa.me/94703490292" class="whatsapp">💬</a>
 
 <div class="footer">
-SYSTEM DEVELOP BY GAVESH VIMANSHANA
-</div>
-
-<!-- TRAILER MODAL -->
-<div class="modal" id="modal">
-    <div class="modal-box">
-        <iframe id="frame"></iframe>
-        <div class="close" onclick="closeTrailer()">CLOSE</div>
-    </div>
+    <span>⚡ SYSTEM DEVELOP BY GAVESH VIMANSHANA 🚀</span>
 </div>
 
 <script>
-let slides = document.querySelectorAll(".slide");
-let index = 0;
-
-/* SLIDER AUTO */
-function showSlide(i){
-    slides.forEach(s => s.classList.remove("active"));
-    slides[i].classList.add("active");
-}
-
-setInterval(()=>{
-    index++;
-    if(index >= slides.length) index = 0;
-    showSlide(index);
-}, 4000);
-
-/* MENU */
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("active");
 }
-
-/* MODE */
 function toggleMode(){
     document.body.classList.toggle("light");
-    localStorage.setItem("mode",
-        document.body.classList.contains("light") ? "light":"dark");
 }
-if(localStorage.getItem("mode")==="light")
-    document.body.classList.add("light");
-
-/* TRAILER */
 function openTrailer(url){
-    document.getElementById("modal").classList.add("active");
-    document.getElementById("frame").src = url + "?autoplay=1";
+    window.open(url,"_blank");
 }
-function closeTrailer(){
-    document.getElementById("modal").classList.remove("active");
-    document.getElementById("frame").src = "";
-}
-
-/* NOTICE */
-function closeNotice(){
-    const n = document.getElementById("notice");
-    if(n) n.style.display = "none";
-}
-setTimeout(closeNotice, 10000);
 </script>
 
 </body>
