@@ -1,171 +1,157 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Details - Stream Hub</title>
-
-<style>
-body{margin:0;background:#0f0f0f;color:white;font-family:Arial,sans-serif;}
-.header{background:#111;padding:15px;text-align:center;font-size:20px;font-weight:bold;color:#e50914;position:sticky;top:0;}
-.container{padding:15px;animation:fadeIn .35s ease;}
-.poster{width:100%;max-height:340px;object-fit:cover;border-radius:12px;background:#222;box-shadow:0 0 25px rgba(229,9,20,.25);}
-.title{margin-top:15px;font-size:24px;font-weight:bold;}
-.genre{margin-top:8px;color:#aaa;}
-.rating{margin-top:8px;color:gold;font-size:18px;}
-.price{margin-top:6px;color:#00e676;font-size:18px;font-weight:bold;}
-.description{margin-top:15px;line-height:1.6;color:#ddd;white-space:pre-line;}
-.btn{display:block;width:100%;text-align:center;padding:12px;border-radius:10px;text-decoration:none;color:white;font-size:16px;font-weight:bold;margin-top:15px;transition:.2s;}
-.btn:hover{transform:scale(1.03);}
-.trailer-btn{background:#e50914;}
-.buy-btn{background:#00c853;}
-.back-btn{background:#333;margin-top:20px;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-</style>
-</head>
-
-<body>
-
-<div class="header" id="headerTitle">Details</div>
-
-<div class="container" id="container">
-<img id="poster" class="poster">
-<div class="title" id="title"></div>
-<div class="genre" id="genre"></div>
-<div class="rating" id="rating"></div>
-<div class="price" id="price"></div>
-<div class="description" id="description"></div>
-
-<a href="#" id="trailerBtn" target="_blank" class="btn trailer-btn">▶ Watch Trailer</a>
+<!DOCTYPE html>  <html>  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Details - Stream Hub</title>  <style>  
+body{margin:0;background:#0f0f0f;color:white;font-family:Arial,sans-serif;}  
+.header{background:#111;padding:15px;text-align:center;font-size:20px;font-weight:bold;color:#e50914;position:sticky;top:0;}  
+.container{padding:15px;animation:fadeIn .35s ease;}  
+.poster{width:100%;max-height:340px;object-fit:cover;border-radius:12px;background:#222;box-shadow:0 0 25px rgba(229,9,20,.25);}  
+.title{margin-top:15px;font-size:24px;font-weight:bold;}  
+.genre{margin-top:8px;color:#aaa;}  
+.rating{margin-top:8px;color:gold;font-size:18px;}  
+.price{margin-top:6px;color:#00e676;font-size:18px;font-weight:bold;}  
+.description{margin-top:15px;line-height:1.6;color:#ddd;white-space:pre-line;}  
+.btn{display:block;width:100%;text-align:center;padding:12px;border-radius:10px;text-decoration:none;color:white;font-size:16px;font-weight:bold;margin-top:15px;transition:.2s;}  
+.btn:hover{transform:scale(1.03);}  
+.trailer-btn{background:#e50914;}  
+.buy-btn{background:#00c853;}  
+.back-btn{background:#333;margin-top:20px;}  
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}  
+</style>  </head>  <body>  <div class="header" id="headerTitle">Details</div>  <div class="container" id="container">  
+<img id="poster" class="poster">  
+<div class="title" id="title"></div>  
+<div class="genre" id="genre"></div>  
+<div class="rating" id="rating"></div>  
+<div class="price" id="price"></div>  
+<div class="description" id="description"></div>  <a href="#" id="trailerBtn" target="_blank" class="btn trailer-btn">▶ Watch Trailer</a>
 <a href="#" id="buyBtn" class="btn buy-btn">💰 Buy Now</a>
 <a href="tv.html" class="btn back-btn">⬅ Back</a>
-</div>
 
-<script>
-
-const params = new URLSearchParams(window.location.search);
-const titleParam = params.get("title");
-
-const trailers = {
-"Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",
-"Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",
-"Yeh Kaali Kaali Ankhein (2022)" : "https://youtu.be/6PcY7fn3ptc",
-"56 Days (2026)" : "https://youtu.be/P5EhHeF99wg",
-"Do You Wanna Partner (2025)" : "https://youtu.be/vD39Kb3eXuU",
-"Motorvalley (2026)" : "https://youtu.be/ySXOmtBK4fk",
-"Kohrra (2023)" : "https://youtu.be/sAx4aq6396E",
-"The Summer I Turned Pretty" : "https://youtu.be/LPNs5kKeEgE",
-"American Primeval" : "https://youtu.be/U8WMvCrywYg",
-"Stranger Things" : "https://youtu.be/b9EkMc79ZSU",
-"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw",
-"SPY x FAMILY" : "https://youtu.be/JP6vBnazpWI?si=RRWA5L-x6Bp11_Xm",
-"SPY x FAMILY" : "https://youtu.be/JP6vBnazpWI?si=RRWA5L-x6Bp11_Xm",
-"Severance (2022)" : "https://youtu.be/xEQP4VVuyrY?si=odJjzkrqRwABsONW",
-"The Hardy Boys (2020)" : "https://youtu.be/tlsk0yBIimc?si=gW0dLGCR5jgtJ_8b",
-"The Girlfriend (2025)" : "https://youtu.be/cKhY8vrRcjI?si=0elJ3vQFNYeVQafO",
-"The Price of Confession (2025)" : "https://youtu.be/Iz8ZW-H2FUg?si=K3kiPRHxYhPw5Lmv",
-"Cashero (2025)" : "https://youtu.be/cI-iJmZbBXw?si=gStHFHY2C361QY4f",
-"Kerala Crime Files (2023)" : "https://youtu.be/aRgtrlSMWWQ?si=5c2Co3ZFxFUl7bUL",
-"Never Have I Ever (2020)" : "https://youtu.be/HyOCCCbxwMQ?si=QzD-riL5dszSrhVf",
-"The Mandalorian (2019)" : "https://youtu.be/aOC8E8z_ifw?si=NTtdBH4zK_VrgFKO",
-"Man Is Cupid (2023)" : "https://youtu.be/JP6vBnazpWI?si=RRWA5L-x6Bp11_Xm",
-"Indian Police Force" : "https://youtu.be/6Jr4lNiK6XE?si=RezRH-ROjlYpeg9z",
-
-};
-
-const dataMap = {
-
-/* === ORIGINAL LIST - NOTHING REMOVED === */
-
-"56 Days (2026)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",genre:"Crime / Drama / Mystery",rating:"⭐ 4.4",price:"Rs. 100",description:"අහම්බෙන් හමුවන දෙදෙනෙකුගේ, සම්බන්ධතාවයක් 56 දිනක් තුළ අමුතු මාවතකට හැරෙන, අභිරහස් crime thriller එකක්. ආරම්භයේ ආදරය සහ, විශ්වාසයෙන් පිරුණු මෙම සම්බන්ධතාවය, කාලය ගතවෙත්ම සැකය සහ රහස් වලින් ගැටී යයි. එක් සිදුවීමක් හේතුවෙන්, ඔවුන්ගේ ජීවිත සම්පූර්ණයෙන්ම වෙනස් වෙයි. සත්‍යය හෙළි, වීමත් සමඟ, කවුද සැබෑවටම විශ්වාස කළ යුත්තේ කියන, ප්‍රශ්නය මතු වෙයි. අවසානය තෙක්ම suspense එක තබා, ගන්නා ගැඹුරු සහ ආවේගශීලී කතාවක්."},
-
-"Do You Wanna Partner (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",genre:"Comedy / Romance",rating:"⭐ 7.7",price:"Rs. 150",description:"ජීවිත දෙකක්, සම්පූර්ණයෙන්ම වෙනස් කරයි. වෙනස් චරිත, වෙනස් සිහින, වෙනස් අතීතයන් ඇති දෙදෙනෙක් අහම්බෙන් හමුවෙයි. මුලදී, එය සරල සහ මිතුරත්වයෙන් පිරුණු සම්බන්ධතාවයක් වුවත්, කාලයත් සමඟ ඒ සම්බන්ධතාවය ගැඹුරු ආදරයකට හැරෙයි,
-නමුත් අතීතයේ තුවාල, පවුල් පීඩන සහ සමාජයේ අපේක්ෂා, ඔවුන් අතර ගැටුම් ඇති කරයි. විශ්වාසය බිඳ වැටෙන, අවස්ථා, කඳුළු සහ සිනාව එකට මිශ්‍ර වන මොහොතවල්, කතාවට හෘදයාංගම ගැඹුරක් එක් කරයි. අවසානයේ ඔවුන්, තෝරාගන්නේ ආදරයද, නැත්නම් වෙන්වීමද? සංවේදී හා, ආකර්ෂණීය romantic drama එකක්."},
-
-"Motorvalley (2026)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg",genre:"Action",rating:"⭐ 6.8",price:"Rs. 100",description:"Motorvalley නගරය වේගය සහ, තරඟකාරීත්වය මත ජීවත් වන ලෝකයක්. මෙහි තරුණ, රේසර්ලා තමන්ගේ සිහින හඹා යමින් ජයග්‍රහණය සඳහා, සෑම දෙයක්ම කැප කරති. නමුත් රේස් පථය මත පමණක්, නොව, ජීවිතය තුළද ඔවුන්ට විරුද්ධකම්, ඊර්ෂ්‍යාව සහ, පාවාදීම මුහුණ දීමට සිදුවෙයි.,
-අනතුරුදායක රේස්, රහසිගත ගිවිසුම් සහ බලය සඳහා, ඇතිවන සටන් කතාව තවත් උණුසුම් කරයි. මිතුරන් අතර, විශ්වාසය බිඳ වැටෙන විට, කවුද සැබෑවටම ඔබ සමඟ, ඉන්නේ කියන ප්‍රශ්නය මතු වෙයි. adrenaline සහ emotion එකට මිශ්‍ර වූ, ආවේගශීලී action drama එකක්."},
-
-"Kohrra (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg",genre:"Crime / Thriller",rating:"⭐ 6.9",price:"Rs. 200",description:"Crime investigation drama."},
-
-"The Summer I Turned Pretty":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg",genre:"Drama / Romance",rating:"⭐ 4.1",price:"Rs. 200",description:"Romantic drama series."},
-
-"American Primeval":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg",genre:"Action / Drama",rating:"⭐ 7.6",price:"Rs. 100",description:"Wild west survival story."},
-
-"Yeh Kaali Kaali Ankhein (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg",genre:"Crime / Romance",rating:"⭐ 9.1",price:"Rs. 200",description:"Dark romantic thriller."},
-
-"Prison Break (2005)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",genre:"Action / Crime",rating:"⭐ 8.1",price:"Rs. 500",description:"Two brothers, one escape plan."},
-
-"Money Heist (2021)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",genre:"Crime / Thriller",rating:"⭐ 8.3",price:"Rs. 500",description:"The Professor's biggest heist."},
-
-"SPY x FAMILY":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg",genre:"Anime / Comedy",rating:"⭐ 6.7",price:"Rs. 250",description:"Spy family comedy anime."},
-
-"One-Punch Man":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",genre:"Anime / Action",rating:"⭐ 6.1",price:"Rs. 300",description:"Saitama – එක punch hero කෙනෙක්."},
-
-"Stranger Things":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",genre:"Sci-Fi / Mystery",rating:"⭐ 8.6",price:"Rs. 450",description:"Mysteries of the Upside Down."},
-
-"Indian Police Force":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/adAHp6OZp632mOrKLWCETyly2g7.jpg",genre:"Action / Crime",rating:"⭐ 8.8",price:"Rs. 100",description:"High intensity police action drama."},
-
-"The Mandalorian (2019)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/eU1i6eHXlzMOlEq0ku1Rzq7Y4wA.jpg",genre:"Sci-Fi / Action",rating:"⭐ 9.2",price:"Rs. 300",description:"A lone bounty hunter in the outer rim."},
-
-"Kerala Crime Files (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/eM2gQTFRoMAaJ3AjGiB10LZU8n6.webp",genre:"Crime / Thriller",rating:"⭐ 4.8",price:"Rs. 200",description:"Police procedural investigation drama."},
-
-"Cashero (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/dm6RoaKgkGUxckamMDzsbqtLhFv.webp",genre:"Action / Fantasy",rating:"⭐ 4.5",price:"Rs. 100",description:"A hero powered by money."},
-
-"Man Is Cupid (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/ij2dlIzdEJa09Am7nxEoJbEjYcN.jpg",genre:"Fantasy / Romance",rating:"⭐ 8.6",price:"Rs. 100",description:"A mysterious cupid entangled in human love."},
-
-"Never Have I Ever (2020)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/hd5fnBixab6IzfUwjC5wfdbX3eM.jpg",genre:"Comedy / Drama",rating:"⭐ 8.5",price:"Rs. 400",description:"Teen coming-of-age comedy series."},
-
-"The Price of Confession (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/gPb8k63HrpvTxHc9yKWZEBR4Kml.jpg",genre:"Crime / Thriller",rating:"⭐ 7.7",price:"Rs. 100",description:"Dark psychological crime story."},
-
-"Severance (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",genre:"Sci-Fi / Thriller",rating:"⭐ 7.7",price:"Rs. 150",description:"A mind-bending corporate experiment."},
-
-"The Hardy Boys (2020)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/zO24XYR7pxsRHJJG9zzA5SRz48B.jpg",genre:"Mystery / Adventure",rating:"⭐ 7.3",price:"Rs. 50",description:"Teen mystery adventure series."},
-
-"The Girlfriend (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/ktrp3tdZ5IQpFux4nLy8z70bt3n.jpg",genre:"Romance / Drama",rating:"⭐ 7.0",price:"Rs. 50",description:"Romantic drama series."},
-
-"Prison Break (2005)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",genre:"Action / Drama",rating:"⭐ 8.1",price:"Rs. 500",description:"Romantic drama series."},
-
-"May I Help You? (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/May-I-Help-You-2022-TV-S01-Complete.jpg",genre:"Romantic  / Drama",rating:"⭐ 6.9",price:"Rs. 50",description:"Romantic drama series."},
-
-"Now, We Are Breaking Up (2021)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/Now-We-Are-Breaking-Up-2021-TV-S01-Complete.jpg",genre:"Romantic  / Drama",rating:"⭐ 7.1",price:"Rs. 100",description:"Romantic drama series."},
-
-"Weak Hero Class 1 (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aW7mGixv2dZdQtbve4deYyfewHH.jpg",genre:"Action  / Drama",rating:"⭐ 7.1",price:"Rs. 200",description:"Romantic drama series."},
-
-"The Walking Dead (TV Series 2010-2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/The-Walking-Dead-TV-Series-S01-to-S11-Complete.jpg",genre:"Actiin / Drama",rating:"⭐ 9.2",price:"Rs. 900",description:"Romantic drama series."},
-
-"Record of Ragnarok (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg",genre:"Anime / Drama",rating:"⭐ 9.3",price:"Rs. 300",description:"Romantic drama series."},
-
-"Wednesday (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aamw6JjKwTy6bdviyIcFKekSD6x.jpg",genre:"Sci Fi / Drama",rating:"⭐ 7.1",price:"Rs. 200",description:"Romantic drama series."},
-
-"Emoji (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/Emoji-2022-TV-Series-S01-Season-01-Complete.jpg",genre:"Romantic  / Drama",rating:"⭐ 7.1",price:"Rs. 50",description:"Romantic drama series."}
-
-};
-
-if(titleParam && dataMap[titleParam]){
-const d = dataMap[titleParam];
-
-headerTitle.innerText = titleParam;
-poster.src = d.poster;
-title.innerText = titleParam;
-genre.innerText = "Genre: " + d.genre;
-rating.innerText = d.rating;
-price.innerText = d.price;
-description.innerText = d.description;
-
-const message = encodeURIComponent("Hello, I want to buy: " + titleParam);
-buyBtn.href = "https://wa.me/94703490292?text=" + message;
-
-if(trailers[titleParam]) trailerBtn.href = trailers[titleParam];
-else trailerBtn.style.display = "none";
-
-}else{
-container.innerHTML="<h2>Not Found</h2><a href='tv.html' class='btn back-btn'>⬅ Back</a>";
-}
-
-poster.onerror=function(){
-this.src="https://via.placeholder.com/500x750?text=No+Image";
-};
-
-</script>
-</body>
+</div>  <script>  
+  
+const params = new URLSearchParams(window.location.search);  
+const titleParam = params.get("title");  
+  
+const trailers = {  
+"Prison Break (2005)" : "https://youtu.be/AL9zLctDJaU",  
+"Money Heist (2021)" : "https://youtu.be/_InqQJRqGW4",  
+"Yeh Kaali Kaali Ankhein (2022)" : "https://youtu.be/6PcY7fn3ptc",  
+"56 Days (2026)" : "https://youtu.be/P5EhHeF99wg",  
+"Do You Wanna Partner (2025)" : "https://youtu.be/vD39Kb3eXuU",  
+"Motorvalley (2026)" : "https://youtu.be/ySXOmtBK4fk",  
+"Kohrra (2023)" : "https://youtu.be/sAx4aq6396E",  
+"The Summer I Turned Pretty" : "https://youtu.be/LPNs5kKeEgE",  
+"American Primeval" : "https://youtu.be/U8WMvCrywYg",  
+"Stranger Things" : "https://youtu.be/b9EkMc79ZSU",  
+"One-Punch Man" : "https://youtu.be/Poo5lqoWSGw",  
+"SPY x FAMILY" : "https://youtu.be/JP6vBnazpWI?si=RRWA5L-x6Bp11_Xm",  
+"SPY x FAMILY" : "https://youtu.be/JP6vBnazpWI?si=RRWA5L-x6Bp11_Xm",  
+"Severance (2022)" : "https://youtu.be/xEQP4VVuyrY?si=odJjzkrqRwABsONW",  
+"The Hardy Boys (2020)" : "https://youtu.be/tlsk0yBIimc?si=gW0dLGCR5jgtJ_8b",  
+"The Girlfriend (2025)" : "https://youtu.be/cKhY8vrRcjI?si=0elJ3vQFNYeVQafO",  
+"The Price of Confession (2025)" : "https://youtu.be/Iz8ZW-H2FUg?si=K3kiPRHxYhPw5Lmv",  
+"Cashero (2025)" : "https://youtu.be/cI-iJmZbBXw?si=gStHFHY2C361QY4f",  
+"Kerala Crime Files (2023)" : "https://youtu.be/aRgtrlSMWWQ?si=5c2Co3ZFxFUl7bUL",  
+"Never Have I Ever (2020)" : "https://youtu.be/HyOCCCbxwMQ?si=QzD-riL5dszSrhVf",  
+"The Mandalorian (2019)" : "https://youtu.be/aOC8E8z_ifw?si=NTtdBH4zK_VrgFKO",  
+"Man Is Cupid (2023)" : "https://youtu.be/JP6vBnazpWI?si=RRWA5L-x6Bp11_Xm",  
+"Indian Police Force" : "https://youtu.be/6Jr4lNiK6XE?si=RezRH-ROjlYpeg9z",  
+  
+};  
+  
+const dataMap = {  
+  
+/* === ORIGINAL LIST - NOTHING REMOVED === */  
+  
+"56 Days (2026)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg",genre:"Crime / Drama / Mystery",rating:"⭐ 4.4",price:"Rs. 100",description:"අහම්බෙන් හමුවන දෙදෙනෙකුගේ, සම්බන්ධතාවයක් 56 දිනක් තුළ අමුතු මාවතකට හැරෙන, අභිරහස් crime thriller එකක්. ආරම්භයේ ආදරය සහ, විශ්වාසයෙන් පිරුණු මෙම සම්බන්ධතාවය, කාලය ගතවෙත්ම සැකය සහ රහස් වලින් ගැටී යයි. එක් සිදුවීමක් හේතුවෙන්, ඔවුන්ගේ ජීවිත සම්පූර්ණයෙන්ම වෙනස් වෙයි. සත්‍යය හෙළි, වීමත් සමඟ, කවුද සැබෑවටම විශ්වාස කළ යුත්තේ කියන, ප්‍රශ්නය මතු වෙයි. අවසානය තෙක්ම suspense එක තබා, ගන්නා ගැඹුරු සහ ආවේගශීලී කතාවක්."},  
+  
+"Do You Wanna Partner (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg",genre:"Comedy / Romance",rating:"⭐ 7.7",price:"Rs. 150",description:"ජීවිත දෙකක්, සම්පූර්ණයෙන්ම වෙනස් කරයි. වෙනස් චරිත, වෙනස් සිහින, වෙනස් අතීතයන් ඇති දෙදෙනෙක් අහම්බෙන් හමුවෙයි. මුලදී, එය සරල සහ මිතුරත්වයෙන් පිරුණු සම්බන්ධතාවයක් වුවත්, කාලයත් සමඟ ඒ සම්බන්ධතාවය ගැඹුරු ආදරයකට හැරෙයි,  
+නමුත් අතීතයේ තුවාල, පවුල් පීඩන සහ සමාජයේ අපේක්ෂා, ඔවුන් අතර ගැටුම් ඇති කරයි. විශ්වාසය බිඳ වැටෙන, අවස්ථා, කඳුළු සහ සිනාව එකට මිශ්‍ර වන මොහොතවල්, කතාවට හෘදයාංගම ගැඹුරක් එක් කරයි. අවසානයේ ඔවුන්, තෝරාගන්නේ ආදරයද, නැත්නම් වෙන්වීමද? සංවේදී හා, ආකර්ෂණීය romantic drama එකක්."},  
+  
+"Motorvalley (2026)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg",genre:"Action",rating:"⭐ 6.8",price:"Rs. 100",description:"Motorvalley නගරය වේගය සහ, තරඟකාරීත්වය මත ජීවත් වන ලෝකයක්. මෙහි තරුණ, රේසර්ලා තමන්ගේ සිහින හඹා යමින් ජයග්‍රහණය සඳහා, සෑම දෙයක්ම කැප කරති. නමුත් රේස් පථය මත පමණක්, නොව, ජීවිතය තුළද ඔවුන්ට විරුද්ධකම්, ඊර්ෂ්‍යාව සහ, පාවාදීම මුහුණ දීමට සිදුවෙයි.,  
+අනතුරුදායක රේස්, රහසිගත ගිවිසුම් සහ බලය සඳහා, ඇතිවන සටන් කතාව තවත් උණුසුම් කරයි. මිතුරන් අතර, විශ්වාසය බිඳ වැටෙන විට, කවුද සැබෑවටම ඔබ සමඟ, ඉන්නේ කියන ප්‍රශ්නය මතු වෙයි. adrenaline සහ emotion එකට මිශ්‍ර වූ, ආවේගශීලී action drama එකක්."},  
+  
+"Kohrra (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg",genre:"Crime / Thriller",rating:"⭐ 6.9",price:"Rs. 200",description:"Crime investigation drama."},  
+  
+"The Summer I Turned Pretty":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg",genre:"Drama / Romance",rating:"⭐ 4.1",price:"Rs. 200",description:"Romantic drama series."},  
+  
+"American Primeval":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg",genre:"Action / Drama",rating:"⭐ 7.6",price:"Rs. 100",description:"Wild west survival story."},  
+  
+"Yeh Kaali Kaali Ankhein (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg",genre:"Crime / Romance",rating:"⭐ 9.1",price:"Rs. 200",description:"Dark romantic thriller."},  
+  
+"Prison Break (2005)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",genre:"Action / Crime",rating:"⭐ 8.1",price:"Rs. 500",description:"Two brothers, one escape plan."},  
+  
+"Money Heist (2021)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg",genre:"Crime / Thriller",rating:"⭐ 8.3",price:"Rs. 500",description:"The Professor's biggest heist."},  
+  
+"SPY x FAMILY":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg",genre:"Anime / Comedy",rating:"⭐ 6.7",price:"Rs. 250",description:"Spy family comedy anime."},  
+  
+"One-Punch Man":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg",genre:"Anime / Action",rating:"⭐ 6.1",price:"Rs. 300",description:"Saitama – එක punch hero කෙනෙක්."},  
+  
+"Stranger Things":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg",genre:"Sci-Fi / Mystery",rating:"⭐ 8.6",price:"Rs. 450",description:"Mysteries of the Upside Down."},  
+  
+"Indian Police Force":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/adAHp6OZp632mOrKLWCETyly2g7.jpg",genre:"Action / Crime",rating:"⭐ 8.8",price:"Rs. 100",description:"High intensity police action drama."},  
+  
+"The Mandalorian (2019)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/eU1i6eHXlzMOlEq0ku1Rzq7Y4wA.jpg",genre:"Sci-Fi / Action",rating:"⭐ 9.2",price:"Rs. 300",description:"A lone bounty hunter in the outer rim."},  
+  
+"Kerala Crime Files (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/eM2gQTFRoMAaJ3AjGiB10LZU8n6.webp",genre:"Crime / Thriller",rating:"⭐ 4.8",price:"Rs. 200",description:"Police procedural investigation drama."},  
+  
+"Cashero (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/dm6RoaKgkGUxckamMDzsbqtLhFv.webp",genre:"Action / Fantasy",rating:"⭐ 4.5",price:"Rs. 100",description:"A hero powered by money."},  
+  
+"Man Is Cupid (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/ij2dlIzdEJa09Am7nxEoJbEjYcN.jpg",genre:"Fantasy / Romance",rating:"⭐ 8.6",price:"Rs. 100",description:"A mysterious cupid entangled in human love."},  
+  
+"Never Have I Ever (2020)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/hd5fnBixab6IzfUwjC5wfdbX3eM.jpg",genre:"Comedy / Drama",rating:"⭐ 8.5",price:"Rs. 400",description:"Teen coming-of-age comedy series."},  
+  
+"The Price of Confession (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/gPb8k63HrpvTxHc9yKWZEBR4Kml.jpg",genre:"Crime / Thriller",rating:"⭐ 7.7",price:"Rs. 100",description:"Dark psychological crime story."},  
+  
+"Severance (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",genre:"Sci-Fi / Thriller",rating:"⭐ 7.7",price:"Rs. 150",description:"A mind-bending corporate experiment."},  
+  
+"The Hardy Boys (2020)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/zO24XYR7pxsRHJJG9zzA5SRz48B.jpg",genre:"Mystery / Adventure",rating:"⭐ 7.3",price:"Rs. 50",description:"Teen mystery adventure series."},  
+  
+"The Girlfriend (2025)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/ktrp3tdZ5IQpFux4nLy8z70bt3n.jpg",genre:"Romance / Drama",rating:"⭐ 7.0",price:"Rs. 50",description:"Romantic drama series."},  
+  
+"Prison Break (2005)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg",genre:"Action / Drama",rating:"⭐ 8.1",price:"Rs. 500",description:"Romantic drama series."},  
+  
+"May I Help You? (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/May-I-Help-You-2022-TV-S01-Complete.jpg",genre:"Romantic  / Drama",rating:"⭐ 6.9",price:"Rs. 50",description:"Romantic drama series."},  
+  
+"Now, We Are Breaking Up (2021)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/Now-We-Are-Breaking-Up-2021-TV-S01-Complete.jpg",genre:"Romantic  / Drama",rating:"⭐ 7.1",price:"Rs. 100",description:"Romantic drama series."},  
+  
+"Weak Hero Class 1 (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aW7mGixv2dZdQtbve4deYyfewHH.jpg",genre:"Action  / Drama",rating:"⭐ 7.1",price:"Rs. 200",description:"Romantic drama series."},  
+  
+"The Walking Dead (TV Series 2010-2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/The-Walking-Dead-TV-Series-S01-to-S11-Complete.jpg",genre:"Actiin / Drama",rating:"⭐ 9.2",price:"Rs. 900",description:"Romantic drama series."},  
+  
+"Record of Ragnarok (2023)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg",genre:"Anime / Drama",rating:"⭐ 9.3",price:"Rs. 300",description:"Romantic drama series."},  
+  
+"Wednesday (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aamw6JjKwTy6bdviyIcFKekSD6x.jpg",genre:"Sci Fi / Drama",rating:"⭐ 7.1",price:"Rs. 200",description:"Romantic drama series."},  
+  
+"Emoji (2022)":{poster:"https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/Emoji-2022-TV-Series-S01-Season-01-Complete.jpg",genre:"Romantic  / Drama",rating:"⭐ 7.1",price:"Rs. 50",description:"Romantic drama series."}  
+  
+};  
+  
+if(titleParam && dataMap[titleParam]){  
+const d = dataMap[titleParam];  
+  
+headerTitle.innerText = titleParam;  
+poster.src = d.poster;  
+title.innerText = titleParam;  
+genre.innerText = "Genre: " + d.genre;  
+rating.innerText = d.rating;  
+price.innerText = d.price;  
+description.innerText = d.description;  
+  
+const message = encodeURIComponent("Hello, I want to buy: " + titleParam);  
+buyBtn.href = "https://wa.me/94703490292?text=" + message;  
+  
+if(trailers[titleParam]) trailerBtn.href = trailers[titleParam];  
+else trailerBtn.style.display = "none";  
+  
+}else{  
+container.innerHTML="<h2>Not Found</h2><a href='tv.html' class='btn back-btn'>⬅ Back</a>";  
+}  
+  
+poster.onerror=function(){  
+this.src="https://via.placeholder.com/500x750?text=No+Image";  
+};  
+  
+</script>  </body>  
 </html>
