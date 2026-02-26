@@ -26,7 +26,7 @@ body{
     z-index:10;
 }
 
-/* NOTICE POPUP */
+/* NOTICE */
 .notice{
     position:fixed;
     inset:0;
@@ -44,14 +44,14 @@ body{
     border-radius:12px;
     padding:20px;
     text-align:center;
-    box-shadow:0 0 20px rgba(229,9,20,0.3);
+    box-shadow:0 0 25px rgba(229,9,20,0.35);
     animation:pop 0.3s ease;
 }
 
 .notice-title{
     font-size:18px;
-    margin-bottom:10px;
     color:#e50914;
+    margin-bottom:10px;
 }
 
 .notice-text{
@@ -101,7 +101,7 @@ body{
     border-radius:10px;
     overflow:hidden;
     cursor:pointer;
-    transition:0.2s;
+    transition:0.25s;
 }
 
 .card:hover{
@@ -120,7 +120,7 @@ body{
     text-align:center;
 }
 
-/* ANIMATION */
+/* ANIMATIONS */
 @keyframes pop{
     from{ transform:scale(0.8); opacity:0; }
     to{ transform:scale(1); opacity:1; }
@@ -130,7 +130,7 @@ body{
 
 <body>
 
-<!-- NOTICE -->
+<!-- NOTICE POPUP -->
 <div class="notice" id="noticeBox">
     <div class="notice-box">
         <div class="notice-title">NOTICE</div>
@@ -154,61 +154,72 @@ body{
     <input type="text" id="search" placeholder="Search movies...">
 </div>
 
-<div class="grid" id="movieGrid">
+<div class="grid">
 
-    <div class="card" data-title="Harry Potter Collection" onclick="openMovie('harrypotter.html')">
+    <div class="card" data-title="Harry Potter Collection"
+         onclick="openDetails('Harry Potter Collection')">
         <img src="https://picsum.photos/300/400?1">
         <div class="card-title">Harry Potter Collection</div>
     </div>
 
-    <div class="card" data-title="Fast & Furious Collection">
+    <div class="card" data-title="Marvel Collection"
+         onclick="openDetails('Marvel Collection')">
         <img src="https://picsum.photos/300/400?2">
-        <div class="card-title">Fast & Furious</div>
-    </div>
-
-    <div class="card" data-title="Marvel Collection">
-        <img src="https://picsum.photos/300/400?3">
         <div class="card-title">Marvel Collection</div>
     </div>
 
-    <div class="card" data-title="DC Collection">
+    <div class="card" data-title="Fast & Furious Collection"
+         onclick="openDetails('Fast & Furious Collection')">
+        <img src="https://picsum.photos/300/400?3">
+        <div class="card-title">Fast & Furious</div>
+    </div>
+
+    <div class="card" data-title="DC Collection"
+         onclick="openDetails('DC Collection')">
         <img src="https://picsum.photos/300/400?4">
         <div class="card-title">DC Collection</div>
     </div>
 
-    <div class="card" data-title="Transformers Collection">
+    <div class="card" data-title="Transformers Collection"
+         onclick="openDetails('Transformers Collection')">
         <img src="https://picsum.photos/300/400?5">
         <div class="card-title">Transformers</div>
     </div>
 
-    <div class="card" data-title="Mission Impossible Collection">
+    <div class="card" data-title="Mission Impossible Collection"
+         onclick="openDetails('Mission Impossible Collection')">
         <img src="https://picsum.photos/300/400?6">
         <div class="card-title">Mission Impossible</div>
     </div>
 
-    <div class="card" data-title="John Wick Collection">
+    <div class="card" data-title="John Wick Collection"
+         onclick="openDetails('John Wick Collection')">
         <img src="https://picsum.photos/300/400?7">
         <div class="card-title">John Wick</div>
     </div>
 
-    <div class="card" data-title="The Conjuring Collection">
+    <div class="card" data-title="The Conjuring Collection"
+         onclick="openDetails('The Conjuring Collection')">
         <img src="https://picsum.photos/300/400?8">
         <div class="card-title">The Conjuring</div>
     </div>
 
-    <div class="card" data-title="Pirates of the Caribbean">
+    <div class="card" data-title="Spider-Man Collection"
+         onclick="openDetails('Spider-Man Collection')">
         <img src="https://picsum.photos/300/400?9">
-        <div class="card-title">Pirates Caribbean</div>
+        <div class="card-title">Spider-Man</div>
     </div>
 
-    <div class="card" data-title="Spider-Man Collection">
+    <div class="card" data-title="Pirates of the Caribbean"
+         onclick="openDetails('Pirates of the Caribbean')">
         <img src="https://picsum.photos/300/400?10">
-        <div class="card-title">Spider-Man</div>
+        <div class="card-title">Pirates Caribbean</div>
     </div>
 
 </div>
 
 <script>
+
 /* NOTICE TIMER */
 let timeLeft = 10;
 const timerEl = document.getElementById("noticeTimer");
@@ -238,10 +249,12 @@ document.getElementById("search").addEventListener("keyup", function(){
     });
 });
 
-/* OPEN PAGE */
-function openMovie(url){
-    window.location.href = url;
+/* DETAILS PAGE LINK 😎🔥 */
+function openDetails(title){
+    window.location.href =
+        "details.html?title=" + encodeURIComponent(title);
 }
+
 </script>
 
 </body>
