@@ -4,8 +4,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinezoon Hub</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
 body{
 margin:0;
@@ -15,7 +13,7 @@ color:white;
 overflow:hidden;
 }
 
-/* ============ INTRO ============ */
+/* ================= INTRO ================= */
 
 #intro{
 position:fixed;
@@ -27,100 +25,165 @@ align-items:center;
 flex-direction:column;
 z-index:9999;
 animation:fadeOut 1s ease forwards;
-animation-delay:3.5s;
+animation-delay:3s;
 }
 
-.logo{
-font-size:32px;
-letter-spacing:4px;
+.intro-logo{
+font-size:34px;
+letter-spacing:6px;
 color:#e50914;
+animation:zoomIn 2s ease forwards;
+opacity:0;
+}
+
+@keyframes zoomIn{
+to{opacity:1; transform:scale(1.2);}
 }
 
 @keyframes fadeOut{
 to{opacity:0; visibility:hidden;}
 }
 
-/* ============ MAIN PAGE ============ */
+/* ================= HEADER ================= */
 
-#mainContent{
-display:none;
-overflow:auto;
-height:100vh;
-}
-
-/* Menu icon */
-.menu-icon{
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:#111;
 position:fixed;
-top:15px;
-left:15px;
-font-size:26px;
+top:0;
+width:100%;
+z-index:1000;
+}
+
+.menu-icon{
+font-size:24px;
 cursor:pointer;
-z-index:1001;
 }
 
-/* Hero */
-.hero{
-height:240px;
-background:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0001.jpg') center/cover;
-margin-top:60px;
-}
-
-/* Buttons */
-.section{
-padding:20px;
-text-align:center;
-}
-
-.section a{
-display:inline-block;
-margin:10px;
-padding:14px 30px;
-background:#e50914;
-color:white;
-text-decoration:none;
-border-radius:25px;
-transition:0.3s;
-}
-
-.section a:hover{
-background:white;
+.title{
+font-weight:bold;
 color:#e50914;
 }
 
-/* Floating Buttons */
-.floating-btn{
-position:fixed;
-width:55px;
-height:55px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:22px;
-box-shadow:0 4px 10px rgba(0,0,0,0.4);
+.music-btn{
 cursor:pointer;
-z-index:1001;
 }
 
-.music-btn{
-bottom:140px;
-right:15px;
+/* ================= SIDE MENU ================= */
+
+.side-menu{
+position:fixed;
+top:0;
+left:-250px;
+width:250px;
+height:100%;
+background:#111;
+padding-top:60px;
+transition:0.4s;
+z-index:999;
+}
+
+.side-menu a{
+display:block;
+padding:15px;
+color:white;
+text-decoration:none;
+border-bottom:1px solid #222;
+}
+
+.side-menu a:hover{
 background:#e50914;
 }
 
-.whatsapp-btn{
-bottom:70px;
-right:15px;
-background:#25D366;
+/* ================= MAIN ================= */
+
+#mainContent{
+display:none;
+padding-top:70px;
+text-align:center;
 }
 
-/* Footer */
+.hero{
+height:250px;
+background:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0001.jpg') center/cover;
+}
+
+.buttons{
+margin:40px 0;
+}
+
+.btn{
+padding:15px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+background:#e50914;
+color:white;
+cursor:pointer;
+font-size:15px;
+}
+
+.btn:hover{
+background:white;
+color:black;
+}
+
+/* ================= FOOTER ================= */
+
 .footer{
 background:#111;
-text-align:center;
-padding:30px 10px;
+padding:40px 20px;
 margin-top:40px;
+text-align:center;
+}
+
+.footer h3{
+color:#e50914;
+margin-bottom:10px;
+}
+
+.social-icons{
+margin:15px 0;
+}
+
+.social-icons a{
+display:inline-block;
+margin:8px;
+padding:12px 18px;
+border-radius:25px;
+background:#222;
+color:white;
+text-decoration:none;
+font-size:14px;
+transition:0.3s;
+}
+
+.social-icons a:hover{
+background:#e50914;
+transform:scale(1.1);
+}
+
+.copy{
+margin-top:20px;
+font-size:13px;
+color:#aaa;
+}
+
+/* ================= WHATSAPP FLOAT ================= */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -129,40 +192,59 @@ margin-top:40px;
 
 <!-- INTRO -->
 <div id="intro">
-<div class="logo">CINEZOON HUB</div>
+<div class="intro-logo">CINEZOON HUB</div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="title">CINEZOON HUB</div>
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
+</div>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+<a href="index.html">🏠 Home</a>
+<a href="movies.html">🎬 Movies</a>
+<a href="tv.html">📺 TV Shows</a>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent">
 
-<div class="menu-icon">☰</div>
-
 <div class="hero"></div>
 
-<div class="section">
-<a href="movies.html">🎬 MOVIES</a>
-<a href="tv.html">📺 TV SHOWS</a>
+<div class="buttons">
+<button class="btn" onclick="location.href='movies.html'">🎬 Movies</button>
+<button class="btn" onclick="location.href='tv.html'">📺 TV Shows</button>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
 <h3>CINEZOON HUB</h3>
-<p>SYSTEM DEVELOP BY GAVESH VIMANSHANA</p>
+<p>System Develop By Gavesh Vimanshana</p>
+
+<div class="social-icons">
+<a href="https://wa.me/94700000000" target="_blank">WhatsApp</a>
+<a href="https://youtube.com/" target="_blank">YouTube</a>
+<a href="https://facebook.com/" target="_blank">Facebook</a>
+<a href="https://tiktok.com/" target="_blank">TikTok</a>
 </div>
 
-<!-- Floating Buttons -->
-<div class="floating-btn music-btn" onclick="toggleMusic()">
-<i id="musicIcon" class="fa-solid fa-play"></i>
+<div class="copy">
+© 2026 Gavesh vimanshana . All Rights Reserved.
+</div>
 </div>
 
-<a href="https://wa.me/94703490292" target="_blank" class="floating-btn whatsapp-btn">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
+</div>
 
+<!-- WHATSAPP FLOAT -->
+<div class="whatsapp" onclick="goWhatsApp()">💬</div>
+
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
-<source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/AUD-20240527-WA0004.mp3" type="audio/mpeg">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
-
-</div>
 
 <script>
 window.onload=function(){
@@ -170,22 +252,29 @@ setTimeout(function(){
 document.getElementById("intro").style.display="none";
 document.getElementById("mainContent").style.display="block";
 document.body.style.overflow="auto";
-},3500);
+},3000);
 };
 
-var music=document.getElementById("bgMusic");
-var icon=document.getElementById("musicIcon");
+function toggleMenu(){
+let menu=document.getElementById("sideMenu");
+if(menu.style.left==="0px"){
+menu.style.left="-250px";
+}else{
+menu.style.left="0px";
+}
+}
 
+let music=document.getElementById("bgMusic");
 function toggleMusic(){
 if(music.paused){
 music.play();
-icon.classList.remove("fa-play");
-icon.classList.add("fa-pause");
 }else{
 music.pause();
-icon.classList.remove("fa-pause");
-icon.classList.add("fa-play");
 }
+}
+
+function goWhatsApp(){
+window.open("https://wa.me/94700000000","_blank");
 }
 </script>
 
