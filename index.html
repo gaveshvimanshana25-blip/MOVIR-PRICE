@@ -5,7 +5,6 @@
 <title>Stream Hub</title>
 
 <style>
-/* (CSS oyāge ekama - kisima wenasak ne) */
 body{
     margin:0;
     background:black;
@@ -14,24 +13,19 @@ body{
     transition:0.3s;
     padding-bottom:60px;
 }
-
-/* LIGHT MODE */
 body.light{ background:white; color:black; }
 body.light .card{ background:#f2f2f2; }
 body.light .side-menu{ background:#eee; }
 body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 
-/* MENU */
 .menu-icon{ position:fixed; top:15px; left:15px; font-size:26px; cursor:pointer; z-index:1001; }
 .toggle-btn{ position:fixed; top:15px; right:15px; background:#e50914; border:none; color:white; padding:6px 12px; border-radius:20px; cursor:pointer; z-index:1001; }
 
-/* SIDE MENU */
 .side-menu{ position:fixed; top:0; left:-230px; width:200px; height:100%; background:#111; padding-top:60px; transition:0.4s; z-index:1000; }
 .side-menu a{ display:block; padding:14px 20px; color:white; text-decoration:none; border-bottom:1px solid #222; }
 .side-menu a:hover{ background:#e50914; }
 .side-menu.active{ left:0; }
 
-/* HERO */
 .hero{ position:relative; height:240px; overflow:hidden; }
 .slide{ position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition:0.6s; }
 .slide.active{ opacity:1; }
@@ -44,21 +38,33 @@ body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 
 .btn{ display:inline-block; margin-top:8px; background:#e50914; padding:7px 16px; border-radius:20px; font-size:12px; text-decoration:none; color:white; font-weight:bold; }
 
-/* CARD */
 .section{ padding:18px 14px 6px; }
 .section h2{ font-size:15px; }
 .card{ background:#111; border-radius:10px; padding:18px; margin-top:8px; text-align:center; }
 .card a{ text-decoration:none; color:inherit; font-weight:bold; }
 
-/* FOOTER */
 .footer{ position:fixed; bottom:0; width:100%; background:#111; text-align:center; padding:12px 5px; font-size:11px; font-weight:bold; letter-spacing:2px; color:#00ffcc; }
 
-/* MODAL */
 .modal{ position:fixed; inset:0; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:0.3s; z-index:99; }
 .modal.active{ opacity:1; pointer-events:auto; }
 .modal-box{ width:92%; max-width:420px; background:#111; border-radius:12px; overflow:hidden; }
 .modal iframe{ width:100%; height:220px; border:none; }
 .close{ background:#e50914; text-align:center; padding:10px; cursor:pointer; font-weight:bold; }
+
+/* 🎵 MUSIC BUTTON STYLE */
+.music-btn{
+position:fixed;
+bottom:70px;
+right:15px;
+background:#e50914;
+color:white;
+border:none;
+padding:10px 14px;
+border-radius:25px;
+cursor:pointer;
+z-index:1001;
+font-weight:bold;
+}
 </style>
 </head>
 
@@ -68,27 +74,25 @@ body.light .side-menu a{ color:black; border-bottom:1px solid #ddd; }
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
 
 <div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="tv.html">📺 TV Shows</a>
-    <a href="movies.html">🎬 Movies</a>
+<a href="index.html">🏠 Home</a>
+<a href="tv.html">📺 TV Shows</a>
+<a href="movies.html">🎬 Movies</a>
 </div>
 
 <div class="hero">
 
-<!-- SLIDE 1 -->
 <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')">
 <div class="content">
 <div class="tag">NEW ARRIVAL</div>
 <div class="title">Moon Knight</div>
 <div class="desc">Crime drama film.</div>
 <a href="#" class="btn"
-onclick="openTrailer('https://youtu.be/x7Krla_UxRg?si=DWoCLblTRnqZT9ug')">
+onclick="openTrailer('https://youtu.be/x7Krla_UxRg')">
 ▶ Trailer
 </a>
 </div>
 </div>
 
-<!-- SLIDE 2 -->
 <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg')">
 <div class="content">
 <div class="tag">TRENDING</div>
@@ -103,7 +107,6 @@ onclick="openTrailer('https://www.youtube-nocookie.com/embed/Yi4YnwFT7Gk')">
 
 </div>
 
-<!-- ✅ ADDED SECTION (Nothing removed) -->
 <div class="section">
 <h2>📺 TV SHOWS</h2>
 <div class="card">
@@ -124,11 +127,18 @@ onclick="openTrailer('https://www.youtube-nocookie.com/embed/Yi4YnwFT7Gk')">
 <div class="modal-box">
 <iframe id="frame"
 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen>
-</iframe>
+allowfullscreen></iframe>
 <div class="close" onclick="closeTrailer()">CLOSE</div>
 </div>
 </div>
+
+<!-- 🎵 MUSIC BUTTON -->
+<button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+<!-- 🎵 AUDIO -->
+<audio id="bgMusic" loop>
+<source src="YOUR_SONG_LINK.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 let slides=document.querySelectorAll(".slide");
@@ -156,6 +166,15 @@ document.getElementById("frame").src=url+"?autoplay=1&rel=0";
 function closeTrailer(){
 document.getElementById("modal").classList.remove("active");
 document.getElementById("frame").src="";
+}
+
+function toggleMusic(){
+var music=document.getElementById("bgMusic");
+if(music.paused){
+music.play();
+}else{
+music.pause();
+}
 }
 </script>
 
