@@ -224,15 +224,16 @@ body.light .side-menu a{
     letter-spacing:2px;
     color:#00ffcc;
     border-top:1px solid #222;
+    overflow:hidden;
 }
 
 .footer span{
     display:inline-block;
-    overflow:hidden;
     white-space:nowrap;
+    overflow:hidden;
     border-right:2px solid #00ffcc;
     width:0;
-    animation:typing 4s steps(35,end) forwards,
+    animation:typing 4s steps(40,end) forwards,
               blink 0.8s infinite,
               glow 2s infinite alternate;
 }
@@ -292,6 +293,13 @@ body.light .side-menu a{
 
 <body>
 
+<!-- NOTICE -->
+<div id="notice">
+    <h3>👋 Welcome to Stream Hub</h3>
+    <p>Movies & TV Series එකම තැනකින් බලන්න. Latest releases enjoy කරන්න Stream Hub එක්ක.</p>
+    <button onclick="closeNotice()">OK</button>
+</div>
+
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
 <button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
 
@@ -301,7 +309,9 @@ body.light .side-menu a{
     <a href="movies.html">🎬 Movies</a>
 </div>
 
-<div class="hero">
+<!-- HERO -->
+<div class="hero" id="hero">
+
     <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/aGzLFogkrVY2QL3rmRGClmqlfTV.jpg')">
         <div class="content">
             <div class="tag">NEW ARRIVAL</div>
@@ -309,6 +319,32 @@ body.light .side-menu a{
             <div class="desc">Romantic drama film.</div>
             <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/0a9fK9wzQk8')">▶ Trailer</a>
         </div>
+    </div>
+
+    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg')">
+        <div class="content">
+            <div class="tag">TRENDING</div>
+            <div class="title">Interstellar</div>
+            <div class="desc">Sci-Fi space adventure.</div>
+            <a href="#" class="btn" onclick="openTrailer('https://www.youtube.com/embed/zSWdZVtXT7E')">▶ Trailer</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- TV -->
+<div class="section">
+    <h2>📺 TV SHOWS</h2>
+    <div class="card">
+        <a href="tv.html">Go to TV Shows</a>
+    </div>
+</div>
+
+<!-- MOVIES -->
+<div class="section">
+    <h2>🎬 MOVIES</h2>
+    <div class="card">
+        <a href="movies.html">Go to Movies</a>
     </div>
 </div>
 
@@ -318,16 +354,55 @@ body.light .side-menu a{
     <span>⚡ SYSTEM DEVELOP BY GAVESH VIMANSHANA 🚀</span>
 </div>
 
+<!-- TRAILER MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <iframe id="frame"></iframe>
+        <div class="close" onclick="closeTrailer()">CLOSE</div>
+    </div>
+</div>
+
 <script>
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(i){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+}
+
+setInterval(()=>{
+    index++;
+    if(index >= slides.length) index = 0;
+    showSlide(index);
+}, 4000);
+
 function toggleMenu(){
     document.getElementById("sideMenu").classList.toggle("active");
 }
+
 function toggleMode(){
     document.body.classList.toggle("light");
+    localStorage.setItem("mode",
+        document.body.classList.contains("light") ? "light":"dark");
 }
+if(localStorage.getItem("mode")==="light")
+    document.body.classList.add("light");
+
 function openTrailer(url){
-    window.open(url,"_blank");
+    document.getElementById("modal").classList.add("active");
+    document.getElementById("frame").src = url + "?autoplay=1";
 }
+function closeTrailer(){
+    document.getElementById("modal").classList.remove("active");
+    document.getElementById("frame").src = "";
+}
+
+function closeNotice(){
+    const n = document.getElementById("notice");
+    if(n) n.style.display = "none";
+}
+setTimeout(closeNotice, 10000);
 </script>
 
 </body>
