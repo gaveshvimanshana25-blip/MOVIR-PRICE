@@ -4,6 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cinezoon Hub</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 body{
 margin:0;
@@ -13,7 +15,7 @@ color:white;
 overflow:hidden;
 }
 
-/* ================= NEW INTRO ================= */
+/* ============ INTRO ============ */
 
 #intro{
 position:fixed;
@@ -28,44 +30,17 @@ animation:fadeOut 1s ease forwards;
 animation-delay:3.5s;
 }
 
-.light-bar{
-position:absolute;
-width:8px;
-height:100%;
-background:#e50914;
-animation:lightMove 2s ease-in-out infinite alternate;
-opacity:0.7;
-}
-
-.light-bar:nth-child(1){left:30%;}
-.light-bar:nth-child(2){left:50%;}
-.light-bar:nth-child(3){left:70%;}
-
-@keyframes lightMove{
-0%{transform:scaleY(0.3);}
-100%{transform:scaleY(1);}
-}
-
 .logo{
-font-size:36px;
-letter-spacing:5px;
+font-size:32px;
+letter-spacing:4px;
 color:#e50914;
-z-index:2;
-opacity:0;
-animation:logoFade 2s ease forwards;
-animation-delay:0.8s;
-}
-
-@keyframes logoFade{
-0%{opacity:0; transform:scale(0.7);}
-100%{opacity:1; transform:scale(1);}
 }
 
 @keyframes fadeOut{
 to{opacity:0; visibility:hidden;}
 }
 
-/* ================= MAIN PAGE ================= */
+/* ============ MAIN PAGE ============ */
 
 #mainContent{
 display:none;
@@ -73,38 +48,74 @@ overflow:auto;
 height:100vh;
 }
 
-.hero{
-height:260px;
-background:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0001.jpg') center/cover;
-}
-
-.main-buttons{
-display:flex;
-justify-content:center;
-gap:25px;
-margin:40px 0;
-flex-wrap:wrap;
-}
-
-.glass-btn{
-padding:16px 30px;
-border-radius:30px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(8px);
-border:1px solid rgba(255,255,255,0.2);
-color:white;
-font-size:15px;
+/* Menu icon */
+.menu-icon{
+position:fixed;
+top:15px;
+left:15px;
+font-size:26px;
 cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 15px rgba(229,9,20,0.3);
+z-index:1001;
 }
 
-.glass-btn:hover{
-transform:scale(1.1);
+/* Hero */
+.hero{
+height:240px;
+background:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0001.jpg') center/cover;
+margin-top:60px;
+}
+
+/* Buttons */
+.section{
+padding:20px;
+text-align:center;
+}
+
+.section a{
+display:inline-block;
+margin:10px;
+padding:14px 30px;
 background:#e50914;
-box-shadow:0 0 25px #e50914;
+color:white;
+text-decoration:none;
+border-radius:25px;
+transition:0.3s;
 }
 
+.section a:hover{
+background:white;
+color:#e50914;
+}
+
+/* Floating Buttons */
+.floating-btn{
+position:fixed;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:22px;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+cursor:pointer;
+z-index:1001;
+}
+
+.music-btn{
+bottom:140px;
+right:15px;
+background:#e50914;
+}
+
+.whatsapp-btn{
+bottom:70px;
+right:15px;
+background:#25D366;
+}
+
+/* Footer */
 .footer{
 background:#111;
 text-align:center;
@@ -116,28 +127,40 @@ margin-top:40px;
 
 <body>
 
-<!-- NEW INTRO -->
+<!-- INTRO -->
 <div id="intro">
-<div class="light-bar"></div>
-<div class="light-bar"></div>
-<div class="light-bar"></div>
 <div class="logo">CINEZOON HUB</div>
 </div>
 
 <!-- MAIN CONTENT -->
 <div id="mainContent">
 
+<div class="menu-icon">☰</div>
+
 <div class="hero"></div>
 
-<div class="main-buttons">
-<button class="glass-btn" onclick="goMovies()">🎬 MOVIES</button>
-<button class="glass-btn" onclick="goTV()">📺 TV SHOWS</button>
+<div class="section">
+<a href="movies.html">🎬 MOVIES</a>
+<a href="tv.html">📺 TV SHOWS</a>
 </div>
 
 <div class="footer">
 <h3>CINEZOON HUB</h3>
-<p>System Develop By Gavesh Vimanshana</p>
+<p>SYSTEM DEVELOP BY GAVESH VIMANSHANA</p>
 </div>
+
+<!-- Floating Buttons -->
+<div class="floating-btn music-btn" onclick="toggleMusic()">
+<i id="musicIcon" class="fa-solid fa-play"></i>
+</div>
+
+<a href="https://wa.me/94703490292" target="_blank" class="floating-btn whatsapp-btn">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<audio id="bgMusic" loop>
+<source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/AUD-20240527-WA0004.mp3" type="audio/mpeg">
+</audio>
 
 </div>
 
@@ -150,12 +173,19 @@ document.body.style.overflow="auto";
 },3500);
 };
 
-function goMovies(){
-window.location.href="movies.html";
-}
+var music=document.getElementById("bgMusic");
+var icon=document.getElementById("musicIcon");
 
-function goTV(){
-window.location.href="tv.html";
+function toggleMusic(){
+if(music.paused){
+music.play();
+icon.classList.remove("fa-play");
+icon.classList.add("fa-pause");
+}else{
+music.pause();
+icon.classList.remove("fa-pause");
+icon.classList.add("fa-play");
+}
 }
 </script>
 
