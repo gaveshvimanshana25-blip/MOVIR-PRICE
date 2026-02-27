@@ -219,15 +219,8 @@ text-decoration:none;
 transition:0.3s;
 }
 
-/* Facebook */
-.fb{
-background:#1877F2;
-}
-
-/* WhatsApp */
-.wa{
-background:#25D366;
-}
+.fb{ background:#1877F2; }
+.wa{ background:#25D366; }
 
 .social-icons a:hover{
 transform:scale(1.15);
@@ -249,7 +242,6 @@ box-shadow:0 0 15px rgba(255,255,255,0.4);
 
 <!-- HERO -->
 <div class="hero">
-
 <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg')"></div>
 <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg')"></div>
 <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')"></div>
@@ -258,7 +250,6 @@ box-shadow:0 0 15px rgba(255,255,255,0.4);
 <h1>NOW STREAMING</h1>
 <p>Unlimited Movies & TV Shows. Watch anywhere. Cancel anytime.</p>
 </div>
-
 </div>
 
 <div class="section">
@@ -269,9 +260,14 @@ box-shadow:0 0 15px rgba(255,255,255,0.4);
 <div class="card"><a href="movies.html">Go to Movies</a></div>
 </div>
 
+<!-- AUDIO -->
+<audio id="bgMusic" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
 <!-- FLOATING BUTTONS -->
-<div class="floating-btn music-btn">
-<i class="fa-solid fa-music"></i>
+<div class="floating-btn music-btn" onclick="toggleMusic()">
+<i class="fa-solid fa-music" id="musicIcon"></i>
 </div>
 
 <a href="https://wa.me/94700000000" target="_blank">
@@ -320,6 +316,22 @@ if(document.body.classList.contains("light")){
 btn.innerHTML="☀ Light";
 }else{
 btn.innerHTML="🌙 Dark";
+}
+}
+
+/* MUSIC FUNCTION */
+let music=document.getElementById("bgMusic");
+let icon=document.getElementById("musicIcon");
+
+function toggleMusic(){
+if(music.paused){
+music.play();
+icon.classList.remove("fa-music");
+icon.classList.add("fa-pause");
+}else{
+music.pause();
+icon.classList.remove("fa-pause");
+icon.classList.add("fa-music");
 }
 }
 </script>
