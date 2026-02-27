@@ -1,275 +1,349 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TV Shows - Stream Hub</title>
-
-<style>
-body{
-    margin:0;
-    background:#000;
-    font-family:Arial;
-    color:white;
-}
-
-/* INTRO SCREEN */
-#intro{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:10000;
-}
-.intro-text{
-    color:#00ffcc;
-    font-size:22px;
-    letter-spacing:3px;
-    text-align:center;
-    text-shadow:0 0 10px #00ffcc,0 0 20px #00ffcc,0 0 40px #00ffcc;
-}
-.intro-name{
-    font-size:26px;
-    color:#e50914;
-    margin-top:10px;
-    text-shadow:0 0 10px #e50914,0 0 20px #e50914,0 0 40px #e50914;
-}
-#intro.hide{
-    opacity:0;
-    transition:1s;
-    pointer-events:none;
-}
-
-/* LOADER */
-#loader{
-    position:fixed;
-    inset:0;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:5000;
-    transition:0.4s;
-}
-.loader-box{text-align:center;}
-.spinner{
-    width:46px;height:46px;
-    border:4px solid rgba(255,255,255,0.2);
-    border-top:4px solid #e50914;
-    border-radius:50%;
-    animation:spin 0.8s linear infinite;
-    margin:auto;
-}
-.loading-text{
-    margin-top:12px;
-    font-size:13px;
-    letter-spacing:2px;
-    opacity:0.85;
-}
-@keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-#loader.hide{opacity:0;pointer-events:none;}
-
-/* MENU */
-.menu-icon{
-    position:fixed;
-    top:15px;left:15px;
-    font-size:26px;
-    cursor:pointer;
-    z-index:6000;
-    background:#111;
-    width:40px;height:40px;
-    border-radius:6px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-.side-menu{
-    position:fixed;
-    top:0;left:-260px;
-    width:240px;height:100%;
-    background:#111;
-    box-shadow:5px 0 25px rgba(0,0,0,.6);
-    transition:.35s;
-    z-index:5500;
-    padding-top:60px;
-}
-.side-menu a{
-    display:block;
-    padding:14px 20px;
-    color:white;
-    text-decoration:none;
-    border-bottom:1px solid #222;
-}
-.side-menu a:hover{background:#e50914;}
-.side-menu.open{left:0;}
-
-.header{
-    padding:15px;
-    font-size:22px;
-    font-weight:bold;
-    color:#e50914;
-    text-align:center;
-}
-.notice{
-    margin:10px 15px;
-    padding:10px;
-    background:#111;
-    border:1px solid #e50914;
-    border-radius:6px;
-    font-size:13px;
-    line-height:1.5;
-    color:#ddd;
-}
-.search-box{padding:15px;}
-.search-box input{
-    width:100%;padding:10px;
-    border:none;border-radius:5px;
-    font-size:16px;
-}
-.genres{padding:10px;text-align:center;}
-.genres button{
-    margin:5px;padding:8px 12px;
-    border:none;border-radius:20px;
-    background:#222;color:white;
-    cursor:pointer;
-}
-.genres button:hover{background:#e50914;}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;padding:15px;
-}
-.card{
-    background:#111;
-    border-radius:8px;
-    overflow:hidden;
-    cursor:pointer;
-    transition:0.3s;
-    position:relative;
-}
-.card:hover{transform:scale(1.05);}
-.card img{
-    width:100%;height:200px;
-    object-fit:cover;
-}
-.badge{
-    position:absolute;
-    top:10px;left:10px;
-    background:#e50914;
-    padding:4px 8px;
-    font-size:12px;
-    border-radius:4px;
-    font-weight:bold;
-}
-.price{font-size:14px;color:#e50914;margin-top:4px;}
-.card-content{padding:10px;}
-.rating{font-size:14px;color:gold;}
-</style>
-</head>
-
-<body>
-
-<!-- INTRO -->
-<div id="intro">
-    <div class="intro-text">
-        SYSTEM DEVELOPED BY
-        <div class="intro-name" id="typewriter"></div>
-    </div>
-</div>
-
-<!-- LOADER -->
-<div id="loader">
-    <div class="loader-box">
-        <div class="spinner"></div>
-        <div class="loading-text">LOADING TV SHOWS...</div>
-    </div>
-</div>
-
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-
-<div class="side-menu" id="sideMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="movies.html">🎬 Movies</a>
-    <a href="tv.html">📺 TV Shows</a>
-</div>
-
-<div class="header">TV SHOWS</div>
-
-<div class="notice">
-⚠️ මෙහි ඇති TV SERIOUS වල CARD එකෙහි ඇති SESION 3 යන ඒවාගෙන් සඳහන් වෙන්නේ  
-TV SERIOUS එකේ SESSION 1, 2, 3 තියෙන බව සදහන් වේ.
-</div>
-
-<div class="search-box">
-<input type="text" id="search" placeholder="Search shows..." onkeyup="searchShows()">
-</div>
-
-<div class="genres">
-<button onclick="filterGenre('all')">All</button>
-<button onclick="filterGenre('action')">Action</button>
-<button onclick="filterGenre('crime')">Crime</button>
-<button onclick="filterGenre('Romantic')">Romantic</button>
-<button onclick="filterGenre('anime')">Anime</button>
-<button onclick="filterGenre('sci fi')">Sci-Fi</button>
-<button onclick="filterGenre('Horror')">Horror</button>
-</div>
-
-<!-- 🔥 මෙතන ඔයා දාපු සෙරම CARD ටික 그대로 තියෙනවා -->
-<div class="grid">
-
-<!-- (ඔයා කලින් දාපු සෙරම TV cards මෙතන paste කරලා තියෙනවා – කිසිම එකක් remove කරලා නැහැ) -->
-
-</div>
-
-<script>
-const nameText="GAVESH VIMANSHNA";
-let i=0;
-function typeEffect(){
- if(i<nameText.length){
-  document.getElementById("typewriter").innerHTML+=nameText.charAt(i);
-  i++;
-  setTimeout(typeEffect,120);
- }
-}
-
-function toggleMenu(){
- document.getElementById("sideMenu").classList.toggle("open");
-}
-function goDetails(title){
- window.location.href="details.html?title="+encodeURIComponent(title);
-}
-function searchShows(){
- let input=document.getElementById("search").value.toLowerCase();
- document.querySelectorAll(".card").forEach(card=>{
-  let title=card.dataset.title.toLowerCase();
-  card.style.display=title.includes(input)?"block":"none";
- });
-}
-function filterGenre(genre){
- document.querySelectorAll(".card").forEach(card=>{
-  if(genre==="all"||card.dataset.genre===genre){
-   card.style.display="block";
-  }else{
-   card.style.display="none";
-  }
- });
-}
-
-window.addEventListener("load",()=>{
- typeEffect();
- setTimeout(()=>{
-  document.getElementById("intro").classList.add("hide");
-  document.getElementById("loader").classList.add("hide");
- },4000);
-});
-</script>
-
-</body>
-</html>
+<!DOCTYPE html>  <html>  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>TV Shows - Stream Hub</title>  <style>  
+body{  
+    margin:0;  
+    background:#000;  
+    font-family:Arial;  
+    color:white;  
+}  
+  
+/* LOADER */  
+#loader{  
+    position:fixed;  
+    inset:0;  
+    background:black;  
+    display:flex;  
+    justify-content:center;  
+    align-items:center;  
+    z-index:5000;  
+    transition:0.4s;  
+}  
+.loader-box{ text-align:center; }  
+.spinner{  
+    width:46px;  
+    height:46px;  
+    border:4px solid rgba(255,255,255,0.2);  
+    border-top:4px solid #e50914;  
+    border-radius:50%;  
+    animation:spin 0.8s linear infinite;  
+    margin:auto;  
+}  
+.loading-text{  
+    margin-top:12px;  
+    font-size:13px;  
+    letter-spacing:2px;  
+    opacity:0.85;  
+}  
+@keyframes spin{  
+    from{ transform:rotate(0deg); }  
+    to{ transform:rotate(360deg); }  
+}  
+#loader.hide{  
+    opacity:0;  
+    pointer-events:none;  
+}  
+  
+/* MENU ICON */  
+.menu-icon{  
+    position:fixed;  
+    top:15px;  
+    left:15px;  
+    font-size:26px;  
+    cursor:pointer;  
+    z-index:6000;  
+    background:#111;  
+    width:40px;  
+    height:40px;  
+    border-radius:6px;  
+    display:flex;  
+    align-items:center;  
+    justify-content:center;  
+}  
+  
+/* SIDE MENU */  
+.side-menu{  
+    position:fixed;  
+    top:0;  
+    left:-260px;  
+    width:240px;  
+    height:100%;  
+    background:#111;  
+    box-shadow:5px 0 25px rgba(0,0,0,.6);  
+    transition:.35s;  
+    z-index:5500;  
+    padding-top:60px;  
+}  
+.side-menu a{  
+    display:block;  
+    padding:14px 20px;  
+    color:white;  
+    text-decoration:none;  
+    border-bottom:1px solid #222;  
+}  
+.side-menu a:hover{  
+    background:#e50914;  
+}  
+.side-menu.open{  
+    left:0;  
+}  
+  
+/* HEADER */  
+.header{  
+    padding:15px;  
+    font-size:22px;  
+    font-weight:bold;  
+    color:#e50914;  
+    text-align:center;  
+}  
+  
+/* NOTICE */  
+.notice{  
+    margin:10px 15px;  
+    padding:10px;  
+    background:#111;  
+    border:1px solid #e50914;  
+    border-radius:6px;  
+    font-size:13px;  
+    line-height:1.5;  
+    color:#ddd;  
+}  
+  
+/* SEARCH */  
+.search-box{ padding:15px; }  
+.search-box input{  
+    width:100%;  
+    padding:10px;  
+    border:none;  
+    border-radius:5px;  
+    font-size:16px;  
+}  
+  
+/* GENRES */  
+.genres{ padding:10px; text-align:center; }  
+.genres button{  
+    margin:5px;  
+    padding:8px 12px;  
+    border:none;  
+    border-radius:20px;  
+    background:#222;  
+    color:white;  
+    cursor:pointer;  
+}  
+.genres button:hover{ background:#e50914; }  
+  
+/* GRID */  
+.grid{  
+    display:grid;  
+    grid-template-columns:repeat(2,1fr);  
+    gap:15px;  
+    padding:15px;  
+}  
+  
+.card{  
+    background:#111;  
+    border-radius:8px;  
+    overflow:hidden;  
+    cursor:pointer;  
+    transition:0.3s;  
+    position:relative;  
+}  
+.card:hover{ transform:scale(1.05); }  
+  
+.card img{  
+    width:100%;  
+    height:200px;  
+    object-fit:cover;  
+}  
+  
+.badge{  
+    position:absolute;  
+    top:10px;  
+    left:10px;  
+    background:#e50914;  
+    padding:4px 8px;  
+    font-size:12px;  
+    border-radius:4px;  
+    font-weight:bold;  
+}  
+  
+.price{  
+    font-size:14px;  
+    color:#e50914;  
+    margin-top:4px;  
+}  
+  
+.card-content{ padding:10px; }  
+.rating{ font-size:14px; color:gold; }  
+</style>  </head>  <body>  <div id="loader">  
+    <div class="loader-box">  
+        <div class="spinner"></div>  
+        <div class="loading-text">LOADING TV SHOWS...</div>  
+    </div>  
+</div>  <div class="menu-icon" onclick="toggleMenu()">☰</div>  <div class="side-menu" id="sideMenu">  
+    <a href="index.html">🏠 Home</a>  
+    <a href="movies.html">🎬 Movies</a>  
+    <a href="tv.html">📺 TV Shows</a>  
+</div>  <div class="header">TV SHOWS</div>  <div class="notice">  
+⚠️ මෙහි ඇති TV SERIOUS වල CARD එකෙහි ඇති SESION 3 යන ඒවාගෙන් සඳහන් වෙන්නේ    
+TV SERIOUS එකේ SESSION 1, 2, 3  තියෙන බව සදහන් වේ.  
+</div>  <div class="search-box">  
+    <input type="text" id="search" placeholder="Search shows..." onkeyup="searchShows()">  
+</div>  <div class="genres">  
+    <button onclick="filterGenre('all')">All</button>  
+    <button onclick="filterGenre('action')">Action</button>  
+    <button onclick="filterGenre('crime')">Crime</button>  
+    <button onclick="filterGenre('Romantic')">Romantic </button>  
+    <button onclick="filterGenre('anime')">Anime</button>  
+    <button onclick="filterGenre('sci fi')">Sci-Fi</button>  
+    <button onclick="filterGenre('Horror')">Horror        
+</button>  </div>  <div class="grid">  <div class="card" data-genre="crime" data-title="56 Days (2026)" onclick="goDetails('56 Days (2026)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/sdJLbucggwGj8NdX0UN2zt1Vwmn.jpg">  
+<div class="card-content"><h3>56 Days (2026)</h3><div class="rating">⭐ 4.4</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="comedy" data-title="Do You Wanna Partner (2025)" onclick="goDetails('Do You Wanna Partner (2025)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/desoUeji3c4EDvSsDOoi7OEKH1a.jpg">  
+<div class="card-content"><h3>Do You Wanna Partner</h3><div class="rating">⭐ 7.7</div><div class="price">Rs. 150</div></div>  
+</div>  <div class="card" data-genre="action" data-title="Motorvalley (2026)" onclick="goDetails('Motorvalley (2026)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/v9OAxTMdIci9Ox6cZXvMEWHyYf0.jpg">  
+<div class="card-content"><h3>Motorvalley (2026)</h3><div class="rating">⭐ 6.8</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="crime" data-title="Kohrra (2023)" onclick="goDetails('Kohrra (2023)')">  
+<div class="badge">SESSION 2</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/vI23w796RfqWHlRKEcN4N6bD2DY.jpg">  
+<div class="card-content"><h3>Kohrra (2023)</h3><div class="rating">⭐ 6.9</div><div class="price">Rs. 200</div></div>  
+</div>  <div class="card" data-genre="drama" data-title="The Summer I Turned Pretty" onclick="goDetails('The Summer I Turned Pretty')">  
+<div class="badge">SESSION 2</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/6yCL5HB1ugO3bMwloEDNiNdadUa.jpg">  
+<div class="card-content"><h3>The Summer I Turned Pretty</h3><div class="rating">⭐ 8.1</div><div class="price">Rs. 200</div></div>  
+</div>  <div class="card" data-genre="action" data-title="American Primeval" onclick="goDetails('American Primeval')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/ff0s9OHGNSZL6cVteIb7LNvTnJD.jpg">  
+<div class="card-content"><h3>American Primeval</h3><div class="rating">⭐ 7.6</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="anime" data-title="SPY x FAMILY" onclick="goDetails('SPY x FAMILY')">  
+<div class="badge">SESSION 3</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/cH9ASljQhRKGMsN8LG6Ldexz0I0.jpg">  
+<div class="card-content"><h3>SPY x FAMILY</h3><div class="rating">⭐ 6.7</div><div class="price">Rs. 250</div></div>  
+</div>  <div class="card" data-genre="anime" data-title="One-Punch Man" onclick="goDetails('One-Punch Man')">  
+<div class="badge">SESSION 3</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/saa.jpg">  
+<div class="card-content"><h3>One-Punch Man</h3><div class="rating">⭐ 6.1</div><div class="price">Rs. 300</div></div>  
+</div>  <div class="card" data-genre="sci fi" data-title="Stranger Things" onclick="goDetails('Stranger Things')">  
+<div class="badge">SESSION 5</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/vzPjV6m9IH8GChvskv8ZYGBzwDT.jpg">  
+<div class="card-content"><h3>Stranger Things</h3><div class="rating">⭐ 8.6</div><div class="price">Rs. 450</div></div>  
+</div>  <div class="card" data-genre="action" data-title="Severance (2022)" onclick="goDetails('Severance (2022)')">  
+<div class="badge">SESSION 2</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg">  
+<div class="card-content"><h3>Severance (2022)</h3><div class="rating">⭐ 8.3</div><div class="price">Rs. 150</div></div>  
+</div>  <div class="card" data-genre="action" data-title="The Hardy Boys (2020)" onclick="goDetails('The Hardy Boys (2020)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/zO24XYR7pxsRHJJG9zzA5SRz48B.jpg">  
+<div class="card-content"><h3>The Hardy Boys (2020)</h3><div class="rating">⭐ 7.3</div><div class="price">Rs. 50</div></div>  
+</div>  <div class="card" data-genre="action" data-title="The Girlfriend (2025)" onclick="goDetails('The Girlfriend (2025)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/ktrp3tdZ5IQpFux4nLy8z70bt3n.jpg">  
+<div class="card-content"><h3>The Girlfriend (2025) </h3><div class="rating">⭐ 7.0</div><div class="price">Rs. 50</div></div>  
+</div>  <div class="card" data-genre="action" data-title="The Price of Confession (2025)" onclick="goDetails('The Girlfriend (2025) ')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/gPb8k63HrpvTxHc9yKWZEBR4Kml.jpg">  
+<div class="card-content"><h3>The Price of Confession (2025)</h3><div class="rating">⭐ 7.7</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="action" data-title="Cashero (2025)" onclick="goDetails('Cashero (2025)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/dm6RoaKgkGUxckamMDzsbqtLhFv.webp">  
+<div class="card-content"><h3>Cashero (2025) </h3><div class="rating">⭐ 4.5</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="crime" data-title="Kerala Crime Files (2023)" onclick="goDetails('Kerala Crime Files (2023)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/eM2gQTFRoMAaJ3AjGiB10LZU8n6.webp">  
+<div class="card-content"><h3>Kerala Crime Files (2023)</h3><div class="rating">⭐ 4.8</div><div class="price">Rs. 200</div></div>  
+</div>  <div class="card" data-genre="Romantic" data-title="Never Have I Ever (2020)" onclick="goDetails('Never Have I Ever (2020)')">  
+<div class="badge">SESSION 4</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/hd5fnBixab6IzfUwjC5wfdbX3eM.jpg">  
+<div class="card-content"><h3>Never Have I Ever (2020)</h3><div class="rating">⭐ 8.5</div><div class="price">Rs. 400</div></div>  
+</div>  <div class="card" data-genre="Sci fi" data-title="The Mandalorian (2019)" onclick="goDetails('The Mandalorian (2019)')">  
+<div class="badge">SESSION 3</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/eU1i6eHXlzMOlEq0ku1Rzq7Y4wA.jpg">  
+<div class="card-content"><h3>The Mandalorian (2019)</h3><div class="rating">⭐ 9.2</div><div class="price">Rs. 300</div></div>  
+</div>  <div class="card" data-genre="action" data-title="Man Is Cupid (2023) " onclick="goDetails('Man Is Cupid (2023)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/ij2dlIzdEJa09Am7nxEoJbEjYcN.jpg">  
+<div class="card-content"><h3>Man Is Cupid (2023) </h3><div class="rating">⭐ 8.6</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="crime " data-title="Indian Police Force" onclick="goDetails('Indian Police Force')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/Image%202/adAHp6OZp632mOrKLWCETyly2g7.jpg">  
+<div class="card-content"><h3>Indian Police Force</h3><div class="rating">⭐ 8.8</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="action" data-title="Prison Break (2005)" onclick="goDetails('Prison Break (2005)')">  
+<div class="badge">SESSION 5</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/qq.jpg">  
+<div class="card-content"><h3>Prison Break (2005)</h3><div class="rating">⭐ 8.1</div><div class="price">Rs. 500</div></div>  
+</div>  <div class="card" data-genre="Romantic" data-title="May I Help You? (2022) " onclick="goDetails('May I Help You? (2022)')">  
+<div class="badge">SESSION 1 </div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/May-I-Help-You-2022-TV-S01-Complete.jpg">  
+<div class="card-content"><h3>May I Help You? (2022)</h3><div class="rating">⭐ 6.9</div><div class="price">Rs. 50</div></div>  
+</div>  <div class="card" data-genre="Romantic " data-title="Now, We Are Breaking Up (2021)" onclick="goDetails('Now, We Are Breaking Up (2021)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/Now-We-Are-Breaking-Up-2021-TV-S01-Complete.jpg">  
+<div class="card-content"><h3>Now, We Are Breaking Up (2021)</h3><div class="rating">⭐ 7.1</div><div class="price">Rs. 100</div></div>  
+</div>  <div class="card" data-genre="action" data-title="Weak Hero Class 1 (2022)" onclick="goDetails('Weak Hero Class 1 (2022)')">  
+<div class="badge">SESSION 2</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aW7mGixv2dZdQtbve4deYyfewHH.jpg">  
+<div class="card-content"><h3>Weak Hero Class 1 (2022)</h3><div class="rating">⭐ 9.2</div><div class="price">Rs. 200</div></div>  
+</div>  <div class="card" data-genre="action" data-title="The Walking Dead (TV Series 2010-2022) " onclick="goDetails('The Walking Dead (TV Series 2010-2022)')">  
+<div class="badge">SESSION 11</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/The-Walking-Dead-TV-Series-S01-to-S11-Complete.jpg">  
+<div class="card-content"><h3>The Walking Dead (TV Series 2010-2022)</h3><div class="rating">⭐ 9.2</div><div class="price">Rs. 900</div></div>  
+</div>  <div class="card" data-genre="anime" data-title="Record of Ragnarok (2023)" onclick="goDetails('Record of Ragnarok (2023)')">  
+<div class="badge">SESSION 3</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg">  
+<div class="card-content"><h3>Record of Ragnarok (2023)</h3><div class="rating">⭐ 9.3</div><div class="price">Rs. 300</div></div>  
+</div>  <div class="card" data-genre="Sci fi" data-title="Wednesday (2022)" onclick="goDetails('Wednesday (2022)')">  
+<div class="badge">SESSION 2</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aamw6JjKwTy6bdviyIcFKekSD6x.jpg">  
+<div class="card-content"><h3>Wednesday (2022)</h3><div class="rating">⭐ 9.2</div><div class="price">Rs. 200</div></div>  
+</div>  <div class="card" data-genre="Comedy" data-title="Emoji (2022)" onclick="goDetails('Emoji (2022)')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/Emoji-2022-TV-Series-S01-Season-01-Complete.jpg">  
+<div class="card-content"><h3>Emoji (2022)</h3><div class="rating">⭐ 7.0</div><div class="price">Rs. 50</div></div>  
+</div>  <div class="card" data-genre="crime" data-title="moon knight" onclick="goDetails('moon knight')">  
+<div class="badge">SESSION 1</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg">  
+<div class="card-content"><h3>moon knight</h3><div class="rating">⭐ 7.7</div><div class="price">Rs. 50</div></div>  
+</div>  <div class="card" data-genre="action" data-title="vikings :valhalla " onclick="goDetails('vikings:valhalla')">  
+<div class="badge">SESSION 3</div>  
+<img src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg">  
+<div class="card-content"><h3>vikings:valhalla</h3><div class="rating">⭐ 8.1</div><div class="price">Rs. 200</div></div>  
+</div>  <script>  
+function toggleMenu(){  
+    document.getElementById("sideMenu").classList.toggle("open");  
+}  
+  
+function goDetails(title){  
+    window.location.href="details.html?title="+encodeURIComponent(title);  
+}  
+  
+function searchShows(){  
+    let input = document.getElementById("search").value.toLowerCase();  
+    document.querySelectorAll(".card").forEach(card=>{  
+        let title = card.dataset.title.toLowerCase();  
+        card.style.display = title.includes(input) ? "block" : "none";  
+    });  
+}  
+  
+function filterGenre(genre){  
+    document.querySelectorAll(".card").forEach(card=>{  
+        if(genre==="all" || card.dataset.genre===genre){  
+            card.style.display="block";  
+        } else {  
+            card.style.display="none";  
+        }  
+    });  
+}  
+  
+window.addEventListener("load", ()=>{  
+    document.getElementById("loader").classList.add("hide");  
+});  
+</script>  </body>  
+</html>  5
