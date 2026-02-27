@@ -16,12 +16,7 @@ transition:0.3s;
 padding-bottom:80px;
 }
 
-body.light{
-background:white;
-color:black;
-}
-
-/* MENU ICON */
+/* MENU */
 .menu-icon{
 position:fixed;
 top:15px;
@@ -31,7 +26,6 @@ cursor:pointer;
 z-index:1002;
 }
 
-/* MODE BUTTON */
 .toggle-btn{
 position:fixed;
 top:15px;
@@ -45,7 +39,6 @@ cursor:pointer;
 z-index:1002;
 }
 
-/* SIDE MENU */
 .side-menu{
 position:fixed;
 top:0;
@@ -74,11 +67,10 @@ background:#e50914;
 left:0;
 }
 
-/* ================= NETFLIX PRO HERO ================= */
-
+/* HERO */
 .hero{
 position:relative;
-height:85vh;
+height:90vh;
 overflow:hidden;
 }
 
@@ -89,24 +81,32 @@ height:100%;
 background-size:cover;
 background-position:center;
 opacity:0;
-transition:0.8s;
+transition:1s;
 }
 
 .slide.active{
 opacity:1;
 }
 
+.slide::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to right, rgba(0,0,0,0.9) 25%, rgba(0,0,0,0.4) 60%, transparent 100%);
+}
+
 .hero-overlay{
 position:absolute;
-bottom:20%;
 left:5%;
-max-width:500px;
-z-index:2;
+top:50%;
+transform:translateY(-50%);
+z-index:5;
+max-width:450px;
 }
 
 .hero-overlay h1{
-font-size:40px;
-margin:0 0 10px;
+font-size:42px;
+margin-bottom:10px;
 }
 
 .hero-overlay p{
@@ -146,7 +146,7 @@ background:#e50914;
 
 /* SECTION */
 .section{
-padding:18px 14px 6px;
+padding:20px;
 }
 
 .card{
@@ -163,7 +163,7 @@ color:white;
 font-weight:bold;
 }
 
-/* FLOATING BUTTONS */
+/* FLOATING */
 .floating-btn{
 position:fixed;
 width:55px;
@@ -193,27 +193,14 @@ background:#25D366;
 
 /* FOOTER */
 .footer{
-background:linear-gradient(45deg,#0f0f0f,#1a1a1a);
+background:#111;
 text-align:center;
 padding:30px 10px;
-color:white;
 margin-top:40px;
 }
 
 .footer h3{
-margin:0;
 color:#e50914;
-letter-spacing:2px;
-}
-
-.footer p{
-margin:6px 0;
-font-size:13px;
-opacity:0.8;
-}
-
-.social-icons{
-margin:15px 0;
 }
 
 .social-icons a{
@@ -225,12 +212,6 @@ transition:0.3s;
 
 .social-icons a:hover{
 color:#e50914;
-transform:scale(1.2);
-}
-
-.copyright{
-font-size:11px;
-opacity:0.6;
 }
 </style>
 </head>
@@ -246,16 +227,19 @@ opacity:0.6;
 <a href="movies.html">🎬 Movies</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO WITH 6 SLIDES -->
 <div class="hero">
 
-<div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0001.jpg')"></div>
-
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/File%20new/IMG-20260227-WA0000(1).jpg')"></div>
+<div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba')"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1517602302552-471fe67acf66')"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1497032205916-ac775f0649ae')"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1505685296765-3a2736de412f')"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1478720568477-152d9b164e26')"></div>
+<div class="slide" style="background-image:url('https://images.unsplash.com/photo-1502134249126-9f3755a50d78')"></div>
 
 <div class="hero-overlay">
 <h1>NOW STREAMING</h1>
-<p>Watch the latest movies & TV shows in HD quality with Cinezoon Hub.</p>
+<p>Unlimited Movies & TV Shows. Watch anywhere. Cancel anytime.</p>
 <div class="hero-buttons">
 <button class="play-btn">▶ Play</button>
 <button class="list-btn">+ My List</button>
@@ -266,17 +250,11 @@ opacity:0.6;
 
 <!-- SECTION -->
 <div class="section">
-
 <h2>📺 TV SHOWS</h2>
-<div class="card">
-<a href="tv.html">Go to TV Shows</a>
-</div>
+<div class="card"><a href="tv.html">Go to TV Shows</a></div>
 
 <h2>🎬 MOVIES</h2>
-<div class="card">
-<a href="movies.html">Go to Movies</a>
-</div>
-
+<div class="card"><a href="movies.html">Go to Movies</a></div>
 </div>
 
 <!-- FOOTER -->
@@ -285,36 +263,24 @@ opacity:0.6;
 <p>Your Entertainment Partner 🎬</p>
 
 <div class="social-icons">
-<a href="https://wa.me/94703490292" target="_blank">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
-<a href="#">
-<i class="fa-brands fa-facebook"></i>
-</a>
-<a href="#">
-<i class="fa-brands fa-youtube"></i>
-</a>
-<a href="#">
-<i class="fa-brands fa-tiktok"></i>
-</a>
+<a href="https://wa.me/94703490292" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="#"><i class="fa-brands fa-facebook"></i></a>
+<a href="#"><i class="fa-brands fa-youtube"></i></a>
+<a href="#"><i class="fa-brands fa-tiktok"></i></a>
 </div>
 
-<p class="copyright">
-© 2026 GAVESH VIMANSHANA | All Rights Reserved
-</p>
+<p>© 2026 GAVESH VIMANSHANA | All Rights Reserved</p>
 </div>
 
-<!-- MUSIC BUTTON -->
+<!-- FLOATING BUTTONS -->
 <div class="floating-btn music-btn" onclick="toggleMusic()">
 <i id="musicIcon" class="fa-solid fa-play"></i>
 </div>
 
-<!-- FLOATING WHATSAPP -->
 <a href="https://wa.me/94703490292" target="_blank" class="floating-btn whatsapp-btn">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-<!-- AUDIO -->
 <audio id="bgMusic" loop>
 <source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/song.mp3/AUD-20260220-WA0036.m4a" type="audio/mp4">
 </audio>
@@ -337,14 +303,13 @@ function toggleMode(){
 document.body.classList.toggle("light");
 }
 
-var music=document.getElementById("bgMusic");
-var icon=document.getElementById("musicIcon");
+let music=document.getElementById("bgMusic");
+let icon=document.getElementById("musicIcon");
 
 window.addEventListener("load", function(){
-setTimeout(function(){
+setTimeout(()=>{
 music.play().then(()=>{
-icon.classList.remove("fa-play");
-icon.classList.add("fa-pause");
+icon.classList.replace("fa-play","fa-pause");
 }).catch(()=>{});
 },3000);
 });
@@ -352,12 +317,10 @@ icon.classList.add("fa-pause");
 function toggleMusic(){
 if(music.paused){
 music.play();
-icon.classList.remove("fa-play");
-icon.classList.add("fa-pause");
+icon.classList.replace("fa-play","fa-pause");
 }else{
 music.pause();
-icon.classList.remove("fa-pause");
-icon.classList.add("fa-play");
+icon.classList.replace("fa-pause","fa-play");
 }
 }
 </script>
