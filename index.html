@@ -191,9 +191,8 @@ background:#25D366;
 .footer{
 background:#111;
 text-align:center;
-padding:30px 10px;
+padding:40px 10px;
 margin-top:40px;
-transition:0.3s;
 }
 
 .footer h3{
@@ -201,18 +200,38 @@ color:#e50914;
 }
 
 .social-icons{
-margin-top:15px;
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:20px;
 }
 
 .social-icons a{
-color:inherit;
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
 font-size:22px;
-margin:0 10px;
+color:white;
+text-decoration:none;
 transition:0.3s;
 }
 
+/* Facebook */
+.fb{
+background:#1877F2;
+}
+
+/* WhatsApp */
+.wa{
+background:#25D366;
+}
+
 .social-icons a:hover{
-color:#e50914;
+transform:scale(1.15);
+box-shadow:0 0 15px rgba(255,255,255,0.4);
 }
 </style>
 </head>
@@ -234,9 +253,6 @@ color:#e50914;
 <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg')"></div>
 <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg')"></div>
 <div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')"></div>
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/May-I-Help-You-2022-TV-S01-Complete.jpg')"></div>
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/aamw6JjKwTy6bdviyIcFKekSD6x.jpg')"></div>
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/The-Walking-Dead-TV-Series-S01-to-S11-Complete.jpg')"></div>
 
 <div class="hero-overlay">
 <h1>NOW STREAMING</h1>
@@ -270,8 +286,13 @@ color:#e50914;
 <p>Your Entertainment Partner 🎬</p>
 
 <div class="social-icons">
-<a href="#"><i class="fab fa-facebook"></i></a>
-<a href="#"><i class="fab fa-whatsapp"></i></a>
+<a href="https://www.facebook.com/" target="_blank" class="fb">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="https://wa.me/94700000000" target="_blank" class="wa">
+<i class="fab fa-whatsapp"></i>
+</a>
 </div>
 
 <p>© 2026 GAVESH VIMANSHANA | All Rights Reserved</p>
