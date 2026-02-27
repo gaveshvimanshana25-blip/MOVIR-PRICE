@@ -16,6 +16,31 @@ transition:0.3s;
 padding-bottom:80px;
 }
 
+/* LIGHT MODE */
+body.light{
+background:#f5f5f5;
+color:black;
+}
+
+body.light .card{
+background:white;
+color:black;
+}
+
+body.light .side-menu{
+background:#ffffff;
+}
+
+body.light .side-menu a{
+color:black;
+border-bottom:1px solid #ddd;
+}
+
+body.light .footer{
+background:#eaeaea;
+color:black;
+}
+
 /* MENU */
 .menu-icon{
 position:fixed;
@@ -67,10 +92,10 @@ background:#e50914;
 left:0;
 }
 
-/* HERO */
+/* HERO (PODI KARALA) */
 .hero{
 position:relative;
-height:90vh;
+height:75vh;
 overflow:hidden;
 }
 
@@ -105,12 +130,12 @@ max-width:450px;
 }
 
 .hero-overlay h1{
-font-size:42px;
+font-size:36px;
 margin-bottom:10px;
 }
 
 .hero-overlay p{
-font-size:15px;
+font-size:14px;
 color:#ddd;
 margin-bottom:20px;
 }
@@ -155,11 +180,12 @@ border-radius:10px;
 padding:18px;
 margin-top:8px;
 text-align:center;
+transition:0.3s;
 }
 
 .card a{
 text-decoration:none;
-color:white;
+color:inherit;
 font-weight:bold;
 }
 
@@ -197,6 +223,7 @@ background:#111;
 text-align:center;
 padding:30px 10px;
 margin-top:40px;
+transition:0.3s;
 }
 
 .footer h3{
@@ -204,7 +231,7 @@ color:#e50914;
 }
 
 .social-icons a{
-color:white;
+color:inherit;
 font-size:22px;
 margin:0 10px;
 transition:0.3s;
@@ -219,7 +246,7 @@ color:#e50914;
 <body>
 
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
-<button class="toggle-btn" onclick="toggleMode()">🌙 Mode</button>
+<button class="toggle-btn" onclick="toggleMode()" id="modeBtn">🌙 Dark</button>
 
 <div class="side-menu" id="sideMenu">
 <a href="index.html">🏠 Home</a>
@@ -227,7 +254,7 @@ color:#e50914;
 <a href="movies.html">🎬 Movies</a>
 </div>
 
-<!-- HERO WITH 6 SLIDES -->
+<!-- HERO -->
 <div class="hero">
 
 <div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg')"></div>
@@ -248,7 +275,6 @@ color:#e50914;
 
 </div>
 
-<!-- SECTION -->
 <div class="section">
 <h2>📺 TV SHOWS</h2>
 <div class="card"><a href="tv.html">Go to TV Shows</a></div>
@@ -257,33 +283,11 @@ color:#e50914;
 <div class="card"><a href="movies.html">Go to Movies</a></div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
 <h3>CINEZOON HUB</h3>
 <p>Your Entertainment Partner 🎬</p>
-
-<div class="social-icons">
-<a href="https://wa.me/94703490292" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-<a href="#"><i class="fa-brands fa-facebook"></i></a>
-<a href="#"><i class="fa-brands fa-youtube"></i></a>
-<a href="#"><i class="fa-brands fa-tiktok"></i></a>
-</div>
-
 <p>© 2026 GAVESH VIMANSHANA | All Rights Reserved</p>
 </div>
-
-<!-- FLOATING BUTTONS -->
-<div class="floating-btn music-btn" onclick="toggleMusic()">
-<i id="musicIcon" class="fa-solid fa-play"></i>
-</div>
-
-<a href="https://wa.me/94703490292" target="_blank" class="floating-btn whatsapp-btn">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
-
-<audio id="bgMusic" loop>
-<source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/song.mp3/AUD-20260220-WA0036.m4a" type="audio/mp4">
-</audio>
 
 <script>
 let slides=document.querySelectorAll(".slide");
@@ -301,26 +305,12 @@ document.getElementById("sideMenu").classList.toggle("active");
 
 function toggleMode(){
 document.body.classList.toggle("light");
-}
+let btn=document.getElementById("modeBtn");
 
-let music=document.getElementById("bgMusic");
-let icon=document.getElementById("musicIcon");
-
-window.addEventListener("load", function(){
-setTimeout(()=>{
-music.play().then(()=>{
-icon.classList.replace("fa-play","fa-pause");
-}).catch(()=>{});
-},3000);
-});
-
-function toggleMusic(){
-if(music.paused){
-music.play();
-icon.classList.replace("fa-play","fa-pause");
+if(document.body.classList.contains("light")){
+btn.innerHTML="☀ Light";
 }else{
-music.pause();
-icon.classList.replace("fa-pause","fa-play");
+btn.innerHTML="🌙 Dark";
 }
 }
 </script>
