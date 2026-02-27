@@ -137,7 +137,6 @@ margin-bottom:10px;
 .hero-overlay p{
 font-size:14px;
 color:#ddd;
-margin-bottom:20px;
 }
 
 /* SECTION */
@@ -160,6 +159,34 @@ color:inherit;
 font-weight:bold;
 }
 
+/* FLOATING BUTTONS */
+.floating-btn{
+position:fixed;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:22px;
+box-shadow:0 4px 10px rgba(0,0,0,0.4);
+cursor:pointer;
+z-index:1002;
+}
+
+.music-btn{
+bottom:140px;
+right:15px;
+background:#e50914;
+}
+
+.whatsapp-btn{
+bottom:70px;
+right:15px;
+background:#25D366;
+}
+
 /* FOOTER */
 .footer{
 background:#111;
@@ -170,6 +197,21 @@ transition:0.3s;
 }
 
 .footer h3{
+color:#e50914;
+}
+
+.social-icons{
+margin-top:15px;
+}
+
+.social-icons a{
+color:inherit;
+font-size:22px;
+margin:0 10px;
+transition:0.3s;
+}
+
+.social-icons a:hover{
 color:#e50914;
 }
 </style>
@@ -211,9 +253,27 @@ color:#e50914;
 <div class="card"><a href="movies.html">Go to Movies</a></div>
 </div>
 
+<!-- FLOATING BUTTONS -->
+<div class="floating-btn music-btn">
+<i class="fa-solid fa-music"></i>
+</div>
+
+<a href="https://wa.me/94700000000" target="_blank">
+<div class="floating-btn whatsapp-btn">
+<i class="fab fa-whatsapp"></i>
+</div>
+</a>
+
+<!-- FOOTER -->
 <div class="footer">
 <h3>CINEZOON HUB</h3>
 <p>Your Entertainment Partner 🎬</p>
+
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+</div>
+
 <p>© 2026 GAVESH VIMANSHANA | All Rights Reserved</p>
 </div>
 
