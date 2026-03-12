@@ -1,98 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>CinZoon Hub</title>
+<meta charset="UTF-8">
+<title>TV & Movie Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body{
-font-family:Arial;
-margin:0;
-background:#0f172a;
-color:white;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
-header{
-background:#020617;
-padding:15px;
-text-align:center;
-font-size:24px;
+
+body {
+    background: radial-gradient(circle at top, #111 0%, #050505 70%);
+    color: white;
+    padding: 35px;
 }
-nav{
-text-align:center;
-padding:10px;
-background:#1e293b;
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
 }
-nav button{
-margin:5px;
-padding:10px 20px;
-border:none;
-border-radius:6px;
-background:#22c55e;
-color:white;
-cursor:pointer;
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff3b3b;
+    letter-spacing: 1px;
+    text-shadow: 0 0 12px rgba(255, 0, 0, 0.25);
 }
-nav button:hover{
-background:#16a34a;
+
+.search-box {
+    padding: 9px 14px;
+    width: 220px;
+    border-radius: 25px;
+    border: 1px solid #222;
+    outline: none;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    backdrop-filter: blur(6px);
+    transition: 0.3s;
 }
-section{
-display:none;
-padding:20px;
-text-align:center;
+
+.search-box:focus {
+    border-color: #ff3b3b;
+    background: rgba(255,255,255,0.08);
 }
-section.active{
-display:block;
+
+/* Banner */
+.banner {
+    height: 190px;
+    border-radius: 14px;
+    background:
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/images/Image/images.jpeg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff3b3b;
+    margin-bottom: 45px;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    text-shadow: 0 0 18px rgba(255, 0, 0, 0.35);
 }
-.movie, .tv{
-display:inline-block;
-margin:15px;
+
+/* Sections */
+.sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
 }
-.movie img, .tv img{
-width:150px;
-border-radius:8px;
+
+/* Glass Cards */
+.clickable-section {
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    padding: 45px 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff3b3b;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+
+    transition: 0.35s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.clickable-section:hover {
+    transform: translateY(-6px) scale(1.02);
+    background: rgba(255,255,255,0.07);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.6);
+    border-color: rgba(255, 59, 59, 0.4);
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+}
+
+.whatsapp-button img {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #111;
+    padding: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    transition: 0.3s;
+}
+
+.whatsapp-button img:hover {
+    transform: scale(1.12);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+}
+
+/* Footer */
+footer {
+    margin-top: 65px;
+    text-align: center;
+    color: #666;
+    font-size: 13px;
 }
 </style>
 </head>
 
 <body>
 
-<header>🎬 CinZoon Hub</header>
+<header>
+    <div class="logo">TV & MOVIE STORE</div>
+    <input class="search-box" type="text" placeholder="Search...">
+</header>
 
-<nav>
-<button onclick="showSection('movies')">🎥 Movies</button>
-<button onclick="showSection('tv')">📺 TV Series</button>
-<button onclick="window.location='https://wa.me/94700000000'">💬 WhatsApp Service</button>
-</nav>
+<div class="banner">🎬 Welcome to TV & Movie Store</div>
 
-<section id="movies">
-<h2>Movies</h2>
-<div class="movie">
-<img src="https://via.placeholder.com/150x220">
-<p>Movie 1</p>
-</div>
-<div class="movie">
-<img src="https://via.placeholder.com/150x220">
-<p>Movie 2</p>
-</div>
-</section>
+<div class="sections">
+    <div class="clickable-section" onclick="window.location.href='tvshow.html'">
+        TV SHOWS
+    </div>
 
-<section id="tv">
-<h2>TV Series</h2>
-<div class="tv">
-<img src="https://via.placeholder.com/150x220">
-<p>Series 1</p>
+    <div class="clickable-section" onclick="window.location.href='movie.html'">
+        MOVIES
+    </div>
 </div>
-<div class="tv">
-<img src="https://via.placeholder.com/150x220">
-<p>Series 2</p>
-</div>
-</section>
 
-<script>
-function showSection(id){
-document.querySelectorAll('section').forEach(sec=>{
-sec.classList.remove('active');
-});
-document.getElementById(id).classList.add('active');
-}
-</script>
+<div class="whatsapp-button">
+    <a href="https://wa.me/94703490292" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+</div>
+
+<footer>
+    SYSTEM DEVELOPED BY GAVESH VIMANSHANA
+</footer>
 
 </body>
 </html>
