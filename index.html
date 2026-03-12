@@ -1,329 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cinezoon Hub</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>CinZoon Video Downloader</title>
 
 <style>
 body{
-margin:0;
-background:black;
-font-family:Arial, sans-serif;
+background:#0f172a;
+font-family:Arial;
+text-align:center;
 color:white;
-transition:0.3s;
-padding-bottom:80px;
 }
 
-body.light{
-background:#f5f5f5;
-color:black;
+.box{
+margin-top:100px;
 }
 
-body.light .card{
-background:white;
-color:black;
-}
-
-body.light .side-menu{
-background:#ffffff;
-}
-
-body.light .side-menu a{
-color:black;
-border-bottom:1px solid #ddd;
-}
-
-body.light .footer{
-background:#eaeaea;
-color:black;
-}
-
-.menu-icon{
-position:fixed;
-top:15px;
-left:15px;
-font-size:26px;
-cursor:pointer;
-z-index:1002;
-}
-
-.toggle-btn{
-position:fixed;
-top:15px;
-right:15px;
-background:#e50914;
+input{
+width:80%;
+padding:12px;
+border-radius:8px;
 border:none;
+margin-top:10px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+background:#22c55e;
 color:white;
-padding:6px 12px;
-border-radius:20px;
+font-size:16px;
+margin-top:15px;
 cursor:pointer;
-z-index:1002;
 }
 
-.side-menu{
-position:fixed;
-top:0;
-left:-230px;
-width:200px;
-height:100%;
-background:#111;
-padding-top:60px;
-transition:0.4s;
-z-index:1001;
-}
-
-.side-menu a{
-display:block;
-padding:14px 20px;
-color:white;
-text-decoration:none;
-border-bottom:1px solid #222;
-}
-
-.side-menu a:hover{
-background:#e50914;
-}
-
-.side-menu.active{
-left:0;
-}
-
-.hero{
-position:relative;
-height:75vh;
-overflow:hidden;
-}
-
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-background-size:cover;
-background-position:center;
-opacity:0;
-transition:1s;
-}
-
-.slide.active{
-opacity:1;
-}
-
-.slide::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to right, rgba(0,0,0,0.9) 25%, rgba(0,0,0,0.4) 60%, transparent 100%);
-}
-
-.hero-overlay{
-position:absolute;
-left:5%;
-top:50%;
-transform:translateY(-50%);
-z-index:5;
-max-width:450px;
-}
-
-.hero-overlay h1{
-font-size:36px;
-margin-bottom:10px;
-}
-
-.hero-overlay p{
-font-size:14px;
-color:#ddd;
-}
-
-.section{
-padding:20px;
-}
-
-.card{
-background:#111;
-border-radius:10px;
-padding:18px;
-margin-top:8px;
-text-align:center;
-transition:0.3s;
-}
-
-.card a{
-text-decoration:none;
-color:inherit;
-font-weight:bold;
-}
-
-.floating-btn{
-position:fixed;
-width:55px;
-height:55px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-font-size:22px;
-box-shadow:0 4px 10px rgba(0,0,0,0.4);
-cursor:pointer;
-z-index:1002;
-}
-
-.music-btn{
-bottom:140px;
-right:15px;
-background:#e50914;
-}
-
-.whatsapp-btn{
-bottom:70px;
-right:15px;
-background:#25D366;
-}
-
-.footer{
-background:#111;
-text-align:center;
-padding:40px 10px;
-margin-top:40px;
-}
-
-.footer h3{
-color:#e50914;
-}
-
-.social-icons{
-margin-top:20px;
-display:flex;
-justify-content:center;
-gap:20px;
-}
-
-.social-icons a{
-width:50px;
-height:50px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-color:white;
-text-decoration:none;
-transition:0.3s;
-}
-
-.fb{ background:#1877F2; }
-.wa{ background:#25D366; }
-
-.social-icons a:hover{
-transform:scale(1.15);
-box-shadow:0 0 15px rgba(255,255,255,0.4);
+button:hover{
+background:#16a34a;
 }
 </style>
 </head>
 
 <body>
 
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-<button class="toggle-btn" onclick="toggleMode()" id="modeBtn">🌙 Dark</button>
+<div class="box">
 
-<div class="side-menu" id="sideMenu">
-<a href="index.html">🏠 Home</a>
-<a href="tv.html">📺 TV Shows</a>
-<a href="movies.html">🎬 Movies</a>
-</div>
+<h1>🎬 CinZoon Video Downloader</h1>
 
-<div class="hero">
-<div class="slide active" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/6LF83tjvYYBw0s0Hs4X0qKtFWAV.jpg')"></div>
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0000(1).jpg')"></div>
-<div class="slide" style="background-image:url('https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/refs/heads/main/File%20new/IMG-20260227-WA0001.jpg')"></div>
+<p>YouTube | TikTok | Facebook</p>
 
-<div class="hero-overlay">
-<h1>NOW STREAMING</h1>
-<p>Unlimited Movies & TV Shows. Watch anywhere. Cancel anytime.</p>
-</div>
-</div>
+<input type="text" id="link" placeholder="Paste Video Link Here">
 
-<div class="section">
-<h2>📺 TV SHOWS</h2>
-<div class="card"><a href="tv.html">Go to TV Shows</a></div>
+<br>
 
-<h2>🎬 MOVIES</h2>
-<div class="card"><a href="movies.html">Go to Movies</a></div>
-</div>
+<button onclick="download()">Download Video</button>
 
-<!-- AUDIO -->
-<audio id="bgMusic" loop>
-<source src="https://raw.githubusercontent.com/gaveshvimanshana25-blip/MOVIR-PRICE/main/song.mp3/AUD-20260227-WA0001.mp3" type="audio/mpeg">
-</audio>
-
-<div class="floating-btn music-btn" onclick="toggleMusic()">
-<i class="fa-solid fa-music" id="musicIcon"></i>
-</div>
-
-<a href="https://wa.me/9470 349 0292" target="_blank">
-<div class="floating-btn whatsapp-btn">
-<i class="fab fa-whatsapp"></i>
-</div>
-</a>
-
-<div class="footer">
-<h3>CINEZOON HUB</h3>
-<p>Your Entertainment Partner 🎬</p>
-
-<div class="social-icons">
-<a href="https://www.facebook.com/" target="_blank" class="fb">
-<i class="fab fa-facebook-f"></i>
-</a>
-<a href="https://wa.me/9470 349 0292" target="_blank" class="wa">
-<i class="fab fa-whatsapp"></i>
-</a>
-</div>
-
-<p>© 2026 GAVESH VIMANSHANA | All Rights Reserved</p>
 </div>
 
 <script>
-let slides=document.querySelectorAll(".slide");
-let index=0;
 
-setInterval(()=>{
-slides[index].classList.remove("active");
-index=(index+1)%slides.length;
-slides[index].classList.add("active");
-},4000);
+function download(){
 
-function toggleMenu(){
-document.getElementById("sideMenu").classList.toggle("active");
+let url = document.getElementById("link").value;
+
+if(url.includes("youtube")){
+window.open("https://en.savefrom.net/#url=" + url);
 }
 
-function toggleMode(){
-document.body.classList.toggle("light");
-let btn=document.getElementById("modeBtn");
-
-if(document.body.classList.contains("light")){
-btn.innerHTML="☀ Light";
-}else{
-btn.innerHTML="🌙 Dark";
-}
+else if(url.includes("tiktok")){
+window.open("https://snaptik.app/?url=" + url);
 }
 
-let music=document.getElementById("bgMusic");
-let icon=document.getElementById("musicIcon");
+else if(url.includes("facebook")){
+window.open("https://fdown.net/?url=" + url);
+}
 
-function toggleMusic(){
-if(music.paused){
-music.play();
-icon.classList.remove("fa-music");
-icon.classList.add("fa-pause");
-}else{
-music.pause();
-icon.classList.remove("fa-pause");
-icon.classList.add("fa-music");
+else{
+alert("Please Enter Valid Video Link");
 }
+
 }
+
 </script>
 
 </body>
+
 </html>
