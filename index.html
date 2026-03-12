@@ -1,52 +1,98 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
-<title>CinZoon Movie Hub</title><style>
+<title>CinZoon Hub</title>
+<style>
 body{
-margin:0;
 font-family:Arial;
+margin:0;
 background:#0f172a;
 color:white;
 }
-
 header{
 background:#020617;
 padding:15px;
 text-align:center;
 font-size:24px;
 }
-
-.movies{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
-padding:20px;
+nav{
+text-align:center;
+padding:10px;
+background:#1e293b;
 }
-
-.movie{
+nav button{
+margin:5px;
+padding:10px 20px;
+border:none;
+border-radius:6px;
+background:#22c55e;
+color:white;
+cursor:pointer;
+}
+nav button:hover{
+background:#16a34a;
+}
+section{
+display:none;
+padding:20px;
 text-align:center;
 }
-
-.movie img{
-width:100%;
-border-radius:10px;
+section.active{
+display:block;
 }
-
-.movie a{
-color:white;
-text-decoration:none;
+.movie, .tv{
+display:inline-block;
+margin:15px;
 }
+.movie img, .tv img{
+width:150px;
+border-radius:8px;
+}
+</style>
+</head>
 
-</style></head><body><header>
-🎬 CinZoon Movie Hub
-</header><div class="movies"><div class="movie">
-<a href="movie1.html">
-<img src="https://via.placeholder.com/200x300">
+<body>
+
+<header>🎬 CinZoon Hub</header>
+
+<nav>
+<button onclick="showSection('movies')">🎥 Movies</button>
+<button onclick="showSection('tv')">📺 TV Series</button>
+<button onclick="window.location='https://wa.me/94700000000'">💬 WhatsApp Service</button>
+</nav>
+
+<section id="movies">
+<h2>Movies</h2>
+<div class="movie">
+<img src="https://via.placeholder.com/150x220">
 <p>Movie 1</p>
-</a>
-</div><div class="movie">
-<a href="movie2.html">
-<img src="https://via.placeholder.com/200x300">
+</div>
+<div class="movie">
+<img src="https://via.placeholder.com/150x220">
 <p>Movie 2</p>
-</a>
-</div></div></body>
+</div>
+</section>
+
+<section id="tv">
+<h2>TV Series</h2>
+<div class="tv">
+<img src="https://via.placeholder.com/150x220">
+<p>Series 1</p>
+</div>
+<div class="tv">
+<img src="https://via.placeholder.com/150x220">
+<p>Series 2</p>
+</div>
+</section>
+
+<script>
+function showSection(id){
+document.querySelectorAll('section').forEach(sec=>{
+sec.classList.remove('active');
+});
+document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
 </html>
