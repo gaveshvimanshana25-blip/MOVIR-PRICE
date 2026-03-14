@@ -1,1 +1,178 @@
-shjdodu😊e🫩e
+<!DOCTYPE html>
+<html>
+<head>
+<title>Idea & Link Submit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== Body & Background ===== */
+body {
+  font-family: Arial;
+  margin:0;
+  background: #0a0a0a;
+  color:white;
+}
+
+/* ===== Neon Header ===== */
+header{
+  background:#ff0033;
+  text-align:center;
+  padding:20px;
+  font-size:24px;
+  font-weight:bold;
+  text-shadow: 0 0 10px #ff0033, 0 0 20px #ff6699;
+}
+
+/* ===== Menu Button ===== */
+.menu-icon{
+  position:fixed;
+  top:20px;
+  left:20px;
+  font-size:30px;
+  cursor:pointer;
+  color:#fff;
+  z-index:1000;
+}
+
+/* ===== Side Menu ===== */
+#sideMenu{
+  position:fixed;
+  left:-250px;
+  top:0;
+  width:250px;
+  height:100%;
+  background:#222;
+  padding-top:60px;
+  transition:0.3s;
+  box-shadow: 2px 0 15px rgba(255,0,0,0.5);
+}
+
+#sideMenu a{
+  display:block;
+  padding:15px 20px;
+  color:white;
+  text-decoration:none;
+  border-bottom:1px solid #444;
+  transition:0.2s;
+}
+
+#sideMenu a:hover{
+  background:#ff0033;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* ===== Container ===== */
+.container{
+  max-width:400px;
+  margin:40px auto;
+  padding:20px;
+  background:#111;
+  border-radius:15px;
+  box-shadow: 0 0 20px #ff0033;
+}
+
+input,textarea,button{
+  width:90%;
+  padding:10px;
+  margin:10px 0;
+  border:none;
+  border-radius:8px;
+  outline:none;
+}
+
+input,textarea{
+  background:#222;
+  color:white;
+}
+
+button{
+  background:#ff0033;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  text-shadow:0 0 5px #fff;
+  box-shadow:0 0 10px #ff0033;
+}
+
+.item{
+  background:#330000;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  box-shadow:0 0 10px #ff0033;
+}
+</style>
+</head>
+<body>
+
+<header>💡 Idea & Link Submit</header>
+
+<div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+<div id="sideMenu">
+  <a href="#">Home</a>
+  <a href="#">Contact Developer</a>
+  <a href="#">Terms & Policy</a>
+  <a href="#">Link Submit</a>
+</div>
+
+<div class="container">
+<input id="ideaTitle" placeholder="Idea Title"><br>
+<textarea id="ideaDesc" placeholder="Short Description"></textarea><br>
+<input id="ideaLink" placeholder="Link (https://...)"><br>
+<button onclick="submitIdea()">Submit</button>
+</div>
+
+<h2 style="text-align:center;">Submitted Ideas</h2>
+<div id="ideaList" style="max-width:400px;margin:auto;"></div>
+
+<script>
+// ===== Menu Toggle =====
+function toggleMenu(){
+  let menu = document.getElementById("sideMenu");
+  if(menu.style.left === "0px"){
+    menu.style.left = "-250px";
+  }else{
+    menu.style.left = "0px";
+  }
+}
+
+// ===== Link Submit =====
+function submitIdea(){
+  let title = document.getElementById("ideaTitle").value;
+  let desc = document.getElementById("ideaDesc").value;
+  let link = document.getElementById("ideaLink").value;
+
+  if(!title || !link){
+    alert("Title and Link required!");
+    return;
+  }
+
+  let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+  ideas.push({title, desc, link});
+  localStorage.setItem("ideas", JSON.stringify(ideas));
+  showIdeas();
+
+  // Clear inputs
+  document.getElementById("ideaTitle").value="";
+  document.getElementById("ideaDesc").value="";
+  document.getElementById("ideaLink").value="";
+}
+
+function showIdeas(){
+  let ideas = JSON.parse(localStorage.getItem("ideas")) || [];
+  let html="";
+  ideas.forEach(i=>{
+    html+=`<div class="item">
+      <b>${i.title}</b><br>
+      ${i.desc}<br>
+      🔗 <a href="${i.link}" target="_blank" style="color:#ff6699;">${i.link}</a>
+    </div>`;
+  });
+  document.getElementById("ideaList").innerHTML = html;
+}
+
+showIdeas();
+</script>
+
+</body>
+  </html>
