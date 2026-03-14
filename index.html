@@ -6,10 +6,10 @@
 <title>LinkWave</title>
 <style>
 /* ===== Body & Background ===== */
-body {
+body{
   margin:0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#0a0a0a,#1a1a1a);
   color:white;
 }
 
@@ -98,7 +98,7 @@ header {
   font-weight:bold;
 }
 
-/* ===== Main Button ===== */
+/* ===== Submit Button ===== */
 .main-btn {
   padding:15px 35px;
   font-size:18px;
@@ -161,13 +161,46 @@ header {
   text-shadow:0 0 10px #fff;
 }
 
+/* ===== Submit Form Overlay ===== */
+#overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-size:24px;
+  color:#0ff;
+  text-shadow:0 0 15px #0ff;
+  display:none;
+  z-index:999;
+}
+
+.loader{
+  border:6px solid #222;
+  border-top:6px solid #0ff;
+  border-radius:50%;
+  width:60px;
+  height:60px;
+  animation:spin 1s linear infinite;
+  margin-bottom:20px;
+}
+
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+
 /* ===== Responsive ===== */
 @media(max-width:500px){
   .hero h1{font-size:24px;}
   .hero p{font-size:16px;}
   .main-btn{font-size:16px; padding:12px 25px;}
 }
-
 </style>
 </head>
 <body>
@@ -198,7 +231,8 @@ header {
 <div class="badge">100% Free</div>
 </div>
 
-<button class="main-btn">+ Submit Link</button>
+<!-- Submit Button triggers overlay -->
+<button class="main-btn" onclick="showOverlay()">+ Submit Link</button>
 </section>
 
 <!-- Search Section -->
@@ -221,11 +255,28 @@ Description of the group
 Description of the channel
 </div>
 
+<!-- Submit Animation Overlay -->
+<div id="overlay">
+<div class="loader"></div>
+Link Submitted!
+</div>
+
 <script>
 // ===== Menu Toggle =====
 function toggleMenu(){
 let menu = document.getElementById("sideMenu");
 menu.style.left = menu.style.left === "0px" ? "-250px" : "0px";
+}
+
+// ===== Submit Animation Overlay =====
+function showOverlay(){
+  let overlay = document.getElementById("overlay");
+  overlay.style.display = "flex";
+
+  setTimeout(()=>{
+    overlay.style.display = "none";
+    window.open("https://example.com/thankyou","_blank"); // new page or confirmation
+  },2000); // 2 seconds animation
 }
 </script>
 
