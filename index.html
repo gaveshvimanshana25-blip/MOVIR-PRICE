@@ -1,32 +1,190 @@
-<button class="main-btn" onclick="goToSubmit()">+ Submit Link</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkWave</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg,#0a0a0a,#111);
+  color:white;
+}
+
+/* Header */
+header{
+  display:flex;
+  justify-content:space-between;
+  padding:15px 20px;
+  backdrop-filter:blur(10px);
+  background: rgba(255,255,255,0.05);
+}
+.logo{
+  font-size:28px; 
+  font-weight:700; 
+  color:#0ff; 
+  text-shadow:0 0 15px #0ff;
+}
+.menu-icon{
+  font-size:28px; 
+  cursor:pointer;
+  color:#0ff;
+}
+
+/* Hero Section */
+.hero{
+  text-align:center; 
+  padding:60px 20px;
+}
+.hero h1{
+  font-size:36px; 
+  margin-bottom:20px;
+  color:#0ff;
+  text-shadow:0 0 15px #0ff;
+}
+.hero p{
+  font-size:18px; 
+  max-width:600px; 
+  margin:0 auto 30px auto; 
+  line-height:1.5;
+  color:#ccc;
+}
+
+/* Submit Button */
+.main-btn{
+  padding:15px 40px;
+  font-size:18px;
+  font-weight:700;
+  color:white;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  background: linear-gradient(90deg,#00f,#a0f);
+  box-shadow:0 0 25px #00f,0 0 50px #a0f;
+  transition:0.3s;
+}
+.main-btn:hover{
+  box-shadow:0 0 35px #0ff,0 0 70px #f0f; 
+  transform:scale(1.05);
+}
+
+/* Modal Form */
+#submitForm{
+  display:none;
+  position:fixed;
+  top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.95);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+}
+.form-container{
+  background: rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  padding:35px;
+  border-radius:25px;
+  max-width:450px;
+  width:90%;
+  box-shadow:0 0 25px #0ff;
+}
+input,textarea{
+  width:90%; 
+  padding:14px; 
+  margin:10px 0; 
+  border-radius:12px; 
+  border:none; 
+  outline:none; 
+  background: rgba(255,255,255,0.1); 
+  color:white; 
+  font-size:16px;
+}
+textarea{resize:none; height:80px;}
+button.submit-btn{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  background: linear-gradient(90deg,#00f,#a0f);
+  box-shadow:0 0 20px #00f,0 0 40px #a0f;
+  color:white;
+  font-weight:700;
+  margin-top:10px;
+  transition:0.3s;
+}
+button.submit-btn:hover{
+  box-shadow:0 0 30px #0ff,0 0 60px #f0f; 
+  transform:scale(1.05);
+}
+
+/* Close button */
+.close-btn{
+  position:absolute; top:20px; right:30px;
+  font-size:28px; cursor:pointer; color:#0ff;
+}
+
+/* Neon glow animation for inputs */
+input:focus,textarea:focus{
+  box-shadow:0 0 10px #0ff,0 0 20px #0ff;
+}
+
+/* Responsive */
+@media(max-width:500px){
+  .hero h1{font-size:28px;}
+  .hero p{font-size:16px;}
+  .main-btn{padding:12px 30px; font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LinkWave</div>
+  <div class="menu-icon">☰</div>
+</header>
+
+<section class="hero">
+  <h1>The ultimate open directory for social groups</h1>
+  <p>Discover thousands of active WhatsApp, Telegram, and social communities.</p>
+
+  <button class="main-btn" onclick="openForm()">+ Submit Link</button>
+</section>
+
+<!-- Modal Form -->
+<div id="submitForm">
+  <div class="form-container">
+    <span class="close-btn" onclick="closeForm()">×</span>
+    <h2>Submit Your Link</h2>
+    <input type="text" id="title" placeholder="Title"><br>
+    <textarea id="description" placeholder="Description"></textarea><br>
+    <input type="url" id="link" placeholder="Link (https://...)"><br>
+    <button class="submit-btn" onclick="submitData()">Submit</button>
+  </div>
+</div>
 
 <script>
-function goToSubmit(){
-  // Show overlay animation first
-  let overlay = document.createElement("div");
-  overlay.style.position="fixed";
-  overlay.style.top=0;
-  overlay.style.left=0;
-  overlay.style.width="100%";
-  overlay.style.height="100%";
-  overlay.style.background="rgba(0,0,0,0.9)";
-  overlay.style.display="flex";
-  overlay.style.justifyContent="center";
-  overlay.style.alignItems="center";
-  overlay.style.flexDirection="column";
-  overlay.style.color="#0ff";
-  overlay.style.fontSize="24px";
-  overlay.innerHTML = `<div style="border:6px solid #222; border-top:6px solid #0ff; border-radius:50%; width:60px; height:60px; animation:spin 1s linear infinite; margin-bottom:20px;"></div>
-  Processing...`;
-  document.body.appendChild(overlay);
+function openForm(){document.getElementById("submitForm").style.display="flex";}
+function closeForm(){document.getElementById("submitForm").style.display="none";}
 
-  // Spin animation
-  let style = document.createElement("style");
-  style.innerHTML=`@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}`;
-  document.head.appendChild(style);
+function submitData(){
+  let title = document.getElementById("title").value;
+  let desc = document.getElementById("description").value;
+  let link = document.getElementById("link").value;
 
-  setTimeout(()=>{
-    window.location.href="submit.html"; // redirect to next page
-  },2000);
+  if(!title || !link){alert("Title and Link required!"); return;}
+
+  let links = JSON.parse(localStorage.getItem("links")) || [];
+  links.push({title,desc,link});
+  localStorage.setItem("links",JSON.stringify(links));
+
+  alert("Link submitted successfully!");
+  closeForm();
 }
 </script>
+
+</body>
+</html>
