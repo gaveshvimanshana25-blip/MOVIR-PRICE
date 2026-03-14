@@ -1,1 +1,49 @@
-A
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit Your Link</title>
+<style>
+body{font-family:Arial; background: linear-gradient(135deg,#0a0a0a,#1a1a1a); color:white; text-align:center; padding:50px;}
+.container{max-width:400px; margin:auto; background: rgba(255,255,255,0.05); backdrop-filter:blur(10px); padding:30px; border-radius:20px; box-shadow:0 0 20px #00ffff;}
+input,textarea{width:90%; padding:12px; margin:10px 0; border-radius:10px; border:none; outline:none; background: rgba(255,255,255,0.1); color:white;}
+button{padding:15px 30px; border:none; border-radius:25px; cursor:pointer; background: linear-gradient(90deg,#00f,#a0f); box-shadow:0 0 15px #00f,0 0 30px #a0f; color:white; font-weight:bold; transition:0.3s;}
+button:hover{transform: scale(1.05); box-shadow:0 0 25px #0ff,0 0 50px #f0f;}
+</style>
+</head>
+<body>
+
+<h1>Submit Your Link</h1>
+<div class="container">
+<input type="text" id="title" placeholder="Title"><br>
+<textarea id="description" placeholder="Description"></textarea><br>
+<input type="url" id="link" placeholder="Link (https://...)"><br>
+<button onclick="submitData()">Submit</button>
+</div>
+
+<script>
+function submitData(){
+  let title = document.getElementById("title").value;
+  let desc = document.getElementById("description").value;
+  let link = document.getElementById("link").value;
+
+  if(!title || !link){
+    alert("Title and Link required!");
+    return;
+  }
+
+  // Save to localStorage for demo
+  let links = JSON.parse(localStorage.getItem("links")) || [];
+  links.push({title, desc, link});
+  localStorage.setItem("links", JSON.stringify(links));
+
+  alert("Link submitted successfully!");
+
+  // Optionally redirect to main page
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
